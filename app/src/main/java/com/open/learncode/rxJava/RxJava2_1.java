@@ -23,6 +23,10 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
+import io.reactivex.Single;
+import io.reactivex.SingleEmitter;
+import io.reactivex.SingleObserver;
+import io.reactivex.SingleOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
@@ -40,6 +44,59 @@ public class RxJava2_1 extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rxjava2_1);
     }
+
+    public void Single_1() {
+        Single.just(1)
+                .doOnSuccess(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+
+                    }
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<Integer>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(Integer integer) {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                });
+    }
+
+    public void Single_2() {
+        Single.create(new SingleOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(SingleEmitter<Integer> emitter) throws Exception {
+
+            }
+        }).subscribe(new SingleObserver<Integer>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onSuccess(Integer integer) {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        });
+    }
+
 
     /**
      * 无背压的方式1
@@ -104,6 +161,7 @@ public class RxJava2_1 extends Activity {
      *
      * @param view
      */
+    @SuppressLint("CheckResult")
     public void initRxJava2_2(View view) {
         // 第一步：初始化Observable
         Observable.create(new ObservableOnSubscribe<Integer>() {

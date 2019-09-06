@@ -5,7 +5,7 @@ package com.open.learncode.java.queue;
  *
  * @param <E>
  */
-public class LoopQueue<E> implements Queue<E> {
+public class LoopQueue<E> implements ItMyQueue<E> {
 
     //用来存储队列元素的数组
     private E[] data;

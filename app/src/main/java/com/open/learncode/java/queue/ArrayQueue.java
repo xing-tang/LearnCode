@@ -1,23 +1,23 @@
 package com.open.learncode.java.queue;
 
 
-import com.open.learncode.java.array.Array;
+import com.open.learncode.java.arraylist.MyArrayList;
 
 /**
  * 基于Array实现的队列
  *
  * @param <E>
  */
-public class ArrayQueue<E> implements Queue<E> {
+public class ArrayQueue<E> implements ItMyQueue<E> {
 
     //基于数组二次封装的Array类
-    private Array<E> array;
+    private MyArrayList<E> array;
 
     /**
      * 无参构造方法
      */
     public ArrayQueue() {
-        array = new Array<E>();
+        array = new MyArrayList<E>();
     }
 
     /**
@@ -26,7 +26,7 @@ public class ArrayQueue<E> implements Queue<E> {
      * @param capacity Array类的容量
      */
     public ArrayQueue(int capacity) {
-        array = new Array<E>(capacity);
+        array = new MyArrayList<E>(capacity);
     }
 
     /**
