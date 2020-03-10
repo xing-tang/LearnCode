@@ -27,14 +27,17 @@ public class TestMethod3_1 {
      * @return 返回一维数组中重复元素的位置，若不存在，则返回-1
      */
     public static int method(int[] arr) {
-        if (arr == null || arr.length <= 0) return -1;
+        if (arr == null || arr.length <= 0)
+            return -1;
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] < 0 || arr[i] > arr.length - 1) return -1;
+            if (arr[i] < 0 || arr[i] > arr.length - 1)
+                return -1;
         }
 
         for (int i = 0; i < arr.length; i++) {
             while (i != arr[i]) {
-                if (arr[i] == arr[arr[i]]) return arr[i];
+                if (arr[i] == arr[arr[i]])
+                    return arr[i];
                 swap(arr, i, arr[i]);
             }
         }

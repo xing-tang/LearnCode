@@ -10,6 +10,7 @@ package com.open.learncode.剑指offer;
  * 二维数组在内存空间占用连续的空间，且从左至右从上至下按递增排序。
  * <p>
  * 复杂度分析：
+ * 方法一、二：
  * 时间复杂度：O(n)
  * 空间复杂度：O(1)
  */
@@ -17,19 +18,21 @@ public class TestMethod4 {
 
     public static void main(String[] args) {
         int[][] array = {{1, 2, 8, 9}, {2, 3, 9, 12}, {4, 7, 10, 13}};
-        System.out.println(method(array, 0));
+        System.out.println(method_1(array, 14));
+        System.out.println(method_2(array, 0));
+
     }
 
     /**
-     * 判断二维数组是否包含该整数
+     * 寻找查找范围内的右上角，数字判断二维数组是否包含该整数
      *
      * @param arr    输入的二维数组
      * @param target 待查询的整数
      * @return 存在则返回true，不存在则返回false
      */
-    private static boolean method(int[][] arr, int target) {
+    private static boolean method_1(int[][] arr, int target) {
         int row = 0;
-        int column = arr.length - 1;
+        int column = arr[0].length - 1;
         while (row < arr.length && column >= 0) {
             if (arr[row][column] == target) {
                 return true;
@@ -40,6 +43,33 @@ public class TestMethod4 {
             }
         }
         return false;
+    }
+
+
+    /**
+     * 寻找查找范围内的左下角数字，判断二维数组是否包含该整数
+     *
+     * @param arr    输入的二维数组
+     * @param target 待查询的整数
+     * @return 存在则返回true，不存在则返回false
+     */
+    private static boolean method_2(int[][] arr, int target) {
+
+        int row = arr.length - 1;
+        int column = 0;
+
+        while (row >= 0 && column < arr.length) {
+            if (arr[row][column] == target) {
+                return true;
+            } else if (arr[row][column] > target) {
+                row--;
+            } else {
+                column++;
+            }
+        }
+
+        return false;
+
     }
 }
 
