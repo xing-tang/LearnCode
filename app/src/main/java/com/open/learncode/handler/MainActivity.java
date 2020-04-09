@@ -1,14 +1,10 @@
-package com.open.learncode;
+package com.open.learncode.handler;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.open.learncode.handler.HandlerActivity_1;
-import com.open.learncode.handler.HandlerActivity_2;
-import com.open.learncode.handler.HandlerActivity_3;
-import com.open.learncode.handler.HandlerActivity_4;
 
 import learncode.open.com.learncode.R;
 

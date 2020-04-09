@@ -3,7 +3,6 @@ package com.open.learncode.handler;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;

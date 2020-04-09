@@ -3,7 +3,9 @@ package com.open.learncode.handler;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,8 +13,12 @@ import java.lang.ref.WeakReference;
 
 import learncode.open.com.learncode.R;
 
+/**
+ * 子线程更新UI的4种方式
+ */
 public class HandlerActivity_2 extends Activity {
 
+    private final static String TAG="HandlerActivity_2";
     private MyHandler handler = new MyHandler(this);
     private TextView textView;
 
@@ -31,12 +37,16 @@ public class HandlerActivity_2 extends Activity {
                     //子线程更新UI的几种方式
                     Thread.sleep(2000);
                     updateUImethod1();
+
                     Thread.sleep(2000);
                     updateUImethod2();
+
                     Thread.sleep(2000);
                     updateUImethod3();
+
                     Thread.sleep(2000);
                     updateUImethod4();
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -67,6 +77,7 @@ public class HandlerActivity_2 extends Activity {
             @Override
             public void run() {
                 textView.setText("通过runOnUiThread()方法更新UI");
+                Log.e(TAG, "updateUImethod1");
             }
         });
     }
@@ -76,6 +87,8 @@ public class HandlerActivity_2 extends Activity {
             @Override
             public void run() {
                 textView.setText("通过Handler的post()方法更新UI");
+                Log.e(TAG, "updateUImethod2");
+
             }
         });
     }
@@ -88,7 +101,9 @@ public class HandlerActivity_2 extends Activity {
         /**
          * 发送一个空的Message，但是可用what进行区分
          */
-        handler.sendEmptyMessage(1);
+        //???发送一个空的Message，Message.obj为空，导致空指针异常
+//        handler.sendEmptyMessage(1);
+
         /**
          * 注意：
          * 这里的写法只是为了避免了new Message()内存开销
@@ -98,6 +113,7 @@ public class HandlerActivity_2 extends Activity {
         Message message2 = handler.obtainMessage(1, 2, 3,
                 "通过Handler的obtainMessage()方法更新UI");
         message2.sendToTarget();
+        Log.e(TAG, "updateUImethod3");
     }
 
 
@@ -106,6 +122,7 @@ public class HandlerActivity_2 extends Activity {
             @Override
             public void run() {
                 textView.setText("通过View的post()方法更新UI");
+                Log.e(TAG, "updateUImethod4");
             }
         });
     }

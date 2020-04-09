@@ -2,6 +2,7 @@ package com.open.learncode.handler;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
@@ -33,11 +34,12 @@ import java.util.Vector;
 
 /**
  * 子线程发送消息给主线程
- * 正确Handler写法，不会导致内存泄露
+ * 正确Handler写法，不会导致内存泄露（可以回收的情况下无法被回收）
  * 注意点：
  * 1.在使用Handler的时候，要注意内存泄漏，因为非静态内部类会持有外部类的一个引用，从而导致无法被GC。
- * 2.子线程调用mHandler.sendMessage()方法时候，如果当前Activity已经被注销，但是子线程还在调用，这个时候必须中断线程。
+ * 2.子线程调用方法时候，如果当前Activity已经被注销，但是子线程还在调用，这个时候必须中断线程。
  */
+
 public class HandlerActivity_1 extends Activity {
 
     private TextView textView;
@@ -45,7 +47,9 @@ public class HandlerActivity_1 extends Activity {
     //中断线程的标志
     private boolean isActivityExist = true;
     //子线程
-    private Thread thread = null;
+    private Thread thread;
+    private MyHandler mHandler;
+
 
     /**
      * 创建静态内部类
@@ -70,7 +74,6 @@ public class HandlerActivity_1 extends Activity {
         }
     }
 
-    private final MyHandler mHandler = new MyHandler(this);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,35 +81,10 @@ public class HandlerActivity_1 extends Activity {
         setContentView(R.layout.activity_handler_1);
         textView = (TextView) findViewById(R.id.text);
 
-        LinkedList<Integer> linkedList = new LinkedList<>();
-        linkedList.add(1);
-        linkedList.add(null);
-        linkedList.add(3);
-
-        HashMap<Integer, String> hashMap = new HashMap<>();
-        hashMap.put(1, "A");
-        hashMap.put(null, null);
-        hashMap.put(3, "B");
-        hashMap.put(null, null);
-        Iterator iter = hashMap.entrySet().iterator();
-        while (iter.hasNext()) {
-            Map.Entry entry = (Map.Entry) iter.next();
-            Object key = entry.getKey();
-            Object value = entry.getValue();
-            Log.e("tag", "key=" + key + ";value=" + value);
-        }
-
-        HashSet<String> hashSet = new HashSet<>();
-
+        mHandler = new MyHandler(this);
 
     }
 
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-
-        }
-    };
 
     public void sendHandlerMessage(View view) {
         isActivityExist = true;

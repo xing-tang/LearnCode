@@ -18,36 +18,62 @@ public class TestMethod13 {
 
     public static void main(String[] args) {
 
+        int m = 4;
+        int n = 3;
+        int threshold[][] = new int[m][n];
+        int k = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
 
+                threshold[i][j] = k++;
+            }
+        }
+        System.out.println(movingCount(0, m, n));
 
 
     }
 
-    private static int movingCount(int matrix, int rows, int columns) {
+    /**
+     * 返回矩阵中机器人可以到达的格子数
+     *
+     * @param threshold 阈值
+     * @param rows      矩阵行数
+     * @param columns   矩阵列数
+     * @return
+     */
+    private static int movingCount(int threshold, int rows, int columns) {
 
-        if (matrix < 0 || rows <= 0 || columns <= 0)
+        if (threshold < 0 || rows <= 0 || columns <= 0)
             return 0;
 
         boolean visited[][] = new boolean[rows][columns];
 
-        System.out.println(visited[0][0]);
-
-        int count = movingCountCore(matrix, rows, columns, 0, 0, visited);
-
+        int count = movingCountCore(threshold, rows, columns, 0, 0, visited);
 
         return count;
     }
 
-    private static int movingCountCore(int matrix, int rows, int columns, int row, int column, boolean[][] visited) {
+    /**
+     * 返回当前格子所能延展的可以到达的格子数
+     *
+     * @param threshold 阈值
+     * @param rows 矩阵的行号
+     * @param columns 矩阵的列号
+     * @param row 矩阵的当前行号
+     * @param column 矩阵的当前列号
+     * @param visited 标记格子的访问情况
+     * @return
+     */
+    private static int movingCountCore(int threshold, int rows, int columns, int row, int column, boolean[][] visited) {
 
         int count = 0;
-        if (check(matrix, rows, columns, row, column, visited)) {
+        if (check(threshold, rows, columns, row, column, visited)) {
 
-            visited[row][column]=true;
-            count=1+movingCountCore(matrix,rows,columns,row-1,column,visited)
-                    +movingCountCore(matrix,rows,columns,row+1,column,visited)
-                    +movingCountCore(matrix,rows,columns,row,column-1,visited)
-                    +movingCountCore(matrix,rows,columns,row,column+1,visited);
+            visited[row][column] = true;
+            count = 1 + movingCountCore(threshold, rows, columns, row - 1, column, visited)
+                    + movingCountCore(threshold, rows, columns, row + 1, column, visited)
+                    + movingCountCore(threshold, rows, columns, row, column - 1, visited)
+                    + movingCountCore(threshold, rows, columns, row, column + 1, visited);
 
         }
         return count;
@@ -58,18 +84,19 @@ public class TestMethod13 {
     /**
      * 判断机器人能否进入坐标为（row，column）的方格
      *
-     * @param matrix
-     * @param rows
-     * @param columns
-     * @param row
-     * @param column
-     * @param visited
+     * @param threshold 阈值
+     * @param rows 矩阵的行号
+     * @param columns 矩阵的列号
+     * @param row 矩阵的当前行号
+     * @param column 矩阵的当前列号
+     * @param visited 标记格子的访问情况
      * @return
      */
-    private static boolean check(int matrix, int rows, int columns, int row, int column, boolean[][] visited) {
+    private static boolean check(int threshold, int rows, int columns, int row, int column, boolean[][] visited) {
 
         if (row >= 0 && row < rows && column >= 0 && column < columns
-                && getDigitSum(row) + getDigitSum(column) <= matrix && !visited[row][column]) {
+                && getDigitSum(row) + getDigitSum(column) <= threshold && !visited[row][column]) {
+            System.out.println("check:" + "行号：" + row + "\t列号：" + column);
             return true;
         }
         return false;
@@ -77,16 +104,15 @@ public class TestMethod13 {
     }
 
     /**
-     *
      * @param number 输入具体的数字
      * @return 返回数字num的位数之和
      */
     private static int getDigitSum(int number) {
 
-        int sum=0;
-        while (number>0){
-            sum+=number%10;//余数
-            number/=10;//除数
+        int sum = 0;
+        while (number > 0) {
+            sum += number % 10;//余数
+            number /= 10;//除数
         }
         return sum;
     }

@@ -11,7 +11,6 @@ import learncode.open.com.learncode.R;
 
 /**
  * 子线程向子线程进行通信
- *
  */
 public class HandlerActivity_4 extends Activity {
 
@@ -26,12 +25,25 @@ public class HandlerActivity_4 extends Activity {
         myThread1 = new MyThread1();
         myThread2 = new MyThread2();
         myThread1.start();
-        myThread2.start();
+        myThread1.start();
 
+        //子线程
         new Thread(new Runnable() {
 
             @Override
             public void run() {
+
+                /**
+                 * 这里设置休眠3秒的原因是：
+                 * new Thread.start的速度可能快于myThread1.start() myThread2.start()
+                 * myThread1 myThread1肯定已经创建好了，但是里面的handler是否已经创建成功却不一定
+                 */
+
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 myThread1.handler.sendEmptyMessage(1);
                 myThread2.handler.sendEmptyMessage(2);
             }

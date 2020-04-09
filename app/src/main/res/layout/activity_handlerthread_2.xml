@@ -4,17 +4,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/tv_info_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <Button
+        android:id="@+id/btn_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="btnStart"
-        android:text="开始" />
+        android:text="start" />
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btn_stop"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Handler" />
+
+        android:text="stop" />
+
 
 </LinearLayout>

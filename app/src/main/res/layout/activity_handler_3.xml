@@ -5,9 +5,9 @@
     android:orientation="vertical">
 
     <Button
-        android:onClick="btnStart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="btnStart"
         android:text="开始" />
 
     <TextView
