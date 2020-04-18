@@ -11,19 +11,19 @@ package com.open.learncode.剑指offer;
  * 龟兔赛跑算法
  * <p>
  * 复杂度分析:
- * 方法一的时间复杂度：O(nlongn)，方法二的时间复杂度：O(n)
- * 空间复杂度：都为O(1)
+ * 方法一的时间复杂度：O(n)，空间复杂度：都为O(1)
+ * 方法二的时间复杂度：O(nlongn)，空间复杂度：都为O(1)
  */
 public class TestMethod3_2 {
 
     public static void main(String[] args) {
         int[] arr = {2, 3, 1, 6, 2, 5, 3};
-        System.out.println("二分法打印重复的数字=>" + method1(arr));
-        System.out.println("龟兔赛跑算法打印重复的数字=>" + method2(arr));
+        System.out.println("龟兔赛跑算法打印重复的数字=>" + method1(arr));
+        System.out.println("二分法打印重复的数字=>" + method2(arr));
     }
 
     /**
-     * 二分法
+     * 龟兔赛跑算法
      *
      * @param arr 待查找是否存在重复的数组
      * @return 返回数组中重复的数字，如果不存在重复返回-1
@@ -52,7 +52,7 @@ public class TestMethod3_2 {
     }
 
     /**
-     * 龟兔赛跑算法
+     * 二分法
      *
      * @param arr 待查找是否存在重复的数组
      * @return 返回数组中重复的数字，如果不存在重复返回-1
@@ -66,7 +66,7 @@ public class TestMethod3_2 {
             if (arr[i] < 1 || arr[i] > arr.length - 1)
                 return -1;
 
-        int start = 1;
+        int start = 0;
         int end = arr.length - 1;
         while (start <= end) {
             // int mid = (start + end) / 2;

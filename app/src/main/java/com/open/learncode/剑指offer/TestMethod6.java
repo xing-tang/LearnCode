@@ -1,5 +1,8 @@
 package com.open.learncode.剑指offer;
 
+import android.support.annotation.NonNull;
+
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -15,46 +18,43 @@ import java.util.Stack;
  */
 public class TestMethod6 {
 
-    private static ListNode head;
-    private static ListNode node1;
-    private static ListNode node2;
-    private static ListNode node3;
-    private static ListNode node4;
-
     /**
      * 内部类：链表节点
      */
-    public static class ListNode {
+    public static class ListNode<E> {
 
-        int val;//节点值
-        ListNode next;//指针，指向下一个节点
+        public E value;//节点值
+        public ListNode next;//指针，指向下一个节点
 
-        ListNode(int val){
-            this.val=val;
-            next=null;
+        public ListNode(E value) {
+            this.value = value;
         }
 
+        public ListNode(E value, ListNode next) {
+            this.value = value;
+            this.next = next;
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return value.toString();
+        }
     }
 
     public static void main(String[] args) {
-
         //创建带头节点的单链表
-        head = new ListNode(-1);
-        node1 = new ListNode(1);
-        node2 = new ListNode(2);
-        node3 = new ListNode(3);
-        node4 = new ListNode(4);
+        ListNode<Integer> node5 = new ListNode<Integer>(5);
+        ListNode<Integer> node4 = new ListNode<Integer>(4, node5);
+        ListNode<Integer> node3 = new ListNode<Integer>(3, node4);
+        ListNode<Integer> node2 = new ListNode<Integer>(2, node3);
+        ListNode<Integer> node1 = new ListNode<Integer>(1, node2);
 
-        head.next = node1;
-        node1.next=node2;
-        node2.next = node3;
-        node3.next = node4;
-
-        method_1(head);
-        System.out.println();
-        method_2(head);
-        System.out.println();
-        method_3(head);
+//        method_1(node1);
+//        System.out.println();
+//        method_2(node1);
+//        System.out.println();
+        method_3(node1);
 
 
     }
@@ -66,37 +66,34 @@ public class TestMethod6 {
      */
     private static void method_1(ListNode head) {
 
-        Stack<Integer> stack = new Stack<>();
+        Stack<ListNode> stack = new Stack<ListNode>();
 
-        while (head.next != null) {
-            stack.push(head.next.val);
+        while (head != null) {
+            stack.push(head);
             head = head.next;
-
         }
 
-        while (!stack.empty()){
-            System.out.print(stack.pop()+" ");
+        while (!stack.empty()) {
+            System.out.print(stack.pop() + " ");
         }
     }
 
 
-
     /**
      * 递归
-     *
+     * <p>
      * 先递归输出节点后面的节点，再输出该节点自身 （实质：调用系统的栈空间）
      *
      * @param head 单链表的头节点
      */
-    private static void method_2(ListNode head){
+    private static void method_2(ListNode head) {
 
-
-        if(head.next!=null){
-            if(head.next!=null){
+        if (head != null) {
+            if (head.next != null) {
                 method_2(head.next);
             }
 
-            System.out.print(head.next.val+" ");
+            System.out.print(head.value + " ");
         }
     }
 
@@ -106,23 +103,20 @@ public class TestMethod6 {
      *
      * @param head 单链表的头节点
      */
-    private static void method_3(ListNode head){
+    private static void method_3(ListNode head) {
 
-        ListNode resultList = head;
-
-        ListNode p = head.next;
-        ListNode pNext = p.next;
-
-        //循环直到单链表结束
-        while (pNext!=null){
-            p.next = pNext.next;
-            pNext.next = resultList.next;
-            resultList.next = pNext;
-            pNext=p.next;
+        ListNode curr = head;
+        ListNode prev = null;
+        while (curr!=null){
+            ListNode tempNext = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = tempNext;
         }
-        while (head.next!=null){
-            System.out.print(head.next.val+" ");
-            head=head.next;
+
+        while (prev != null) {
+            System.out.print(prev.value + " ");
+            prev = prev.next;
         }
 
     }
