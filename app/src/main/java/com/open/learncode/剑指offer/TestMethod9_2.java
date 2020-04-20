@@ -1,6 +1,7 @@
 package com.open.learncode.剑指offer;
 
 import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -17,85 +18,76 @@ import java.util.Queue;
  */
 public class TestMethod9_2 {
 
-    static class QueueToStack<E>{
-
-        Queue<E> queue1=new ArrayDeque<>();
-        Queue<E> queue2=new ArrayDeque<>();
-
-    }
-
-
-    private static QueueToStack<String> stack;
-    private static Queue queue1;
-    private static Queue queue2;
-
     public static void main(String[] args) {
 
-        stack=new QueueToStack<>();
-        queue1 = stack.queue1;
-        queue2 = stack.queue2;
-        push("A");
-        push("B");
-        push("C");
-        push("D");
-        push("E");
-        System.out.println(pop());
-        System.out.println(pop());
-        System.out.println(pop());
-        System.out.println(pop());
-        System.out.println(pop());
-        System.out.println(pop());
-
+        QueueToStack stack = new QueueToStack<>();
+        System.out.println(stack.pop());
+        stack.push("A");
+        stack.push("B");
+        stack.push("C");
+        stack.push("D");
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+        stack.push("E");
+        stack.push("F");
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
     }
 
-    private static void push(String  element){
+    static class QueueToStack<E> {
 
-        //两个队列为空时，优先考虑queue1
-        if (queue1.isEmpty() && queue2.isEmpty()) {
-            queue1.add(element);
-            return;
-        }
+        public Queue<E> queue1 = new ArrayDeque<>();
+        public Queue<E> queue2 = new ArrayDeque<>();
 
-        //如果queue1为空，queue2有数据，直接放入queue2
-        if (queue1.isEmpty()) {
-            queue2.add(element);
-            return;
-        }
+        public void push(E e) {
 
-        //如果queue2为空，queue1有数据，直接放入queue1
-        if (queue2.isEmpty()) {
-            queue1.add(element);
-            return;
-        }
-    }
-
-    private static String pop() {
-
-        //两个队列为空时，直接抛出异常
-        if (queue1.isEmpty() && queue2.isEmpty()) {
-            return "栈为空";
-        }
-
-        //如果queue1为空，将queue2中的元素依次加入到 queue1, 弹出最后一个元素
-        if (queue1.isEmpty()) {
-            while(queue2.size() > 1) {
-                queue1.add(queue2.poll());
+            //两个队列为空时，优先考虑queue1
+            if (queue1.isEmpty() && queue2.isEmpty()) {
+                queue1.add(e);
+                return;
             }
-            return (String) queue2.remove();
-        }
 
-        //如果queue2为空，将queue1中的元素依次加入到 queue2, 弹出最后一个元素
-        if (queue2.isEmpty()) {
-            while(queue1.size() > 1) {
-                queue2.add(queue1.poll());
+            //如果queue1为空，queue2有数据，直接放入queue2
+            if (queue1.isEmpty()) {
+                queue2.add(e);
+                return;
             }
-            return (String) queue1.remove();
 
+            //如果queue2为空，queue1有数据，直接放入queue1
+            if (queue2.isEmpty()) {
+                queue1.add(e);
+                return;
+            }
         }
-        return null;
+
+        public E pop() {
+            //两个队列为空时，直接抛出异常
+            if (queue1.isEmpty() && queue2.isEmpty()) {
+                return null;
+            }
+
+            //如果queue1为空，将queue2中的元素依次加入到 queue1, 弹出最后一个元素
+            if (queue1.isEmpty()) {
+                while (queue2.size() > 1) {
+                    queue1.add(queue2.poll());
+                }
+                return queue2.remove();
+            }
+
+            //如果queue2为空，将queue1中的元素依次加入到 queue2, 弹出最后一个元素
+            if (queue2.isEmpty()) {
+                while (queue1.size() > 1) {
+                    queue2.add(queue1.poll());
+                }
+                return queue1.remove();
+            }
+
+            return null;
+        }
 
     }
-
 
 }
 
