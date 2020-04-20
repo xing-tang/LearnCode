@@ -15,7 +15,7 @@ public class TestMethod5_1 {
 
     public static void main(String[] args) {
         String str = "we are happy.";
-        method(str);
+        System.out.print(method(str));
     }
 
     /**
