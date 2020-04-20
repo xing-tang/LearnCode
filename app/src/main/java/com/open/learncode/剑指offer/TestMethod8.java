@@ -58,21 +58,21 @@ public class TestMethod8 {
         nodeC.setLeftAndRightAndParent(nodeF,nodeG,nodeA);
         nodeE.setLeftAndRightAndParent(nodeH,nodeI,nodeB);
         nodeD.setLeftAndRightAndParent(null,null,nodeB);
-        nodeF.setLeftAndRightAndParent(null,null,nodeB);
+        nodeF.setLeftAndRightAndParent(null,null,nodeC);
         nodeG.setLeftAndRightAndParent(null,null,nodeC);
         nodeH.setLeftAndRightAndParent(null,null,nodeE);
         nodeI.setLeftAndRightAndParent(null,null,nodeE);
 
 
-//        method(nodeA);
-//        method(nodeB);
-//        method(nodeC);
+        method(nodeA);
+        method(nodeB);
+        method(nodeC);
         method(nodeD);
-//        method(nodeE);
+        method(nodeE);
         method(nodeF);
-//        method(nodeG);
-//        method(nodeH);
-//        method(nodeI);
+        method(nodeG);
+        method(nodeH);
+        method(nodeI);
 
     }
 
