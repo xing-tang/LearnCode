@@ -25,16 +25,14 @@ public class TestMethod7 {
     /**
      * 二叉树节点
      */
-    public static class BinaryTreeNode {
+    public static class TreeNode {
 
-        int val;//节点值
-        BinaryTreeNode left;//指向左节点的指针
-        BinaryTreeNode right;//指向右节点的指针
+        int value;//节点值
+        TreeNode left;//指向左节点的指针
+        TreeNode right;//指向右节点的指针
 
-        BinaryTreeNode(int val) {
-            this.val = val;
-            left = null;
-            right = null;
+        TreeNode(int value) {
+            this.value = value;
         }
     }
 
@@ -43,42 +41,41 @@ public class TestMethod7 {
         int preorder[] = {1, 2, 4, 7, 3, 5, 6, 8};
         int inordr[] = {4, 7, 2, 1, 5, 3, 8, 6};
         int length = preorder.length;
-        System.out.println("头节点的值为：" + method(preorder, inordr, length).val);
+        System.out.println("头节点的值为：" + method(preorder, inordr, length).value);
     }
 
     /**
-     *
      * @param preorder 先序遍历序列
-     * @param inorder 中序遍历序列
+     * @param inorder  中序遍历序列
      * @return
      */
-    private static BinaryTreeNode method(int preorder[], int inorder[], int length) {
+    private static TreeNode method(int preorder[], int inorder[], int length) {
 
+        //鲁棒性
         if (preorder == null || inorder == null || length <= 0) {
             return null;
         }
 
         //前序遍历序列的第一个数字是根节点的值
-        BinaryTreeNode root = new BinaryTreeNode(preorder[0]);
+        TreeNode root = new TreeNode(preorder[0]);
 
 
-        //当只有一个数的时候
+        //递归终止条件：当只有一个数的时候
         if (length == 1) {
-            root.left = null;
-            root.right = null;
             return root;
         }
 
         //在中序遍历序列中找到根节点的位置i
-        int rootVal = root.val;
-        int i;
+        int rootValue = root.value;
+        int i;//标记根节点的位置
         for (i = 0; i < length; i++) {
-            if (rootVal == inorder[i])
+            if (rootValue == inorder[i])
                 break;
         }
 
         //创建左子树
         if (i > 0) {
+            //根节点左边还有i个数
             int[] pre = new int[i];
             int[] in = new int[i];
             for (int j = 0; j < i; j++) {
@@ -92,6 +89,7 @@ public class TestMethod7 {
 
         //创建右子树
         if (length - i - 1 > 0) {
+            //根节点的右边还有length-i-1个数
             int[] pre = new int[length - i - 1];
             int[] in = new int[length - i - 1];
             for (int j = i + 1; j < length; j++) {

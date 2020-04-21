@@ -164,6 +164,7 @@ public class TestMethod7_1 {
      * @param head 根节点
      */
     public static void printInorder_2(TreeNode head) {
+
         if (head == null) return;
 
         TreeNode cur = head;
@@ -237,11 +238,17 @@ public class TestMethod7_1 {
         stack.push(head);
         while (!stack.isEmpty()) {
             TreeNode peek = stack.peek();
+
+            //添加左节点：左节点不为null 且 没有添加过； 右节点没有添加过（针对节点2 3 1）
             if (peek.left != null && peek.left != cur && peek.right != cur) {
                 stack.push(peek.left);
-            } else if (peek.right != null && peek.right != cur) {
+            }
+            //添加右节点：右节点不为空，且没有添加过
+            else if (peek.right != null && peek.right != cur) {
                 stack.push(peek.right);
-            } else {
+            }
+            //否则，输出
+            else {
                 System.out.print(stack.pop().value + " ");
                 cur = peek;
             }

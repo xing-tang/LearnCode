@@ -47,6 +47,7 @@ public class TestMethod9_2 {
             //两个队列为空时，优先考虑queue1
             if (queue1.isEmpty() && queue2.isEmpty()) {
                 queue1.add(e);
+                //加入return语句，防止往下运行
                 return;
             }
 

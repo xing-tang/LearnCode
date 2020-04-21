@@ -24,7 +24,7 @@ public class TestMethod10_1 {
         System.out.println(method_1(10));
         System.out.println(method_2(10));
         System.out.println(method_3(10));
-        System.out.println(method_4(10));
+        System.out.println(method_4(4));
     }
 
     /**
@@ -51,6 +51,7 @@ public class TestMethod10_1 {
             return n;
         }
         int[] cache = new int[n + 1];
+        //cache[0]默认赋值为0
         cache[1] = 1;
 
         for (int i = 2; i <= n; i++) {
@@ -88,7 +89,9 @@ public class TestMethod10_1 {
      * @return 返回斐波那契数列的第n项
      */
     public static long method_4(int n) {
+        //后一个数是前一个数的1.618倍
         double goldenRatio = (1 + Math.sqrt(5)) / 2;
+        //round 四舍五入
         return (int) Math.round(Math.pow(goldenRatio, n) / Math.sqrt(5));
     }
 
