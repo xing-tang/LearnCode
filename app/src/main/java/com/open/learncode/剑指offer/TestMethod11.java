@@ -7,7 +7,7 @@ package com.open.learncode.剑指offer;
  * 例如：数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1
  * <p>
  * 解题思路：
- * 二分查找法
+ * 注意数组中可能存在重复的元素，二分查找法
  * <p>
  * 复杂度分析：
  * 时间复杂度：O(logn)   空间复杂度：O(1)
@@ -16,87 +16,34 @@ package com.open.learncode.剑指offer;
 public class TestMethod11 {
 
     public static void main(String[] args) {
+        int nums[] = {1, 1, 1, 0, 1};
+//        int nums[] = {1,0,1,1,1};
+//        int nums[]={3,4,5,1,2};
+//        int nums[] = {1, 2, 3, 4, 5};
+//        int nums[]={3,4,5,1,2,3};
+//        int nums[] = {1,1,0,1,1,1,1,1};
+//        int nums[]={1};
+//        int nums[] = {};
 
-//        int data[] = {1,1,1,0,1};
-//        int data[] = {1,0,1,1,1};
-//        int data[]={3,4,5,1,2};
-        int data[]={1,2,3,4,5};
-//        int data[]={3,4,5,1,2,3};
-//        int data[]={1};
-//        int data[]={};
-
-
-        System.out.println("最小元素为：" + method(data, data.length));
-
+        System.out.println("最小元素为：" + method(nums));
     }
 
-    /**
-     * 二分查找法
-     *
-     * @param data   数组
-     * @param length 数组长度
-     * @return 数组中最小元素
-     */
-    private static int method(int data[], int length) {
+    public static int method(int[] nums) {
+        if (nums == null || nums.length == 0) return -1;
 
-        //验证数据合法性
-        if (data == null || length <= 0)
-            return -1;
+        int left = 0, right = nums.length - 1;
+        // 如果已经有序
+        if (nums[left] < nums[right]) return nums[left];
 
-        //两个指针，分别指向数组的第一个元素和最后一个元素
-        int i = 0;
-        int j = length - 1;
-
-        //最小元素所在下标，并初始化为i，原因在下面
-        int minIndex = i;
-
-        //如果第一个指针的元素大于第二个指针的元素
-        while (data[i] >= data[j]) {
-
-            //循环终止条件：两个指针指向两个相邻的元素怒，第二个指针指向的刚好就是最小的元素
-            if (j - i == 1) {
-                minIndex = j;
-                break;
-            }
-
-            int mid = (i + j) / 2;
-
-            //如果下标为i j mid指向的三个数字相等，则只能顺序查找
-            if(data[i]==data[j] && data[mid]==data[i]){
-                return minInOrder(data,i,j);
-            }
-
-            //如果中间元素位于前面的递增子数组，此时，最小元素应该位于该中间元素的后面
-            if (data[mid] >= data[i])
-                i = mid;
-                //如果中间元素位于后面的递增子数组，此时，最小元素应该位于该中间元素的前面
-            else
-                j = mid;
+        while (left < right) {
+            // 如果已经有序
+            if (nums[left] < nums[right]) return nums[left];
+            int mid = (left + right) >> 1;
+            if (nums[mid] > nums[right]) left = mid + 1;
+            else if (nums[mid] < nums[right]) right = mid;
+            else right = right - 1;
         }
-
-        //如果第一个指针的元素小于第二个指针的元素，就代表该数组是排序的，直接返回第一个元素
-        //这也是为什么要把minIndex初始化为i的原因
-        return data[minIndex];
-    }
-
-    /**
-     * 顺序查找
-     *
-     * @param data
-     * @param i
-     * @param j
-     * @return 返回data数组中下标i-j之间的最小元素
-     */
-    private static int minInOrder(int[] data, int i, int j) {
-
-        int result=data[i];
-        for (int index =i+1; index <=j ; index++) {
-
-            if(result>data[index]){
-                result=data[index];
-            }
-        }
-        return result;
+        return nums[left];
     }
 
 }
