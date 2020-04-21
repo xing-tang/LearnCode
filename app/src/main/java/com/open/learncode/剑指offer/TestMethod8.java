@@ -4,10 +4,10 @@ package com.open.learncode.剑指offer;
  * 题目：
  * 二叉树的下一个节点：给定一棵二叉树和其中的一个节点，如何找出中序遍历序列的下一个节点？
  * 树中的节点除了有两个分别指向左、右子节点的指针，还有一个指向父节点的指针
- *      a
- *   b     c
+ * a
+ * b     c
  * d  e  f   g
- *   h i
+ * h i
  * <p>
  * 解题思路：
  * 分情况找出下一个节点
@@ -53,15 +53,15 @@ public class TestMethod8 {
         TreeNode<String> nodeG = new TreeNode<String>("g");
         TreeNode<String> nodeH = new TreeNode<String>("h");
         TreeNode<String> nodeI = new TreeNode<String>("i");
-        nodeA.setLeftAndRightAndParent(nodeB,nodeC,null);
-        nodeB.setLeftAndRightAndParent(nodeD,nodeE,nodeA);
-        nodeC.setLeftAndRightAndParent(nodeF,nodeG,nodeA);
-        nodeE.setLeftAndRightAndParent(nodeH,nodeI,nodeB);
-        nodeD.setLeftAndRightAndParent(null,null,nodeB);
-        nodeF.setLeftAndRightAndParent(null,null,nodeC);
-        nodeG.setLeftAndRightAndParent(null,null,nodeC);
-        nodeH.setLeftAndRightAndParent(null,null,nodeE);
-        nodeI.setLeftAndRightAndParent(null,null,nodeE);
+        nodeA.setLeftAndRightAndParent(nodeB, nodeC, null);
+        nodeB.setLeftAndRightAndParent(nodeD, nodeE, nodeA);
+        nodeC.setLeftAndRightAndParent(nodeF, nodeG, nodeA);
+        nodeE.setLeftAndRightAndParent(nodeH, nodeI, nodeB);
+        nodeD.setLeftAndRightAndParent(null, null, nodeB);
+        nodeF.setLeftAndRightAndParent(null, null, nodeC);
+        nodeG.setLeftAndRightAndParent(null, null, nodeC);
+        nodeH.setLeftAndRightAndParent(null, null, nodeE);
+        nodeI.setLeftAndRightAndParent(null, null, nodeE);
 
 
         method(nodeA);
@@ -86,13 +86,12 @@ public class TestMethod8 {
      */
     private static TreeNode method(TreeNode p) {
 
-
+        //鲁棒性
         if (p == null)
             return null;
 
+        //有右子树：它的下一个节点是其右子树中的最左子节点
         TreeNode cur = p.right;
-
-        // 右子树不为空，它的下一个节点是它的右子树中的最左子节点
         if (cur != null) {
             while (cur.left != null) {
                 cur = cur.left;
@@ -101,12 +100,14 @@ public class TestMethod8 {
             return cur;
         }
 
-
-        // 右子树为空
-        TreeNode temp = p;
+        //无右子树
+        //又分为两种情况：1.该节点是其父亲节点的左孩子，则下一个节点是其父亲节点
+        //2.该节点是其父亲节点的右孩子，则不断的回溯找到父亲节点
+        TreeNode temp=p;//保存p，用于打印时
         TreeNode parent = p.parent;
-        //节点是父亲节点的左孩子，下一个节点就是它的父亲节点
-        //节点是父亲节点的右孩子，找到其父亲节点的左孩子
+
+        //情况2：①p是parent的右孩子，且是右子树上的右孩子，这时parent==null
+        //②p是parent的右孩子，且是左子树上的右孩子，这时parent==root
         while (parent != null && parent.left != p) {
             p = parent;
             parent = p.parent;
@@ -117,6 +118,8 @@ public class TestMethod8 {
             System.out.println(temp.value + "没有下一个节点");
             return null;
         }
+
+        //情况1：p是parent的左孩子
         System.out.println(temp.value + "的下一个节点是：" + parent.value);
         return parent;
 

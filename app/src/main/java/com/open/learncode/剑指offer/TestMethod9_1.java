@@ -38,10 +38,12 @@ public class TestMethod9_1 {
         public Stack<E> stack1 = new Stack<>();
         public Stack<E> stack2 = new Stack<>();
 
+        //添加操作：直接往stack1中压入数据
         public void push(E e) {
             stack1.push(e);
         }
 
+        //删除操作：把stack1的数据一次弹出，再压入stack2，这时，stack1栈底的元素就跑到了stack2的栈顶
         public E pop() {
             if (stack2.isEmpty()) {
                 while (!stack1.isEmpty())

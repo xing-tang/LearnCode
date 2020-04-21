@@ -41,6 +41,7 @@ public class TestMethod9_2 {
         public Queue<E> queue1 = new ArrayDeque<>();
         public Queue<E> queue2 = new ArrayDeque<>();
 
+        //添加操作：
         public void push(E e) {
 
             //两个队列为空时，优先考虑queue1
@@ -62,21 +63,26 @@ public class TestMethod9_2 {
             }
         }
 
+        //删除操作
         public E pop() {
             //两个队列为空时，直接抛出异常
             if (queue1.isEmpty() && queue2.isEmpty()) {
                 return null;
             }
 
-            //如果queue1为空，将queue2中的元素依次加入到 queue1, 弹出最后一个元素
+            //如果queue1为空，将queue2中的元素依次加入到 queue1,留下最后一个元素 弹出
             if (queue1.isEmpty()) {
                 while (queue2.size() > 1) {
+                    /**
+                     * Queue 中 remove() 和 poll()都是用来从队列头部删除一个元素。
+                     * 在队列元素为空的情况下，remove() 方法会抛出NoSuchElementException异常，poll() 方法只会返回 null 。
+                     */
                     queue1.add(queue2.poll());
                 }
                 return queue2.remove();
             }
 
-            //如果queue2为空，将queue1中的元素依次加入到 queue2, 弹出最后一个元素
+            //如果queue2为空，将queue1中的元素依次加入到 queue2, 留下最后一个元素 弹出
             if (queue2.isEmpty()) {
                 while (queue1.size() > 1) {
                     queue2.add(queue1.poll());
