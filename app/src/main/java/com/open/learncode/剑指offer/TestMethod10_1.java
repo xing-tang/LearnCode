@@ -13,14 +13,50 @@ package com.open.learncode.剑指offer;
  * 循环：从下往上计算，避免重复计算
  * <p>
  * 复杂度分析：
- * 时间复杂度：O(n) 空间复杂度：O(1)
+ * 方法一：时间复杂度：O(2的n次方)，空间复杂度：O(1)
+ * 方法二：时间复杂度：O(n)，空间复杂度：O(n)
+ * 方法三：时间复杂度：O(n)，空间复杂度：O(1)
+ * 方法四：时间复杂度：O(1)，空间复杂度：O(1)
  */
 public class TestMethod10_1 {
 
     public static void main(String[] args) {
+        System.out.println(method_1(10));
+        System.out.println(method_2(10));
+        System.out.println(method_3(10));
+        System.out.println(method_4(10));
+    }
 
-        System.out.println(method(10));
+    /**
+     * 递归方法
+     *
+     * @param n 输入参数
+     * @return 返回斐波那契数列的第n项
+     */
+    public static long method_1(int n) {
+        if (n <= 1) {
+            return n;
+        }
+        return method_1(n - 1) + method_1(n - 2);
+    }
 
+    /**
+     * 记忆化自底向上的方法
+     *
+     * @param n 输入参数
+     * @return 返回斐波那契数列的第n项
+     */
+    public static int method_2(int n) {
+        if (n <= 1) {
+            return n;
+        }
+        int[] cache = new int[n + 1];
+        cache[1] = 1;
+
+        for (int i = 2; i <= n; i++) {
+            cache[i] = cache[i - 1] + cache[i - 2];
+        }
+        return cache[n];
     }
 
     /**
@@ -29,23 +65,32 @@ public class TestMethod10_1 {
      * @param n 输入的参数
      * @return 返回斐波那契数列的第n项
      */
-    private static long method(int n) {
-        int result[] = {0, 1};
-        if (n < 2) {
-            return result[n];
+    private static long method_3(int n) {
+        if (n <= 1) return n;
+        if (n == 2) return 1;
+
+        int current = 0;
+        int prev1 = 1;
+        int prev2 = 1;
+
+        for (int i = 3; i <= n; i++) {
+            current = prev1 + prev2;
+            prev2 = prev1;
+            prev1 = current;
         }
-
-        long pre1 = 0;
-        long pre2 = 1;
-        long sum = 0;
-
-        for (int i = 2; i <= n; i++) {
-            sum=pre1+pre2;
-
-            pre1=pre2;
-            pre2=sum;
-        }
-        return sum;
+        return current;
     }
+
+    /**
+     * 黄金分割率计算
+     *
+     * @param n 输入参数
+     * @return 返回斐波那契数列的第n项
+     */
+    public static long method_4(int n) {
+        double goldenRatio = (1 + Math.sqrt(5)) / 2;
+        return (int) Math.round(Math.pow(goldenRatio, n) / Math.sqrt(5));
+    }
+
 }
 
