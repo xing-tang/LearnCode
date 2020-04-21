@@ -1,28 +1,34 @@
 package com.open.learncode.剑指offer.面试题02_单例模式;
 
 /**
- * 单例模式，懒汉模式，为空才new
- * 提示：单线程安全，多线程不安全，不推荐使用这种方式。
+ * 单例模式，静态代码块
+ * 提示：单线程安全，多线程安全，推荐使用这种方式。
  * <p>
- * 如果多个线程同时运行到if (singletonImp2 == null) 就会创建多个对象，不推荐使用这种方式
+ * 静态代码块只在类加载的时候调用一次（静态方法调用等第一次用到该类的时候），后续不再调用。
+ * 使用静态代码块，如果该类中还有其他静态方法，调用后就会执行静态代码块使得对象过早创建
+ * 使用一个静态类来创建Singleton，其他静态方法只要没有调用Nested.singletonImp6就不会创建Singleton
+ * 实现了需要时才创建实例对象，避免过早创建.
  */
 public class Singleton_02 {
 
-    private static Singleton_02 singleton_02;
+    private Singleton_02() { }
 
-    private Singleton_02() {
-
+    private static class Holder {
+        private static Singleton_02 singleton_02 = new Singleton_02();
     }
 
     public static Singleton_02 getInstance() {
-        if (singleton_02 == null) {
-            singleton_02 = new Singleton_02();
-        }
-        return singleton_02;
+        return Holder.singleton_02;
+    }
+
+    public static void func() {
+
     }
 
     public static void main(String[] args) {
+        Singleton_02.func();
         System.out.println(Singleton_02.getInstance().hashCode());
         System.out.println(Singleton_02.getInstance().hashCode());
     }
+
 }
