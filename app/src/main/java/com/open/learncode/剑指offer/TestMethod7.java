@@ -25,13 +25,13 @@ public class TestMethod7 {
     /**
      * 二叉树节点
      */
-    public static class TreeNode {
+    public static class TreeNode<E> {
 
-        int value;//节点值
+        E value;//节点值
         TreeNode left;//指向左节点的指针
         TreeNode right;//指向右节点的指针
 
-        TreeNode(int value) {
+        TreeNode(E value) {
             this.value = value;
         }
     }
@@ -57,7 +57,7 @@ public class TestMethod7 {
         }
 
         //前序遍历序列的第一个数字是根节点的值
-        TreeNode root = new TreeNode(preorder[0]);
+        TreeNode<Integer> root = new TreeNode(preorder[0]);
 
 
         //递归终止条件：当只有一个数的时候

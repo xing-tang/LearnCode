@@ -107,9 +107,11 @@ public class TestMethod7_1 {
 
         Stack<TreeNode> stack = new Stack<TreeNode>();
         stack.push(head);
+        TreeNode temp;
         while (!stack.empty()) {
-            TreeNode temp = stack.pop();
+            temp = stack.pop();//不断改变temp的内容，不改变它指向的地址空间
             System.out.print(temp.value + " ");
+            //因为栈是"后进先出"的，故先添加右节点，再添加左节点
             if (temp.right != null) stack.push(temp.right);
             if (temp.left != null) stack.push(temp.left);
         }
@@ -168,13 +170,14 @@ public class TestMethod7_1 {
         if (head == null) return;
 
         TreeNode cur = head;
+        TreeNode node;
         Stack<TreeNode> stack = new Stack<>();
         while (!stack.isEmpty() || cur != null) {
             while (cur != null) {
                 stack.push(cur);
                 cur = cur.left;
             }
-            TreeNode node = stack.pop();
+            node = stack.pop();
             System.out.print(node.value + " ");
             if (node.right != null) {
                 cur = node.right;
@@ -234,10 +237,11 @@ public class TestMethod7_1 {
         if (head == null) return;
 
         TreeNode cur = head;
+        TreeNode peek;
         Stack<TreeNode> stack = new Stack<>();
         stack.push(head);
         while (!stack.isEmpty()) {
-            TreeNode peek = stack.peek();
+             peek = stack.peek();
 
             //添加左节点：左节点不为null 且 没有添加过； 右节点没有添加过（针对节点2 3 1）
             if (peek.left != null && peek.left != cur && peek.right != cur) {
