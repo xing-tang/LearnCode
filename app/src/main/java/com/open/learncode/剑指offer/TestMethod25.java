@@ -14,99 +14,110 @@ package com.open.learncode.剑指offer;
  * 两个链表剩余的节点仍然是排序的，因此合并的步骤和之前的步骤一样
  * <p>
  * 复杂度分析：
- * 时间复杂度：O(n)  空间复杂度：O(1)
+ * 方法一：时间复杂度：O(n)，空间复杂度：O(n)
+ * 方法二：时间复杂度：O(n)，空间复杂度：O(1)
  */
 public class TestMethod25 {
 
-
-    /**
-     * 内部类：单链表节点
-     */
-    public static class ListNode<E extends Comparable> {
-
-        E val;//节点值
-        ListNode next;//指针，指向下一个节点
-
-        ListNode(E val) {
-            this.val = val;
-        }
-
-        ListNode(E val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-
-    }
-
-
     public static void main(String[] args) {
-
-
-        //链表1:
-        ListNode<Integer> node7 = new ListNode(7);
-        ListNode<Integer> node5 = new ListNode(5, node7);
-        ListNode<Integer> node3 = new ListNode(3, node5);
-        ListNode<Integer> node1 = new ListNode(1, node3);
-
-        //链表2:
-        ListNode<Integer> node8 =new ListNode(8);
-        ListNode<Integer> node6 = new ListNode(6,node8);
-        ListNode<Integer> node4 = new ListNode(4, node6);
-        ListNode<Integer> node2 = new ListNode(2, node4);
-
-
-        //合并前：
-        System.out.print("递增链表1：");
-        print(node1);
-
-        System.out.print("递增链表2：");
-        print(node2);
+        // 链表1
+        ListNode<Integer> node7 = new ListNode<Integer>(7);
+        ListNode<Integer> node5 = new ListNode<Integer>(5, node7);
+        ListNode<Integer> node3 = new ListNode<Integer>(3, node5);
+        ListNode<Integer> node1 = new ListNode<Integer>(1, node3);
+        // 链表2
+        ListNode<Integer> node8 = new ListNode<Integer>(8);
+        ListNode<Integer> node6 = new ListNode<Integer>(6, node8);
+        ListNode<Integer> node4 = new ListNode<Integer>(4, node6);
+        ListNode<Integer> node2 = new ListNode<Integer>(2, node4);
 
         //合并后：
+        System.out.print("递增链表1：");
+        print(node1);
+        System.out.print("递增链表2：");
+        print(node2);
         System.out.print("合并后的升序链表3：");
-        print(Merge(node1,node2));
-
-
+        print(method_1(node1, node2));
+//        print(method_2(node1, node2));
     }
 
-    private static ListNode Merge(ListNode pHead1, ListNode pHead2) {
-
-        //解决鲁棒性：若输入空链表
-        if (pHead1 == null)
-            return pHead2;
-        if (pHead2 == null)
-            return pHead1;
-
-        ListNode pMergedHead = null;
-
-        if(pHead1.val.compareTo(pHead2.val)<0){
-            pMergedHead = pHead1;
-            pMergedHead.next = Merge(pHead1.next, pHead2);
+    /**
+     * 递归合并链表
+     *
+     * @param head1 链表1的头结点
+     * @param head2 链表2的头结点
+     * @return 返回合并后的链表头结点
+     */
+    private static ListNode method_1(ListNode<Integer> head1, ListNode<Integer> head2) {
+        if (head1 == null) {
+            return head2;
+        } else if (head2 == null) {
+            return head1;
+        } else if (head1.value < head2.value) {
+            head1.next = method_1(head1.next, head2);
+            return head1;
         } else {
-            pMergedHead = pHead2;
-            pMergedHead.next = Merge(pHead1, pHead2.next);
+            head2.next = method_1(head1, head2.next);
+            return head2;
         }
-
-        return pMergedHead;
-
     }
 
-    private static void print(ListNode pNode) {
+    /**
+     * 迭代合并链表
+     *
+     * @param head1 链表1的头结点
+     * @param head2 链表2的头结点
+     * @return 返回合并后的链表头结点
+     */
+    public static ListNode method_2(ListNode<Integer> head1, ListNode<Integer> head2) {
 
-        if(pNode==null)
+        if (head1 == null) return head2;
+        if (head2 == null) return head1;
+
+        ListNode<Integer> prehead = new ListNode<Integer>(-1);
+        ListNode<Integer> pre = prehead;
+        while (head1 != null && head2 != null) {
+            if (head1.value <= head2.value) {
+                pre.next = head1;
+                head1 = head1.next;
+            } else {
+                pre.next = head2;
+                head2 = head2.next;
+            }
+            pre = pre.next;
+        }
+        return prehead.next;
+    }
+
+    private static void print(ListNode pHead) {
+
+        if (pHead == null)
             System.out.println("这是一个空链表");
 
-        while (pNode != null) {
-
-            if (pNode.next == null) {
-                System.out.println(pNode.val);
+        while (pHead != null) {
+            if (pHead.next == null) {
+                System.out.println(pHead.value);
                 break;
             }
-            System.out.print(pNode.val + "->");
-            pNode = pNode.next;
-
+            System.out.print(pHead.value + "->");
+            pHead = pHead.next;
         }
         System.out.println();
+    }
+
+    public static class ListNode<E> {
+
+        public E value;
+        public ListNode<E> next;
+
+        public ListNode(E value) {
+            this.value = value;
+        }
+
+        public ListNode(E value, ListNode<E> next) {
+            this.value = value;
+            this.next = next;
+        }
     }
 
 }
