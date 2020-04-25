@@ -36,18 +36,21 @@ public class TestMethod11 {
 
         int left = 0, right = nums.length - 1;
 
-        //如果已经有序：针对的是把数组最开始的0个元素搬到数组的末尾这种特殊情况，此时数组不变，最小元素就是数组的第一个元素
+        //针对的是把数组最开始的0个元素搬到数组的末尾这种特殊情况，此时数组不变，最小元素就是数组的第一个元素
         if (nums[left] < nums[right])
             return nums[left];
 
-        //无序：旋转数组分成两部分A B，都是递增的，数组的最小值是B中的第一个元素
+        //一般情况：数组是无序的，旋转数组分成两部分A B，都是递增的，数组的最小元素就是B中的第一个元素
         while (left < right) {
 
             //left右移，right左移，当left一直处于A中时，left指向的值一直大于或等于right指向的值，
-            // 若left指向的值小于了right指向的值，则代表left已经到了B中，指向的一定是B中的第一个元素，即最小元素
+            //若left指向的值小于了right指向的值，则代表left已经到了B中，且指向的一定是B中的第一个元素，即最小元素
+            //原因：
+            // left右移只有两种：
+            // 1、nums[mid]=nums[right] left=left+1]; left右移一个，此时，若满足条件，一定是B中第一个元素
+            // 2、nums[mid]>nums[right] left=mid+1; mid还处于A中，left=mid+1满足条件，一定是B中第一个元素
             if (nums[left] < nums[right])
                 return nums[left];
-
 
             //二分查找，不断缩小left right指针的范围
             int mid = (left + right) >> 1;
@@ -58,7 +61,7 @@ public class TestMethod11 {
             //若mid指向的值小于right指向的值，意昧着：mid已经处于B中，但不确定是否指向的是B中的第一个元素
             else if (nums[mid] < nums[right])
                 right = mid;
-            //若mid指向的值等于right指向的值，right往左移一下或者left往右移一下，意义相同，都是为了：缩小范围
+            //若mid指向的值等于right指向的值，right往左移一下或者left往右移一下，意义相同，都是为了：在二分没办法实现的情况下进一步缩小范围
 //            else right = right - 1;
             else left=left+1;
         }

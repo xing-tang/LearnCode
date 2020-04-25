@@ -6,15 +6,15 @@ package com.open.learncode.剑指offer;
  * 树的子结构：输入两棵二叉树A B，判断B是不是A的子结构。
  * 二叉树节点的定义如下：
  * struct BinaryTreeNode{
- * double value;
- * BinaryTreeNode pLeft;
- * BinaryTreeNode pRight;
+ * double val;
+ * BinaryTreeNode left;
+ * BinaryTreeNode right;
  * }
  * 二叉树A：          二叉树B：
- * 8              8
- * 8     7        9     2
+ *      8              8
+ *   8     7        9     2
  * 9   2
- * 4   7
+ *   4   7
  * 二叉树B是二叉树A的子结构
  * <p>
  * 解题思路：
@@ -30,49 +30,45 @@ public class TestMethod26 {
     /**
      * 内部类：二叉树节点
      */
-    public static class BinaryTreeNode {
+    public static class TreeNode<E> {
 
-        int val;//节点值
-        BinaryTreeNode pLeft;//左指针，指向当前节点的左子树
-        BinaryTreeNode pRight;//右指针，指向当前节点的右子树
+        public E val;//节点值
+        public TreeNode left;//指向左节点的指针
+        public TreeNode right;//指向右节点的指针
 
-        BinaryTreeNode(int val) {
+        public TreeNode(E val) {
             this.val = val;
-            pLeft = null;
-            pRight = null;
         }
 
-
+        public void setLeftAndRight(TreeNode left, TreeNode right) {
+            this.left = left;
+            this.right = right;
+        }
     }
 
     public static void main(String[] args) {
 
         //二叉树A：
-        BinaryTreeNode root1 = new BinaryTreeNode(8);
-        BinaryTreeNode node1_1 = new BinaryTreeNode(8);
-        BinaryTreeNode node1_2 = new BinaryTreeNode(7);
-        BinaryTreeNode node1_3 = new BinaryTreeNode(9);
-        BinaryTreeNode node1_4 = new BinaryTreeNode(2);
-        BinaryTreeNode node1_5 = new BinaryTreeNode(4);
-        BinaryTreeNode node1_6 = new BinaryTreeNode(7);
-
-        root1.pLeft = node1_1;
-        root1.pRight = node1_2;
-        node1_1.pLeft = node1_3;
-        node1_1.pRight = node1_4;
-        node1_4.pLeft = node1_5;
-        node1_4.pRight = node1_6;
+        TreeNode<Double> node1 = new TreeNode<Double>(8.0);
+        TreeNode<Double> node2 = new TreeNode<Double>(8.0);
+        TreeNode<Double> node3 = new TreeNode<Double>(7.0);
+        TreeNode<Double> node4 = new TreeNode<Double>(9.0);
+        TreeNode<Double> node5 = new TreeNode<Double>(2.0);
+        TreeNode<Double> node6 = new TreeNode<Double>(4.0);
+        TreeNode<Double> node7 = new TreeNode<Double>(7.0);
+        node1.setLeftAndRight(node2, node3);
+        node2.setLeftAndRight(node4, node5);
+        node5.setLeftAndRight(node6, node7);
 
         //二叉树B：
-//        BinaryTreeNode root2 = new BinaryTreeNode(8);
-//        BinaryTreeNode node2_1 = new BinaryTreeNode(9);
-//        BinaryTreeNode node2_2 = new BinaryTreeNode(2);
-//
-//        root2.pLeft = node2_1;
-//        root2.pRight = node2_2;
-        BinaryTreeNode root2=null;
+        TreeNode<Double> node1_1 = new TreeNode<Double>(8.0);
+        TreeNode<Double> node1_2 = new TreeNode<Double>(9.0);
+        TreeNode<Double> node1_3 = new TreeNode<Double>(2.0);
+        node1_1.setLeftAndRight(node1_2,node1_3);
 
-        System.out.println("二叉树B是不是二叉树A的子结构：" + HasSubtree(root1, root2));
+//        TreeNode node=null;
+
+        System.out.println("二叉树B是不是二叉树A的子结构：" + HasSubtree(node1, node1_1));
 
     }
 
@@ -84,7 +80,7 @@ public class TestMethod26 {
      * @param pRoot2
      * @return
      */
-    private static boolean HasSubtree(BinaryTreeNode pRoot1, BinaryTreeNode pRoot2) {
+    private static boolean HasSubtree(TreeNode<Double> pRoot1,TreeNode<Double> pRoot2) {
 
         boolean result = false;
 
@@ -95,9 +91,9 @@ public class TestMethod26 {
                 result = DoesTree1HaveTree2(pRoot1, pRoot2);
 
             if (!result)
-                result = HasSubtree(pRoot1.pLeft, pRoot2);
+                result = HasSubtree(pRoot1.left, pRoot2);
             if (!result)
-                result = HasSubtree(pRoot1.pRight, pRoot2);
+                result = HasSubtree(pRoot1.right, pRoot2);
         }
 
         return result;
@@ -111,7 +107,7 @@ public class TestMethod26 {
      * @param pRoot2
      * @return
      */
-    private static boolean DoesTree1HaveTree2(BinaryTreeNode pRoot1, BinaryTreeNode pRoot2) {
+    private static boolean DoesTree1HaveTree2(TreeNode<Double> pRoot1, TreeNode<Double> pRoot2) {
 
         //避免试图访问空指针而造成程序崩溃；同时也是设置了递归调用的退出条件
         if (pRoot2 == null)
@@ -124,8 +120,8 @@ public class TestMethod26 {
             return false;
 
         //如果相等，递归判断它们各自的左右节点的值是否相同
-        return DoesTree1HaveTree2(pRoot1.pLeft, pRoot2.pLeft)
-                && DoesTree1HaveTree2(pRoot1.pRight, pRoot2.pRight);
+        return DoesTree1HaveTree2(pRoot1.left, pRoot2.left)
+                && DoesTree1HaveTree2(pRoot1.right, pRoot2.right);
     }
 
     /**

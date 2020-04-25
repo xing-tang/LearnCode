@@ -25,9 +25,23 @@ public class TestMethod14 {
 
     }
 
+    /**
+     * 动态规划：
+     * <p>
+     * 函数f(n)：把长度为n的绳子剪成若干段后各段长度乘积的最大值
+     * 剪第一刀的时候，有n-1种选择，1，2，...，n-1。因此，f(n)=max[f(i)*f(n-i)]，0<i<n
+     * 这是一个从上至下的递归公式，由于递归会有很多重复的子问题，从而有大量不必要的重复计算。
+     * 一个更好的办法是按照从下而上的顺序计算，即先得到f(2) f(3)，再得到f(4) f(5)，直到得到f(n)
+     *
+     * @param length
+     * @return
+     */
     private static int method_1(int length) {
+
+        //鲁棒性：绳子长度>1 剪成段数>1 即绳子最短长度为2
         if (length < 2)
             return 0;
+
         //绳子长度为2，剪成1 1
         if (length == 2) {
             return 1;
@@ -36,19 +50,25 @@ public class TestMethod14 {
         if (length == 3)
             return 2;
 
-        //当绳子长度为length+1时的最大乘积
+        //products[i]：把长度为i的绳子剪成若干段后各段长度乘积的最大值
         int products[] = new int[length + 1];
-        products[0] = 0;//当绳子为1，不能剪
-        products[1] = 1;//当绳子为2，剪成1 1
-        products[2] = 2;//当绳子为3，剪成1 2
-        products[3] = 3;//当绳子为4，剪成1 3
+        products[0] = 0;
+        products[1] = 1;
+        products[2] = 2;
+        products[3] = 3;
 
         //最大乘积
-        int max = 0;
+        int max;
 
+        //从下至上，依次计算f(4) f(5) ... f(n)的值
         for (int i = 4; i <= length; i++) {
+
+            //归0
             max = 0;
+
+
             for (int j = 0; j <= i / 2; j++) {
+
                 int product = products[j] * products[i - j];
                 if (max < product)
                     max = product;
@@ -62,13 +82,23 @@ public class TestMethod14 {
         return max;
     }
 
+    /**
+     * 贪婪算法
+     *
+     * @param length
+     * @return
+     */
     private static int method_2(int length) {
+
+        //鲁棒性
         if (length < 2)
             return 0;
+
         //绳子长度为2，剪成1 1
         if (length == 2) {
             return 1;
         }
+
         //绳子长度为3，剪成1 2
         if (length == 3)
             return 2;

@@ -18,57 +18,53 @@ package com.open.learncode.剑指offer;
  */
 public class TestMethod25 {
 
-    private static ListNode head1, node1_1, node1_2, node1_3;
-    private static ListNode head2, node2_1, node2_2, node2_3;
 
     /**
      * 内部类：单链表节点
      */
-    public static class ListNode {
+    public static class ListNode<E extends Comparable> {
 
-        int val;//节点值
+        E val;//节点值
         ListNode next;//指针，指向下一个节点
 
-        ListNode(int val) {
+        ListNode(E val) {
             this.val = val;
-            next = null;
         }
 
+        ListNode(E val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
 
     }
+
 
     public static void main(String[] args) {
 
 
-        //链表1：
-//        head1 = new ListNode(1);
-//        node1_1 = new ListNode(3);
-//        node1_2 = new ListNode(5);
-//        node1_3 = new ListNode(7);
+        //链表1:
+        ListNode<Integer> node7 = new ListNode(7);
+        ListNode<Integer> node5 = new ListNode(5, node7);
+        ListNode<Integer> node3 = new ListNode(3, node5);
+        ListNode<Integer> node1 = new ListNode(1, node3);
 
-//        head1.next = node1_1;
-//        node1_1.next = node1_2;
-//        node1_2.next = node1_3;
+        //链表2:
+        ListNode<Integer> node8 =new ListNode(8);
+        ListNode<Integer> node6 = new ListNode(6,node8);
+        ListNode<Integer> node4 = new ListNode(4, node6);
+        ListNode<Integer> node2 = new ListNode(2, node4);
 
-        head1=null;
 
-        //链表2：
-        head2 = new ListNode(2);
-        node2_1 = new ListNode(4);
-        node2_2 = new ListNode(6);
-        node2_3 = new ListNode(8);
+        //合并前：
+        System.out.print("递增链表1：");
+        print(node1);
 
-        head2.next = node2_1;
-        node2_1.next = node2_2;
-        node2_2.next = node2_3;
+        System.out.print("递增链表2：");
+        print(node2);
 
         //合并后：
-        System.out.print("递增链表1：");
-        print(head1);
-        System.out.print("递增链表2：");
-        print(head2);
         System.out.print("合并后的升序链表3：");
-        print(Merge(head1,head2));
+        print(Merge(node1,node2));
 
 
     }
@@ -83,7 +79,7 @@ public class TestMethod25 {
 
         ListNode pMergedHead = null;
 
-        if (pHead1.val < pHead2.val) {
+        if(pHead1.val.compareTo(pHead2.val)<0){
             pMergedHead = pHead1;
             pMergedHead.next = Merge(pHead1.next, pHead2);
         } else {
@@ -92,14 +88,14 @@ public class TestMethod25 {
         }
 
         return pMergedHead;
+
     }
 
-    private static void print(ListNode pHead) {
+    private static void print(ListNode pNode) {
 
-        if(pHead==null)
+        if(pNode==null)
             System.out.println("这是一个空链表");
 
-        ListNode pNode = pHead;
         while (pNode != null) {
 
             if (pNode.next == null) {

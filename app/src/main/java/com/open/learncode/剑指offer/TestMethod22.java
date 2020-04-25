@@ -21,19 +21,17 @@ package com.open.learncode.剑指offer;
  */
 public class TestMethod22 {
 
-    private static ListNode head, node1, node2, node3, node4, node5;
-
     /**
      * 内部类：单链表节点
      */
-    public static class ListNode {
+    public static class ListNode<E> {
 
-        int val;//节点值
+        E val;//节点值
         ListNode next;//指针，指向下一个节点
 
-        ListNode(int val) {
+        ListNode(E val,ListNode next) {
             this.val = val;
-            next = null;
+            this.next=next;
         }
 
 
@@ -41,24 +39,19 @@ public class TestMethod22 {
 
     public static void main(String[] args) {
 
+        //创建单链表
+        ListNode<Integer> node6=new ListNode(6,null);
+        ListNode<Integer> node5=new ListNode(5,node6);
+        ListNode<Integer> node4=new ListNode(4,node5);
+        ListNode<Integer> node3=new ListNode(3,node4);
+        ListNode<Integer> node2=new ListNode(2,node3);
+        ListNode<Integer> node1=new ListNode(1,node2);
 
-        //创建带头节点的单链表
-        head = new ListNode(1);
-        node1 = new ListNode(2);
-        node2 = new ListNode(3);
-        node3 = new ListNode(4);
-        node4 = new ListNode(5);
-        node5 = new ListNode(6);
+//        ListNode<Integer> node=null;
 
-        head.next = node1;
-        node1.next = node2;
-        node2.next = node3;
-        node3.next = node4;
-        node4.next = node5;
 
-//        head=null;
-
-        System.out.println("倒数第K个节点的值为：" + FindKthToTail(head, 2).val);
+        int k=6;
+        System.out.println("倒数第"+k+"个节点的值为：" + FindKthToTail(node1, k).val);
 
 
     }
@@ -70,10 +63,10 @@ public class TestMethod22 {
         if (pHead == null || k == 0)
             return null;
 
-
+        //两个指针,相隔k-1
         ListNode pAhead = pHead;
-        ListNode pBehind = null;
 
+        //让pAhead指针向前走k-1步
         for (int i = 0; i < k - 1; i++) {
 
             if (pAhead.next != null)//增强鲁棒性：避免"链表的节点总数少于K"的情况
@@ -82,8 +75,10 @@ public class TestMethod22 {
                 return null;
         }
 
-        pBehind = pHead;
+        //pBehind指针从头指针开始
+        ListNode pBehind = pHead;
 
+        //两个指针一步一步往前走，由于两个指针相隔k-1，当前一个到达链表的尾节点时，后一个走到倒数第k个节点
         while (pAhead.next != null) {
             pAhead = pAhead.next;
             pBehind = pBehind.next;

@@ -17,7 +17,7 @@ package com.open.learncode.剑指offer;
 public class TestMethod3_2 {
 
     public static void main(String[] args) {
-        int[] arr = {2, 3, 1, 6, 2, 5, 3};
+        int[] arr = {2,3,5,4,3,2,6,7};
         System.out.println("龟兔赛跑算法打印重复的数字=>" + method1(arr));
         System.out.println("二分法打印重复的数字=>" + method2(arr));
     }
@@ -66,7 +66,7 @@ public class TestMethod3_2 {
             if (arr[i] < 1 || arr[i] > arr.length - 1)
                 return -1;
 
-        int start = 0;
+        int start = 1;
         int end = arr.length - 1;
         while (start <= end) {
             // int mid = (start + end) / 2;
@@ -92,6 +92,7 @@ public class TestMethod3_2 {
             else
                 start = mid + 1;
         }
+
         return -1;
     }
 }
