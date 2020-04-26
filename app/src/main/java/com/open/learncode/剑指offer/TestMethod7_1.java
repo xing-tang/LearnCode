@@ -1,11 +1,13 @@
 package com.open.learncode.剑指offer;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
  * 题目：
- *      1
- *   2    3
+ * 1
+ * 2    3
  * 4  5  6  7
  * <p>
  * 解题思路：
@@ -53,6 +55,10 @@ public class TestMethod7_1 {
         node2.setLeftAndRight(node4, node5);
         node3.setLeftAndRight(node6, node7);
 
+        System.out.print("层序遍历：");
+        centerPrint(node1);
+        System.out.println();
+
         System.out.print("递归打印前序遍历: ");
         printPreorder_1(node1);
         System.out.println();
@@ -82,6 +88,29 @@ public class TestMethod7_1 {
         System.out.print("Morris打印后序遍历: ");
         printPostorder_3(node1);
         System.out.println();
+    }
+
+    /**
+     * 层序遍历
+     *
+     * @param root
+     */
+    private static void centerPrint(TreeNode root) {
+
+        if (root == null)
+            return;
+
+        Queue<TreeNode> queue = new ArrayDeque<>();
+
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode temp = queue.remove();
+            System.out.print(temp.value + " ");
+            if (temp.left != null)
+                queue.add(temp.left);
+            if (temp.right != null)
+                queue.add(temp.right);
+        }
     }
 
     /**
@@ -241,7 +270,7 @@ public class TestMethod7_1 {
         Stack<TreeNode> stack = new Stack<>();
         stack.push(head);
         while (!stack.isEmpty()) {
-             peek = stack.peek();
+            peek = stack.peek();
 
             //添加左节点：左节点不为null 且 没有添加过； 右节点没有添加过（针对节点2 3 1）
             if (peek.left != null && peek.left != cur && peek.right != cur) {
