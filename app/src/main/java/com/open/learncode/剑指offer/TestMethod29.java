@@ -17,66 +17,58 @@ import java.util.Stack;
  * 解题思路：
  * <p>
  * 复杂度分析：
- * 时间复杂度：O(n)  空间复杂度：O(1)
+ * 时间复杂度：O(n)  空间复杂度：O(n)
  */
 public class TestMethod29 {
 
     public static void main(String[] args) {
-
+        Stack<Integer> stack = new Stack<Integer>();
+        stack.pop();
         int matrix[][] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
-        System.out.println("顺时针打印矩阵：");
-        printMatrixInCircle(matrix, matrix.length, matrix[0].length, 0);
-    }
-
-
-    private static void printMatrixInCircle(int[][] matrix, int rows, int columns, int start) {
-
-        if (matrix == null || rows <= 0 || columns <= 0)
-            return;
-
-        while (columns > start * 2 && rows > start * 2) {
-            //列
-            int endX = columns - 1 - start;
-            //行
-            int endY = rows - 1 - start;
-
-            //从左到右打印一行
-            for (int i = start; i <= endX; i++) {
-                int num = matrix[start][i];
-                System.out.print(num + " ");
-
-            }
-
-            //从上到下打印一列
-            if (start < endY) {
-                for (int i = start + 1; i <= endY; i++) {
-                    int num = matrix[i][endX];
-                    System.out.print(num + " ");
-
-                }
-            }
-
-            //从右往左打印一行
-            if (start < endX && start < endY) {
-                for (int i = endX - 1; i >= start; i--) {
-                    int num = matrix[endY][i];
-                    System.out.print(num + " ");
-
-                }
-            }
-
-            //从下到上打印一列
-            if (start < endX && start < endY - 1) {
-                for (int i = endY - 1; i >= start + 1; i--) {
-                    int num = matrix[i][start];
-                    System.out.print(num + " ");
-                }
-            }
-
-           start++;
+        int[] temp = method(matrix);
+        for (int i = 0; i < temp.length; i++) {
+            System.out.print(temp[i] + " ");
         }
     }
 
+    /**
+     * 顺时针打印矩阵
+     *
+     * @param matrix 输入的二维数组
+     * @return 返回输出的一位数组
+     */
+    public static int[] method(int[][] matrix) {
+        if (matrix.length == 0) return new int[0];
+        int left = 0;
+        int right = matrix[0].length - 1;
+        int top = 0;
+        int bottom = matrix.length - 1;
+        int index = 0;
+        int[] res = new int[(right + 1) * (bottom + 1)];
+        while (true) {
+            // left to right.
+            for (int i = left; i <= right; i++) {
+                res[index++] = matrix[top][i];
+            }
+            if (++top > bottom) break;
+            // top to bottom.
+            for (int i = top; i <= bottom; i++) {
+                res[index++] = matrix[i][right];
+            }
+            if (left > --right) break;
+            // right to left.
+            for (int i = right; i >= left; i--) {
+                res[index++] = matrix[bottom][i];
+            }
+            if (top > --bottom) break;
+            // bottom to top.
+            for (int i = bottom; i >= top; i--) {
+                res[index++] = matrix[i][left];
+            }
+            if (++left > right) break;
+        }
+        return res;
+    }
 
 }
 

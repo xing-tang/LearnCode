@@ -12,37 +12,19 @@ import learncode.open.com.learncode.R;
  * 对称的二叉树：请实现一个函数，用来判断一棵二叉树是不是对称的。
  * 如果一棵二叉树和它的镜像一样，那么它是对称的。
  * 例如：
- * 8
- * / \
- * 6 6
- * / \ / \
- * 5 7 7 5
+ * *****8
+ * *** / \
+ * ***6   6
+ * * / \ / \
+ * *5 7 7  5
  * 解题思路：
  * <p>
  * 复杂度分析：
- * 时间复杂度：O(n)  空间复杂度：O(1)
+ * 方法一：时间复杂度：O(n)，空间复杂度：O(n)
+ * 方法二：时间复杂度：O(n)，空间复杂度：O(n)
+ * 方法三：时间复杂度：O(n)，空间复杂度：O(n)
  */
 public class TestMethod28 {
-
-
-    /**
-     * 内部类：二叉树节点
-     */
-    public static class TreeNode<E> {
-
-        public E val;//节点值
-        public TreeNode left;//指向左节点的指针
-        public TreeNode right;//指向右节点的指针
-
-        public TreeNode(E val) {
-            this.val = val;
-        }
-
-        public void setLeftAndRight(TreeNode left, TreeNode right) {
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     public static void main(String[] args) {
 
@@ -53,7 +35,6 @@ public class TestMethod28 {
         TreeNode<Integer> node5 = new TreeNode<>(7);
         TreeNode<Integer> node6 = new TreeNode<>(7);
         TreeNode<Integer> node7 = new TreeNode<>(5);
-
         node1.setLeftAndRight(node2, node3);
         node2.setLeftAndRight(node4, node5);
         node3.setLeftAndRight(node6, node7);
@@ -64,19 +45,19 @@ public class TestMethod28 {
     }
 
     /**
-     * 递归：
+     * 递归方法
      * 以root1 root2为根的两个子树是否是对称的
      *
-     * @param root1
-     * @param root2
-     * @return
+     * @param root1 二叉树的根节点root1
+     * @param root2 二叉树的根节点root2
+     * @return 判断是否是对称二叉树
      */
     private static boolean method_1(TreeNode root1, TreeNode root2) {
 
         if (root1 == null && root2 == null)
             return true;
 
-        if (root1 == null || root2 == null || root1.val != root2.val)
+        if (root1 == null || root2 == null || root1.value != root2.value)
             return false;
 
         //判断A的左边和B的右边是否相等，判断A的右边和B的左边是否相等，都相等就满足
@@ -86,11 +67,11 @@ public class TestMethod28 {
     /**
      * DFS：
      * 使用堆栈来实现树的深度优先遍历，将左右结点成对的压入堆栈，
-     * 出栈的时候也要成对出栈，若val不相同或是有单独的空树，返回false；
+     * 出栈的时候也要成对出栈，若value不相同或是有单独的空树，返回false；
      * 否则，继续成对的压入左右结点。
      *
-     * @param root
-     * @return
+     * @param root 二叉树的根节点root
+     * @return 判断是否是对称二叉树
      */
     private static boolean method_2(TreeNode root) {
 
@@ -102,13 +83,13 @@ public class TestMethod28 {
         stack.push(root.right);
 
         while (!stack.isEmpty()) {
-            TreeNode right = stack.pop();
             TreeNode left = stack.pop();
+            TreeNode right = stack.pop();
             if (right == null && left == null)
                 continue;
             if (right == null || left == null)
                 return false;
-            if (right.val != left.val)
+            if (right.value != left.value)
                 return false;
 
             stack.push(right.left);
@@ -124,13 +105,12 @@ public class TestMethod28 {
      * 使用队列来实现树的广度优先遍历，代码与DFS十分相似，
      * 只不过结点先进先出，同样要注意入队以及出队的时候，左右结点要成对
      *
-     * @param root
-     * @return
+     * @param root 二叉树的根节点root
+     * @return 判断是否是对称二叉树
      */
     private static boolean method_3(TreeNode root) {
 
-        if (root == null)
-            return true;
+        if (root == null) return true;
 
         Queue<TreeNode> queue = new ArrayDeque<>();
         queue.add(root.left);
@@ -147,7 +127,7 @@ public class TestMethod28 {
             if (left == null || right == null)
                 return false;
 
-            if (left.val != right.val)
+            if (left.value != right.value)
                 return false;
 
             queue.add(right.left);
@@ -156,9 +136,23 @@ public class TestMethod28 {
             queue.add(left.left);
 
         }
-
         return true;
     }
 
+    public static class TreeNode<E> {
+
+        public E value;
+        public TreeNode<E> left;
+        public TreeNode<E> right;
+
+        public TreeNode(E value) {
+            this.value = value;
+        }
+
+        public void setLeftAndRight(TreeNode<E> left, TreeNode<E> right) {
+            this.left = left;
+            this.right = right;
+        }
+    }
 }
 
