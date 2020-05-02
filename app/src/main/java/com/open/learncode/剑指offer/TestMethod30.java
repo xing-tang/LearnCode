@@ -1,27 +1,55 @@
 package com.open.learncode.剑指offer;
 
-
 import java.util.Stack;
 
 /**
  * 题目：
  * 包含min函数的栈：定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的min函数
  * 在该栈中，调用min push 及 pop的时间复杂度都为O(1)
+ * <p>
  * 解题思路：
+ * 把每次的最小元素都保存在辅助栈内
  * <p>
  * 复杂度分析：
- * 时间复杂度：O(n)  空间复杂度：O(1)
+ * 方法一：时间复杂度：O(1)，空间复杂度：O(n)
+ * 方法二：时间复杂度：O(1)，空间复杂度：O(n)
+ * 方法三：时间复杂度：O(1)，空间复杂度：O(n)
  */
 public class TestMethod30 {
 
     public static void main(String[] args) {
-        Stack_1 stack1 = new Stack_1();
-        Stack_2 stack2 = new Stack_2();
-        Stack_3 stack3 = new Stack_3();
+//        Stack_1 stack = new Stack_1();
+//        Stack_2 stack = new Stack_2();
+        Stack_3 stack = new Stack_3();
         // 测试数据 3,5,2,6
-        stack1.pop();
-        stack2.pop();
-        stack3.pop();
+
+        stack.push(4);
+        System.out.println("最小元素：" + stack.min());
+
+        stack.push(3);
+        System.out.println("最小元素：" + stack.min());
+
+        stack.push(2);
+        System.out.println("最小元素：" + stack.min());
+
+        stack.push(1);
+        System.out.println("最小元素：" + stack.min());
+
+        System.out.println("出栈：" + stack.peek());
+        stack.pop();
+        System.out.println("最小元素：" + stack.min());
+
+        System.out.println("出栈：" + stack.peek());
+        stack.pop();
+        System.out.println("最小元素：" + stack.min());
+
+        System.out.println("出栈：" + stack.peek());
+        stack.pop();
+        System.out.println("最小元素：" + stack.min());
+
+        System.out.println("出栈：" + stack.peek());
+        stack.pop();
+        System.out.println("最小元素：" + stack.min());
     }
 
     /**
@@ -112,6 +140,8 @@ public class TestMethod30 {
 
     /**
      * 利用栈差值实现
+     * 变量minValue。记录当前的最小值。
+     * 栈内记录当前元素与（前）最小元素的差值，遇到负数，最小值产生变化
      */
     public static class Stack_3 {
 
@@ -151,10 +181,13 @@ public class TestMethod30 {
             }
         }
 
-
         public int min() {
+
+            //当栈为空时，最小值应该为空。但因为为int类型，不能置空，如果修改为-1，但是不能分辨
+            // 这个数到底是栈空，返回的错误提示。or。该栈目前的最小值
             return minValue;
         }
     }
+
 }
 

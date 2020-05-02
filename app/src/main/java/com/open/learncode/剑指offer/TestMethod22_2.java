@@ -25,10 +25,13 @@ public class TestMethod22_2 {
         ListNode<Integer> node2 = new ListNode<Integer>(2, node3);
         ListNode<Integer> node1 = new ListNode<Integer>(1, node2);
 
-        if (node1.value>node2.value)
-
+//        if (node1.value > node2.value)
         System.out.println("链表的中间节点为：" + method(node1).value);
         System.out.println("链表的中间节点为：" + method(node2).value);
+        System.out.println("链表的中间节点为：" + method(node3).value);
+        System.out.println("链表的中间节点为：" + method(node4).value);
+        System.out.println("链表的中间节点为：" + method(node5).value);
+        System.out.println("链表的中间节点为：" + method(node6).value);
     }
 
     /**
@@ -43,10 +46,12 @@ public class TestMethod22_2 {
         ListNode p1 = head;
         ListNode p2 = head;
 
+        //当p1为null 或p.next为null（p.next.next报错）时，结束循环
         while (p1 != null && p1.next != null) {
             p1 = p1.next.next;
             p2 = p2.next;
         }
+
         return p2;
     }
 
