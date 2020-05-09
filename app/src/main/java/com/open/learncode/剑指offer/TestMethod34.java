@@ -62,19 +62,18 @@ public class TestMethod34 {
 
         Stack<Integer> path = new Stack();
 
-        findPath(root, target, 0, path);
+        findPath(root, target, path);
     }
 
-    private static void findPath(TreeNode<Integer> root, int target, int currentSm, Stack<Integer> path) {
+    private static void findPath(TreeNode<Integer> root, int target, Stack<Integer> path) {
 
-        // 累加路径值
-        currentSm += root.value;
+        target-= root.value;
 
         // 将当前节点加入路径中
         path.push(root.value);
 
         // 如果当前节点是叶子节点(即没有左右子节点)，并且当前累加值等于期望值，则输出路径信息
-        if (root.left == null && root.right == null && currentSm == target) {
+        if (root.left == null && root.right == null && target == 0) {
             for (Integer val : path) {
                 System.out.print(val + " ");
             }
@@ -83,11 +82,11 @@ public class TestMethod34 {
 
         // 如果左子节点不为空，说明不是叶子节点，则继续寻找路径
         if (root.left != null) {
-            findPath(root.left, target, currentSm, path);
+            findPath(root.left, target, path);
         }
         // 如果右子节点不为空，说明不是叶子节点，则继续寻找路径
         if (root.right != null) {
-            findPath(root.right, target, currentSm, path);
+            findPath(root.right, target, path);
         }
 
         // 如果当前节点不符合要求，则从路径中移除当前节点
