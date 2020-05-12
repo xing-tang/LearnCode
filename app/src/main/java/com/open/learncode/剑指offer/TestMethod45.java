@@ -1,5 +1,7 @@
 package com.open.learncode.剑指offer;
 
+import java.util.Arrays;
+
 /**
  * 题目：
  * 把数组排成最小的数：输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接处的所有
@@ -10,9 +12,9 @@ package com.open.learncode.剑指offer;
  * <p>
  * 复杂度分析：
  * 时间复杂度：O(nlogn)
- * 【】
+ * 【N：为最终返回值的字符数量（strs列表的长度≤N）；使用快排或内置函数的平均时间复杂度为O(NlogN)最差为 O(N^2)】
  * 空间复杂度：O(n)
- * 【】
+ * 【字符串列表 strsstrs 占用线性大小的额外空间】
  */
 
 public class TestMethod45 {
@@ -20,11 +22,18 @@ public class TestMethod45 {
     public static void main(String[] args) {
 
         int[] nums = {3, 32, 321};
-        System.out.println("最小的数为：" + method(nums));
+        System.out.println("最小的数为：" + method_1(nums));
+        System.out.println("最小的数为：" + method_2(nums));
 
     }
 
-    private static String method(int[] nums) {
+    /**
+     * 使用快速排序
+     *
+     * @param nums
+     * @return
+     */
+    private static String method_1(int[] nums) {
 
         //字符串列表str ，保存各数字的字符串格式
         String[] str = new String[nums.length];
@@ -65,7 +74,7 @@ public class TestMethod45 {
             while ((str[i] + str[start]).compareTo(str[start] + str[i]) <= 0 && i < j)
                 i++;
 
-            temp = str[i];.
+            temp = str[i];
             str[i] = str[j];
             str[j] = temp;
         }
@@ -74,6 +83,23 @@ public class TestMethod45 {
         str[start] = temp;
         fastSort(str, start, i - 1);
         fastSort(str, i + 1, end);
+    }
+
+    /**
+     * 使用内置函数
+     *
+     * @param nums
+     * @return
+     */
+    public static String method_2(int[] nums) {
+        String[] strs = new String[nums.length];
+        for(int i = 0; i < nums.length; i++)
+            strs[i] = String.valueOf(nums[i]);
+        Arrays.sort(strs, (x, y) -> (x + y).compareTo(y + x));
+        StringBuilder res = new StringBuilder();
+        for(String s : strs)
+            res.append(s);
+        return res.toString();
     }
 
 }
