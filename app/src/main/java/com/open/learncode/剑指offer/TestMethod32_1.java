@@ -1,6 +1,7 @@
 package com.open.learncode.剑指offer;
 
 import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -24,45 +25,15 @@ import java.util.Queue;
  */
 public class TestMethod32_1 {
 
-    /**
-     * 二叉树节点
-     */
-    public static class TreeNode<E> {
-
-        public E value;//节点值
-        public TreeNode left;//指向左节点的指针
-        public TreeNode right;//指向右节点的指针
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public void setLeftAndRight(TreeNode left, TreeNode right) {
-            this.left = left;
-            this.right = right;
-        }
-    }
-
     public static void main(String[] args) {
-
-        TreeNode<Integer> node1 = new TreeNode<Integer>(8);
-        TreeNode<Integer> node2 = new TreeNode<Integer>(6);
-        TreeNode<Integer> node3 = new TreeNode<Integer>(10);
-        TreeNode<Integer> node4 = new TreeNode<Integer>(5);
-        TreeNode<Integer> node5 = new TreeNode<Integer>(7);
-        TreeNode<Integer> node6 = new TreeNode<Integer>(9);
-        TreeNode<Integer> node7 = new TreeNode<Integer>(11);
-        node1.setLeftAndRight(node2, node3);
-        node2.setLeftAndRight(node4, node5);
-        node3.setLeftAndRight(node6, node7);
-
-        TreeNode<Integer> root=null;
-
-        method(node1);
-
-        System.out.println();
-
-        method(root);
+        TreeNode<Integer> node5 = new TreeNode<Integer>(5);
+        TreeNode<Integer> node7 = new TreeNode<Integer>(7);
+        TreeNode<Integer> node9 = new TreeNode<Integer>(9);
+        TreeNode<Integer> node11 = new TreeNode<Integer>(11);
+        TreeNode<Integer> node6 = new TreeNode<Integer>(6, node5, node7);
+        TreeNode<Integer> node10 = new TreeNode<Integer>(10, node9, node11);
+        TreeNode<Integer> node8 = new TreeNode<Integer>(8, node6, node10);
+        method(node8);
     }
 
     /**
@@ -71,21 +42,16 @@ public class TestMethod32_1 {
      * @param root
      */
     private static void method(TreeNode root) {
+        if (root == null) return;
 
-        if (root == null)
-            return;
-
-        Queue<TreeNode> queue = new ArrayDeque<>();
-
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
             TreeNode temp = queue.remove();
             System.out.print(temp.value + " ");
-            if (temp.left != null)
-                queue.add(temp.left);
-            if (temp.right != null)
-                queue.add(temp.right);
+            if (temp.left != null) queue.add(temp.left);
+            if (temp.right != null) queue.add(temp.right);
         }
     }
-}
 
+}

@@ -3,105 +3,75 @@ package com.open.learncode.剑指offer;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * 题目：
- * 序列化二叉树：请实现两个函数，分别用来序列化和反序列化二叉树
- * 例如：
+ * 请实现两个函数，分别用来序列化和反序列化二叉树。
+ * 例如二叉搜索树如下：
  * * ******1
  * * *** /  \
  * * ***2   3
  * * * /   / \
  * * *4   5  6
- * 序列化：1,2,4,$,$,$,3,5,$,$,6,$,$
+ * 则转换成序列化为：1,2,4,null,null,null,3,5,null,null,6,null,null
  * <p>
  * 解题思路：
- * 一般情况下，需要采用前/后序遍历和中序遍历才能确定一个二叉树，但是其实可以只采用前序遍历（从根结点开始），
- * 将空结点(null)输出为一个特殊符号（如“$”），就可以确定一个二叉树了。
- * ①序列化：就是前序遍历的过程，遇见空结点时，序列化为“$”，每个结点间使用逗号分隔开。
- * ②反序列化：也使用前序遍历，遇见一个新数字(或者$)就建立一个新结点，不过需要注意的是，
- * 数字可能不只是个位数字，因此创建了一个全局int变量index（在字符串上的移动的指针），以便于截取字符串中当前的结点值。
+ * 递归或者利用辅助栈
  * <p>
  * 复杂度分析：
- * 时间复杂度：O(n)，空间复杂度：O(n)
+ * 方法一：时间复杂度：O(n)，空间复杂度：O(n)
+ * 方法二：时间复杂度：O(n)，空间复杂度：O(n)
  */
 public class TestMethod37_1 {
 
-    /**
-     * 二叉树节点
-     */
-    public static class TreeNode<E> {
-
-        public E value;//节点值
-        public TreeNode left;//指向左节点的指针
-        public TreeNode right;//指向右节点的指针
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public void setLeftAndRight(TreeNode left, TreeNode right) {
-            this.left = left;
-            this.right = right;
-        }
-
-    }
-
     public static void main(String[] args) {
-
-        TreeNode<Integer> node1 = new TreeNode<Integer>(1);
-        TreeNode<Integer> node2 = new TreeNode<Integer>(2);
-        TreeNode<Integer> node3 = new TreeNode<Integer>(3);
         TreeNode<Integer> node4 = new TreeNode<Integer>(4);
         TreeNode<Integer> node5 = new TreeNode<Integer>(5);
         TreeNode<Integer> node6 = new TreeNode<Integer>(6);
-        node1.setLeftAndRight(node2, node3);
-        node2.setLeftAndRight(node4, null);
-        node3.setLeftAndRight(node5, node6);
-
-        String str = Serialize(node1);
-        System.out.println(str);
-
-        TreeNode root=Deserialize(str);
-        centerPrint(root);
+        TreeNode<Integer> node2 = new TreeNode<Integer>(2, node4, null);
+        TreeNode<Integer> node3 = new TreeNode<Integer>(3, node5, node6);
+        TreeNode<Integer> node1 = new TreeNode<Integer>(1, node2, node3);
+        String data = serialize(node1);
+        System.out.println(data);
+        TreeNode node = deserialize(data);
+        centerPrint(node);
     }
 
     /**
      * 序列化：前序遍历
      *
-     * @param node
+     * @param root
      * @return
      */
-    private static String Serialize(TreeNode node) {
+    public static String serialize(TreeNode root) {
 
         StringBuilder builder = new StringBuilder();
 
         //递归终止条件：遇见空结点时，序列化为“$”
-        if (node == null) {
-            builder.append("$,");
-        }
-        //每个结点间使用逗号分隔开
-        else {
+        if (root == null) {
+            builder.append("null,");
+        } else {//每个结点间使用逗号分隔开
             //前序遍历：根左右
-            builder.append(node.value + ",");
-            builder.append(Serialize(node.left));
-            builder.append(Serialize(node.right));
+            builder.append(root.value + ",");
+            builder.append(serialize(root.left));
+            builder.append(serialize(root.right));
         }
-
         return builder.toString();
     }
 
     //在字符串上的移动的指针 ，以便于截取字符串中当前的结点值
-    static int index = 0;
+    public static int index = 0;
+
     /**
      * 反序列化：
      *
      * @param str
      * @return
      */
-    private static TreeNode Deserialize(String str) {
+    private static TreeNode<Integer> deserialize(String str) {
 
-        TreeNode node = null;
+        TreeNode<Integer> node = null;
 
         //鲁棒性
         if (str == null || str.length() == 0)
@@ -112,19 +82,18 @@ public class TestMethod37_1 {
             index++;
 
         //String.subString(start,end)截取字符串[start,end)
-        String strValue=str.substring(start, index);
+        String strValue = str.substring(start, index);
         //如果不为空节点
-        if (!strValue.equals("$")) {
-            node = new TreeNode(Integer.parseInt(strValue));
+        if (!strValue.equals("null")) {
+            node = new TreeNode<Integer>(Integer.parseInt(strValue));
             index++; // 这条语句位置别放错了
-            node.left = Deserialize(str);
-            node.right = Deserialize(str);
+            node.left = deserialize(str);
+            node.right = deserialize(str);
         } else {
             index++;
         }
         return node;
     }
-
 
     /**
      * 层序遍历
@@ -149,4 +118,24 @@ public class TestMethod37_1 {
         }
     }
 
+
+    public static class TreeNode<E> {
+
+        public E value;
+        public TreeNode<E> left;
+        public TreeNode<E> right;
+
+        public TreeNode(E value) {
+            this.value = value;
+        }
+
+        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
+            this.value = value;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
 }
+
+

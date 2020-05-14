@@ -1,21 +1,12 @@
 package com.open.learncode.剑指offer;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Stack;
 
 /**
  * 题目：
- * 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。
- * 要求不能创建任何新的节点，只能调整树中节点指针的指向。
- * 例如二叉搜索树如下：
- * * *****10
- * * *** /  \
- * * ***6   14
- * * * / \  / \
- * * *4  8 12 16
- * 则转换成排序的双向链表为：
- * 4<=>6<=>8<=>10<=>12<=>14<=>16
+ * 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。
+ * 例如：输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。
+ * 由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2
  * <p>
  * 解题思路：
  * 递归或者利用辅助栈
@@ -24,7 +15,7 @@ import java.util.Stack;
  * 方法一：时间复杂度：O(n)，空间复杂度：O(n)
  * 方法二：时间复杂度：O(n)，空间复杂度：O(n)
  */
-public class TestMethod36 {
+public class TestMethod38 {
 
     public static void main(String[] args) {
         TreeNode<Integer> node4 = new TreeNode<Integer>(4);

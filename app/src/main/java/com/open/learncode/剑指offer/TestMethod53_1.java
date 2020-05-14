@@ -14,9 +14,7 @@ package com.open.learncode.剑指offer;
 
 public class TestMethod53_1 {
 
-
     public static void main(String[] args) {
-
         int[] nums = {1, 1, 3, 3, 3, 3, 4, 5};
         int target = 3;
         System.out.println("数字" + target + "在排序数组中出现的次数为：" + method_1(nums, target));
@@ -26,38 +24,27 @@ public class TestMethod53_1 {
     private static int method_1(int[] nums, int target) {
 
         // 搜索右边界right：
-
         //初始化：
         int i = 0, j = nums.length - 1;
-
         //循环二分：
         while (i <= j) {
             int m = (i + j) / 2;
             //nums[m] <= target：代表右边界在[m+1,right]中
-            if (nums[m] <= target)
-                i = m + 1;
-            //nums[m] > target：代表右边界在[i,m-1]中
-            else j = m - 1;
+            if (nums[m] <= target) i = m + 1;
+            else j = m - 1; //nums[m] > target：代表右边界在[i,m-1]中
         }
-
         int right = i;
         // 若数组中无 target ，则提前返回
         if (j >= 0 && nums[j] != target) return 0;
-
-
         // 搜索左边界left：
         i = 0;
         j = nums.length - 1;
-
         while (i <= j) {
             int m = (i + j) / 2;
             //nums[m] < target：代表左边界在[m+1,right]中
-            if (nums[m] < target)
-                i = m + 1;
-            //nums[m] >= target：代表右边界在[i,m-1]中
-            else j = m - 1;
+            if (nums[m] < target) i = m + 1;
+            else j = m - 1;//nums[m] >= target：代表右边界在[i,m-1]中
         }
-
         int left = j;
 
         return right - left - 1;
@@ -71,7 +58,7 @@ public class TestMethod53_1 {
      * @param target
      * @return
      */
-    private static int method_2(int[] nums, int target){
+    private static int method_2(int[] nums, int target) {
         //helper(nums, target)：找到的是target的右边界
         //helper(nums, target - 1)：找到的是target-1的右边界，即第一个大于target-1的数（target）
         return helper(nums, target) - helper(nums, target - 1);
@@ -86,11 +73,10 @@ public class TestMethod53_1 {
      * @return
      */
     private static int helper(int[] nums, int tar) {
-
         int i = 0, j = nums.length - 1;
-        while(i <= j) {
+        while (i <= j) {
             int m = (i + j) / 2;
-            if(nums[m] <= tar) i = m + 1;
+            if (nums[m] <= tar) i = m + 1;
             else j = m - 1;
         }
         return i;

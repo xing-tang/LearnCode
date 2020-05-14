@@ -17,46 +17,36 @@ package com.open.learncode.剑指offer;
  * 【将数字num转化为字符串str(num)，占用O(logn)的额外空间】
  * 注意：这里的log以10为底
  */
-
 public class TestMethod44 {
 
     public static void main(String[] args) {
-
-        int index = 1;
-        System.out.println("第" + index + "位对应的数字为：" + method(index));
-
+        System.out.println(method(10));
+        System.out.println(method(11));
+        System.out.println(method(12));
+        System.out.println(method(13));
+        System.out.println(method(228));
     }
 
-
-    private static int method(int index) {
-
-        if (index < 0)
-            return -1;
-
-        //如果要找第0位对应的数字，返回0
-        if (index == 0)
-            return 0;
-
-        //digit：一个数的位数，从个位数1-9找起
+    /**
+     * 根据数学归纳法
+     *
+     * @param n 待传入的整数
+     * @return 返回1一共出现的次数
+     */
+    public static int method(int n) {
         int digit = 1;
-        //start：每digit位数的起始数字
         long start = 1;
-        //count：digit位数的总个数
         long count = 9;
-
-        while (index > count) { // 1.确定所求数位的所在数字的位数
-            index -= count;
-
-            //位数+1，十位数10-99，百位数100-999
+        while (n > count) { // 1.
+            n -= count;
             digit += 1;
             start *= 10;
             count = digit * start * 9;
         }
-
-        long num = start + (index - 1) / digit; // 2.确定所求数位所在的数字
-        return Long.toString(num).charAt((index - 1) % digit) - '0'; // 3.确定所求数位在 num 的哪一数位
-
-
+        long num = start + (n - 1) / digit; // 2.
+        System.out.println("num=" + num);
+        int x = (n - 1) % digit;
+        System.out.println("x=" + x);
+        return Long.toString(num).charAt((n - 1) % digit) - '0'; // 3.
     }
-
 }

@@ -18,7 +18,6 @@ import java.util.Map;
 public class TestMethod50 {
 
     public static void main(String[] args) {
-
         String str = "abaccdeff";
 //        String str = "adabcceff";
 //        String str = "";
@@ -77,26 +76,15 @@ public class TestMethod50 {
      * @return
      */
     private static char method_2(String s) {
-
         //鲁棒性
-        if (s == null || s.length() <= 0)
-            return ' ';
+        if (s == null || s.length() <= 0) return ' ';
 
         Map<Character, Boolean> map = new LinkedHashMap<>();
-
         char[] str = s.toCharArray();
-
-
-        for (char c : str)
-            map.put(c, !map.containsKey(c));
-
+        for (char c : str) map.put(c, !map.containsKey(c));
         for (Map.Entry<Character, Boolean> d : map.entrySet()) {
-            if (d.getValue())
-                return d.getKey();
+            if (d.getValue()) return d.getKey();
         }
-
-
         return ' ';
-
     }
 }

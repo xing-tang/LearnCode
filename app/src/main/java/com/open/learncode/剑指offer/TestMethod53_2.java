@@ -18,31 +18,30 @@ package com.open.learncode.剑指offer;
 
 public class TestMethod53_2 {
 
-
     public static void main(String[] args) {
-
-        int[] nums = {0, 1, 2, 3, 4, 5, 6, 7,9};
-        System.out.println("0~n-1中缺失的数字为："+method(nums));
+        int[] nums = {0, 1, 2, 3, 4, 5, 6, 7, 9};
+        System.out.println("0~n-1中缺失的数字为：" + method(nums));
     }
 
-    private static int method(int[] nums) {
-
+    /**
+     * 二分法
+     *
+     * @param nums 待输入的数组
+     * @return 返回缺少的数
+     */
+    public static int method(int[] nums) {
         int i = 0, j = nums.length - 1;
-
         while (i <= j) {
-
             int m = (i + j) / 2;
-
-            //nums[m] == m：“右子数组的首位元素” 一定在闭区间[m+1,j]
-            if (nums[m] == m) i = m + 1;
-
-            //nums[m] != m：“左子数组的末位元素” 一定在闭区间[i,m−1] 中
-            else j = m - 1;
+            // nums[m] == m：“右子数组的首位元素” 一定在闭区间[m+1,j]
+            if (nums[m] == m) {
+                i = m + 1;
+            } else {
+                // nums[m] != m：“左子数组的末位元素” 一定在闭区间[i,m−1] 中
+                j = m - 1;
+            }
         }
-
-        // 跳出时，变量i和j分别指向 “右子数组的首位元素” 和 “左子数组的末位元素”
         return i;
 
     }
-
 }

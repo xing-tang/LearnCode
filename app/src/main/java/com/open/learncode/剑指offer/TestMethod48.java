@@ -5,6 +5,7 @@ import java.util.Map;
 
 /**
  * 题目：
+<<<<<<< HEAD
  * 最长不含重复字符的子字符串：请从字符串中找到一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。
  * 假设字符串中只包含'a'~'z'的字符。例如，在字符串"arabcacfr"中，最长的不含重复字符的子字符串是"acfr"，长度为4
  * <p>
@@ -49,10 +50,28 @@ public class TestMethod48 {
             count = Math.max(count, temp); // max(dp[j - 1], dp[j])
         }
         return count;
+=======
+ * 请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。
+ * 假设字符串中只包含'a'~'z'的字符。例如，在字符串'arabcacfr'中，最长的不含重复
+ * 字符的子字符串是'acfr'，长度为4。
+ * <p>
+ * 解题思路：
+ * 双指针 + 哈希表
+ * <p>
+ * 复杂度分析：
+ * 时间复杂度：O(N)，空间复杂度O(1)
+ */
+public class TestMethod48 {
+
+    public static void main(String[] args) {
+        String str = "abcccdeff";
+        method(str);
+>>>>>>> 提交算法31-57示例
     }
 
     /**
      * 双指针 + 哈希表
+<<<<<<< HEAD
      * 时间复杂度O(N) ： 其中N为字符串长度，动态规划需遍历计算dp列表。
      * 空间复杂度O(1) ： 字符的ASCII码范围为0 ~ 127，哈希表dic最多使用O(128)=O(1)大小的额外空间。
      *
@@ -72,3 +91,23 @@ public class TestMethod48 {
 
     }
 }
+=======
+     *
+     * @param str 带传入的字符串
+     * @return 返回最长不重复字符串长度
+     */
+    public static int method(String str) {
+        Map<Character, Integer> map = new HashMap<>();
+        int i = -1, res = 0;
+        for (int j = 0; j < str.length(); j++) {
+            if (map.containsKey(str.charAt(j))) {
+                i = Math.max(i, map.get(str.charAt(j))); // 更新左指针 i
+            }
+            map.put(str.charAt(j), j); // 哈希表记录
+            res = Math.max(res, j - i); // 更新结果
+        }
+        return res;
+    }
+
+}
+>>>>>>> 提交算法31-57示例
