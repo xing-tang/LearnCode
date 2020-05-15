@@ -2,36 +2,58 @@ package com.open.learncode.剑指offer;
 
 /**
  * 题目：
- * 输入一个正整数 target ，输出所有和为 target 的连续正整数序列（至少含有两个数）。
- * 序列内的数字由小到大排列，不同序列按照首个数字从小到大排列。
- * 
+ * 输入一个正整数s，打印出所有和为s的连续正数序列（至少含两个数）。
+ * 例如，输入15，由于1+2+3+4=4+5+6=7+8=15，所以打印出三个连续序列1~5、
+ * 4~6和7~8。
  * <p>
  * 解题思路：
- *
+ * 双指针
  * <p>
  * 复杂度分析：
+ * 时间复杂度：O(num)【num指传入的数字】，空间复杂度O(1)
  */
 public class TestMethod57_2 {
 
     public static void main(String[] args) {
-
+        int num = 15;
+        method(num);
     }
 
-    public static class TreeNode<E> {
-
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
+    /**
+     * 双指针法
+     *
+     * @param num 待传入的数字
+     */
+    public static void method(int num) {
+        if (num < 3) return;
+        int start = 1;
+        int end = 2;
+        int middle = (num + 1) / 2;
+        int curSum = start + end;
+        while (start < middle) {
+            if (curSum == num) print(start, end);
+            while (curSum > num && start < middle) {
+                curSum -= start;
+                start++;
+                if (curSum == num) print(start, end);
+            }
+            end++;
+            curSum += end;
         }
     }
+
+    /**
+     * 打印输出star到end的值
+     *
+     * @param star 开始要打印的值
+     * @param end  最终要打印的值
+     */
+    public static void print(int star, int end) {
+        for (int i = star; i <= end; i++) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+
 
 }
