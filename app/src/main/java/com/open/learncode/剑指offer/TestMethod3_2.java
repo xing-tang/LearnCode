@@ -75,7 +75,7 @@ public class TestMethod3_2 {
             // 对范围内的元素个数进行计数
             int count = 0;
             for (int i = 0; i < arr.length; i++) {
-                if (arr[i] <= mid && arr[i] >= start)
+                if (arr[i] >= start && arr[i] <= mid)
                     count++;
             }
 

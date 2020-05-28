@@ -1,4 +1,4 @@
-package com.open.learncode.剑指offer.面试题02_单例模式
+package com.open.learncode.剑指offer.每日回顾.day_01
 
 /**
  * kotlin单例模式，静态代码块
@@ -13,17 +13,6 @@ package com.open.learncode.剑指offer.面试题02_单例模式
  * 源码分析：https://www.jianshu.com/p/46f333d496b5
  */
 class Singlnton_03 {
-
-    companion object {
-
-        @JvmStatic
-        fun main(args: Array<String>) {
-            println(Singlnton_03.instance.hashCode())
-            println(Singlnton_03.instance.hashCode())
-        }
-
-        val instance: com.open.learncode.剑指offer.每日回顾.day_01.Singlnton_03 by lazy { com.open.learncode.剑指offer.每日回顾.day_01.Singlnton_03() }
-    }
 
 
 }

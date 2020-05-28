@@ -8,6 +8,7 @@ import java.util.Stack;
 /**
  * 题目：
  * 从尾到头打印链表：输入一个链表的头节点，从尾到头反过来打印出每个节点的值
+ * 例如：输入1->2->3->4->5，输出5->4->3->2->1。
  * <p>
  * 解题思路：
  * 利用栈（先进后出），递归，反转链表（改变链表）
@@ -107,7 +108,7 @@ public class TestMethod6 {
 
         ListNode curr = head;
         ListNode prev = null;
-        while (curr!=null){
+        while (curr != null) {
             ListNode tempNext = curr.next;
             curr.next = prev;
             prev = curr;

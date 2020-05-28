@@ -1,4 +1,4 @@
-package com.open.learncode.剑指offer.面试题02_单例模式;
+package com.open.learncode.剑指offer.每日回顾.day_01;
 
 /**
  * 单例模式，二次判空同步锁
@@ -24,24 +24,10 @@ package com.open.learncode.剑指offer.面试题02_单例模式;
  */
 public class Singleton_01 {
 
-    private static volatile Singleton_01 singleton_01;
 
-    private Singleton_01() { }
-
-    public static Singleton_01 getInstance() { // 1
-        if (singleton_01 == null) { // 2
-            synchronized (Singleton_01.class) { // 3
-                if (singleton_01 == null) { // 4
-                    singleton_01 = new Singleton_01(); // 5
-                }
-            }
-        }
-        return singleton_01;
-    }
 
     public static void main(String[] args) {
-        System.out.println(Singleton_01.getInstance().hashCode());
-        System.out.println(Singleton_01.getInstance().hashCode());
+        // 打印两次HashCode对比
     }
 
 }

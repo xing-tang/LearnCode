@@ -1,4 +1,4 @@
-package com.open.learncode.剑指offer;
+package com.open.learncode.剑指offer.每日回顾.day_01;
 
 /**
  * 题目：
@@ -20,7 +20,6 @@ package com.open.learncode.剑指offer;
  */
 public class TestMethod8 {
 
-
     /**
      * 二叉树节点
      */
@@ -41,9 +40,7 @@ public class TestMethod8 {
         }
     }
 
-
     public static void main(String[] args) {
-
         //创建二叉树
         TreeNode<String> nodeA = new TreeNode<String>("a");
         TreeNode<String> nodeB = new TreeNode<String>("b");
@@ -60,64 +57,9 @@ public class TestMethod8 {
         nodeF.setLeftAndRightAndParent(null, null, nodeC);
         nodeG.setLeftAndRightAndParent(null, null, nodeC);
 
-        method(nodeA);
-        method(nodeB);
-        method(nodeC);
-        method(nodeD);
-        method(nodeE);
-        method(nodeF);
-        method(nodeG);
+        // 分别获取节点b、d、e、g的下一个节点
 
     }
 
-    /**
-     * 找到p节点的下一个节点，分下列几种情况
-     * 1、有右子树
-     * 2、无右子树 2.1 是其父亲节点的右孩子
-     *
-     * @param p 给定的一个节点
-     * @return
-     */
-    private static TreeNode method(TreeNode p) {
-
-        //鲁棒性
-        if (p == null)
-            return null;
-
-        //有右子树：它的下一个节点是其右子树中的最左子节点
-        TreeNode cur = p.right;
-        if (cur != null) {
-            while (cur.left != null) {
-                cur = cur.left;
-            }
-            System.out.println(p.value + "的下一个节点是：" + cur.value);
-            return cur;
-        }
-
-        //无右子树
-        //又分为两种情况：1.该节点是其父亲节点的左孩子，则下一个节点是其父亲节点
-        //2.该节点是其父亲节点的右孩子，则不断的回溯找到父亲节点
-        TreeNode temp = p;//保存p，用于打印时
-        TreeNode parent = p.parent;
-
-        //情况2：①p是parent的右孩子，且是右子树上的右孩子，这时parent==null
-        //②p是parent的右孩子，且是左子树上的右孩子，这时parent==root
-        while (parent != null && parent.left != p) {
-            p = parent;
-            parent = p.parent;
-
-        }
-
-        if (parent == null) {
-            System.out.println(temp.value + "没有下一个节点");
-            return null;
-        }
-
-        //情况1：p是parent的左孩子
-        System.out.println(temp.value + "的下一个节点是：" + parent.value);
-        return parent;
-
-
-    }
 }
 

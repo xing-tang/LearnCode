@@ -34,12 +34,12 @@ public class TestMethod4 {
         int row = 0;
         int column = arr[0].length - 1;
         while (row < arr.length && column >= 0) {
-            if (arr[row][column] == target) {
-                return true;
-            } else if (arr[row][column] > target) {
+            if (target > arr[row][column]) {
+                row++;
+            } else if (target < arr[row][column]) {
                 column--;
             } else {
-                row++;
+                return true;
             }
         }
         return false;
@@ -59,12 +59,12 @@ public class TestMethod4 {
         int column = 0;
 
         while (row >= 0 && column < arr.length) {
-            if (arr[row][column] == target) {
-                return true;
-            } else if (arr[row][column] > target) {
+            if (target > arr[row][column]) {
+                column++;
+            } else if (target < arr[row][column]) {
                 row--;
             } else {
-                column++;
+                return true;
             }
         }
 
