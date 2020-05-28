@@ -2,7 +2,7 @@ package com.open.learncode.剑指offer;
 
 /**
  * 题目：
- * 字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。
+ * 左旋转字符：字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。
  * 请定义一个函数实现字符串左旋转操作的功能。
  * 比如，输入字符串"abcdefg"和数字2，该函数将返回左旋转两位得到的结果"cdefgab"。
  * <p>
@@ -50,7 +50,7 @@ public class TestMethod58_2 {
     /**
      * 翻转字符串
      *
-     * @param chars 带翻转的字符串
+     * @param chars 待翻转的字符串
      * @param start 待翻转的首角标
      * @param end   待翻转的尾角标
      */

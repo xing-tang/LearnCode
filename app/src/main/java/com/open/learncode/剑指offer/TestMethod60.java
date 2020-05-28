@@ -2,7 +2,7 @@ package com.open.learncode.剑指offer;
 
 /**
  * 题目：
- * 把n个骰子扔在地上，所有骰子朝上一面的点数之和为s。输入n，打印出s的所有可能的值出现的概率。
+ * n个骰子的点数：把n个骰子扔在地上，所有骰子朝上一面的点数之和为s。输入n，打印出s的所有可能的值出现的概率。
  * <p>
  * 解题思路：
  * 递归、动态规划，使用二维数组存储
@@ -16,9 +16,13 @@ public class TestMethod60 {
     public static void main(String[] args) {
         int n = 2;
         double[] temp = twoSum(n);
-        method_2(2);
+        double[] temp2 = method_2(n);
         for (int i = 0; i < temp.length; i++) {
             System.out.print(temp[i] + " ");
+        }
+        System.out.println();
+        for (int i = 0; i < temp2.length; i++) {
+            System.out.print(temp2[i] + " ");
         }
     }
 
@@ -29,7 +33,7 @@ public class TestMethod60 {
      * @return 输出所有和的概率一维数组
      */
     public static double[] twoSum(int n) {
-        //思路一：遍历 5*n+1种不重复结果，计算每一种不重复结果的组合个数
+        //思路一：遍历5*n+1种不重复结果，计算每一种不重复结果的组合个数
         double[] res = new double[5 * n + 1];
         int curSum = n;
         for (int i = 0; i < res.length; ++i) {
@@ -47,14 +51,18 @@ public class TestMethod60 {
      * @return 输出n个骰子和为curSum的个数
      */
     public static int countSum(int n, int curSum) {
-        if (n < 0 || curSum < 0) {
+
+        //鲁棒性
+        if (n < 0 || curSum < 0)
             return 0;
-        }
+
         if (n == 0 && curSum == 0) {
             return 1;
         }
+
         int sum = 0;
         for (int i = 1; i < 7; ++i) {
+            //固定一个骰子的点数
             sum += countSum(n - 1, curSum - i);
         }
         return sum;

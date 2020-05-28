@@ -2,7 +2,7 @@ package com.open.learncode.剑指offer;
 
 /**
  * 题目：
- * 输入一个正整数s，打印出所有和为s的连续正数序列（至少含两个数）。
+ * 和为s的连续正数序列：输入一个正整数s，打印出所有和为s的连续正数序列（至少含两个数）。
  * 例如，输入15，由于1+2+3+4=4+5+6=7+8=15，所以打印出三个连续序列1~5、
  * 4~6和7~8。
  * <p>
@@ -25,7 +25,7 @@ public class TestMethod57_2 {
      * @param num 待传入的数字
      */
     public static void method(int num) {
-        if (num < 3) return;
+        if (num < 2) return;
         int start = 1;
         int end = 2;
         int middle = (num + 1) / 2;
@@ -54,6 +54,5 @@ public class TestMethod57_2 {
         }
         System.out.println();
     }
-
 
 }

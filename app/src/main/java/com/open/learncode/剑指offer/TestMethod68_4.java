@@ -5,11 +5,11 @@ import java.util.Stack;
 
 /**
  * 题目：
- * 给定一个树, 找到该树中两个指定节点p和q的最近公共祖先。
+ * 多叉树的最近公共祖先：给定一个树, 找到该树中两个指定节点p和q的最近公共祖先。
  * 例如：
- * ******A
- * *** /   \
- * ***B     C
+ * *     A
+ * *   /   \
+ * *  B     C
  * *       / \
  * *      D   E
  * *        / | \
@@ -24,6 +24,7 @@ import java.util.Stack;
 public class TestMethod68_4 {
 
     public static void main(String[] args) {
+
         TreeNode<String> nodeF = new TreeNode<String>("F");
         TreeNode<String> nodeG = new TreeNode<String>("G");
         TreeNode<String> nodeH = new TreeNode<String>("H");
@@ -87,19 +88,21 @@ public class TestMethod68_4 {
     /**
      * 获取根节点到目标节点的路径
      *
-     * @param pRoot
-     * @param pNode
+     * @param pRoot   待输入的根节点
+     * @param pNode 待输入的目标节点
      * @param tmpList
-     * @param path    * @param root  待输入的根节点
-     *                * @param end   该路径结束的节点
-     *                * @param stack 用来保存路径的栈
+     * @param path 保存根节点到目标节点的路径
      */
     public static void getNodePath(TreeNode pRoot, TreeNode pNode, ArrayList<TreeNode> tmpList, ArrayList<TreeNode> path) {
-        if (pRoot == pNode || pRoot == null) {
+
+        //鲁棒性
+        if (pRoot == pNode || pRoot == null)
             return;
-        }
+
         tmpList.add(pRoot);
+
         ArrayList<TreeNode> childs = pRoot.children;
+
         if (childs != null && childs.size() > 0) {
             for (TreeNode node : childs) {
                 if (node == pNode) {
@@ -121,9 +124,11 @@ public class TestMethod68_4 {
      */
     private static TreeNode getLastCommonParent(ArrayList<TreeNode> path1, ArrayList<TreeNode> path2) {
         TreeNode tmpNode = null;
+        //找到list集合里靠后的相同的节点值
         for (int i = 0; i < path1.size(); i++) {
+
             if (path1.get(i) != path2.get(i)) {
-                break;
+                break;//哇，已经找到答案了，不需要进行更多的循环
             }
             //循环结束时tmpNode即为最后一个共同结点
             tmpNode = path1.get(i);
@@ -135,6 +140,8 @@ public class TestMethod68_4 {
 
         public E value;
         public ArrayList<TreeNode<E>> children;
+        public TreeNode<E> left;
+        public TreeNode<E> right;
 
         public TreeNode(E value) {
             this.value = value;
@@ -144,6 +151,7 @@ public class TestMethod68_4 {
             this.value = value;
             this.children = children;
         }
+
     }
 
 }

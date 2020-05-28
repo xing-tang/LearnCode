@@ -2,11 +2,13 @@ package com.open.learncode.剑指offer;
 
 /**
  * 题目：
+ * 带父亲指针的二叉树的最近公共祖先：
  * 给定一个二叉树,且每个节点有一个指向父节点的parent值，找到该树中两个指定节点p和q的最近公共祖先。
+ * 【注意：此题，祖先节点包含自身节点】
  * 例如：
- * ******3
- * *** /   \
- * ***5     1
+ * *     3
+ * *   /   \
+ * *  5     1
  * * / \   / \
  * *6  2  0   8
  * *  / \
@@ -21,6 +23,7 @@ package com.open.learncode.剑指offer;
 public class TestMethod68_3 {
 
     public static void main(String[] args) {
+
         TreeNode<Integer> node7 = new TreeNode<Integer>(7);
         TreeNode<Integer> node4 = new TreeNode<Integer>(4);
         TreeNode<Integer> node2 = new TreeNode<Integer>(2, node7, node4);
@@ -49,6 +52,8 @@ public class TestMethod68_3 {
         System.out.println("正常测试如下：");
         System.out.println(method(node7, node4).value);
         System.out.println(method(node6, node8).value);
+        System.out.println(method(node7, node3).value);
+//        System.out.println(method(node2, node3).value);
     }
 
     /**
@@ -59,18 +64,26 @@ public class TestMethod68_3 {
      * @return 返回第一个公共节点
      */
     public static TreeNode method(TreeNode<Integer> nodeA, TreeNode<Integer> nodeB) {
+
+        //鲁棒性
         if (nodeA == null || nodeB == null || nodeA == nodeB) return null;
 
         TreeNode<Integer> tempA = nodeA;
         TreeNode<Integer> tempB = nodeB;
+        //？
         int count = 0;
+
+        //不断回溯父亲节点：当tempA==tempB时，跳出循环，此时它们回溯到了最近的公共祖先节点
         while (tempA != tempB) {
             tempA = tempA.parent;
             tempB = tempB.parent;
+
+            //当tempA回溯到null时，代表nodeA在nodeB的上层
             if (tempA == null) {
                 tempA = nodeA;
                 count++;
             }
+            //当tempB回溯到null时，代表nodeB在nodeA的上层
             if (tempB == null) {
                 tempB = nodeB;
                 count++;
@@ -78,6 +91,7 @@ public class TestMethod68_3 {
             if (count > 2) return null;
         }
         return tempA;
+
     }
 
     public static class TreeNode<E> {

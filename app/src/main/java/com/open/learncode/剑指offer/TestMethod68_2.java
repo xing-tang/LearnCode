@@ -1,15 +1,14 @@
 package com.open.learncode.剑指offer;
 
-import java.util.ArrayList;
 import java.util.Stack;
 
 /**
  * 题目：
- * 给定一个二叉树, 找到该树中两个指定节点p和q的最近公共祖先。
+ * 普通二叉树的最近公共祖先：给定一个二叉树, 找到该树中两个指定节点p和q的最近公共祖先。
  * 例如：
- * ******3
- * *** /   \
- * ***5     1
+ * *     3
+ * *   /   \
+ * *  5     1
  * * / \   / \
  * *6  2  0   8
  * *  / \
@@ -19,12 +18,36 @@ import java.util.Stack;
  * 因为它是一个二叉树，故用递归思想，也可以用stack+后续遍历思路去实现
  * <p>
  * 复杂度分析：
- * 方法一：时间复杂度：O(n)，空间复杂度：O(n)
+ * 方法一：时间复杂度：O(n)【其中n为二叉树节点数；最差情况下(退化为链表），需要递归遍历树的所有节点】
+ * *      空间复杂度：O(n)【最差情况下，递归深度达到n ，系统使用0(n)大小的额外空间】
  * 方法二：时间复杂度：O(n)，空间复杂度：O(n)
+ * <p>
+ * 解题思路：
+ * 后序遍历
+ * 考虑通过递归对二叉树进行后序遍历，当遇到节点p或q时返回。从底至顶回溯，当节点p q在节点root的异侧时，
+ * 节点root即为最近公共祖先，则向上返回root
  */
 public class TestMethod68_2 {
 
+    public static class TreeNode<E> {
+
+        public E value;
+        public TreeNode<E> left;
+        public TreeNode<E> right;
+
+        public TreeNode(E value) {
+            this.value = value;
+        }
+
+        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
+            this.value = value;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
     public static void main(String[] args) {
+
         TreeNode<Integer> node7 = new TreeNode<Integer>(7);
         TreeNode<Integer> node4 = new TreeNode<Integer>(4);
         TreeNode<Integer> node2 = new TreeNode<Integer>(2, node7, node4);
@@ -91,6 +114,7 @@ public class TestMethod68_2 {
         //递归出口
         if (root == null || root == p || root == q)
             return root;
+
         //去该节点的左子树上找
         TreeNode left = method_1(root.left, p, q);
         //去该节点的右子树上找
@@ -107,7 +131,7 @@ public class TestMethod68_2 {
     }
 
     /**
-     * 非递归方法【stack+后续遍历】
+     * 非递归方法【stack+后序遍历】
      *
      * @param root 待输入的根节点
      * @param p    待输入的节点p
@@ -147,7 +171,10 @@ public class TestMethod68_2 {
         TreeNode peek;
         stack.push(root);
         while (!stack.isEmpty()) {
+
             peek = stack.peek();
+
+            //循环终止条件
             if (peek == end) return;
 
             //添加左节点：左节点不为null 且 没有添加过； 右节点没有添加过（针对节点2 3 1）
@@ -165,22 +192,4 @@ public class TestMethod68_2 {
             }
         }
     }
-
-    public static class TreeNode<E> {
-
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
 }

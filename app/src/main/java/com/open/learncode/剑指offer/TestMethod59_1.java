@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 /**
  * 题目：
- * 给定一个数组和滑动窗口的大小，请找出所有滑动窗口里面的最大值。
+ * 滑动窗口的最大值：给定一个数组和滑动窗口的大小，请找出所有滑动窗口里面的最大值。
  * 例如，如果输出数组{2,3,4,2,6,2,5,1}及滑动窗口大小3，那么一共存在6个滑动窗口，
  * 它们的最大值分别为{4,4,6,6,6,5}。
  * <p>
@@ -36,9 +36,11 @@ public class TestMethod59_1 {
      */
     public static int[] method(int[] nums, int k) {
         // 鲁棒性
-        if (nums.length == 0 || k == 0) return new int[0];
+        if (nums.length == 0 || k == 0)
+            return new int[0];
+        //双端队列
         Deque<Integer> deque = new LinkedList<Integer>();
-        // 什么最大值一维数组
+        //存储最大值的一维数组
         int[] res = new int[nums.length - k + 1];
         for (int i = 1 - k, j = 0; j < nums.length; i++, j++) {
             if (i > 0 && deque.peekFirst() == nums[i - 1]) {

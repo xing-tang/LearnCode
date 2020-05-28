@@ -2,11 +2,13 @@ package com.open.learncode.剑指offer;
 
 /**
  * 题目：
- * 给定一个二叉搜索树, 找到该树中两个指定节点p和q的最近公共祖先。
+ * 二叉搜索树的最近公共祖先：给定一个二叉搜索树, 找到该树中两个指定节点p和q的最近公共祖先。
+ * 【注意：祖先节点不包含自身】
+ * 【找到的最近祖先节点特点：p q在root的两侧】
  * 例如：
- * ******6
- * *** /   \
- * ***2     8
+ * *     6
+ * *   /   \
+ * *  2     8
  * * / \   / \
  * *0  4  7   9
  * *  / \
@@ -16,12 +18,14 @@ package com.open.learncode.剑指offer;
  * 利用二分搜索树的特性，然后分别用迭代和递归思路可以实现
  * <p>
  * 复杂度分析：
- * 方法一：时间复杂度：O(n)，空间复杂度：O(n)
+ * 方法一：时间复杂度：O(n)【其中为二叉树节点数；每循环一轮排除一层，二叉搜索树的层数最小为nlogn(满二叉树），最大为n(退化为链表）】
+ * *      空间复杂度：O(n)【用到系统栈】
  * 方法二：时间复杂度：O(n)，空间复杂度：O(1)
  */
 public class TestMethod68_1 {
 
     public static void main(String[] args) {
+
         TreeNode<Integer> node3 = new TreeNode<Integer>(3);
         TreeNode<Integer> node5 = new TreeNode<Integer>(5);
         TreeNode<Integer> node4 = new TreeNode<Integer>(4, node3, node5);
@@ -38,6 +42,7 @@ public class TestMethod68_1 {
         System.out.println(method_1(node6, null, null));
         System.out.println(method_1(node6, node6, null));
         System.out.println(method_1(node6, node6, node6));
+
         System.out.println(method_2(null, null, null));
         System.out.println(method_2(node6, null, null));
         System.out.println(method_2(node6, node6, null));
@@ -60,6 +65,7 @@ public class TestMethod68_1 {
      * @return 返回最近公共祖先
      */
     public static TreeNode<Integer> method_1(TreeNode<Integer> root, TreeNode<Integer> p, TreeNode<Integer> q) {
+
         // 鲁棒性
         if (root == null || p == null || q == null || root == p || root == q) return null;
 
@@ -67,6 +73,7 @@ public class TestMethod68_1 {
             return method_1(root.right, p, q);
         if (root.value > p.value && root.value > q.value)
             return method_1(root.left, p, q);
+
         return root;
     }
 
@@ -80,6 +87,7 @@ public class TestMethod68_1 {
      * @return 返回最近公共祖先
      */
     public static TreeNode<Integer> method_2(TreeNode<Integer> root, TreeNode<Integer> p, TreeNode<Integer> q) {
+
         // 鲁棒性
         if (root == null || p == null || q == null || root == p || root == q) return null;
 
@@ -88,11 +96,11 @@ public class TestMethod68_1 {
                 root = root.right; // 遍历至右子节点
             else if (root.value > p.value && root.value > q.value) // p,q 都在 root 的左子树中
                 root = root.left; // 遍历至左子节点
-            else break;
+            else
+                break;
         }
         return root;
     }
-
 
     public static class TreeNode<E> {
 
@@ -106,6 +114,7 @@ public class TestMethod68_1 {
 
         public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
             this.value = value;
+
             this.left = left;
             this.right = right;
         }
