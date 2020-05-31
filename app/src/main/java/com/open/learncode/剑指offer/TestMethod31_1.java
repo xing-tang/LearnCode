@@ -13,9 +13,9 @@ import java.util.Stack;
  * 利用辅助栈的特性，注意栈内数字不能相等
  * <p>
  * 复杂度分析：
- * 时间复杂度：O(n)  空间复杂度：O(n)
+ * 时间复杂度：O(n)  空间复杂度：O(n)【栈】
  */
-public class TestMethod31 {
+public class TestMethod31_1 {
 
     public static void main(String[] args) {
         int[] push = {1, 2, 3, 4, 5};
@@ -34,7 +34,8 @@ public class TestMethod31 {
      * @return
      */
     private static boolean method(int[] push, int[] pop) {
-        if (push == null || pop == null || push.length <= 0 || push.length != pop.length)
+
+        if (push == null || pop == null || push.length <= 0 || pop.length <= 0 || push.length != pop.length)
             return false;
 
         Stack<Integer> stack = new Stack<Integer>();

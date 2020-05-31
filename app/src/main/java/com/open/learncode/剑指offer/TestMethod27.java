@@ -67,13 +67,18 @@ public class TestMethod27 {
      * 递归：
      *
      * @param root 二叉树根节点
-     * @return 返回二叉树的镜像二叉树
+     * @return 返回镜像二叉树的根节点
      */
     public static TreeNode method_1(TreeNode root) {
+
+        //鲁棒性
         if (root == null) return null;
+
+        //交换root节点的左右子树
         TreeNode temp = root.left;
         root.left = method_1(root.right);
         root.right = method_1(temp);
+
         return root;
     }
 
@@ -81,16 +86,22 @@ public class TestMethod27 {
      * 迭代：
      *
      * @param root 二叉树根节点
-     * @return 返回二叉树的镜像二叉树
+     * @return 返回镜像二叉树的根节点
      */
     public static TreeNode method_2(final TreeNode root) {
+
+        //鲁棒性
         if (root == null) return null;
+
         Stack<TreeNode> stack = new Stack<TreeNode>();
         stack.push(root);
         while (!stack.isEmpty()) {
             TreeNode node = stack.pop();
+
             if (node.left != null) stack.add(node.left);
             if (node.right != null) stack.add(node.right);
+
+            //交换node节点的左右子树
             TreeNode tmp = node.left;
             node.left = node.right;
             node.right = tmp;

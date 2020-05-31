@@ -12,9 +12,9 @@ import learncode.open.com.learncode.R;
  * 对称的二叉树：请实现一个函数，用来判断一棵二叉树是不是对称的。
  * 如果一棵二叉树和它的镜像一样，那么它是对称的。
  * 例如：
- * *****8
- * *** / \
- * ***6   6
+ * *    8
+ * *   / \
+ * *  6   6
  * * / \ / \
  * *5 7 7  5
  * 解题思路：
@@ -26,8 +26,25 @@ import learncode.open.com.learncode.R;
  */
 public class TestMethod28 {
 
+    public static class TreeNode<E> {
+
+        public E value;
+        public TreeNode<E> left;
+        public TreeNode<E> right;
+
+        public TreeNode(E value) {
+            this.value = value;
+        }
+
+        public void setLeftAndRight(TreeNode<E> left, TreeNode<E> right) {
+            this.left = left;
+            this.right = right;
+        }
+    }
+
     public static void main(String[] args) {
 
+        //创建二叉树：
         TreeNode<Integer> node1 = new TreeNode<>(8);
         TreeNode<Integer> node2 = new TreeNode<>(6);
         TreeNode<Integer> node3 = new TreeNode<>(6);
@@ -50,28 +67,29 @@ public class TestMethod28 {
      *
      * @param root1 二叉树的根节点root1
      * @param root2 二叉树的根节点root2
-     * @return 判断是否是对称二叉树
+     * @return true，是对称二叉树；否，不是对称二叉树
      */
     private static boolean method_1(TreeNode root1, TreeNode root2) {
 
+        //鲁棒性
         if (root1 == null && root2 == null)
             return true;
 
         if (root1 == null || root2 == null || root1.value != root2.value)
             return false;
 
-        //判断A的左边和B的右边是否相等，判断A的右边和B的左边是否相等，都相等就满足
+        //判断A的左边和B的右边是否相等，判断A的右边和B的左边是否相等，都相等就是对称的
         return method_1(root1.left, root2.right) && method_1(root1.right, root2.left);
     }
 
     /**
      * DFS：
-     * 使用堆栈来实现树的深度优先遍历，将左右结点成对的压入堆栈，
+     * 使用堆栈来实现树的深度优先遍历，将左右节点成对的压入堆栈，
      * 出栈的时候也要成对出栈，若value不相同或是有单独的空树，返回false；
-     * 否则，继续成对的压入左右结点。
+     * 否则，继续成对的压入左右节点。
      *
-     * @param root 二叉树的根节点root
-     * @return 判断是否是对称二叉树
+     * @param root 二叉树的根节点
+     * @return true，是对称二叉树；否，不是对称二叉树
      */
     private static boolean method_2(TreeNode root) {
 
@@ -83,19 +101,16 @@ public class TestMethod28 {
         stack.push(root.right);
 
         while (!stack.isEmpty()) {
-            TreeNode left = stack.pop();
             TreeNode right = stack.pop();
+            TreeNode left = stack.pop();
             if (right == null && left == null)
                 continue;
-            if (right == null || left == null)
-                return false;
-            if (right.value != left.value)
+            if (right == null || left == null || left.value != right.value)
                 return false;
 
-            stack.push(right.left);
-            stack.push(left.right);
             stack.push(right.right);
-            stack.push(left.left);
+            stack.push(left.right);
+            stack.push(right.left);
         }
         return true;
     }
@@ -103,10 +118,10 @@ public class TestMethod28 {
     /**
      * BFS：
      * 使用队列来实现树的广度优先遍历，代码与DFS十分相似，
-     * 只不过结点先进先出，同样要注意入队以及出队的时候，左右结点要成对
+     * 只不过节点先进先出，同样要注意入队以及出队的时候，左右节点要成对
      *
      * @param root 二叉树的根节点root
-     * @return 判断是否是对称二叉树
+     * @return true，是对称二叉树；否，不是对称二叉树
      */
     private static boolean method_3(TreeNode root) {
 
@@ -124,35 +139,16 @@ public class TestMethod28 {
             if (left == null && right == null)
                 continue;
 
-            if (left == null || right == null)
+            if (left == null || right == null || left.value != right.value)
                 return false;
 
-            if (left.value != right.value)
-                return false;
-
-            queue.add(right.left);
-            queue.add(left.right);
-            queue.add(right.right);
             queue.add(left.left);
+            queue.add(right.right);
+            queue.add(left.right);
+            queue.add(right.left);
 
         }
         return true;
-    }
-
-    public static class TreeNode<E> {
-
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public void setLeftAndRight(TreeNode<E> left, TreeNode<E> right) {
-            this.left = left;
-            this.right = right;
-        }
     }
 }
 

@@ -7,7 +7,7 @@ package com.open.learncode.剑指offer;
  * 解题思路：
  * <p>
  * 复杂度分析：
- * 时间复杂度：O(1)  空间复杂度：O(1)
+ * 时间复杂度：O(logn)【logn为数字n的位数】  空间复杂度：O(1)
  */
 public class testMethod31_2 {
 
@@ -38,13 +38,11 @@ public class testMethod31_2 {
             int left = num / len; //取左边第一位
             int right = num % 10; //取最后一位
 
-            if (left != right) {
+            if (left != right)
                 return false;
-            }
 
             //减去左右边上两位，剩余中间的(num%len：除去最高位 /10：除去最低位）
             num = num % len / 10;
-
             //len也减少两位
             len = len / 100;
         }
