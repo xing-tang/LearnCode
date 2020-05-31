@@ -19,7 +19,23 @@ package com.open.learncode.剑指offer;
  */
 public class TestMethod25 {
 
+    public static class ListNode<E> {
+
+        public E value;
+        public ListNode<E> next;
+
+        public ListNode(E value) {
+            this.value = value;
+        }
+
+        public ListNode(E value, ListNode<E> next) {
+            this.value = value;
+            this.next = next;
+        }
+    }
+
     public static void main(String[] args) {
+
         // 链表1
         ListNode<Integer> node7 = new ListNode<Integer>(7);
         ListNode<Integer> node5 = new ListNode<Integer>(5, node7);
@@ -37,18 +53,19 @@ public class TestMethod25 {
         System.out.print("递增链表2：");
         print(node2);
         System.out.print("合并后的升序链表3：");
-        print(method_1(node1, node2));
-//        print(method_2(node1, node2));
+//        print(method_1(node1, node2));
+        print(method_2(node1, node2));
     }
 
     /**
-     * 递归合并链表
+     * 递归
      *
-     * @param head1 链表1的头结点
-     * @param head2 链表2的头结点
-     * @return 返回合并后的链表头结点
+     * @param head1 链表1的头节点
+     * @param head2 链表2的头节点
+     * @return 返回合并后的链表头节点
      */
     private static ListNode method_1(ListNode<Integer> head1, ListNode<Integer> head2) {
+
         if (head1 == null) {
             return head2;
         } else if (head2 == null) {
@@ -63,11 +80,11 @@ public class TestMethod25 {
     }
 
     /**
-     * 迭代合并链表
+     * 迭代
      *
-     * @param head1 链表1的头结点
-     * @param head2 链表2的头结点
-     * @return 返回合并后的链表头结点
+     * @param head1 链表1的头节点
+     * @param head2 链表2的头节点
+     * @return 返回合并后的链表头节点
      */
     public static ListNode method_2(ListNode<Integer> head1, ListNode<Integer> head2) {
 
@@ -89,35 +106,21 @@ public class TestMethod25 {
         return prehead.next;
     }
 
-    private static void print(ListNode pHead) {
+    private static void print(ListNode head) {
 
-        if (pHead == null)
+        if (head == null)
             System.out.println("这是一个空链表");
 
-        while (pHead != null) {
-            if (pHead.next == null) {
-                System.out.println(pHead.value);
+        while (head != null) {
+            if (head.next == null) {
+                System.out.println(head.value);
                 break;
             }
-            System.out.print(pHead.value + "->");
-            pHead = pHead.next;
+            System.out.print(head.value + "->");
+            head = head.next;
         }
         System.out.println();
     }
 
-    public static class ListNode<E> {
-
-        public E value;
-        public ListNode<E> next;
-
-        public ListNode(E value) {
-            this.value = value;
-        }
-
-        public ListNode(E value, ListNode<E> next) {
-            this.value = value;
-            this.next = next;
-        }
-    }
 
 }

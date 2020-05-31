@@ -11,7 +11,7 @@ package com.open.learncode.剑指offer;
  * 1->2->3->4->5->6
  * <p>
  * 解题思路：
- * 1、一快一慢指针，快指针一次向前移动两步，慢指针一次向前移动一步，直到它们相遇，相遇的节点就是环中的一节点
+ * 1、快慢两指针，快指针一次向前移动两步，慢指针一次向前移动一步，直到它们相遇，相遇的节点就是环中的一节点
  * 2、得出环的节点总数k
  * 3、一前一后指针，一指针先向前走k步，之后，两指针以形同的速度向前移动，直到它们相遇，相遇的节点就是环的入口节点
  * <p>
@@ -19,41 +19,6 @@ package com.open.learncode.剑指offer;
  * 时间复杂度：O(n)  空间复杂度：O(1)
  */
 public class TestMethod23 {
-
-    public static void main(String[] args) {
-        ListNode<Integer> node6 = new ListNode<Integer>(6);
-        ListNode<Integer> node5 = new ListNode<Integer>(5, node6);
-        ListNode<Integer> node4 = new ListNode<Integer>(4, node5);
-        ListNode<Integer> node3 = new ListNode<Integer>(3, node4);
-        ListNode<Integer> node2 = new ListNode<Integer>(2, node3);
-        ListNode<Integer> node1 = new ListNode<Integer>(1, node2);
-        node6.next = node3;
-        if (method(node1) != null) {
-            System.out.println("该链表环的入口节点：" + method(node1).value);
-        } else {
-            System.out.println("该链表没有入口节点");
-        }
-    }
-
-    public static ListNode method(ListNode head) {
-        // 鲁棒性判断，并且如果链表只有一个节点，不存在环，返回null
-        if (head == null || head.next == null) return null;
-
-        ListNode p1 = head, p2 = head;
-        while (true) {
-            //判断当前链表是否有环
-            if (p1 == null || p1.next == null) return null;
-            p1 = p1.next.next;
-            p2 = p2.next;
-            if (p1 == p2) break;
-        }
-        p1 = head;
-        while (p2 != p1) {
-            p2 = p2.next;
-            p1 = p1.next;
-        }
-        return p1;
-    }
 
     public static class ListNode<E> {
 
@@ -68,5 +33,55 @@ public class TestMethod23 {
             this.value = value;
             this.next = next;
         }
+    }
+
+    public static void main(String[] args) {
+
+        //创建链表：
+        ListNode<Integer> node6 = new ListNode<Integer>(6);
+        ListNode<Integer> node5 = new ListNode<Integer>(5, node6);
+        ListNode<Integer> node4 = new ListNode<Integer>(4, node5);
+        ListNode<Integer> node3 = new ListNode<Integer>(3, node4);
+        ListNode<Integer> node2 = new ListNode<Integer>(2, node3);
+        ListNode<Integer> node1 = new ListNode<Integer>(1, node2);
+        node6.next = node3;
+
+        if (method(node1) != null) {
+            System.out.println("该链表环的入口节点：" + method(node1).value);
+        } else {
+            System.out.println("该链表没有入口节点");
+        }
+    }
+
+    public static ListNode method(ListNode head) {
+
+        // 鲁棒性判断：如果链表为空，或链表只有一个节点，不存在环，返回null
+        if (head == null || head.next == null) return null;
+
+        //快慢指针
+        ListNode fast = head, low = head;
+
+        while (true) {
+
+            //判断当前链表是否有环：
+            // 若快指针已经走到链表末尾，或快走到末尾（会导致fast.next.next报错），但快慢指针还未相遇，代表链表中无环
+            if (fast == null || fast.next == null) return null;
+
+            //快指针走两步，慢指针走一步
+            fast = fast.next.next;
+            low = low.next;
+
+            //循环结束条件：快慢指针相遇
+            if (fast == low) break;
+        }
+
+        //快指针回到原点
+        fast = head;
+        //每次同行异步，直到快慢指针相遇，相遇的节点即为环的入口
+        while (low != fast) {
+            low = low.next;
+            fast = fast.next;
+        }
+        return fast;
     }
 }

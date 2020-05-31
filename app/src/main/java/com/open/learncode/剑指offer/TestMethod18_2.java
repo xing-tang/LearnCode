@@ -7,28 +7,14 @@ import java.util.List;
  * 题目：
  * 删除链表中重复的节点：在一个排序的链表中，如何删除重复的节点？
  * 例如：1->2->3->3->5 删除重复的节点后变成 1->2->5
- * 链表节点和函数的定义如下:
- * struct ListNode{
- * int m_nValue;
- * ListNode m_pNext;
- * }
- * <p>
- * void DeleteBode(ListNode ppHead,ListNode pToBeDeleted);
  * <p>
  * 解题思路：
  * 对于非尾节点，把下一个节点的内容覆盖要删除的节点，并删除下一个节点
  * 对于尾节点，先顺序查找，再删除
  * <p>
  * 复杂度分析：
- *
  */
 public class TestMethod18_2 {
-
-    private static ListNode head;
-    private static ListNode node1;
-    private static ListNode node2;
-    private static ListNode node3;
-    private static ListNode node4;
 
     /**
      * 内部类：单链表节点
@@ -40,29 +26,25 @@ public class TestMethod18_2 {
 
         ListNode(int val) {
             this.val = val;
-            next = null;
         }
 
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
 
     }
 
     public static void main(String[] args) {
 
-        //创建带头节点的单链表
-        head = new ListNode(1);
-        node1 = new ListNode(1);
-        node2 = new ListNode(2);
-        node3 = new ListNode(3);
-        node4 = new ListNode(5);
+        //创建单链表
+        ListNode node5 = new ListNode(5);
+        ListNode node4 = new ListNode(4, node5);
+        ListNode node3 = new ListNode(3, node4);
+        ListNode node2 = new ListNode(2, node3);
+        ListNode node1 = new ListNode(1, node2);
 
-        head.next = node1;
-        node1.next = node2;
-        node2.next = node3;
-        node3.next = node4;
-
-
-
-        print(deleteDuplication((head)));
+        print(deleteDuplication((node1)));
 
     }
 
@@ -115,16 +97,10 @@ public class TestMethod18_2 {
                 else
                     pPreNode.next = pNext;
 
-
                 pNode = pNext;
-
-
             }
-
         }
         return pHead;
-
-
     }
 
     private static void print(ListNode pHead) {

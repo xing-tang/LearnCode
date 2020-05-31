@@ -10,99 +10,109 @@ package com.open.learncode.剑指offer;
  * 直接乘法，递归
  * <p>
  * 复杂度分析：
- * 方法一：时间复杂度：O(exponent)   空间复杂度：O(n)
- * 方法二：时间复杂度：O(exponent)   空间复杂度：O(1)
- * 方法三：时间复杂度：O(log(exponent))   空间复杂度：O(1)
+ * 方法一：时间复杂度：O(exponent)   空间复杂度：O(1)
+ * 方法二：时间复杂度：O(log(exponent))   空间复杂度：O(log(exponent))【系统栈】
+ * 方法一：时间复杂度：O(log(exponent))   空间复杂度：O(1)
  */
 public class TestMethod16 {
 
     public static void main(String[] args) {
 
+        //测试用例：底数 指数分别设为正数 负数 零
+        System.out.println(method_1(2, -3));
+        System.out.println(method_1(0, -3));
+        System.out.println(method_1(-2, -3));
 
-        System.out.println(method_1(2,6));
+        System.out.println(method_2(2, 0));
+        System.out.println(method_2(0, 0));
+        System.out.println(method_2(-2, 0));
 
-        System.out.println(method_2(2,6));
-
-        System.out.println(method_3(2,32));
-
-    }
-
-
-    /**
-     * 缺点：未考虑指数exponent小于1（零和负数的情况）
-     *
-     * @param base 底数
-     * @param exponent  指数
-     * @return
-     */
-    private static double method_1(double base,int exponent) {
-
-        double result=1.0;
-        for (int i = 1; i <=exponent ; i++) {
-            result*=base;
-        }
-        return result;
-    }
-
-
-    /**
-     * 当exponent为负数时，先对指数求绝对值，算出次方的结果之后再取倒数
-     * 缺点：有可能忘记去检查invalidInput以判断是否出错
-     *
-     * @param base
-     * @param exponent
-     * @return
-     */
-    private static double method_2(double base,int exponent) {
-
-        //无效输入的标记
-        boolean invalidInput=false;
-
-        //0的负数次方
-        if(base==0.0 && exponent<0){
-            invalidInput=true;
-            return 0.0;
-        }
-
-        //指数为负数
-        if(exponent<0) {
-            int absExponent=-exponent;
-            double result=1.0/method_1(base,absExponent);
-            return result;
-        }else{
-            double result=method_1(base,exponent);
-            return result;
-        }
+        System.out.println(method_3(2, 2));
+        System.out.println(method_3(0, 2));
+        System.out.println(method_3(-2, 2));
 
     }
 
+    private static double method_1(double base, int exponent) {
+
+        if (exponent == 0) return 1;
+        if (base == 0) return 0;
+        if (exponent == 1) return base;
+
+        if (exponent < 0) {
+            base = 1 / base;
+            exponent = -exponent;
+        }
+        double res = 1.0;
+        for (int i = 0; i < exponent; ++i)
+            res *= base;
+        return res;
+    }
+
     /**
-     * 递归：
-     * 求base的32次方只需要做5次乘法：先求平方，在平方的基础上求4次方，在4次方的基础上求8次方
-     * 在8次方的基础上求16次方，最后在16次方的基础上求32次方
-     *
+     * 递归的快速幂：
+     * a^n=a^(n/2)*a^(n/2)，n为偶数
+     * a^n=a^((n-1）/2)*a^((n-1）/2)，n为奇数
+     * <p>
      * 细节：
      * 用右移运算符(>>)代替了求余运算符(%)来判断一个数是奇数还是偶数
      * 位运算的效率比乘除法及求余运算的效率要高很多
      *
-     * @param base
-     * @param exponent
+     * @param base     底数
+     * @param exponent 指数
      * @return
      */
-    private static double method_3(double base,int exponent) {
-        if(exponent==0)
-            return 1;
+    private static double method_2(double base, int exponent) {
 
-        if(exponent==1)
-            return base;
+        if (exponent == 0) return 1;
+        if (base == 0) return 0;
+        if (exponent == 1) return base;
 
-        double result=method_3(base,exponent>>1);
-        result*=result;
+        if (exponent < 0) {
+            base = 1 / base;
+            exponent = -exponent;
+        }
+
+        double result = method_2(base, exponent >> 1);
+        result *= result;
 
         //最后的exponent是奇数时，停止递归
-        if((exponent&1)==1)
-            result*=base;
+        if ((exponent & 1) == 1)
+            result *= base;
 
         return result;
     }
+
+    /**
+     * 非递归的快速幂：
+     *
+     * @param base     底数
+     * @param exponent 指数
+     * @return
+     */
+    private static double method_3(double base, int exponent) {
+
+        if (exponent == 0) return 1;
+        if (base == 0) return 0;
+        if (exponent == 1) return base;
+
+        //如果指数<0
+        if (exponent < 0) {
+            base = 1 / base;
+            exponent = -exponent;
+        }
+
+        double res = 1.0;
+
+        //如果指数>0
+        while (exponent > 0) {
+            if ((exponent & 1) == 1) res *= base;
+            base *= base;
+            exponent >>= 1;// exponent/2
+        }
+        return res;
+
+    }
+
+
 }
