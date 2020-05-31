@@ -44,7 +44,14 @@ public class TestMethod18_1 {
         ListNode node1 = new ListNode(1, node2);
 
         print(node1);
-        method_1(node1,node2);
+
+        method_1(node1, node1);
+        print(node1);
+
+        method_1(node1, node5);
+        print(node1);
+
+        method_1(node1, node3);
         print(node1);
 
 
@@ -56,34 +63,27 @@ public class TestMethod18_1 {
         if (head == null || p == null)
             return;
 
-        //要删除的节点不是尾节点
+        //删除的节点是头节点和中间节点
         if (p.next != null) {
+            //将下一个节点覆盖要删除的节点
             ListNode pNext = p.next;
             p.val = pNext.val;
             p.next = pNext.next;
-
+            //删除下一个节点
             pNext = null;
-
         }
-
-        //链表只有一个节点，删除头节点（也是尾节点）
-        else if (head == p) {
-            p = null;
-            head = null;
-
-        }
-
-        //链表中有多个节点，删除尾节点
+        //删除的节点是尾节点
         else {
+
+            //找到尾节点的前一个节点
             ListNode node = head;
-            while (node.next != p) {
+            while (node.next != p)
                 node = node.next;
-            }
 
             node.next = null;
+            //删除尾节点
             p = null;
         }
-
     }
 
     private static void print(ListNode head) {

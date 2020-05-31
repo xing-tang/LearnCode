@@ -19,14 +19,14 @@ public class TestMethod19 {
 
     public static void main(String[] args) {
 
-        String str="aaa";
-        String str2="";
-        String pattern="ab*ac*a";
-        String pattern2="a.a";
-        String pattern3="";
-        System.out.println(match(str.toCharArray(),pattern.toCharArray()));
-        System.out.println(match(str.toCharArray(),pattern2.toCharArray()));
-        System.out.println(match(str2.toCharArray(),pattern3.toCharArray()));
+        String str = "aaa";
+        String str2 = "";
+        String pattern = "ab*ac*a";
+        String pattern2 = "a.a";
+        String pattern3 = "";
+        System.out.println(match(str.toCharArray(), pattern.toCharArray()));
+        System.out.println(match(str.toCharArray(), pattern2.toCharArray()));
+        System.out.println(match(str2.toCharArray(), pattern3.toCharArray()));
 
     }
 
@@ -50,7 +50,7 @@ public class TestMethod19 {
         if (i != str.length && j == pattern.length)
             return false;
 
-        if (j<pattern.length-1 && pattern[j + 1] == '*') {
+        if (j < pattern.length - 1 && pattern[j + 1] == '*') {
             if (pattern[j] == str[i] || (pattern[j] == '.' && str[i] != '\0'))
                 return matchCore(str, i + 1, pattern, j + 2)
                         || matchCore(str, i + 1, pattern, j)

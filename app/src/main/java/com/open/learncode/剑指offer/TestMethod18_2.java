@@ -1,18 +1,15 @@
 package com.open.learncode.剑指offer;
 
-
-import java.util.List;
-
 /**
  * 题目：
  * 删除链表中重复的节点：在一个排序的链表中，如何删除重复的节点？
  * 例如：1->2->3->3->5 删除重复的节点后变成 1->2->5
  * <p>
  * 解题思路：
- * 对于非尾节点，把下一个节点的内容覆盖要删除的节点，并删除下一个节点
- * 对于尾节点，先顺序查找，再删除
+ * 构建辅助头节点，遇到重复元素跳过，重新建立前一个节点与第一个不重复节点的连接
  * <p>
  * 复杂度分析：
+ * 时间复杂度：O(n)，空间复杂度：O(1)
  */
 public class TestMethod18_2 {
 
@@ -39,82 +36,69 @@ public class TestMethod18_2 {
 
         //创建单链表
         ListNode node5 = new ListNode(5);
-        ListNode node4 = new ListNode(4, node5);
+        ListNode node4 = new ListNode(3, node5);
         ListNode node3 = new ListNode(3, node4);
         ListNode node2 = new ListNode(2, node3);
         ListNode node1 = new ListNode(1, node2);
 
-        print(deleteDuplication((node1)));
+        System.out.println("原链表为：");
+        print(node1);
+        System.out.println("删除重复元素后的链表为：");
+        print(method((node1)));
 
     }
 
+    private static ListNode method(ListNode head) {
 
-    private static ListNode deleteDuplication(ListNode pHead) {
+        //鲁棒性：若链表为空，或链表只有一个节点，
+        if (head == null || head.next == null)
+            return head;
 
-        //如果链表为空，返回
-        if (pHead == null)
-            return null;
+        //构建辅助头节点
+        ListNode pHead = new ListNode(-1);
+        pHead.next = head;
 
-        //定义pNode的前一个节点和pNode节点
-        ListNode pPreNode = null;
-        ListNode pNode = pHead;
+        //定义前一个节点pre和当前节点cur
+        ListNode pre = pHead;
+        ListNode cur = pHead.next;
 
-        //若pNode节点不为空（没有遍历到尾节点）
-        while (pNode != null) {
+        //链表未遍历到末尾
+        while (cur != null) {
 
-            ListNode pNext = pNode.next;
-
-            //标记该节点是否需要删除（即是否为重复元素）
-            boolean needDelete = false;
-
-            //判断需要删除的重复元素：pNode、pNext节点不为空，且pNode与pNext节点的值相等
-            // （pNode节点不为空是循环进行的条件，故在这里可以不用再次判断）
-            if (pNext != null && pNext.val == pNode.val)
-                needDelete = true;
-
-            //若无需删除，继续遍历
-            if (!needDelete) {
-                pPreNode = pNode;
-                pNode = pNode.next;
-            }
-            //若是需要删除，进行删除操作（把val值相同的两个元素全部删除）
-            else {
-                int val = pNode.val;
-
-                //定义要被删除的节点
-                ListNode pToBeDel = pNode;
-
-                //判断是否满足删除的条件
-                while (pToBeDel != null && pToBeDel.val == val) {
-                    pNext = pToBeDel.next;
-                    pToBeDel = null;
-                    pToBeDel = pNext;
+            //遇到重复节点
+            ListNode pNext = cur.next;
+            if (pNext != null && cur.val == pNext.val) {
+                while (pNext != null && cur.val == pNext.val) {
+                    cur = cur.next;
+                    pNext = pNext.next;
                 }
-
-                //删除的节点是头结点
-                if (pPreNode == null)
-                    pHead = pNext;
-                else
-                    pPreNode.next = pNext;
-
-                pNode = pNext;
+                //退出循环时，cur指向重复值，也需要删除，而cur.next 指向第一个不重复的值
+                //重新建立连接
+                cur = cur.next;
+                pre.next = cur;
+            }
+            //若不是重复节点，继续遍历下去
+            else {
+                pre = cur;
+                cur = cur.next;
             }
         }
-        return pHead;
+        return pHead.next;
     }
 
-    private static void print(ListNode pHead) {
+    private static void print(ListNode head) {
 
-        ListNode pNode = pHead;
-        while (pNode != null) {
-            if(pNode.next==null)
-                System.out.println(pNode.val);
-            System.out.print(pNode.val + "->");
-            pNode = pNode.next;
+        ListNode cur = head;
+        while (cur != null) {
+            if (cur.next == null) {
+                System.out.println(cur.val);
+                return;
+            }
+            System.out.print(cur.val + "->");
+            cur = cur.next;
 
         }
         System.out.println();
     }
-
 
 }

@@ -19,7 +19,7 @@ public class TestMethod16 {
     public static void main(String[] args) {
 
         //测试用例：底数 指数分别设为正数 负数 零
-        System.out.println(method_1(2, -3));
+        System.out.println(method_3(2, -3));
         System.out.println(method_1(0, -3));
         System.out.println(method_1(-2, -3));
 
@@ -33,6 +33,13 @@ public class TestMethod16 {
 
     }
 
+    /**
+     * 暴力方法：
+     *
+     * @param base 底数
+     * @param exponent 指数
+     * @return
+     */
     private static double method_1(double base, int exponent) {
 
         if (exponent == 0) return 1;
@@ -52,10 +59,9 @@ public class TestMethod16 {
     /**
      * 递归的快速幂：
      * a^n=a^(n/2)*a^(n/2)，n为偶数
-     * a^n=a^((n-1）/2)*a^((n-1）/2)，n为奇数
+     * a^n=a^((n-1）/2)*a^((n-1）/2)*a，n为奇数
      * <p>
      * 细节：
-     * 用右移运算符(>>)代替了求余运算符(%)来判断一个数是奇数还是偶数
      * 位运算的效率比乘除法及求余运算的效率要高很多
      *
      * @param base     底数
@@ -73,14 +79,16 @@ public class TestMethod16 {
             exponent = -exponent;
         }
 
-        double result = method_2(base, exponent >> 1);
-        result *= result;
+        double res = method_2(base, exponent >> 1);
+        res *= res;
 
         //最后的exponent是奇数时，停止递归
-        if ((exponent & 1) == 1)
-            result *= base;
+        if ((exponent & 1) == 1){
+            res *= base;
+            return res;
+        }
 
-        return result;
+        return res;
     }
 
     /**
@@ -106,7 +114,8 @@ public class TestMethod16 {
 
         //如果指数>0
         while (exponent > 0) {
-            if ((exponent & 1) == 1) res *= base;
+            if ((exponent & 1) == 1)
+                res *= base;
             base *= base;
             exponent >>= 1;// exponent/2
         }

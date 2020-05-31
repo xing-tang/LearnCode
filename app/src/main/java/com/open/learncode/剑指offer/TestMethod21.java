@@ -83,7 +83,7 @@ public class TestMethod21 {
         while (fast < data.length) {
 
             //如果data[fast]为奇数
-            if ((data[fast] & 1) == 1) {
+            if (!func(data,fast)) {
                 //交换low fast位置的元素，low右移一位
                 swap(data, low, fast);
                 low++;

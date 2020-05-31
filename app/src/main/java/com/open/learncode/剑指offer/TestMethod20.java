@@ -31,7 +31,7 @@ public class TestMethod20 {
 
         boolean numeric = scanInteger(str, i);
 
-        while (i<str.length){
+        while (i < str.length) {
 
             if (str[i] == '.') {
                 i++;
@@ -40,7 +40,7 @@ public class TestMethod20 {
             }
 
             //接下来是数字的指数部分
-            if (str[i] == 'e' || str[i] == 'E' ) {
+            if (str[i] == 'e' || str[i] == 'E') {
                 i++;
                 numeric = numeric && scanInteger(str, i);
             }
@@ -53,7 +53,7 @@ public class TestMethod20 {
     //扫描可能以表示正负的'+' '-'为起始的0~9数位（类似于一个可能带着正负符号的整数），用来匹配数值模式中的A C部分
     private static boolean scanInteger(char[] str, int i) {
 
-        if ((str[i] == '+' || str[i] == '-' ) )
+        if ((str[i] == '+' || str[i] == '-'))
             i++;
 
         return scanUnsignedInteger(str, i);
@@ -68,7 +68,7 @@ public class TestMethod20 {
 
         System.out.println("before:" + before);
 
-        while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9' && i<str.length )
+        while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9' && i < str.length)
             i++;
 
         //当str中存在若干0~9的数字时，返回true

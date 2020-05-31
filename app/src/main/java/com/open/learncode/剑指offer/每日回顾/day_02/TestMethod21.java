@@ -1,6 +1,5 @@
 package com.open.learncode.剑指offer.每日回顾.day_02;
 
-
 /**
  * 题目：
  * 调整数组顺序使奇数位于偶数前面：输入一个整数数组，实现一个函数来调整该数组中数字的顺序，
@@ -18,89 +17,94 @@ public class TestMethod21 {
     public static void main(String[] args) {
 
         int data[] = {1, 2, 3, 4, 5};
-        int length = data.length;
 
-
-        print(data, length);
-
-//        method_1(data, length);
-        method_2(data, length);
-
-        print(data, length);
+        print(data);
+//        method_1(data);
+        method_2(data);
+        print(data);
 
 
     }
 
-    //基本解法
-    private static void method_1(int data[], int length) {
+    /**
+     * 首尾双指针：
+     * left一直往右移，直到指向的值为偶数；right一直往左移，直到指向的值为奇数
+     * 交换data[left] data[right]，直到left==right
+     *
+     * @param data 待调整的数组
+     */
+    private static void method_1(int data[]) {
 
-        if (data == null && length == 0)
+        //鲁棒性
+        if (data == null || data.length <= 0)
             return;
 
-        int begin = 0;
-        int end = length - 1;
+        int left = 0, right = data.length - 1;
 
-        while (begin < end) {
+        while (left < right) {
 
-            //向后移动begin，直到它指向偶数
-            while (begin < end && (data[begin] & 1) != 0)
-                begin++;
+            if (left < right && !func(data, left))
+                left++;
 
-            //向前移动end，直到它指向奇数
-            while (begin < end && (data[end] & 1) == 0)
-                end--;
+            if (left < right && func(data, right))
+                right--;
 
-            //begin指向偶数，end指向奇数，且begin<end，交换两者位置
-            if (begin < end) {
-                int temp = data[begin];
-                data[begin] = data[end];
-                data[end] = temp;
-            }
+            if (left < right)
+                swap(data, left, right);
         }
+
     }
 
     //扩展性更高，能适应更多的判断标准
     //如：使所有负数位于非负数前面；使能被3整除的数位于不能被3整除的数的前面
-    private static void method_2(int data[], int length) {
+    private static boolean func(int data[], int position) {
+        //num&1==1 num为奇数；num&1==0 num为偶数
+        return (data[position] & 1) == 0;
+    }
 
-        if (data == null || length == 0)
+    /**
+     * 快慢指针：
+     * fast在前，low在后，fast向前搜索奇数的位置，low指向下一个奇数应当存放的位置
+     * 交换data[low] data[fast]，low向前移动一个位置，直到fast指向数组末尾
+     *
+     * @param data 待调整的数组
+     */
+    private static void method_2(int[] data) {
+
+        //鲁棒性
+        if(data==null||data.length<=0)
             return;
 
-        int begin = 0;
-        int end = length - 1;
+        int low=0,fast=0;
+        while (fast<data.length){
 
-        while (begin < end) {
-
-            while (begin < end && !func(data, begin))
-                begin++;
-
-            while (begin < end && func(data, end))
-                end--;
-
-            //begin指向偶数，end指向奇数，且begin<end，交换两者位置
-            if (begin < end) {
-                int temp = data[begin];
-                data[begin] = data[end];
-                data[end] = temp;
-            }
-
+           if(!func(data,fast)){
+               swap(data,low,fast);
+               low++;
+           }
+           fast++;
         }
+
     }
 
-    private static boolean func(int data[], int position) {
-        return ((data[position] & 1) == 0);
-    }
-
-    private static void print(int data[], int length) {
-        System.out.print("[");
-        for (int i = 0; i < length; i++) {
-            if (i != length - 1)
-                System.out.print(data[i] + ",");
-            else
-                System.out.print(data[i] + "]");
+    private static void print(int data[]) {
+        for (int i = 0; i < data.length; i++) {
+            System.out.print(data[i] + " ");
         }
         System.out.println();
+    }
 
+    /**
+     * 交换数组中下标为a b的值
+     *
+     * @param data
+     * @param a
+     * @param b
+     */
+    private static void swap(int data[], int a, int b) {
+        int temp = data[a];
+        data[a] = data[b];
+        data[b] = temp;
     }
 
 }
