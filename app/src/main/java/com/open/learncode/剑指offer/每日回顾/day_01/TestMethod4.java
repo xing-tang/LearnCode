@@ -18,9 +18,25 @@ public class TestMethod4 {
 
     public static void main(String[] args) {
         int[][] array = {{1, 2, 8, 9}, {2, 3, 9, 12}, {4, 7, 10, 13}};
-        System.out.println();
-        System.out.println();
+        System.out.println(method(array,1));
+    }
 
+    private static boolean method(int[][] arr, int target) {
+        if (arr == null || arr.length <= 0 || arr[0].length <= 0) return false;
+
+        int row = 0;
+        int column = arr[0].length - 1;
+
+        while (row <= arr.length - 1 && column >= 0) {
+            if (target > arr[row][column]) {
+                row++;
+            } else if (target < arr[row][column]) {
+                column--;
+            }else{
+                return true;
+            }
+        }
+        return false;
     }
 
 }

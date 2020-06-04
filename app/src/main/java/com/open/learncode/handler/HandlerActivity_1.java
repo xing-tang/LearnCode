@@ -39,7 +39,6 @@ import java.util.Vector;
  * 1.在使用Handler的时候，要注意内存泄漏，因为非静态内部类会持有外部类的一个引用，从而导致无法被GC。
  * 2.子线程调用方法时候，如果当前Activity已经被注销，但是子线程还在调用，这个时候必须中断线程。
  */
-
 public class HandlerActivity_1 extends Activity {
 
     private TextView textView;
@@ -49,6 +48,7 @@ public class HandlerActivity_1 extends Activity {
     //子线程
     private Thread thread;
     private MyHandler mHandler;
+
 
 
     /**

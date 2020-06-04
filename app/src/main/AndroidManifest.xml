@@ -10,20 +10,32 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.open.learncode.rxJava.RxJava2_1" />
-
-        <activity android:name="com.open.learncode.threadpoolexecutor.CachedThreadPoolActivity">
-
+<!--        <activity android:name="com.open.learncode.threadpoolexecutor.CachedThreadPoolActivity">-->
+        <activity android:name="com.open.learncode.launchmode.LuanchAActivity"
+            android:launchMode="singleInstance"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
         <activity android:name="com.open.learncode.handler.HandlerActivity_2" />
         <activity android:name="com.open.learncode.handler.HandlerActivity_3" />
         <activity android:name="com.open.learncode.handler.HandlerActivity_4" />
+
+<!--        <activity-->
+<!--            android:name="com.open.learncode.launchmode.LuanchAActivity"-->
+<!--            android:launchMode="standard" />-->
+        <activity
+            android:name="com.open.learncode.launchmode.LuanchBActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="com.open.learncode.launchmode.LuanchCActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.open.learncode.launchmode.LuanchDActivity"
+            android:launchMode="singleInstance" />
     </application>
 
 </manifest>

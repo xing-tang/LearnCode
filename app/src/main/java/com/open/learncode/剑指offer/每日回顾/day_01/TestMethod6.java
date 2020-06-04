@@ -50,8 +50,54 @@ public class TestMethod6 {
         ListNode<Integer> node2 = new ListNode<Integer>(2, node3);
         ListNode<Integer> node1 = new ListNode<Integer>(1, node2);
 
+        method_1(node1);
+        System.out.println();
+        method_2(node1);
+        System.out.println();
+        method_3(node1);
     }
 
+    private static void method_1(ListNode<Integer> root) {
+        if (root != null) {
+            method_1(root.next);
+            System.out.print(root.value + " ");
+        }
+    }
+
+    private static void method_2(ListNode<Integer> root) {
+        if (root == null) return;
+
+        Stack<ListNode<Integer>> stack = new Stack<>();
+        ListNode<Integer> temp = root;
+        while (temp != null) {
+            stack.push(temp);
+            temp = temp.next;
+        }
+
+        while (!stack.isEmpty()) {
+            System.out.print(stack.pop() + " ");
+        }
+    }
+
+    private static void method_3(ListNode<Integer> root) {
+        if (root == null) return;
+
+        ListNode<Integer> pre = null;
+        ListNode<Integer> cur = root;
+        ListNode<Integer> next = null;
+        while (cur != null) {
+            next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+
+        while (pre != null) {
+            System.out.print(pre.value + " ");
+            pre = pre.next;
+        }
+
+    }
 
 
 }

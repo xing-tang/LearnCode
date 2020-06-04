@@ -14,5 +14,14 @@ package com.open.learncode.剑指offer.每日回顾.day_01
  */
 class Singlnton_03 {
 
+    companion object {
 
+        @JvmStatic
+        fun main(args: Array<String>) {
+            System.out.println(inStance.hashCode())
+            System.out.println(inStance.hashCode())
+        }
+
+        val inStance: Singlnton_03 by lazy { Singlnton_03() }
+    }
 }

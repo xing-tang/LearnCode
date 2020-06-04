@@ -24,10 +24,27 @@ package com.open.learncode.剑指offer.每日回顾.day_01;
  */
 public class Singleton_01 {
 
+    private static volatile Singleton_01 singleton_01;
+
+    public Singleton_01() {
+    }
+
+    private static Singleton_01 getInstance() {
+        if (singleton_01 == null) {
+            synchronized (Singleton_01.class) {
+                if (singleton_01 == null) {
+                    singleton_01 = new Singleton_01();
+                }
+            }
+        }
+        return singleton_01;
+    }
 
 
     public static void main(String[] args) {
         // 打印两次HashCode对比
+        System.out.println(Singleton_01.getInstance().hashCode());
+        System.out.println(Singleton_01.getInstance().hashCode());
     }
 
 }

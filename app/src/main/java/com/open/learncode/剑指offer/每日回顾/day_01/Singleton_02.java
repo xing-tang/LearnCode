@@ -11,8 +11,21 @@ package com.open.learncode.剑指offer.每日回顾.day_01;
  */
 public class Singleton_02 {
 
+    public Singleton_02(){}
+
+    public static Singleton_02 getInstance(){
+        return Holder.singleton_02;
+    }
+
+    private static class Holder{
+        public static Singleton_02 singleton_02 = new Singleton_02();
+
+    }
+
     public static void main(String[] args) {
         // 打印两次HashCode对比
+        System.out.println(Singleton_02.getInstance().hashCode());
+        System.out.println(Singleton_02.getInstance().hashCode());
     }
 
 }

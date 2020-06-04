@@ -18,7 +18,7 @@ import learncode.open.com.learncode.R;
  */
 public class HandlerActivity_2 extends Activity {
 
-    private final static String TAG="HandlerActivity_2";
+    private final static String TAG = "HandlerActivity_2";
     private MyHandler handler = new MyHandler(this);
     private TextView textView;
 

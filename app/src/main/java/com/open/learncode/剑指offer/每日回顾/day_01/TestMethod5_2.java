@@ -23,6 +23,28 @@ public class TestMethod5_2 {
         int A1Length = 4;
         int[] A2 = {2, 4, 6};
 
+        int[] temp = method(A1, A2, A1Length);
+        for (int i = 0; i < temp.length; i++) {
+            System.out.print(temp[i] + " ");
+        }
+    }
+
+    private static int[] method(int[] A1, int[] A2, int A1Length) {
+        if (A1 == null || A1.length <= 0) return A2;
+        if (A2 == null || A2.length <= 0) return A1;
+        if (A1.length < A2.length + A1Length) return null;
+
+        int A1Index = A1Length - 1;
+        int A2Index = A2.length - 1;
+        int A1NewIndex = A1Length + A2.length - 1;
+        while (A1Index >= 0 && A2Index >= 0) {
+            if (A1[A1Index] >= A2[A2Index]) {
+                A1[A1NewIndex--] = A1[A1Index--];
+            } else {
+                A1[A1NewIndex--] = A2[A2Index--];
+            }
+        }
+        return A1;
     }
 
 }

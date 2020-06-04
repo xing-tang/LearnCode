@@ -1,6 +1,7 @@
 package com.open.learncode.剑指offer;
 
 import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -58,7 +59,10 @@ public class TestMethod7_1 {
         node3.setLeftAndRight(node6, node7);
 
         System.out.print("层序遍历：");
-        centerPrint(node1);
+        centerPrint_1(node1);
+        System.out.println();
+        System.out.print("打印出二叉树每一层的第一个或最后一个节点：");
+        centerPrint_2(node1);
         System.out.println();
 
         System.out.print("递归打印前序遍历: ");
@@ -97,21 +101,49 @@ public class TestMethod7_1 {
      *
      * @param root
      */
-    private static void centerPrint(TreeNode root) {
+    private static void centerPrint_1(TreeNode root) {
 
         if (root == null)
             return;
 
-        Queue<TreeNode> queue = new ArrayDeque<>();
+        Queue<TreeNode> queue = new LinkedList<>();
 
-        queue.add(root);
+        queue.offer(root);
         while (!queue.isEmpty()) {
-            TreeNode temp = queue.remove();
+            TreeNode temp = queue.poll();
             System.out.print(temp.value + " ");
             if (temp.left != null)
-                queue.add(temp.left);
+                queue.offer(temp.left);
             if (temp.right != null)
-                queue.add(temp.right);
+                queue.offer(temp.right);
+        }
+    }
+
+    /**
+     * 打印出二叉树每一层的第一个节点。
+     * 打印出二叉树每一层的最后一个节点。
+     *
+     * @param root 根节点
+     */
+    private static void centerPrint_2(TreeNode root) {
+
+        if (root == null) return;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int length = queue.size();
+            for (int i = 0; i < length; i++) {
+                TreeNode temp = queue.poll();
+                if (temp.left != null)
+                    queue.offer(temp.left);
+                if (temp.right != null)
+                    queue.offer(temp.right);
+                if (i == 0) System.out.print(temp.value + " ");
+//                if (i == length - 1) System.out.println("每一层的最后一个节点为：" + temp.value);
+            }
+
         }
     }
 

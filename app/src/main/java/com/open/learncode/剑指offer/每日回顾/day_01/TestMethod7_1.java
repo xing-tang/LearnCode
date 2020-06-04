@@ -1,6 +1,8 @@
 package com.open.learncode.剑指offer.每日回顾.day_01;
 
 import java.util.ArrayDeque;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -57,32 +59,126 @@ public class TestMethod7_1 {
         node2.setLeftAndRight(node4, node5);
         node3.setLeftAndRight(node6, node7);
 
-        System.out.print("层序遍历：");
 
+        System.out.print("层序遍历：");
+        centerOrder(node1);
         System.out.println();
 
         System.out.print("递归打印前序遍历: ");
-
+        preOrder_1(node1);
         System.out.println();
         System.out.print("迭代打印前序遍历: ");
-
+        preOrder_2(node1);
         System.out.println();
 
 
         System.out.print("递归打印中序遍历: ");
-
+        inOrder_1(node1);
         System.out.println();
         System.out.print("迭代打印中序遍历: ");
-
+        inOrder_2(node1);
         System.out.println();
 
 
         System.out.print("递归打印后序遍历: ");
-
+        postOrder_1(node1);
         System.out.println();
         System.out.print("迭代打印后序遍历: ");
-
+        postOrder_2(node1);
         System.out.println();
+    }
+
+    private static void postOrder_1(TreeNode<Integer> root) {
+        if (root != null) {
+            postOrder_1(root.left);
+            postOrder_1(root.right);
+            System.out.print(root.value + " ");
+        }
+    }
+
+
+    private static void postOrder_2(TreeNode<Integer> root) {
+        if (root == null) return;
+
+        Stack<TreeNode<Integer>> stack = new Stack<>();
+        TreeNode<Integer> cur = root;
+        TreeNode<Integer> temp = null;
+        stack.push(cur);
+        while (!stack.isEmpty()) {
+            temp = stack.peek();
+            if (temp.left != null && temp.left != cur && temp.right != cur) {
+                stack.push(temp.left);
+            } else if (temp.right != null && temp.right != cur) {
+                stack.push(temp.right);
+            } else {
+                System.out.print(stack.pop().value + " ");
+                cur = temp;
+            }
+        }
+    }
+
+    private static void inOrder_1(TreeNode<Integer> root) {
+        if (root != null) {
+            inOrder_1(root.left);
+            System.out.print(root.value + " ");
+            inOrder_1(root.right);
+        }
+    }
+
+    private static void inOrder_2(TreeNode<Integer> root) {
+        if (root == null) return;
+
+        Stack<TreeNode<Integer>> stack = new Stack<>();
+        TreeNode<Integer> cur = root;
+        TreeNode<Integer> temp = null;
+        while (!stack.isEmpty() || cur != null) {
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            temp = stack.pop();
+            System.out.print(temp.value + " ");
+            if (temp.right != null) {
+                cur = temp.right;
+            }
+        }
+    }
+
+
+
+    private static void preOrder_1(TreeNode<Integer> root) {
+        if (root != null) {
+            System.out.print(root.value + " ");
+            preOrder_1(root.left);
+            preOrder_1(root.right);
+        }
+    }
+
+    private static void preOrder_2(TreeNode<Integer> root) {
+        if (root == null) return;
+
+        Stack<TreeNode<Integer>> stack = new Stack<>();
+        TreeNode<Integer> temp = null;
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            temp = stack.pop();
+            System.out.print(temp.value + " ");
+            if (temp.right != null) stack.push(temp.right);
+            if (temp.left != null) stack.push(temp.left);
+        }
+    }
+
+    private static void centerOrder(TreeNode<Integer> root) {
+        if (root == null) return;
+
+        Queue<TreeNode<Integer>> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            TreeNode<Integer> temp = queue.poll();
+            System.out.print(temp.value + " ");
+            if (temp.left != null) queue.offer(temp.left);
+            if (temp.right != null) queue.offer(temp.right);
+        }
 
     }
 

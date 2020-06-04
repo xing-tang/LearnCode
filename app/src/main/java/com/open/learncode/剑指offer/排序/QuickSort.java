@@ -7,7 +7,8 @@ public class QuickSort {
 
     public static void main(String[] args) {
         int[] arr = {4, 5, 1, 6, 2, 7, 3, 8};
-        method(arr, 0, arr.length - 1,4);
+//        method(arr, 0, arr.length - 1,4);
+        method(arr, 0, arr.length - 1);
         System.out.println();
     }
 
@@ -50,7 +51,7 @@ public class QuickSort {
             method(arr, j + 1, right,k);
         }
     }
-
+    int[] arr = {4, 5, 1, 6, 2, 7, 3, 8};
     public static void method(int[] arr, int left, int right) {
         if (left > right) return;
         // 左边哨兵的索引

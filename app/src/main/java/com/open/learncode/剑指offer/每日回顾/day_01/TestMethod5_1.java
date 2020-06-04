@@ -15,10 +15,35 @@ public class TestMethod5_1 {
 
     public static void main(String[] args) {
         String str = "we are happy.";
-        System.out.println();
+        System.out.println(method(str));
     }
 
+    private static String method(String str) {
+        if (str == null || str.length() <= 0) return str;
+
+        StringBuilder strb = new StringBuilder(str);
+        int spaceNumber = 0;
+        for (int i = 0; i < strb.length(); i++) {
+            if (strb.charAt(i) == ' ') spaceNumber++;
+        }
+        int oldIndex = strb.length() - 1;
+        int newLength = spaceNumber * 2 + strb.length();
+        int newIndex = newLength - 1;
+        strb.setLength(newLength);
 
 
+        while (oldIndex >= 0 && newIndex >= oldIndex) {
+            if (strb.charAt(oldIndex) == ' ') {
+                strb.setCharAt(newIndex--, '0');
+                strb.setCharAt(newIndex--, '2');
+                strb.setCharAt(newIndex--, '%');
+            } else {
+                strb.setCharAt(newIndex--, strb.charAt(oldIndex));
+            }
+            oldIndex--;
+        }
+
+        return strb.toString();
+    }
 }
 

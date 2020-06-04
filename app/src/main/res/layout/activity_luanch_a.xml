@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="这是A Activity页面" />
+
+    <Button
+        android:id="@+id/btn_change"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="修改页面内容" />
+
+    <Button
+        android:id="@+id/btn_jump_a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转A Activity" />
+
+    <Button
+        android:id="@+id/btn_jump_b"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转B Activity" />
+
+    <Button
+        android:id="@+id/btn_jump_c"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转C Activity" />
+
+    <Button
+        android:id="@+id/btn_jump_d"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转D Activity" />
+
+</LinearLayout>

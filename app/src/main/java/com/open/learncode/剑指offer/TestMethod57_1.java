@@ -18,7 +18,7 @@ public class TestMethod57_1 {
         int[] nums = {1, 2, 4, 7, 11, 15};
         int sum = 15;
         int[] temp = method(nums, sum);
-        System.out.println(temp[0]+" "+temp[1]);
+        System.out.println(temp[0] + " " + temp[1]);
     }
 
     /**
@@ -29,7 +29,7 @@ public class TestMethod57_1 {
      * @return 返回对应两个数的数组
      */
     public static int[] method(int[] nums, int target) {
-        if (nums == null || nums.length <= 1) return new int[0];
+        if (nums == null || nums.length < 2) return nums;
         int left = 0;
         int right = nums.length - 1;
         while (left < right) {
