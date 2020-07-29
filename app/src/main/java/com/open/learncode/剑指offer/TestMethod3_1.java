@@ -10,8 +10,7 @@ package com.open.learncode.剑指offer;
  * 一维数组在内存空间占用连续的空间，因此可以根据下标定位对应的元素，然后两两交换。
  * <p>
  * 复杂度分析:
- * 时间复杂度：O(n)
- * 空间复杂度：O(1)
+ * 时间复杂度：O(n)，空间复杂度：O(1)
  */
 public class TestMethod3_1 {
 

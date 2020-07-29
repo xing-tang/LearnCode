@@ -2,6 +2,7 @@ package com.open.learncode.剑指offer;
 
 
 import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -27,7 +28,6 @@ import learncode.open.com.learncode.R;
 public class TestMethod28 {
 
     public static class TreeNode<E> {
-
         public E value;
         public TreeNode<E> left;
         public TreeNode<E> right;
@@ -43,8 +43,6 @@ public class TestMethod28 {
     }
 
     public static void main(String[] args) {
-
-        //创建二叉树：
         TreeNode<Integer> node1 = new TreeNode<>(8);
         TreeNode<Integer> node2 = new TreeNode<>(6);
         TreeNode<Integer> node3 = new TreeNode<>(6);
@@ -58,7 +56,7 @@ public class TestMethod28 {
 
         System.out.println("递归判断是否是一颗对称二叉树：" + method_1(node1, node1));
         System.out.println("DFS判断是否是一颗对称二叉树：" + method_2(node1));
-        System.out.println("BFS判断是否是一颗对称二叉树：" + method_2(node1));
+        System.out.println("BFS判断是否是一颗对称二叉树：" + method_3(node1));
     }
 
     /**
@@ -70,15 +68,11 @@ public class TestMethod28 {
      * @return true，是对称二叉树；否，不是对称二叉树
      */
     private static boolean method_1(TreeNode root1, TreeNode root2) {
-
-        //鲁棒性
         if (root1 == null && root2 == null)
             return true;
-
         if (root1 == null || root2 == null || root1.value != root2.value)
             return false;
-
-        //判断A的左边和B的右边是否相等，判断A的右边和B的左边是否相等，都相等就是对称的
+        // 判断A的左边和B的右边是否相等，判断A的右边和B的左边是否相等，都相等就是对称的
         return method_1(root1.left, root2.right) && method_1(root1.right, root2.left);
     }
 
@@ -92,14 +86,11 @@ public class TestMethod28 {
      * @return true，是对称二叉树；否，不是对称二叉树
      */
     private static boolean method_2(TreeNode root) {
-
-        if (root == null)
-            return true;
+        if (root == null) return true;
 
         Stack<TreeNode> stack = new Stack<>();
         stack.push(root.left);
         stack.push(root.right);
-
         while (!stack.isEmpty()) {
             TreeNode right = stack.pop();
             TreeNode left = stack.pop();
@@ -107,7 +98,7 @@ public class TestMethod28 {
                 continue;
             if (right == null || left == null || left.value != right.value)
                 return false;
-
+            stack.push(left.left);
             stack.push(right.right);
             stack.push(left.right);
             stack.push(right.left);
@@ -124,29 +115,22 @@ public class TestMethod28 {
      * @return true，是对称二叉树；否，不是对称二叉树
      */
     private static boolean method_3(TreeNode root) {
-
         if (root == null) return true;
 
-        Queue<TreeNode> queue = new ArrayDeque<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root.left);
         queue.add(root.right);
-
         while (!queue.isEmpty()) {
-
             TreeNode left = queue.remove();
             TreeNode right = queue.remove();
-
             if (left == null && right == null)
                 continue;
-
             if (left == null || right == null || left.value != right.value)
                 return false;
-
             queue.add(left.left);
             queue.add(right.right);
             queue.add(left.right);
             queue.add(right.left);
-
         }
         return true;
     }

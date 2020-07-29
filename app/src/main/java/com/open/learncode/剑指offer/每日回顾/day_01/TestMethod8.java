@@ -19,15 +19,11 @@ package com.open.learncode.剑指offer.每日回顾.day_01;
  * 空间复杂度：O(1)
  */
 public class TestMethod8 {
-
-    /**
-     * 二叉树节点
-     */
     public static class TreeNode<E> {
-        public E value;//节点值
-        public TreeNode left;//指向左节点的指针
-        public TreeNode right;//指向右节点的指针
-        public TreeNode parent;//指向该节点的父亲节点
+        public E value;
+        public TreeNode left;
+        public TreeNode right;
+        public TreeNode parent;
 
         public TreeNode(E value) {
             this.value = value;
@@ -41,7 +37,6 @@ public class TestMethod8 {
     }
 
     public static void main(String[] args) {
-        //创建二叉树
         TreeNode<String> nodeA = new TreeNode<String>("a");
         TreeNode<String> nodeB = new TreeNode<String>("b");
         TreeNode<String> nodeC = new TreeNode<String>("c");
@@ -58,7 +53,30 @@ public class TestMethod8 {
         nodeG.setLeftAndRightAndParent(null, null, nodeC);
 
         // 分别获取节点b、d、e、g的下一个节点
+        System.out.println(nodeB.value + "在中序遍历中下一个节点是：" + method(nodeB).value);
+        System.out.println(nodeD.value + "在中序遍历中下一个节点是：" + method(nodeD).value);
+        System.out.println(nodeE.value + "在中序遍历中下一个节点是：" + method(nodeE).value);
+        System.out.println(nodeG.value + "在中序遍历中下一个节点是：" + method(nodeG));
+    }
 
+    private static TreeNode<String> method(TreeNode<String> node) {
+        if (node == null) return null;
+
+        TreeNode<String> curr = node.right;
+        if (curr != null) {
+            while (curr.left != null) {
+                curr = curr.left;
+            }
+            return curr;
+        }
+        curr = node;
+        TreeNode parent = curr.parent;
+        while (parent != null && parent.left != curr) {
+            curr = parent;
+            parent = curr.parent;
+        }
+        if (parent == null) return null;
+        return parent;
     }
 
 }

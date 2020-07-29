@@ -13,7 +13,7 @@ import java.util.Stack;
  * 利用辅助栈的特性，注意栈内数字不能相等
  * <p>
  * 复杂度分析：
- * 时间复杂度：O(n)  空间复杂度：O(n)【栈】
+ * 时间复杂度：O(n)，空间复杂度：O(n)【栈】
  */
 public class TestMethod31_1 {
 
@@ -29,13 +29,13 @@ public class TestMethod31_1 {
     /**
      * 辅助栈
      *
-     * @param push
-     * @param pop
+     * @param push 压入序列
+     * @param pop  弹出序列
      * @return
      */
     private static boolean method(int[] push, int[] pop) {
-
-        if (push == null || pop == null || push.length <= 0 || pop.length <= 0 || push.length != pop.length)
+        if (push == null || pop == null || push.length <= 0
+                || pop.length <= 0 || push.length != pop.length)
             return false;
 
         Stack<Integer> stack = new Stack<Integer>();
@@ -48,9 +48,7 @@ public class TestMethod31_1 {
                 index++;//弹出序列后移
             }
         }
-
         return stack.isEmpty();
-
     }
 }
 

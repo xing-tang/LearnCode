@@ -44,7 +44,7 @@ public class HandlerActivity_1 extends Activity {
     private TextView textView;
 
     //中断线程的标志
-    private boolean isActivityExist = true;
+    private volatile boolean isActivityExist = true;
     //子线程
     private Thread thread;
     private MyHandler mHandler;

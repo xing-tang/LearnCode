@@ -1,5 +1,6 @@
 package com.open.learncode.剑指offer.每日回顾.day_02;
 
+
 /**
  * 题目：
  * 在O(1)时间内删除链表节点：给定单向链表的头指针和一个节点指针，定义一个函数在O(1)
@@ -14,79 +15,78 @@ package com.open.learncode.剑指offer.每日回顾.day_02;
  */
 public class TestMethod18_1 {
 
-    /**
-     * 内部类：单链表节点
-     */
-    public static class ListNode {
+    public static class ListNode<E> {
+        E value;
+        ListNode<E> next;
 
-        int val;//节点值
-        ListNode next;//指针，指向下一个节点
-
-        ListNode(int val) {
-            this.val = val;
+        public ListNode(E value) {
+            this.value = value;
         }
 
-        ListNode(int val, ListNode next) {
-            this.val = val;
+        ListNode(E value, ListNode<E> next) {
+            this.value = value;
             this.next = next;
         }
-
     }
 
     public static void main(String[] args) {
+        ListNode<Integer> node5 = new ListNode<Integer>(5);
+        ListNode<Integer> node4 = new ListNode<Integer>(4, node5);
+        ListNode<Integer> node3 = new ListNode<Integer>(3, node4);
+        ListNode<Integer> node2 = new ListNode<Integer>(2, node3);
+        ListNode<Integer> node1 = new ListNode<Integer>(1, node2);
 
-        //创建单链表
-        ListNode node5 = new ListNode(5);
-        ListNode node4 = new ListNode(4, node5);
-        ListNode node3 = new ListNode(3, node4);
-        ListNode node2 = new ListNode(2, node3);
-        ListNode node1 = new ListNode(1, node2);
-
+        // 删除头结点
+//        print(node1);
+//        print(method(node1, node1));
+        // 删除节点，有且仅有一个节点
+//        print(node5);
+//        print(method(node5, node5));
+        // 删除尾节点
         print(node1);
-
-        method_1(node1, node1);
-        print(node1);
-
-        method_1(node1, node5);
-        print(node1);
-
-        method_1(node1, node3);
-        print(node1);
+        print(method(node1, node5));
+        // 删除中间节点
+//        print(node1);
+//        print(method(node1, node3));
 
 
     }
 
 
-    private static void method_1(ListNode head, ListNode p) {
+    private static ListNode<Integer> method(ListNode<Integer> head, ListNode<Integer> delete) {
+        if (head == null || delete == null) return null;
 
-        //鲁棒性
-        if (head == null || p == null)
-            return;
-
-        if(p.next!=null){
-            ListNode pNext=p.next;
-            p.val=pNext.val;
-            p.next=pNext.next;
-            pNext=null;
-        }
-        else{
-            ListNode node=head;
-            while (node.next!=p){
-                node=node.next;
+        // 待删除节点不是尾节点
+        if (delete.next != null) {
+            ListNode<Integer> next = delete.next;
+            delete.value = next.value;
+            delete.next = next.next;
+        } else if (head == delete) { // 待删除节点只有一个节点，此节点为头节点
+            head = null;
+        } else {// 待删除节点为尾节点
+            ListNode cur = head;
+            while (cur.next != delete) {
+                cur = cur.next;
             }
-            node.next=null;
-            p=null;
+            cur.next = null;
         }
-
+        return head;
     }
 
+    /**
+     * 打印链表
+     *
+     * @param head 头结点
+     */
     private static void print(ListNode head) {
+        if (head == null) return;
         while (head != null) {
-            System.out.print(head.val + " ");
+            if (head.next == null) {
+                System.out.println(head.value);
+                break;
+            }
+            System.out.print(head.value + "->");
             head = head.next;
         }
-        System.out.println();
     }
-
-
 }

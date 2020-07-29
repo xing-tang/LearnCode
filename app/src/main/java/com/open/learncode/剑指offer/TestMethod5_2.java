@@ -28,15 +28,15 @@ public class TestMethod5_2 {
      * 从后往前替代+双指针
      *
      * @param A1     输入的数组A1
-     * @param length A1数组的容量
+     * @param size   A1数组的真实长度
      * @param A2     输入的数组A2
      * @return 返回新的数组
      */
-    public static int[] method(int[] A1, int length, int[] A2) {
-        if (A1 == null || A1.length <= 0) return null;
-        if (A2 == null || A2.length <= 0) return null;
-        if (A1.length < (length + A2.length)) return null;
-        int a = length - 1;
+    public static int[] method(int[] A1, int size, int[] A2) {
+        if (A1 == null || A1.length <= 0) return A2;
+        if (A2 == null || A2.length <= 0) return A1;
+        if (A1.length < (size + A2.length)) return null;
+        int a = size - 1;
         int b = A2.length - 1;
         int len = a + b + 1;
         while (a >= 0 && b >= 0) {

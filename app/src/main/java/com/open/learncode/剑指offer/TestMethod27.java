@@ -27,7 +27,6 @@ import java.util.Stack;
 public class TestMethod27 {
 
     public static class TreeNode<E> {
-
         public E value;
         public TreeNode<E> left;
         public TreeNode<E> right;
@@ -70,15 +69,11 @@ public class TestMethod27 {
      * @return 返回镜像二叉树的根节点
      */
     public static TreeNode method_1(TreeNode root) {
-
-        //鲁棒性
         if (root == null) return null;
-
         //交换root节点的左右子树
         TreeNode temp = root.left;
         root.left = method_1(root.right);
         root.right = method_1(temp);
-
         return root;
     }
 
@@ -89,18 +84,14 @@ public class TestMethod27 {
      * @return 返回镜像二叉树的根节点
      */
     public static TreeNode method_2(final TreeNode root) {
-
-        //鲁棒性
         if (root == null) return null;
 
         Stack<TreeNode> stack = new Stack<TreeNode>();
         stack.push(root);
         while (!stack.isEmpty()) {
             TreeNode node = stack.pop();
-
             if (node.left != null) stack.add(node.left);
             if (node.right != null) stack.add(node.right);
-
             //交换node节点的左右子树
             TreeNode tmp = node.left;
             node.left = node.right;

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="learncode.open.com.learncode">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,11 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.open.learncode.rxJava.RxJava2_1" />
-<!--        <activity android:name="com.open.learncode.threadpoolexecutor.CachedThreadPoolActivity">-->
-        <activity android:name="com.open.learncode.launchmode.LuanchAActivity"
-            android:launchMode="singleInstance"
-            >
+<!--        <activity android:name="com.open.learncode.开源框架.okhttp.OkHttpTestActivity"></activity>-->
+        <activity android:name="com.open.learncode.rxJava.RxJava2_1" /> <!-- <activity android:name="com.open.learncode.threadpoolexecutor.CachedThreadPoolActivity"> -->
+        <activity
+            android:name="com.open.learncode.开源框架.okhttp.OkHttpTestActivity"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,10 +24,10 @@
         <activity android:name="com.open.learncode.handler.HandlerActivity_2" />
         <activity android:name="com.open.learncode.handler.HandlerActivity_3" />
         <activity android:name="com.open.learncode.handler.HandlerActivity_4" />
-
-<!--        <activity-->
-<!--            android:name="com.open.learncode.launchmode.LuanchAActivity"-->
-<!--            android:launchMode="standard" />-->
+        <activity android:name="com.open.learncode.activity.FragmentListArray" /> <!-- <activity android:name="com.open.learncode.动画.AnimationActivity"/> -->
+        <activity android:name="com.open.learncode.launchmode.LuanchAActivity" /> <!-- <activity -->
+        <!-- android:name="com.open.learncode.launchmode.LuanchAActivity" -->
+        <!-- android:launchMode="standard" /> -->
         <activity
             android:name="com.open.learncode.launchmode.LuanchBActivity"
             android:launchMode="singleTop" />

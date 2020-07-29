@@ -26,6 +26,23 @@ import java.util.Stack;
  */
 public class TestMethod34 {
 
+    public static class TreeNode<E> {
+
+        public E value;
+        public TreeNode<E> left;
+        public TreeNode<E> right;
+
+        public TreeNode(E value) {
+            this.value = value;
+        }
+
+        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
+            this.value = value;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
     public static void main(String[] args) {
         TreeNode<Integer> node7 = new TreeNode<Integer>(7);
         TreeNode<Integer> node2 = new TreeNode<Integer>(2);
@@ -37,6 +54,7 @@ public class TestMethod34 {
         TreeNode<Integer> node4_1 = new TreeNode<Integer>(4, node11, null);
         TreeNode<Integer> node8 = new TreeNode<Integer>(8, node13, node4_2);
         TreeNode<Integer> node5_1 = new TreeNode<Integer>(5, node4_1, node8);
+
         method(node5_1, 22);
     }
 
@@ -68,23 +86,6 @@ public class TestMethod34 {
         }
         // 如果当前节点不符合要求，则从路径中移除当前节点
         path.pop();
-    }
-
-    public static class TreeNode<E> {
-
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
     }
 
 }

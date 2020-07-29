@@ -16,108 +16,29 @@ package com.open.learncode.剑指offer.每日回顾.day_02;
 public class TestMethod16 {
 
     public static void main(String[] args) {
-
         //测试用例：底数 指数分别设为正数 负数 零
-        System.out.println(method_1(2, -3));
-        System.out.println(method_1(0, -3));
-        System.out.println(method_1(-2, -3));
-
-        System.out.println(method_2(2, 0));
-        System.out.println(method_2(0, 0));
-        System.out.println(method_2(-2, 0));
-
-        System.out.println(method_3(2, 2));
-        System.out.println(method_3(0, 2));
-        System.out.println(method_3(-2, 2));
+        System.out.println(method(2, 3));
+        System.out.println(method(0, 2));
+        System.out.println(method(-2, 3));
 
     }
 
-    private static double method_1(double base, int exponent) {
-
-        //鲁棒性
-        if (exponent == 0) return 1;
-        if (base == 0) return 0;
-        if (exponent == 1) return base;
-
-        if (exponent < 0) {
-            exponent = -exponent;
-            base = 1 / base;
+    private static double method(double m, int n) {
+        if (n == 0) return 1;
+        if (m == 0) return 0;
+        if (n == 1) return m;
+        if (n < 0) {
+            m = 1 / m;
+            n = -n;
         }
-
         double res = 1.0;
-        for (int i = 0; i < exponent; i++) {
-            res *= base;
-        }
-
-        return res;
-
-    }
-
-    /**
-     * 递归的快速幂：
-     * a^n=a^(n/2)*a^(n/2)，n为偶数
-     * a^n=a^((n-1）/2)*a^((n-1）/2)*a，n为奇数
-     * <p>
-     * 细节：
-     * 用右移运算符(>>)代替了求余运算符(%)来判断一个数是奇数还是偶数
-     * 位运算的效率比乘除法及求余运算的效率要高很多
-     *
-     * @param base     底数
-     * @param exponent 指数
-     * @return
-     */
-    private static double method_2(double base, int exponent) {
-
-        //鲁棒性
-        if (exponent == 0) return 1;
-        if (base == 0) return 0;
-        if (exponent == 1) return base;
-
-        if (exponent < 0) {
-            exponent = -exponent;
-            base = 1 / base;
-        }
-
-        double res = method_2(base, exponent >> 1);
-        res *= res;
-
-        if ((exponent & 1) == 1)
-            res *= base;
-
-        return res;
-    }
-
-    /**
-     * 非递归的快速幂：
-     *
-     * @param base     底数
-     * @param exponent 指数
-     * @return
-     */
-    private static double method_3(double base, int exponent) {
-
-        //鲁棒性
-        if (exponent == 0) return 1;
-        if (base == 0) return 0;
-        if (exponent == 1) return base;
-
-        if (exponent < 0) {
-            exponent = -exponent;
-            base = 1 / base;
-        }
-
-        double res = 1.0;
-
-        while (exponent>0){
-            if((exponent&1)==1)
-                res*=base;
-            base*=base;
-            exponent>>=1;
-
+        while (n > 0) {
+            if ((n & 1) == 1) {
+                res = m * res;
+            }
+            m = m * m;
+            n = n >> 1;
         }
         return res;
-
     }
-
-
 }

@@ -1,5 +1,7 @@
 package com.open.learncode.剑指offer.每日回顾.day_01;
 
+import com.open.learncode.java.queue.ArrayQueue;
+
 import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -26,16 +28,10 @@ import java.util.Stack;
  * Morris方法：时间复杂度：O(n)，空间复杂度：O(1)
  */
 public class TestMethod7_1 {
-
-
-    /**
-     * 二叉树节点
-     */
     public static class TreeNode<E> {
-
-        public E value;//节点值
-        public TreeNode left;//指向左节点的指针
-        public TreeNode right;//指向右节点的指针
+        public E value;
+        public TreeNode left;
+        public TreeNode right;
 
         public TreeNode(E value) {
             this.value = value;
@@ -59,7 +55,6 @@ public class TestMethod7_1 {
         node2.setLeftAndRight(node4, node5);
         node3.setLeftAndRight(node6, node7);
 
-
         System.out.print("层序遍历：");
         centerOrder(node1);
         System.out.println();
@@ -71,14 +66,12 @@ public class TestMethod7_1 {
         preOrder_2(node1);
         System.out.println();
 
-
         System.out.print("递归打印中序遍历: ");
         inOrder_1(node1);
         System.out.println();
         System.out.print("迭代打印中序遍历: ");
         inOrder_2(node1);
         System.out.println();
-
 
         System.out.print("递归打印后序遍历: ");
         postOrder_1(node1);
@@ -96,23 +89,22 @@ public class TestMethod7_1 {
         }
     }
 
-
     private static void postOrder_2(TreeNode<Integer> root) {
         if (root == null) return;
 
-        Stack<TreeNode<Integer>> stack = new Stack<>();
-        TreeNode<Integer> cur = root;
-        TreeNode<Integer> temp = null;
-        stack.push(cur);
+        Stack<TreeNode<Integer>> stack = new Stack<TreeNode<Integer>>();
+        TreeNode<Integer> curr = root;
+        TreeNode<Integer> peek = null;
+        stack.push(curr);
         while (!stack.isEmpty()) {
-            temp = stack.peek();
-            if (temp.left != null && temp.left != cur && temp.right != cur) {
-                stack.push(temp.left);
-            } else if (temp.right != null && temp.right != cur) {
-                stack.push(temp.right);
+            peek = stack.peek();
+            if (peek.left != null && peek.left != curr & peek.right != curr) {
+                stack.push(peek.left);
+            } else if (peek.right != null && peek.right != curr) {
+                stack.push(peek.right);
             } else {
                 System.out.print(stack.pop().value + " ");
-                cur = temp;
+                curr = peek;
             }
         }
     }
@@ -128,23 +120,21 @@ public class TestMethod7_1 {
     private static void inOrder_2(TreeNode<Integer> root) {
         if (root == null) return;
 
-        Stack<TreeNode<Integer>> stack = new Stack<>();
-        TreeNode<Integer> cur = root;
-        TreeNode<Integer> temp = null;
-        while (!stack.isEmpty() || cur != null) {
-            while (cur != null) {
-                stack.push(cur);
-                cur = cur.left;
+        Stack<TreeNode<Integer>> stack = new Stack<TreeNode<Integer>>();
+        TreeNode<Integer> curr = root;
+        TreeNode<Integer> pop = null;
+        while (!stack.isEmpty() || curr != null) {
+            while (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
             }
-            temp = stack.pop();
-            System.out.print(temp.value + " ");
-            if (temp.right != null) {
-                cur = temp.right;
+            pop = stack.pop();
+            System.out.print(pop.value + " ");
+            if (pop.right != null) {
+                curr = pop.right;
             }
         }
     }
-
-
 
     private static void preOrder_1(TreeNode<Integer> root) {
         if (root != null) {
@@ -157,9 +147,9 @@ public class TestMethod7_1 {
     private static void preOrder_2(TreeNode<Integer> root) {
         if (root == null) return;
 
-        Stack<TreeNode<Integer>> stack = new Stack<>();
-        TreeNode<Integer> temp = null;
+        Stack<TreeNode<Integer>> stack = new Stack<TreeNode<Integer>>();
         stack.push(root);
+        TreeNode<Integer> temp = null;
         while (!stack.isEmpty()) {
             temp = stack.pop();
             System.out.print(temp.value + " ");
@@ -171,16 +161,17 @@ public class TestMethod7_1 {
     private static void centerOrder(TreeNode<Integer> root) {
         if (root == null) return;
 
-        Queue<TreeNode<Integer>> queue = new LinkedList<>();
+        Queue<TreeNode<Integer>> queue = new LinkedList<TreeNode<Integer>>();
         queue.offer(root);
         while (!queue.isEmpty()) {
-            TreeNode<Integer> temp = queue.poll();
-            System.out.print(temp.value + " ");
-            if (temp.left != null) queue.offer(temp.left);
-            if (temp.right != null) queue.offer(temp.right);
+            int length = queue.size();
+            for (int i = 0; i < length; i++) {
+                TreeNode<Integer> temp = queue.poll();
+                System.out.print(temp.value + " ");
+                if (temp.left != null) queue.offer(temp.left);
+                if (temp.right != null) queue.offer(temp.right);
+            }
         }
-
     }
-
 }
 

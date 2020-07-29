@@ -18,7 +18,6 @@ package com.open.learncode.剑指offer;
 public class TestMethod24_1 {
 
     public static class ListNode<E> {
-
         public E value;
         public ListNode<E> next;
 
@@ -33,7 +32,6 @@ public class TestMethod24_1 {
     }
 
     public static void main(String[] args) {
-
         ListNode<Integer> node5 = new ListNode<Integer>(5);
         ListNode<Integer> node4 = new ListNode<Integer>(4, node5);
         ListNode<Integer> node3 = new ListNode<Integer>(3, node4);
@@ -48,19 +46,17 @@ public class TestMethod24_1 {
     }
 
     /**
-     * 递归：
+     * 递归
      *
      * @param head 链表头结点
      * @return 返回反转后的链表头结点
      */
-    public static ListNode method_1(ListNode head) {
-
+    public static ListNode<Integer> method_1(ListNode<Integer> head) {
         //鲁棒性
-        if (head == null || head.next == null)
-            return head;
+        if (head == null || head.next == null) return head;
 
         //这里的cur就是最后一个节点
-        ListNode cur = method_1(head.next);
+        ListNode<Integer> cur = method_1(head.next);
         //这里请配合动画演示理解
         //如果链表是 1->2->3->4->5，那么此时的cur就是5
         //而head是4，head的下一个是5，下下一个是空
@@ -73,39 +69,43 @@ public class TestMethod24_1 {
     }
 
     /**
-     * 三个指针：
+     * 三个指针
      *
      * @param head 链表头结点
      * @return 返回反转后的链表头结点
      */
-    public static ListNode method_2(ListNode head) {
-
-        if (head == null || head.next == null)
-            return head;
+    public static ListNode<Integer> method_2(ListNode<Integer> head) {
+        if (head == null || head.next == null) return head;
 
         //三个指针：pre指针指向已经反转好的链表的最后一个节点，最开始没有反转，所以指向null
         //cur指针指向待反转链表的第一个节点，最开始第一个节点待反转，所以指向head
         //next指针指向待反转链表的第二个节点，目的是保存链表，因为cur改变指向后，后面的链表则失效了，所以需要保存
-        ListNode pre = null;
-        ListNode cur = head;
-        ListNode next;
-
+        ListNode<Integer> pre = null;
+        ListNode<Integer> cur = head;
+        ListNode<Integer> next = null;
         while (cur != null) {
             next = cur.next;
             cur.next = pre;
             pre = cur;
             cur = next;
         }
-
         return pre;
     }
 
+    /**
+     * 打印链表
+     *
+     * @param head 头结点
+     */
     private static void print(ListNode head) {
         if (head == null) return;
         while (head != null) {
-            System.out.print(head.value + " ");
+            if (head.next == null) {
+                System.out.println(head.value);
+                break;
+            }
+            System.out.print(head.value + "->");
             head = head.next;
         }
-        System.out.println();
     }
 }

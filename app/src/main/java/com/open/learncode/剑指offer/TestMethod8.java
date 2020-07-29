@@ -15,25 +15,17 @@ package com.open.learncode.剑指offer;
  * 分情况找出下一个节点
  * <p>
  * 复杂度分析：
- * 时间复杂度：O(n)
- * 空间复杂度：O(1)
+ * 时间复杂度：O(n)，空间复杂度：O(1)
  */
 public class TestMethod8 {
-
-
-    /**
-     * 二叉树节点
-     */
     public static class TreeNode<E> {
-        public E value;//节点值
-        public TreeNode left;//指向左节点的指针
-        public TreeNode right;//指向右节点的指针
-        public TreeNode parent;//指向该节点的父亲节点
-
+        public E value;
+        public TreeNode left;
+        public TreeNode right;
+        public TreeNode parent;
         public TreeNode(E value) {
             this.value = value;
         }
-
         public void setLeftAndRightAndParent(TreeNode left, TreeNode right, TreeNode parent) {
             this.left = left;
             this.right = right;
@@ -41,10 +33,7 @@ public class TestMethod8 {
         }
     }
 
-
     public static void main(String[] args) {
-
-        //创建二叉树
         TreeNode<String> nodeA = new TreeNode<String>("a");
         TreeNode<String> nodeB = new TreeNode<String>("b");
         TreeNode<String> nodeC = new TreeNode<String>("c");
@@ -60,14 +49,11 @@ public class TestMethod8 {
         nodeF.setLeftAndRightAndParent(null, null, nodeC);
         nodeG.setLeftAndRightAndParent(null, null, nodeC);
 
-        method(nodeA);
-        method(nodeB);
-        method(nodeC);
-        method(nodeD);
-        method(nodeE);
-        method(nodeF);
-        method(nodeG);
-
+        // 分别获取节点b、d、e、g的下一个节点
+        System.out.println(nodeB.value + "在中序遍历中下一个节点是：" + method(nodeB).value);
+        System.out.println(nodeD.value + "在中序遍历中下一个节点是：" + method(nodeD).value);
+        System.out.println(nodeE.value + "在中序遍历中下一个节点是：" + method(nodeE).value);
+        System.out.println(nodeG.value + "在中序遍历中下一个节点是：" + method(nodeG));
     }
 
     /**
@@ -75,49 +61,36 @@ public class TestMethod8 {
      * 1、有右子树
      * 2、无右子树 2.1 是其父亲节点的右孩子
      *
-     * @param p 给定的一个节点
+     * @param node 给定的一个节点
      * @return
      */
-    private static TreeNode method(TreeNode p) {
-
+    private static TreeNode method(TreeNode node) {
         //鲁棒性
-        if (p == null)
-            return null;
+        if (node == null) return null;
 
         //有右子树：它的下一个节点是其右子树中的最左子节点
-        TreeNode cur = p.right;
-        if (cur != null) {
-            while (cur.left != null) {
-                cur = cur.left;
+        TreeNode curr = node.right;
+        if (curr != null) {
+            while (curr.left != null) {
+                curr = curr.left;
             }
-            System.out.println(p.value + "的下一个节点是：" + cur.value);
-            return cur;
+            return curr;
         }
 
         //无右子树
         //又分为两种情况：1.该节点是其父亲节点的左孩子，则下一个节点是其父亲节点
         //2.该节点是其父亲节点的右孩子，则不断的回溯找到父亲节点
-        TreeNode temp = p;//保存p，用于打印时
-        TreeNode parent = p.parent;
-
+        curr = node;
+        TreeNode parent = node.parent;
         //情况2：①p是parent的右孩子，且是右子树上的右孩子，这时parent==null
         //②p是parent的右孩子，且是左子树上的右孩子，这时parent==root
-        while (parent != null && parent.left != p) {
-            p = parent;
-            parent = p.parent;
-
+        while (parent != null && parent.left != curr) {
+            curr = parent;
+            parent = curr.parent;
         }
-
-        if (parent == null) {
-            System.out.println(temp.value + "没有下一个节点");
-            return null;
-        }
-
+        if (parent == null) return null;
         //情况1：p是parent的左孩子
-        System.out.println(temp.value + "的下一个节点是：" + parent.value);
         return parent;
-
-
     }
 }
 

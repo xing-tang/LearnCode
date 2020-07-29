@@ -10,21 +10,17 @@ package com.open.learncode.剑指offer;
  *
  * <p>
  * 复杂度分析：
- * 方法一：时间复杂度：O(exponent)   空间复杂度：O(n)
- * 方法二：时间复杂度：O(exponent)   空间复杂度：O(1)
- * 方法三：时间复杂度：O(log(exponent))   空间复杂度：O(1)
+ * 方法一：时间复杂度：O(exponent)，空间复杂度：O(n)
+ * 方法二：时间复杂度：O(exponent)，空间复杂度：O(1)
+ * 方法三：时间复杂度：O(log(exponent))，空间复杂度：O(1)
  */
 public class TestMethod17 {
 
     public static void main(String[] args) {
-
-
         method_1(3);
         method_1(0);
         method_1(-1);
         method_2(3);
-
-
     }
 
     /**

@@ -26,15 +26,10 @@ import java.util.Stack;
  */
 public class TestMethod7_1 {
 
-
-    /**
-     * 二叉树节点
-     */
     public static class TreeNode<E> {
-
-        public E value;//节点值
-        public TreeNode left;//指向左节点的指针
-        public TreeNode right;//指向右节点的指针
+        public E value;
+        public TreeNode left;
+        public TreeNode right;
 
         public TreeNode(E value) {
             this.value = value;
@@ -140,7 +135,9 @@ public class TestMethod7_1 {
                     queue.offer(temp.left);
                 if (temp.right != null)
                     queue.offer(temp.right);
+                // 打印每一层的第一个节点
                 if (i == 0) System.out.print(temp.value + " ");
+                // 打印每一层的最后一个节点
 //                if (i == length - 1) System.out.println("每一层的最后一个节点为：" + temp.value);
             }
 

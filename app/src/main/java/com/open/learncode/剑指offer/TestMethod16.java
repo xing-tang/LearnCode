@@ -19,7 +19,7 @@ public class TestMethod16 {
     public static void main(String[] args) {
 
         //测试用例：底数 指数分别设为正数 负数 零
-        System.out.println(method_3(2, -3));
+        System.out.println(method_1(2, -3));
         System.out.println(method_1(0, -3));
         System.out.println(method_1(-2, -3));
 
@@ -27,9 +27,9 @@ public class TestMethod16 {
         System.out.println(method_2(0, 0));
         System.out.println(method_2(-2, 0));
 
-        System.out.println(method_3(2, 2));
-        System.out.println(method_3(0, 2));
-        System.out.println(method_3(-2, 2));
+        System.out.println(method_3(2, 3));
+//        System.out.println(method_3(0, 2));
+//        System.out.println(method_3(-2, 2));
 
     }
 

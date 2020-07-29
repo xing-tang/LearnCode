@@ -1,46 +1,54 @@
 package com.open.learncode.剑指offer;
 
+import android.app.Activity;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.Vector;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ATest {
 
     public static void main(String[] args) {
-        ArrayList<String> list = new ArrayList<>();
-        LinkedList<String> list2 = new LinkedList<>();
-        list2.add(null);
-        list2.add("a");
-        list2.add("b");
-        list2.remove("a");
-        HashMap hashMap = new HashMap(6);
-        Queue queue = new PriorityQueue();
-        System.out.println(tableSizeFor(6));
+//        TreeMap<String, String> map = new TreeMap<String, String>();
+//        for (int i = 1; i < 100; i++) {
+//            map.put(i + "", i + "");
+//        }
+//        map.put(null, null);
+//        Iterator<String> hashtableItr = map.keySet().iterator();
+//        while (hashtableItr.hasNext()) {
+//            String key = hashtableItr.next();
+//            System.out.println("key=" + key + ";value=" + map.get(key));
+//        }
 
-
-        int[] src = new int[8];
-        for (int i = 0; i < 7; i++) {
-            src[i] =i+1;
+        TreeSet<String> set = new TreeSet<String>();
+        for (int i = 1; i < 100; i++) {
+            set.add(i + "");
         }
-        for (int i = 0; i < src.length; i++) {
-            System.out.print(src[i]+" ");
-        }
-        System.out.println();
-        System.arraycopy(src, 2, src, 3, 5);
-        src[3] = 99;
-        for (int i = 0; i < src.length; i++) {
-            System.out.print(src[i]+" ");
+//        set.add(null);
+        for(String s: set) {
+            System.out.println(s);
         }
     }
+
+
     static final int MAXIMUM_CAPACITY = 1 << 30;
+
     static final int tableSizeFor(int cap) {
         int n = cap - 1;
         n |= n >>> 1;

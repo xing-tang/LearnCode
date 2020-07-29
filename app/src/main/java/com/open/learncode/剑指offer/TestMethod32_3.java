@@ -42,7 +42,6 @@ public class TestMethod32_3 {
     }
 
     public static void main(String[] args) {
-
         TreeNode<Integer> node5 = new TreeNode<Integer>(5);
         TreeNode<Integer> node7 = new TreeNode<Integer>(7);
         TreeNode<Integer> node9 = new TreeNode<Integer>(9);
@@ -55,21 +54,19 @@ public class TestMethod32_3 {
         method(node8);
     }
 
-    public static void method(TreeNode root) {
-
+    public static void method(TreeNode<Integer> root) {
         if (root == null) return;
 
         //stack1 stack2分别存储奇数层、偶数层的节点
-        Stack<TreeNode> stack1 = new Stack<TreeNode>();
-        Stack<TreeNode> stack2 = new Stack<TreeNode>();
+        Stack<TreeNode<Integer>> stack1 = new Stack<TreeNode<Integer>>();
+        Stack<TreeNode<Integer>> stack2 = new Stack<TreeNode<Integer>>();
         stack1.add(root);
 
         boolean flag = true;
         while (!stack1.isEmpty() || !stack2.isEmpty()) {
-
             if (flag) {// 奇数层
                 while (!stack1.isEmpty()) {
-                    TreeNode temp = stack1.pop();
+                    TreeNode<Integer> temp = stack1.pop();
                     System.out.print(temp.value + " ");
                     //要倒序打印，必须正序压入
                     if (temp.left != null) stack2.add(temp.left);
@@ -77,7 +74,7 @@ public class TestMethod32_3 {
                 }
             } else {// 偶数层
                 while (!stack2.isEmpty()) {
-                    TreeNode temp = stack2.pop();
+                    TreeNode<Integer> temp = stack2.pop();
                     System.out.print(temp.value + " ");
                     //要正序打印，必须倒序压入
                     if (temp.right != null) stack1.add(temp.right);
@@ -89,5 +86,4 @@ public class TestMethod32_3 {
             System.out.println();
         }
     }
-
 }

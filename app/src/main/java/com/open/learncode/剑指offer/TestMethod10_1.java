@@ -34,9 +34,8 @@ public class TestMethod10_1 {
      * @return 返回斐波那契数列的第n项
      */
     public static long method_1(int n) {
-        if (n <= 1) {
-            return n;
-        }
+        if (n < 0) return -1;
+        if (n <= 1) return n;
         return method_1(n - 1) + method_1(n - 2);
     }
 
@@ -47,13 +46,12 @@ public class TestMethod10_1 {
      * @return 返回斐波那契数列的第n项
      */
     public static int method_2(int n) {
-        if (n <= 1) {
-            return n;
-        }
+        if (n<0) return -1;
+        if (n<=1) return n;
+
         int[] cache = new int[n + 1];
         //cache[0]默认赋值为0
         cache[1] = 1;
-
         for (int i = 2; i <= n; i++) {
             cache[i] = cache[i - 1] + cache[i - 2];
         }
@@ -67,14 +65,14 @@ public class TestMethod10_1 {
      * @return 返回斐波那契数列的第n项
      */
     private static long method_3(int n) {
-        if (n <= 1) return n;
-        if (n == 2) return 1;
+        if (n<0) return -1;
+        if (n<=1) return n;
 
         int current = 0;
         int prev1 = 1;
-        int prev2 = 1;
+        int prev2 = 0;
 
-        for (int i = 3; i <= n; i++) {
+        for (int i = 2; i <= n; i++) {
             current = prev1 + prev2;
             prev2 = prev1;
             prev1 = current;

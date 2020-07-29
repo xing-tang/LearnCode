@@ -21,11 +21,9 @@ package com.open.learncode.剑指offer;
 public class TestMethod12 {
 
     public static void main(String[] args) {
-
         char matrix[][] = {{'a', 'b', 't', 'g'}, {'c', 'f', 'c', 's'}, {'j', 'd', 'e', 'h'}};
 //        String str = "bfce";
         String str="";
-
         System.out.println(hasPath(matrix, matrix.length, matrix[0].length, str));
     }
 
@@ -39,17 +37,13 @@ public class TestMethod12 {
      * @return 返回matrix矩阵中是否存在一条包含str所有字符的路径
      */
     private static boolean hasPath(char matrix[][], int rows, int columns, String str) {
-
         //验证输入数据的合法性
         if (matrix == null || rows < 0 || columns < 0 || str.length() <= 0)
             return false;
-
         //标识该格子是否已经被访问
         boolean visited[][] = new boolean[rows][columns];
-
         //字符串的下标
         int pathLength = 0;
-
         for (int row = 0; row < rows; row++) {
             for (int column = 0; column < columns; column++) {
 
@@ -58,10 +52,8 @@ public class TestMethod12 {
                 }
             }
         }
-
         //清空visited数组
 //        visited = null;
-
         return false;
     }
 
@@ -79,8 +71,6 @@ public class TestMethod12 {
      * @return 返回matrix矩阵是否能定位到str字符串中下标为pathLength之后的所有字符
      */
     private static boolean hasPathCore(char[][] matrix, int rows, int columns, int row, int column, String str, int pathLength, boolean[][] visited) {
-
-
         //终止条件：路径字符串str上的所有字符都在矩阵二维数组matrix中找到合适的位置
         if(pathLength==str.length())
             return true;
@@ -92,12 +82,10 @@ public class TestMethod12 {
         //         ②当前格子是否未被访问
         if (row >= 0 && row < rows && column >= 0 && column < columns
                 && !visited[row][column] && matrix[row][column] == str.charAt(pathLength)) {
-
             //满足条件，定位正确，继续走下去
             pathLength++;
             //修改访问情况
             visited[row][column] = true;
-
             //从当前格子（row，column）的4个相邻格子（row，column-1） （row，column-1）
             //（row-1，column） （row+1，column）中去定位路径字符串中下标为pathLength+1的字符
             hasPath = hasPathCore(matrix, rows, columns, row, column - 1, str, pathLength, visited)
@@ -107,7 +95,6 @@ public class TestMethod12 {
                     hasPathCore(matrix, rows, columns, row - 1, column, str, pathLength, visited)
                     ||
                     hasPathCore(matrix, rows, columns, row + 1, column, str, pathLength, visited);
-
 
             //如果4个相邻格子都没有匹配到字符串中下标为pathLength+1的字符，
             // 则表明字符串中下标为pathLength的字符定位失败，回溯到前一个字符pathLength-1，重写定位

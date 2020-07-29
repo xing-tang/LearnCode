@@ -29,19 +29,19 @@ public class TestMethod5_2 {
         }
     }
 
-    private static int[] method(int[] A1, int[] A2, int A1Length) {
+    private static int[] method(int[] A1, int[] A2, int size) {
         if (A1 == null || A1.length <= 0) return A2;
         if (A2 == null || A2.length <= 0) return A1;
-        if (A1.length < A2.length + A1Length) return null;
+        if (A1.length < (A2.length + size)) return null;
 
-        int A1Index = A1Length - 1;
-        int A2Index = A2.length - 1;
-        int A1NewIndex = A1Length + A2.length - 1;
-        while (A1Index >= 0 && A2Index >= 0) {
-            if (A1[A1Index] >= A2[A2Index]) {
-                A1[A1NewIndex--] = A1[A1Index--];
+        int a1Index = size - 1;
+        int a2Index = A2.length - 1;
+        int a1NewIndex = a1Index + a2Index + 1;
+        while (a1Index >= 0 && a2Index >= 0) {
+            if (A1[a1Index] >= A2[a2Index]) {
+                A1[a1NewIndex--] = A1[a1Index--];
             } else {
-                A1[A1NewIndex--] = A2[A2Index--];
+                A1[a1NewIndex--] = A2[a2Index--];
             }
         }
         return A1;

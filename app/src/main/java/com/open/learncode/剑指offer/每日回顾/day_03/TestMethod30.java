@@ -21,8 +21,8 @@ public class TestMethod30 {
 //        Stack_1 stack = new Stack_1();
 //        Stack_2 stack = new Stack_2();
         Stack_3 stack = new Stack_3();
-        // 测试数据 3,5,2,6
 
+        // 测试数据 3,5,2,6
         stack.push(4);
         System.out.println("最小元素：" + stack.min());
 

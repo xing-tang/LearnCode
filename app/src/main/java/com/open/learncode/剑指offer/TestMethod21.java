@@ -9,21 +9,17 @@ package com.open.learncode.剑指offer;
  * 快速排序
  * <p>
  * 复杂度分析：
- * 方法一、二：
- * 时间复杂度：O(n)  空间复杂度：O(1)
+ * 方法一：时间复杂度：O(n)，空间复杂度：O(1)
+ * 方法二：时间复杂度：O(n)，空间复杂度：O(1)
  */
 public class TestMethod21 {
 
     public static void main(String[] args) {
-
         int data[] = {1, 2, 3, 4, 5};
-
         print(data);
 //        method_1(data);
         method_2(data);
         print(data);
-
-
     }
 
     /**
@@ -34,35 +30,23 @@ public class TestMethod21 {
      * @param data 待调整的数组
      */
     private static void method_1(int data[]) {
-
-        //鲁棒性
-        if (data == null && data.length <= 0)
-            return;
-
+        if (data == null && data.length <= 0) return;
 
         int left = 0, right = data.length - 1;
-
         while (left < right) {
-
-            //向后移动left，直到它指向偶数
-            while (left < right && (!func(data, left)))
+            // 向后移动left，直到它指向偶数，然后停下来
+            while (left < right && ((data[left] & 1) == 1))
                 left++;
-
-            //向前移动right，直到它指向奇数
-            while (left < right && (func(data, right)))
+            // 向前移动right，直到它指向奇数，然后停下来
+            while (left < right && ((data[right] & 1) == 0))
                 right--;
-
-            //left指向偶数，right指向奇数，且left<right，交换两者位置
-            if (left < right)
-                swap(data, left, right);
+            // left指向偶数，right指向奇数，且left<right，交换两者位置
+            if (left < right) {
+                int temp = data[left];
+                data[left] = data[right];
+                data[right] = temp;
+            }
         }
-    }
-
-    //扩展性更高，能适应更多的判断标准
-    //如：使所有负数位于非负数前面；使能被3整除的数位于不能被3整除的数的前面
-    private static boolean func(int data[], int position) {
-        //num&1==1 num为奇数；num&1==0 num为偶数
-        return ((data[position] & 1) == 0);
     }
 
     /**
@@ -73,43 +57,31 @@ public class TestMethod21 {
      * @param data 待调整的数组
      */
     private static void method_2(int[] data) {
+        if (data == null && data.length <= 0) return;
 
-        //鲁棒性
-        if (data == null && data.length <= 0)
-            return;
-
-        int low = 0, fast = 0;
-
+        int fast = 0, slow = 0;
         while (fast < data.length) {
-
-            //如果data[fast]为奇数
-            if (!func(data,fast)) {
-                //交换low fast位置的元素，low右移一位
-                swap(data, low, fast);
-                low++;
+            // 如果data[fast]为奇数
+            if ((data[fast] & 1) == 1) {
+                // 交换fast slow位置的元素，slow右移一位
+                int temp = data[fast];
+                data[fast] = data[slow];
+                data[slow] = temp;
+                slow++;
             }
             fast++;
         }
     }
 
+    /**
+     * 打印一维数组
+     *
+     * @param data 待打印的一维数组
+     */
     private static void print(int data[]) {
         for (int i = 0; i < data.length; i++) {
             System.out.print(data[i] + " ");
         }
         System.out.println();
     }
-
-    /**
-     * 交换数组中下标为a b的值
-     *
-     * @param data
-     * @param a
-     * @param b
-     */
-    private static void swap(int data[], int a, int b) {
-        int temp = data[a];
-        data[a] = data[b];
-        data[b] = temp;
-    }
-
 }

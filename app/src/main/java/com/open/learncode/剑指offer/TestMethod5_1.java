@@ -25,23 +25,17 @@ public class TestMethod5_1 {
      * @return 输出的字符串
      */
     public static String method(String str) {
-
-        if (str == null || str.length() <= 0) {
-            return null;
-        }
+        if (str == null || str.length() <= 0) return null;
 
         StringBuilder strb = new StringBuilder(str);
-
         int spaceNumber = 0;
         for (int i = 0; i < strb.length(); i++) {
             if (strb.charAt(i) == ' ') spaceNumber++;
         }
-
         int oldIndex = strb.length() - 1;
         int newLength = strb.length() + spaceNumber * 2;
         int newIndex = newLength - 1;
         strb.setLength(newLength);
-
         while (oldIndex >= 0 && newIndex > oldIndex) {
             if (strb.charAt(oldIndex) == ' ') {
                 strb.setCharAt(newIndex--, '0');
@@ -54,6 +48,5 @@ public class TestMethod5_1 {
         }
         return strb.toString();
     }
-
 }
 

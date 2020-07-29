@@ -22,17 +22,16 @@ public class TestMethod5_1 {
         if (str == null || str.length() <= 0) return str;
 
         StringBuilder strb = new StringBuilder(str);
-        int spaceNumber = 0;
+        int spaceNum = 0;
         for (int i = 0; i < strb.length(); i++) {
-            if (strb.charAt(i) == ' ') spaceNumber++;
+            if (strb.charAt(i) == ' ') spaceNum++;
         }
-        int oldIndex = strb.length() - 1;
-        int newLength = spaceNumber * 2 + strb.length();
+        int oldLength = str.length();
+        int oldIndex = oldLength - 1;
+        int newLength = oldLength + spaceNum * 2;
         int newIndex = newLength - 1;
         strb.setLength(newLength);
-
-
-        while (oldIndex >= 0 && newIndex >= oldIndex) {
+        while (oldIndex >= 0) {
             if (strb.charAt(oldIndex) == ' ') {
                 strb.setCharAt(newIndex--, '0');
                 strb.setCharAt(newIndex--, '2');
@@ -42,7 +41,6 @@ public class TestMethod5_1 {
             }
             oldIndex--;
         }
-
         return strb.toString();
     }
 }

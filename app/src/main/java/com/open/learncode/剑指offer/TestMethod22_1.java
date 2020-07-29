@@ -13,12 +13,11 @@ package com.open.learncode.剑指offer;
  * 快慢两个指针，一前一后，相隔k，当快指针指向空节点时，慢指针走到了链表的n-k+1个节点，正好是倒数第k个节点
  * <p>
  * 复杂度分析：
- * 时间复杂度：O(n)  空间复杂度：O(1)【low fast】
+ * 时间复杂度：O(n)，空间复杂度：O(1)【fast slow】
  */
 public class TestMethod22_1 {
 
     public static class ListNode<E> {
-
         public E value;
         public ListNode<E> next;
 
@@ -33,16 +32,14 @@ public class TestMethod22_1 {
     }
 
     public static void main(String[] args) {
-        //创建单链表
         ListNode<Integer> node6 = new ListNode<Integer>(6);
         ListNode<Integer> node5 = new ListNode<Integer>(5, node6);
         ListNode<Integer> node4 = new ListNode<Integer>(4, node5);
         ListNode<Integer> node3 = new ListNode<Integer>(3, node4);
         ListNode<Integer> node2 = new ListNode<Integer>(2, node3);
         ListNode<Integer> node1 = new ListNode<Integer>(1, node2);
-
         //测试用例：
-        System.out.println("倒数第K个节点的值为：" + method(node1, 2).value);
+        System.out.println("倒数第K个节点的值为：" + method(node1, 3).value);
         System.out.println("倒数第K个节点的值为：" + method(node1, 6).value);
         System.out.println("倒数第K个节点的值为：" + method(node1, 1).value);
         System.out.println("倒数第K个节点的值为：" + method(node1, 0).value);
@@ -55,33 +52,25 @@ public class TestMethod22_1 {
      * @param k    待输入的k
      * @return 倒数第K个节点
      */
-    private static ListNode method(ListNode head, int k) {
+    private static ListNode<Integer>  method(ListNode<Integer>  head, int k) {
         //增强鲁棒性：避免"head为空指针"， 避免"输入的K参数为0"
-        if (head == null || k <= 0)
-            return null;
+        if (head == null || k <= 0) return null;
 
-        ListNode fast = head, low = head;
-
-        //让快指针先行K步
+        ListNode<Integer>  fast = head, slow = head;
+        // 让快指针先行K步
         for (int i = 0; i < k; i++) {
-            if (fast != null)
+            if (fast != null) {
                 fast = fast.next;
-            else//增强鲁棒性：避免"链表的节点总数少于K"的情况
+            } else {// 增强鲁棒性：避免"链表的节点总数少于K"的情况
                 return null;
+            }
         }
-//        while (k--!=0){
-//            if(fast!=null)
-//                fast=fast.next;
-//            else
-//                return null;
-//        }
-
         //让快慢指针每次同行一步，直到快指针指向空节点
         while (fast != null) {
             fast = fast.next;
-            low = low.next;
+            slow = slow.next;
         }
 
-        return low;
+        return slow;
     }
 }

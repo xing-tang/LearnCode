@@ -2,6 +2,7 @@ package com.open.learncode.剑指offer;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * 题目：
@@ -43,7 +44,6 @@ public class TestMethod32_2 {
     }
 
     public static void main(String[] args) {
-
         TreeNode<Integer> node5 = new TreeNode<Integer>(5);
         TreeNode<Integer> node7 = new TreeNode<Integer>(7);
         TreeNode<Integer> node9 = new TreeNode<Integer>(9);
@@ -56,35 +56,20 @@ public class TestMethod32_2 {
         method(node8);
     }
 
-    public static void method(final TreeNode root) {
-
+    private static void method(TreeNode<Integer> root) {
         if (root == null) return;
 
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        Queue<TreeNode<Integer>> queue = new LinkedList<TreeNode<Integer>>();
         queue.add(root);
-
-        //curNum：当前层的节点数；nextNum：下一层的节点数
-        int curNum = 1;
-        int nextNum = 0;
-
         while (!queue.isEmpty()) {
-            TreeNode temp = queue.poll();
-            curNum--;
-            System.out.print(temp.value + " ");
-            if (temp.left != null) {
-                queue.add(temp.left);
-                nextNum++;
+            int length = queue.size();
+            for (int i = 0; i < length; i++) {
+                TreeNode temp = queue.poll();
+                System.out.print(temp.value + " ");
+                if (temp.left != null) queue.offer(temp.left);
+                if (temp.right != null) queue.offer(temp.right);
             }
-            if (temp.right != null) {
-                queue.add(temp.right);
-                nextNum++;
-            }
-            if (curNum == 0) {
-                curNum = nextNum;
-                nextNum = 0;
-                System.out.println();
-            }
+            System.out.println();
         }
     }
-
 }

@@ -21,7 +21,7 @@ import java.util.Queue;
  * 从左到右的顺序：先添加左节点，再添加右节点
  * <p>
  * 复杂度分析：
- * 时间复杂度：O(1)  空间复杂度：O(1)
+ * 时间复杂度：O(1)，空间复杂度：O(1)
  */
 public class TestMethod32_1 {
 
@@ -43,7 +43,6 @@ public class TestMethod32_1 {
     }
 
     public static void main(String[] args) {
-
         TreeNode<Integer> node5 = new TreeNode<Integer>(5);
         TreeNode<Integer> node7 = new TreeNode<Integer>(7);
         TreeNode<Integer> node9 = new TreeNode<Integer>(9);
@@ -62,17 +61,15 @@ public class TestMethod32_1 {
      * @param root
      */
     private static void method(TreeNode root) {
-
         if (root == null) return;
 
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-
         while (!queue.isEmpty()) {
-            TreeNode temp = queue.remove();
+            TreeNode temp = queue.poll();
             System.out.print(temp.value + " ");
-            if (temp.left != null) queue.add(temp.left);
-            if (temp.right != null) queue.add(temp.right);
+            if (temp.left != null) queue.offer(temp.left);
+            if (temp.right != null) queue.offer(temp.right);
         }
     }
 }

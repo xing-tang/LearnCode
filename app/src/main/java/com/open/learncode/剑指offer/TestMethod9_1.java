@@ -1,5 +1,7 @@
 package com.open.learncode.剑指offer;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -12,12 +14,14 @@ import java.util.Stack;
  * 删除操作：栈是先进后出，队列是先进先出。要删除的节点在栈底
  * <p>
  * 复杂度分析：
- * 添加：时间复杂度：O(1)，空间复杂度：O(1)
- * 删除：时间复杂度：O(n)，空间复杂度：O(1)
+ * 添加：时间复杂度：O(1)，空间复杂度：O(n)
+ * 删除：时间复杂度：O(n)，空间复杂度：O(n)
  */
 public class TestMethod9_1 {
 
     public static void main(String[] args) {
+        // 入栈a、b、c，出栈c，入栈d，出栈d，入栈e、出栈...
+        // 运行结果：null、a、b、c、d、e、null
         StackToQueue<String> queue = new StackToQueue<String>();
         System.out.println(queue.pop());
         queue.push("a");
@@ -34,26 +38,22 @@ public class TestMethod9_1 {
     }
 
     static class StackToQueue<E> {
+        private Stack<E> stack1 = new Stack<>();
+        private Stack<E> stack2 = new Stack<>();
 
-        public Stack<E> stack1 = new Stack<>();
-        public Stack<E> stack2 = new Stack<>();
-
-        //添加操作：直接往stack1中压入数据
-        public void push(E e) {
+        // 添加操作：直接往stack1中压入数据
+        private void push(E e) {
             stack1.push(e);
         }
 
-        //删除操作：把stack1的数据一次弹出，再压入stack2，这时，stack1栈底的元素就跑到了stack2的栈顶
-        public E pop() {
+        // 删除操作：把stack1的数据一次弹出，再压入stack2，这时，stack1栈底的元素就跑到了stack2的栈顶
+        private E pop() {
             if (stack2.isEmpty()) {
                 while (!stack1.isEmpty())
                     stack2.push(stack1.pop());
             }
             return stack2.isEmpty() ? null : stack2.pop();
         }
-
     }
-
-
 }
 

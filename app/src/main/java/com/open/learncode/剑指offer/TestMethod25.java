@@ -20,7 +20,6 @@ package com.open.learncode.剑指offer;
 public class TestMethod25 {
 
     public static class ListNode<E> {
-
         public E value;
         public ListNode<E> next;
 
@@ -35,7 +34,6 @@ public class TestMethod25 {
     }
 
     public static void main(String[] args) {
-
         // 链表1
         ListNode<Integer> node7 = new ListNode<Integer>(7);
         ListNode<Integer> node5 = new ListNode<Integer>(5, node7);
@@ -47,7 +45,7 @@ public class TestMethod25 {
         ListNode<Integer> node4 = new ListNode<Integer>(4, node6);
         ListNode<Integer> node2 = new ListNode<Integer>(2, node4);
 
-        //合并后：
+        // 合并后：
         System.out.print("递增链表1：");
         print(node1);
         System.out.print("递增链表2：");
@@ -65,7 +63,6 @@ public class TestMethod25 {
      * @return 返回合并后的链表头节点
      */
     private static ListNode method_1(ListNode<Integer> head1, ListNode<Integer> head2) {
-
         if (head1 == null) {
             return head2;
         } else if (head2 == null) {
@@ -87,30 +84,31 @@ public class TestMethod25 {
      * @return 返回合并后的链表头节点
      */
     public static ListNode method_2(ListNode<Integer> head1, ListNode<Integer> head2) {
-
         if (head1 == null) return head2;
         if (head2 == null) return head1;
 
-        ListNode<Integer> prehead = new ListNode<Integer>(-1);
-        ListNode<Integer> pre = prehead;
+        ListNode<Integer> pre = new ListNode<Integer>(-1);
+        ListNode<Integer> curr = pre;
         while (head1 != null && head2 != null) {
             if (head1.value <= head2.value) {
-                pre.next = head1;
+                curr.next = head1;
                 head1 = head1.next;
             } else {
-                pre.next = head2;
+                curr.next = head2;
                 head2 = head2.next;
             }
-            pre = pre.next;
+            curr = curr.next;
         }
-        return prehead.next;
+        return pre.next;
     }
 
+    /**
+     * 打印链表
+     *
+     * @param head 头结点
+     */
     private static void print(ListNode head) {
-
-        if (head == null)
-            System.out.println("这是一个空链表");
-
+        if (head == null) return;
         while (head != null) {
             if (head.next == null) {
                 System.out.println(head.value);
@@ -119,8 +117,5 @@ public class TestMethod25 {
             System.out.print(head.value + "->");
             head = head.next;
         }
-        System.out.println();
     }
-
-
 }

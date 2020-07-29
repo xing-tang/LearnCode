@@ -21,6 +21,22 @@ package com.open.learncode.剑指offer;
  */
 public class TestMethod35 {
 
+    public static class ListNode<E> {
+
+        public E value;
+        public ListNode<E> next;
+        public ListNode<E> random;
+
+        public ListNode(E value) {
+            this.value = value;
+        }
+
+        public void setNextAndRandom(ListNode<E> next, ListNode<E> random) {
+            this.next = next;
+            this.random = random;
+        }
+    }
+
     public static void main(String[] args) {
         ListNode<String> nodeA = new ListNode<String>("A");
         ListNode<String> nodeB = new ListNode<String>("B");
@@ -38,7 +54,6 @@ public class TestMethod35 {
     }
 
     public static ListNode method(ListNode<String> head) {
-
         if (head == null) return null;
 
         // 创建复制节点，并且链接好next值
@@ -69,27 +84,13 @@ public class TestMethod35 {
         return headNew;
     }
 
-    public static class ListNode<E> {
-
-        public E value;
-        public ListNode<E> next;
-        public ListNode<E> random;
-
-        public ListNode(E value) {
-            this.value = value;
-        }
-
-        public void setNextAndRandom(ListNode<E> next, ListNode<E> random) {
-            this.next = next;
-            this.random = random;
-        }
-    }
-
-    private static void printListNode(ListNode pHead) {
-
-        if (pHead == null)
-            System.out.println("这是一个空链表");
-
+    /**
+     * 打印链表
+     *
+     * @param pHead 链表头结点
+     */
+    private static void printListNode(ListNode<Integer> pHead) {
+        if (pHead == null) System.out.println("这是一个空链表");
         while (pHead != null) {
             if (pHead.next == null) {
                 System.out.println(pHead.value);
