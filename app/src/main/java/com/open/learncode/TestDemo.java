@@ -6,7 +6,7 @@ import java.util.LinkedHashSet;
 public class TestDemo {
 
     public static void main(String[] args) {
-        addStrings("51189","967895");
+        System.out.println(addStrings("51189","967895"));
     }
 
     public static String addStrings(String num1, String num2) {

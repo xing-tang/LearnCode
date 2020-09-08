@@ -1,0 +1,121 @@
+ext {
+    // 系统
+    android = [
+            compileSdkVersion: 29,
+            buildToolsVersion: "29.0.2",
+            minSdkVersion    : 16,
+            targetSdkVersion : 29,
+            versionCode      : 301,
+            // 必须是int或者float，否则影响线上升级
+            versionName      : "3.0.1"
+    ]
+    // Version
+    versions = [
+            // Test Dependencies
+            junit                           : '4.13',
+            test_runner                     : '1.1.1',
+            test_espresso_core              : '3.2.0',
+            // Kotlin
+            kotlinx_coroutines              : '1.3.7',
+            kotlinx_coroutines_android      : '1.3.7',
+            // Material
+            material                        : '1.1.0',
+            // Appcompat
+            appcompat                       : '1.1.0',
+            // ConstraintLayout
+            constraintlayout                : '1.1.3',
+            // Recyclerview
+            recyclerview                    : '1.1.0',
+            // swiperefreshlayout
+            swiperefreshlayout              : '1.0.0',
+            // CardView
+            cardview                        : '1.0.0',
+            // Annotation
+            annotation                      : '1.1.0',
+            // Multidex 65536
+            multidex                        : '1.0.2',
+            // Router
+            router                          : '1.4.1',
+            router_compiler                 : '1.2.2',
+            // Lifecycle
+            lifecycle_extensions            : '2.2.0',
+            // RxKotlin and RxAndroid
+            rxkotlin                        : '2.2.0',
+            rxandroid                       : '2.0.1',
+            rxjava                          : '2.1.6',
+            // Okhttp And Retrofit
+            okhttp3_okhttp                  : '3.4.1',
+            okhttp3_logging_interceptor     : '3.4.1',
+            retrofit2_retrofit              : '2.1.0',
+            retrofit2_converter_gson        : '2.1.0',
+            retrofit2_adapter_rxjava2       : '2.3.0',
+            // Glide
+            glide                           : '4.11.0',
+            glide_compiler                  : '4.11.0',
+            // EventBus
+            eventbus                        : '3.2.0',
+            // Banner
+            banner                          : '2.0.10',
+            // BaseRecyclerViewAdapterHelper
+            base_recyclerview_adapter_helper: '3.0.4',
+            // Dagger2
+            dagger                          : '2.28.3',
+            dagger_compiler                 : '2.28.3',
+    ]
+    // 第三方开源库
+    deps = [
+            // Test Dependencies
+            junit                           : "junit:junit:$versions.junit",
+            test_runner                     : "androidx.test.ext:junit:$versions.test_runner",
+            test_espresso_core              : "androidx.test.espresso:espresso-core:$versions.test_espresso_core",
+            // Kotlin
+            kotlin                          : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
+            kotlinx_coroutines              : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.kotlinx_coroutines",
+            kotlinx_coroutines_android      : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.kotlinx_coroutines_android",
+            // Material
+            material                        : "com.google.android.material:material:$versions.material",
+            // Appcompat
+            appcompat                       : "androidx.appcompat:appcompat:$versions.appcompat",
+            // ConstraintLayout
+            constraintlayout                : "androidx.constraintlayout:constraintlayout:$versions.constraintlayout",
+            // Recyclerview
+            recyclerview                    : "androidx.recyclerview:recyclerview:$versions.recyclerview",
+            // swiperefreshlayout
+            swiperefreshlayout              : "androidx.swiperefreshlayout:swiperefreshlayout:$versions.swiperefreshlayout",
+            // CardView
+            cardview                        : "androidx.cardview:cardview:$versions.cardview",
+            // Annotation
+            annotation                      : "androidx.annotation:annotation:$versions.annotation",
+            // Multidex 65536
+            multidex                        : "com.android.support:multidex:$versions.multidex",
+            // Router
+            router                          : "com.alibaba:arouter-api:$versions.router",
+            router_compiler                 : "com.alibaba:arouter-compiler:$versions.router_compiler",
+            // Lifecycle
+            lifecycle_extensions            : "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle_extensions",
+            // RxKotlin and RxAndroid
+            rxkotlin                        : "io.reactivex.rxjava2:rxkotlin:$versions.rxkotlin",
+            rxandroid                       : "io.reactivex.rxjava2:rxandroid:$versions.rxandroid",
+            rxjava                          : "io.reactivex.rxjava2:rxjava:$versions.rxjava",
+            // Okhttp And Retrofit
+            okhttp3_okhttp                  : "com.squareup.okhttp3:okhttp:$versions.okhttp3_okhttp",
+            okhttp3_logging_interceptor     : "com.squareup.okhttp3:logging-interceptor:$versions.okhttp3_logging_interceptor",
+            retrofit2_retrofit              : "com.squareup.retrofit2:retrofit:$versions.retrofit2_retrofit",
+            retrofit2_converter_gson        : "com.squareup.retrofit2:converter-gson:$versions.retrofit2_converter_gson",
+            retrofit2_adapter_rxjava2       : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit2_adapter_rxjava2",
+            // Glide
+            glide                           : "com.github.bumptech.glide:glide:$versions.glide",
+            glide_compiler                  : "com.github.bumptech.glide:compiler:$versions.glide_compiler",
+            // EventBus
+            eventbus                        : "org.greenrobot:eventbus:$versions.eventbus",
+            // Banner
+            banner                          : "com.youth.banner:banner:$versions.banner",
+            // BaseRecyclerViewAdapterHelper
+            base_recyclerview_adapter_helper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:$versions.base_recyclerview_adapter_helper",
+            // Dagger2
+            dagger                          : "com.google.dagger:dagger:$versions.dagger",
+            dagger_compiler                 : "com.google.dagger:dagger-compiler:$versions.dagger_compiler",
+    ]
+}
+
+

@@ -1,6 +1,7 @@
 package com.open.learncode.设计模式.建造者Builder模式;
 
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 public class Person {
     private String name;

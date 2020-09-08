@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.open.learncode.开源框架.rxjava2.RxJavaActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="initRxJava2_1"
+        android:text="initRxJava方法1" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="initRxJava2_2"
+        android:text="initRxJava方法2" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="initRxJava2_3"
+        android:text="initRxJava方法2" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="map"
+        android:text="map操作符" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="flatMap"
+        android:text="flatMap操作符" />
+
+
+    <VideoView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"/>
+
+    <SurfaceView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <TextureView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
