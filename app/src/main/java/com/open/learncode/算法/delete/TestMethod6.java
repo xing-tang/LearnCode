@@ -49,7 +49,7 @@ public class TestMethod6 {
      * @param head 单链表的头节点
      */
     private static void method_1(ListNode head) {
-        Stack<ListNode> stack = new Stack<ListNode>();
+        Stack<ListNode> stack = new Stack<>();
 
         while (head != null) {
             stack.push(head);

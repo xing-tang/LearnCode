@@ -13,49 +13,12 @@ package com.open.learncode.算法.test.A4_跟数相关的算法;
  * 循环：从下往上计算，避免重复计算
  * <p>
  * 复杂度分析：
- * 方法一：时间复杂度：O(2^n)，空间复杂度：O(1)
- * 方法二：时间复杂度：O(n)，空间复杂度：O(n)
- * 方法三：时间复杂度：O(n)，空间复杂度：O(1)
- * 方法四：时间复杂度：O(1)，空间复杂度：O(1)
+ * 时间复杂度：O(n)，空间复杂度：O(1)
  */
 public class TestMethod10_1 {
 
     public static void main(String[] args) {
-        System.out.println(method_1(10));
-        System.out.println(method_2(10));
-        System.out.println(method_3(10));
-        System.out.println(method_4(4));
-    }
-
-    /**
-     * 递归方法
-     *
-     * @param n 输入参数
-     * @return 返回斐波那契数列的第n项
-     */
-    public static long method_1(int n) {
-        if (n < 0) return -1;
-        if (n <= 1) return n;
-        return method_1(n - 1) + method_1(n - 2);
-    }
-
-    /**
-     * 记忆化自底向上的方法
-     *
-     * @param n 输入参数
-     * @return 返回斐波那契数列的第n项
-     */
-    public static int method_2(int n) {
-        if (n < 0) return -1;
-        if (n <= 1) return n;
-
-        int[] cache = new int[n + 1];
-        //cache[0]默认赋值为0
-        cache[1] = 1;
-        for (int i = 2; i <= n; i++) {
-            cache[i] = cache[i - 1] + cache[i - 2];
-        }
-        return cache[n];
+        System.out.println(method(10));
     }
 
     /**
@@ -64,7 +27,7 @@ public class TestMethod10_1 {
      * @param n 输入的参数
      * @return 返回斐波那契数列的第n项
      */
-    private static long method_3(int n) {
+    private static long method(int n) {
         if (n < 0) return -1;
         if (n <= 1) return n;
 
@@ -79,19 +42,5 @@ public class TestMethod10_1 {
         }
         return current;
     }
-
-    /**
-     * 黄金分割率计算
-     *
-     * @param n 输入参数
-     * @return 返回斐波那契数列的第n项
-     */
-    private static long method_4(int n) {
-        // 后一个数是前一个数的1.618倍
-        double goldenRatio = (1 + Math.sqrt(5)) / 2;
-        // round 四舍五入
-        return (int) Math.round(Math.pow(goldenRatio, n) / Math.sqrt(5));
-    }
-
 }
 

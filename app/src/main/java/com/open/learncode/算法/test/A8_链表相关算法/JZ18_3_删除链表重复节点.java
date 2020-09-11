@@ -6,7 +6,7 @@ import com.open.learncode.算法.base.PrintUtils;
 /**
  * 题目：
  * 删除链表中重复的节点：在一个排序的链表中，如何删除重复的节点？
- * 例如：1->2->3->3->5 删除重复的节点后变成 1->2->5
+ * 例如：1->2->3->3->4->4->5 删除重复的节点后变成 1->2->3>4->5
  * <p>
  * 解题思路：
  * 构建辅助头节点，遇到重复元素跳过，重新建立前一个节点与第一个不重复节点的连接
@@ -14,15 +14,13 @@ import com.open.learncode.算法.base.PrintUtils;
  * 复杂度分析：
  * 时间复杂度：O(n)，空间复杂度：O(1)
  */
-public class TestMethod18_2 {
+public class JZ18_3_删除链表重复节点 {
 
     public static void main(String[] args) {
-        ListNode<Integer> node6 = new ListNode<Integer>(6);
-        ListNode<Integer> node5_3 = new ListNode<Integer>(5, node6);
-        ListNode<Integer> node5_2 = new ListNode<Integer>(5, node5_3);
-        ListNode<Integer> node5_1 = new ListNode<Integer>(5, node5_2);
-        ListNode<Integer> node4 = new ListNode<Integer>(4, node5_1);
-        ListNode<Integer> node3_2 = new ListNode<Integer>(3, node4);
+        ListNode<Integer> node5 = new ListNode<Integer>(5);
+        ListNode<Integer> node4_2 = new ListNode<Integer>(4, node5);
+        ListNode<Integer> node4_1 = new ListNode<Integer>(4, node4_2);
+        ListNode<Integer> node3_2 = new ListNode<Integer>(3, node4_1);
         ListNode<Integer> node3_1 = new ListNode<Integer>(3, node3_2);
         ListNode<Integer> node2 = new ListNode<Integer>(2, node3_1);
         ListNode<Integer> node1 = new ListNode<Integer>(1, node2);

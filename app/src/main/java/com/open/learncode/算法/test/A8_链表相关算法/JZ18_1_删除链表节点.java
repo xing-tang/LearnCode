@@ -15,7 +15,7 @@ import com.open.learncode.算法.base.PrintUtils;
  * 复杂度分析：
  * 时间复杂度：O(n)，空间复杂度：O(1)
  */
-public class TestMethod18_1 {
+public class JZ18_1_删除链表节点 {
 
     public static void main(String[] args) {
         ListNode<Integer> node5 = new ListNode<Integer>(5);

@@ -29,8 +29,10 @@ public class TestMethod18_2 {
 
     public static void main(String[] args) {
         ListNode<Integer> node5 = new ListNode<Integer>(5);
-        ListNode<Integer> node4 = new ListNode<Integer>(3, node5);
-        ListNode<Integer> node3 = new ListNode<Integer>(3, node4);
+        ListNode<Integer> node4_2 = new ListNode<Integer>(4, node5);
+        ListNode<Integer> node4 = new ListNode<Integer>(4, node4_2);
+        ListNode<Integer> node3_2 = new ListNode<Integer>(3, node4);
+        ListNode<Integer> node3 = new ListNode<Integer>(3, node3_2);
         ListNode<Integer> node2 = new ListNode<Integer>(2, node3);
         ListNode<Integer> node1 = new ListNode<Integer>(1, node2);
 

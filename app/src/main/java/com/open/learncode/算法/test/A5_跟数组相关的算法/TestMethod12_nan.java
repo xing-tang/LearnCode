@@ -23,7 +23,7 @@ public class TestMethod12_nan {
     public static void main(String[] args) {
         char matrix[][] = {{'a', 'b', 't', 'g'}, {'c', 'f', 'c', 's'}, {'j', 'd', 'e', 'h'}};
 //        String str = "bfce";
-        String str="";
+        String str="h";
         System.out.println(hasPath(matrix, matrix.length, matrix[0].length, str));
     }
 
@@ -46,6 +46,8 @@ public class TestMethod12_nan {
         int pathLength = 0;
         for (int row = 0; row < rows; row++) {
             for (int column = 0; column < columns; column++) {
+
+
 
                 if (hasPathCore(matrix, rows, columns, row, column, str, pathLength, visited)) {
                     return true;

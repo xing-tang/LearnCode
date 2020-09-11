@@ -18,7 +18,7 @@ import com.open.learncode.算法.base.PrintUtils;
  * 复杂度分析：
  * 时间复杂度：O(n)，空间复杂度：O(1)【fast slow】
  */
-public class TestMethod22_1 {
+public class JZ22_1_链表倒数第K个节点 {
 
     public static void main(String[] args) {
         ListNode<Integer> node6 = new ListNode<Integer>(6);

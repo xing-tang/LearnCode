@@ -13,26 +13,12 @@ package com.open.learncode.算法.test.A4_跟数相关的算法;
  * 因此，我们用数学归纳法可以证明，n级台阶的不同跳法的总数f(n)=2的(n-1)次方
  * <p>
  * 复杂度分析：
- * 方法一：时间复杂度：O(2^n)，空间复杂度：O(1)
- * 方法二：时间复杂度：O(n)，空间复杂度：O(n)
+ * 时间复杂度：O(n)，空间复杂度：O(n)
  */
 public class TestMethod10_3 {
 
     public static void main(String[] args) {
-        System.out.println(method_1(1));
-        System.out.println(method_2(1));
-    }
-
-    /**
-     * 递归方法
-     *
-     * @param n 输入参数
-     * @return 返回第n项的结果值
-     */
-    public static long method_1(int n) {
-        if (n <= 2)
-            return n;
-        return 2 * method_1(n - 1);
+        System.out.println(method(3));
     }
 
     /**
@@ -41,7 +27,7 @@ public class TestMethod10_3 {
      * @param n 输入的参数
      * @return 返回第n项的结果值
      */
-    private static long method_2(int n) {
+    private static long method(int n) {
         if (n <= 2) return n;
 
         int current = 2;

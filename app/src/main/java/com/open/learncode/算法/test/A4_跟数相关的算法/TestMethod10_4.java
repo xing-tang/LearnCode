@@ -15,27 +15,12 @@ package com.open.learncode.算法.test.A4_跟数相关的算法;
  * 因此，因此可得还是一个斐波那契数列。
  * <p>
  * 复杂度分析：
- * 方法一：时间复杂度：O(2^n)，空间复杂度：O(1)
- * 方法二：时间复杂度：O(n)，空间复杂度：O(n)
+ * 时间复杂度：O(n)，空间复杂度：O(1)
  */
 public class TestMethod10_4 {
 
     public static void main(String[] args) {
-        System.out.println(method_1(5));
-        System.out.println(method_2(5));
-    }
-
-    /**
-     * 递归方法
-     *
-     * @param n 输入参数
-     * @return 返回斐波那契数列的第n项
-     */
-    public static long method_1(int n) {
-        if (n <= 2) {
-            return n;
-        }
-        return method_1(n - 1) + method_1(n - 2);
+        System.out.println(method(5));
     }
 
     /**
@@ -44,7 +29,7 @@ public class TestMethod10_4 {
      * @param n 输入的参数
      * @return 返回斐波那契数列的第n项
      */
-    private static long method_2(int n) {
+    private static long method(int n) {
         if (n <= 2) return n;
 
         int current = 0;

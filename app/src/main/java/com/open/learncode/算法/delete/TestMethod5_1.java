@@ -14,7 +14,7 @@ package com.open.learncode.算法.delete;
 public class TestMethod5_1 {
 
     public static void main(String[] args) {
-        String str = "we are happy.";
+        StringBuffer str = new StringBuffer("we are happy.");
         System.out.print(method(str));
     }
 
@@ -24,29 +24,29 @@ public class TestMethod5_1 {
      * @param str 输入的字符串
      * @return 输出的字符串
      */
-    public static String method(String str) {
-        if (str == null || str.length() <= 0) return null;
+    public static String method(StringBuffer str) {
+        if (str == null || str.length() <= 0) return str.toString();
 
-        StringBuilder strb = new StringBuilder(str);
-        int spaceNumber = 0;
-        for (int i = 0; i < strb.length(); i++) {
-            if (strb.charAt(i) == ' ') spaceNumber++;
+        int spaceLength = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ' ') spaceLength++;
         }
-        int oldIndex = strb.length() - 1;
-        int newLength = strb.length() + spaceNumber * 2;
+
+        int oldIndex = str.length() - 1;
+        int newLength = str.length() + spaceLength * 2;
         int newIndex = newLength - 1;
-        strb.setLength(newLength);
-        while (oldIndex >= 0 && newIndex > oldIndex) {
-            if (strb.charAt(oldIndex) == ' ') {
-                strb.setCharAt(newIndex--, '0');
-                strb.setCharAt(newIndex--, '2');
-                strb.setCharAt(newIndex--, '%');
+        str.setLength(newLength);
+
+        for (; oldIndex >= 0; oldIndex--) {
+            if (str.charAt(oldIndex) == ' ') {
+                str.setCharAt(newIndex--, '0');
+                str.setCharAt(newIndex--, '2');
+                str.setCharAt(newIndex--, '%');
             } else {
-                strb.setCharAt(newIndex--, strb.charAt(oldIndex));
+                str.setCharAt(newIndex--, str.charAt(oldIndex));
             }
-            oldIndex--;
         }
-        return strb.toString();
+        return str.toString();
     }
 }
 

@@ -16,49 +16,12 @@ package com.open.learncode.算法.test.A4_跟数相关的算法;
  * 实际上，这就是斐波那契数列
  * <p>
  * 复杂度分析：
- * 方法一：时间复杂度：O(2^n)，空间复杂度：O(1)
- * 方法二：时间复杂度：O(n)，空间复杂度：O(n)
- * 方法三：时间复杂度：O(n)，空间复杂度：O(1)
+ * 时间复杂度：O(n)，空间复杂度：O(1)
  */
 public class TestMethod10_2 {
 
     public static void main(String[] args) {
-        System.out.println(method_1(5));
-        System.out.println(method_2(5));
-        System.out.println(method_3(5));
-    }
-
-    /**
-     * 递归方法
-     *
-     * @param n 输入参数
-     * @return 返回斐波那契数列的第n项
-     */
-    public static long method_1(int n) {
-        if (n <= 2) {
-            return n;
-        }
-        return method_1(n - 1) + method_1(n - 2);
-    }
-
-    /**
-     * 记忆化自底向上的方法
-     *
-     * @param n 输入参数
-     * @return 返回斐波那契数列的第n项
-     */
-    public static int method_2(int n) {
-        if (n <= 2) {
-            return n;
-        }
-        int[] cache = new int[n + 1];
-        cache[1] = 1;
-        cache[2] = 2;
-
-        for (int i = 3; i <= n; i++) {
-            cache[i] = cache[i - 1] + cache[i - 2];
-        }
-        return cache[n];
+        System.out.println(method(5));
     }
 
     /**
@@ -67,7 +30,7 @@ public class TestMethod10_2 {
      * @param n 输入的参数
      * @return 返回斐波那契数列的第n项
      */
-    private static long method_3(int n) {
+    private static long method(int n) {
         if (n <= 2) return n;
 
         int current = 0;
@@ -80,7 +43,5 @@ public class TestMethod10_2 {
         }
         return current;
     }
-
-
 }
 

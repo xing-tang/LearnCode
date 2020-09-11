@@ -30,7 +30,7 @@ import com.open.learncode.算法.base.PrintUtils;
  * 复杂度分析：
  * 时间复杂度：O(n)，空间复杂度：O(1)
  */
-public class TestMethod24_3 {
+public class JZ24_3_旋转链表 {
 
     public static void main(String[] args) {
         ListNode<Integer> node5 = new ListNode<Integer>(5);

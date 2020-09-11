@@ -14,7 +14,7 @@ package com.open.learncode.算法.test.A4_跟数相关的算法;
 public class TestMethod65 {
 
     public static void main(String[] args) {
-        System.out.println("17+5=" + method(17, 5));
+        System.out.println("17+5=" + method(3, 5));
         System.out.println("-6+3=" + method(-6, 3));
     }
 

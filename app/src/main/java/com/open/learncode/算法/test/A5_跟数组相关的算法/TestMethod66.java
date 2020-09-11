@@ -1,9 +1,11 @@
 package com.open.learncode.算法.test.A5_跟数组相关的算法;
 
+import com.open.learncode.算法.base.PrintUtils;
+
 /**
  * 题目：
  * 构建乘积数组：给定一个数组A[0,1,…,n-1]，请构建一个数组B[0,1,…,n-1]，
- * 其中B中的元素B[i]=A[0]×A[1]×…×A[i-1]×A[i+1]×…×A[n-1]。不能使用除法。
+ * 其中B中的元素B[i]=A[0]×A[1]×…×A[i-1]×A[i+1]×…×A[n-i]。不能使用除法。
  * <p>
  * 解题思路：
  * 对称遍历
@@ -22,24 +24,12 @@ package com.open.learncode.算法.test.A5_跟数组相关的算法;
 public class TestMethod66 {
 
     public static void main(String[] args) {
-
-        int[] nums1 = {0, 1, 2, 3, 4};
-        int[] temp1 = method(nums1);
-        for (int i = 0; i < temp1.length; i++) {
-            System.out.print(temp1[i] + " ");
-        }
-        System.out.println();
+//        int[] nums1 = {0, 1, 2, 3, 4};
+//        PrintUtils.getInstance().printIntArray(nums1);
+//        PrintUtils.getInstance().printIntArray( method(nums1));
         int[] nums2 = {1, 2, 3, 4, 5};
-        int[] temp2 = method(nums2);
-        for (int i = 0; i < temp2.length; i++) {
-            System.out.print(temp2[i] + " ");
-        }
-
-        int[] a={1,2,3,4,5};
-        int[] b=method(a);
-        for(int x:b)
-            System.out.print(x+" ");
-
+        PrintUtils.getInstance().printIntArray(nums2);
+        PrintUtils.getInstance().printIntArray( method(nums2));
     }
 
     /**

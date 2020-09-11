@@ -17,9 +17,7 @@ import com.open.learncode.算法.base.PrintUtils;
  * 复杂度分析：
  * 时间复杂度：O(m+n)【m n分别是两个链表的长度】，空间复杂度：O(1)
  */
-
-public class TestMethod52 {
-
+public class JZ52_两链表第一个公共节点 {
     public static void main(String[] args) {
         // 第一条链表
         ListNode<Integer> node7 = new ListNode<Integer>(7);

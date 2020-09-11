@@ -28,7 +28,7 @@ public class TestMethod64 {
      */
     public static int method(int n) {
         //当 n = 1 时 n > 1 不成立 ，此时 “短路” ，终止后续递归
-        boolean x = n > 1 && method(n - 1) > 0;
+        boolean x = n > 1 && method(n - 1)<=-9 ;
         sum += n;
         return sum;
     }

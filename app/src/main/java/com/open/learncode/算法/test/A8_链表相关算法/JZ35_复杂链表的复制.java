@@ -22,7 +22,7 @@ import com.open.learncode.算法.base.PrintUtils;
  * 复杂度分析：
  * 时间复杂度：O(n)，空间复杂度：O(1)
  */
-public class TestMethod35 {
+public class JZ35_复杂链表的复制 {
 
     public static void main(String[] args) {
         ListNode<String> nodeA = new ListNode<String>("A");
@@ -68,7 +68,7 @@ public class TestMethod35 {
         // 分离原节点和复制节点，并且链接好对应的next值
         ListNode oldListNode = head;
         ListNode newListNode = head.next;
-        ListNode headNew = head.next;
+        ListNode headNew = newListNode;
         while (oldListNode != null) {
             oldListNode.next = oldListNode.next.next;
             // 注意空指针异常
