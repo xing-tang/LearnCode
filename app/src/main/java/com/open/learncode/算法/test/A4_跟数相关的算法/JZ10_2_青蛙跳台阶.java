@@ -18,7 +18,7 @@ package com.open.learncode.算法.test.A4_跟数相关的算法;
  * 复杂度分析：
  * 时间复杂度：O(n)，空间复杂度：O(1)
  */
-public class TestMethod10_2 {
+public class JZ10_2_青蛙跳台阶 {
 
     public static void main(String[] args) {
         System.out.println(method(5));

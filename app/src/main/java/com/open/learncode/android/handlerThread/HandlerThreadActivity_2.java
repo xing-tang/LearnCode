@@ -1,4 +1,4 @@
-package com.open.learncode.android.threadhandler;
+package com.open.learncode.android.handlerThread;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import learncode.open.com.learncode.R;
 
-public class ThreadHandlerActivity_2 extends AppCompatActivity {
+public class HandlerThreadActivity_2 extends AppCompatActivity {
 
 
     private static final int MSG_STOOP_INFO = 2;

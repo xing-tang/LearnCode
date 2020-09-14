@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context="com.open.learncode.android.threadhandler.ThreadHandlerActivity_1">
+    tools:context="com.open.learncode.android.handlerThread.HandlerThreadActivity_1">
 
 
     <TextView

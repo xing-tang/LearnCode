@@ -12,7 +12,7 @@ package com.open.learncode.算法.test.A4_跟数相关的算法;
  * 时间复杂度：O(n)【其中N=n，动态规划需遍历计算dp列表】，空间复杂度：O(n)【长度为N的dp列表使用O(N)的额外空间】
  */
 
-public class TestMethod49 {
+public class JZ49_丑数 {
 
     public static void main(String[] args) {
 //        int n=0;
@@ -25,7 +25,6 @@ public class TestMethod49 {
      * @return
      */
     private static int method(int num) {
-
         //鲁棒性
         if (num <= 0) return -1;
 
@@ -49,5 +48,4 @@ public class TestMethod49 {
         //返回第n个丑数。
         return dp[num - 1];
     }
-
 }

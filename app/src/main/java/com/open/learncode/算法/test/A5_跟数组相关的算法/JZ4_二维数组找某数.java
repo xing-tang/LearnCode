@@ -13,7 +13,7 @@ package com.open.learncode.算法.test.A5_跟数组相关的算法;
  * 方法一：时间复杂度：O(n)，空间复杂度：O(1)
  * 方法二：时间复杂度：O(n)，空间复杂度：O(1)
  */
-public class TestMethod4 {
+public class JZ4_二维数组找某数 {
 
     public static void main(String[] args) {
         int[][] array = {{1, 2, 8, 9}, {2, 3, 9, 12}, {4, 7, 10, 13}};

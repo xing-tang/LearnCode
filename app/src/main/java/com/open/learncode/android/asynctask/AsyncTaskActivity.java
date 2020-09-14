@@ -2,6 +2,7 @@ package com.open.learncode.android.asynctask;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.LruCache;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -105,7 +106,6 @@ public class AsyncTaskActivity extends AppCompatActivity {
         //在主线程中执行，当异步任务取消时，onCancelled()会被调用，这个时候onPostExecute()则不会被调用
         @Override
         protected void onCancelled() {
-
             text.setText("已取消");
             progressBar.setProgress(0);
 
@@ -115,7 +115,6 @@ public class AsyncTaskActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // 绑定UI组件
         setContentView(R.layout.activity_asynctask);
 

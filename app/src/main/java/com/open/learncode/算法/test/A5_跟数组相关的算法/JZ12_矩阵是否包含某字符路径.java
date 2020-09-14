@@ -18,7 +18,7 @@ package com.open.learncode.算法.test.A5_跟数组相关的算法;
  * 复杂度分析：
  * 时间复杂度：O(n^2)   空间复杂度：O(n^2)
  */
-public class TestMethod12_nan {
+public class JZ12_矩阵是否包含某字符路径 {
 
     public static void main(String[] args) {
         char matrix[][] = {{'a', 'b', 't', 'g'}, {'c', 'f', 'c', 's'}, {'j', 'd', 'e', 'h'}};

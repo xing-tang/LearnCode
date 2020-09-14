@@ -15,8 +15,8 @@ import com.open.learncode.android.launchmode.LuanchAActivity
 import com.open.learncode.android.launchmode.LuanchBActivity
 import com.open.learncode.android.launchmode.LuanchCActivity
 import com.open.learncode.android.launchmode.LuanchDActivity
-import com.open.learncode.android.threadhandler.ThreadHandlerActivity_1
-import com.open.learncode.android.threadhandler.ThreadHandlerActivity_2
+import com.open.learncode.android.handlerThread.HandlerThreadActivity_1
+import com.open.learncode.android.handlerThread.HandlerThreadActivity_2
 import com.open.learncode.android.三级缓存.ImageCacheActivity
 import com.open.learncode.android.动画.AnimationActivity
 import com.open.learncode.android.协程.CoroutineActivity
@@ -33,9 +33,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import learncode.open.com.learncode.R
 import java.util.concurrent.TimeUnit
 import androidx.recyclerview.widget.RecyclerView
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import com.open.learncode.android.intentService.IntentServiceActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -53,6 +51,7 @@ class MainActivity : AppCompatActivity() {
             "子线程通过Handler发送消息给子线程",
             "HandlerThread_1",
             "HandlerThread_2",
+            "IntentService",
             "标准模式",
             "栈顶复用模式",
             "栈内复用模式",
@@ -72,8 +71,9 @@ class MainActivity : AppCompatActivity() {
         HandlerActivity_2::class.java,
         HandlerActivity_3::class.java,
         HandlerActivity_4::class.java,
-        ThreadHandlerActivity_1::class.java,
-        ThreadHandlerActivity_2::class.java,
+        HandlerThreadActivity_1::class.java,
+        HandlerThreadActivity_2::class.java,
+        IntentServiceActivity::class.java,
         LuanchAActivity::class.java,
         LuanchBActivity::class.java,
         LuanchCActivity::class.java,

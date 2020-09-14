@@ -12,7 +12,7 @@ package com.open.learncode.算法.test.A5_跟数组相关的算法;
  * 复杂度分析：
  * 时间复杂度：O(logn)，空间复杂度：O(1)，最差时间复杂度：即为顺序查找时，需遍历数据下标i-j的元素，时间复杂度为O(n)
  */
-public class TestMethod11 {
+public class JZ11_旋转数组的最小数字 {
 
     public static void main(String[] args) {
 //        int nums[] = {1, 1, 1, 0, 1};

@@ -1,6 +1,8 @@
 package com.open.learncode.算法.test.A4_跟数相关的算法;
 
 
+import com.open.learncode.算法.base.PrintUtils;
+
 /**
  * 题目：
  * 判断两个整数m和n，计算m的二进制中的需要改变多少位才能得到n。
@@ -12,11 +14,13 @@ package com.open.learncode.算法.test.A4_跟数相关的算法;
  * n为数值的二进制表示的位数
  * 时间复杂度：O(n)，空间复杂度：O(1)
  */
-public class TestMethod15_3 {
+public class JZ15_3_m的二进制改变多少位得到n {
 
     public static void main(String[] args) {
-        System.out.println("3的二进制中改变多少位才能得到15=>" + method(3, 15));
-        System.out.println("-3的二进制中改变多少位才能得到-15=>" + method(-3, -15));
+        PrintUtils.getInstance().print(method(3,15),"3的二进制中改变多少位才能得到15");
+        PrintUtils.getInstance().print(method(15,3),"15的二进制中改变多少位才能得到3");
+        PrintUtils.getInstance().print(method(-3,-15),"-3的二进制中改变多少位才能得到-15");
+        PrintUtils.getInstance().print(method(15,-3),"15的二进制中改变多少位才能得到-3");
     }
 
     /**

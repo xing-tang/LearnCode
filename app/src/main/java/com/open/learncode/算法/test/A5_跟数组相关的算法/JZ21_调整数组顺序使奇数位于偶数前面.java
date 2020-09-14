@@ -12,7 +12,7 @@ package com.open.learncode.算法.test.A5_跟数组相关的算法;
  * 方法一：时间复杂度：O(n)，空间复杂度：O(1)
  * 方法二：时间复杂度：O(n)，空间复杂度：O(1)
  */
-public class TestMethod21 {
+public class JZ21_调整数组顺序使奇数位于偶数前面 {
 
     public static void main(String[] args) {
         int[] data = {1, 2, 3, 4, 5};

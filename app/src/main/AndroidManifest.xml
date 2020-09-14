@@ -15,10 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name="com.open.learncode.android.intentService.IntentServiceActivity"></activity>
         <activity
             android:name="com.open.learncode.MainActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:launchMode="singleInstance">
+            android:launchMode="singleInstance"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,18 +42,19 @@
             android:launchMode="singleInstance" />
         <activity android:name="com.open.learncode.android.协程.CoroutineActivity" />
         <activity android:name="com.open.learncode.开源框架.okhttp3.OkHttpActivity" />
-        <activity android:name="com.open.learncode.开源框架.retrofit2.Retrofit2Activity"/>
+        <activity android:name="com.open.learncode.开源框架.retrofit2.Retrofit2Activity" />
         <activity android:name="com.open.learncode.android.handler.HandlerActivity_2" />
         <activity android:name="com.open.learncode.android.handler.HandlerActivity_3" />
         <activity android:name="com.open.learncode.android.handler.HandlerActivity_4" />
-        <activity android:name="com.open.learncode.android.threadhandler.ThreadHandlerActivity_1" />
-        <activity android:name="com.open.learncode.android.threadhandler.ThreadHandlerActivity_2" />
+        <activity android:name="com.open.learncode.android.handlerThread.HandlerThreadActivity_1" />
+        <activity android:name="com.open.learncode.android.handlerThread.HandlerThreadActivity_2" />
         <activity android:name="com.open.learncode.android.生命周期.FragmentListArray" />
         <activity android:name="com.open.learncode.android.动画.AnimationActivity" />
         <activity android:name="com.open.learncode.开源框架.mvp.DaggerActivity" />
         <activity android:name="com.open.learncode.开源框架.rxjava2.RxJavaActivity" />
         <activity android:name="com.open.learncode.android.threadpoolexecutor.CachedThreadPoolActivity" />
         <activity android:name="com.open.learncode.android.三级缓存.ImageCacheActivity" />
+        <service android:name="com.open.learncode.android.intentService.DownloadIntentService"/>
     </application>
 
 </manifest>

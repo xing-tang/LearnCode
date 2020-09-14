@@ -1,5 +1,7 @@
 package com.open.learncode.算法.test.A4_跟数相关的算法;
 
+import com.open.learncode.算法.base.PrintUtils;
+
 /**
  * 题目：
  * 求1+2+...+n：求1+2+...+n，要求不能使用乘除法、for、while、if、else、switch、case
@@ -11,11 +13,10 @@ package com.open.learncode.算法.test.A4_跟数相关的算法;
  * 复杂度分析：
  * 时间复杂度：O(n)，空间复杂度：O(n)
  */
-public class TestMethod64 {
+public class JZ64_求1加到n的和 {
 
     public static void main(String[] args) {
-        method(5);
-        System.out.println(sum);
+        PrintUtils.getInstance().print(method(5));
     }
 
     public static int sum = 0;

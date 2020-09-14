@@ -11,7 +11,7 @@ package com.open.learncode.算法.test.A5_跟数组相关的算法;
  * 复杂度分析：
  * 时间复杂度：O(n)，空间复杂度：O(1)
  */
-public class TestMethod5_1 {
+public class JZ5_1_替换空格 {
 
     public static void main(String[] args) {
         StringBuffer str = new StringBuffer("we are happy.");

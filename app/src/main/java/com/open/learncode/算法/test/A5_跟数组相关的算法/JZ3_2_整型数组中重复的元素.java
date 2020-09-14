@@ -20,7 +20,7 @@ import java.util.PriorityQueue;
  * 方法一的时间复杂度：O(nlog(n))，空间复杂度：都为O(1)
  * 方法二的时间复杂度：O(n)，空间复杂度：都为O(1)
  */
-public class TestMethod3_2 {
+public class JZ3_2_整型数组中重复的元素 {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static void main(String[] args) {

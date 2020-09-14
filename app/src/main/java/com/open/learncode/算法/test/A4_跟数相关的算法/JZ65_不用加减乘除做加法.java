@@ -1,5 +1,7 @@
 package com.open.learncode.算法.test.A4_跟数相关的算法;
 
+import com.open.learncode.算法.base.PrintUtils;
+
 /**
  * 题目：
  * 不用加减乘除做加法：写一个函数，求两个整数之和，要求在函数体内不得使用 “+”、“-”、“*”、“/” 四则运算符号。
@@ -11,11 +13,11 @@ package com.open.learncode.算法.test.A4_跟数相关的算法;
  * 时间复杂度：O(1)【最差情况下（例如a=0x7fffffff，b=1时），需循环31次，使用O(1)时间；每轮中的常数次位操作使用O(1)时间】
  * 空间复杂度：O(1)
  */
-public class TestMethod65 {
+public class JZ65_不用加减乘除做加法 {
 
     public static void main(String[] args) {
-        System.out.println("17+5=" + method(3, 5));
-        System.out.println("-6+3=" + method(-6, 3));
+        PrintUtils.getInstance().print(method(3, 5),"3+5");
+        PrintUtils.getInstance().print(method(-6, 3),"-6+3");
     }
 
     /**

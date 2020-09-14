@@ -15,7 +15,7 @@ package com.open.learncode.算法.test.A4_跟数相关的算法;
  * 复杂度分析：
  * 时间复杂度：O(n)，空间复杂度：O(1)
  */
-public class TestMethod10_1 {
+public class JZ10_1_斐波那契数列 {
 
     public static void main(String[] args) {
         System.out.println(method(10));

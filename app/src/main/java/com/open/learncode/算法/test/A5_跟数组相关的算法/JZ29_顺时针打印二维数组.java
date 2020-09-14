@@ -14,7 +14,7 @@ package com.open.learncode.算法.test.A5_跟数组相关的算法;
  * 复杂度分析：
  * 时间复杂度：O(m*n)【m n分别为矩阵的行和列数，需遍历到矩阵中的每一个元素】，空间复杂度：O(m*n)
  */
-public class TestMethod29 {
+public class JZ29_顺时针打印二维数组 {
 
     public static void main(String[] args) {
         int[][] matrix = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};

@@ -14,7 +14,7 @@ import java.util.Arrays;
  * 复杂度分析：
  * 时间复杂度：O(nlogn)，空间复杂度：O(nlogn)
  */
-public class OthreMethod1 {
+public class OT1_字符串数组去重 {
 
     public static void main(String[] args) {
         String[] strArray = {"aaa", "bbb", "bbb", "ccc", "ddd", "ddd", "eee"};
