@@ -14,7 +14,7 @@ package com.open.learncode.算法.test.A4_跟数相关的算法;
  * 复杂度分析：
  * 时间复杂度：O(n^2)   空间复杂度：O(n^2)
  */
-public class TestMethod13_nan {
+public class JZ13_机器人运动范围 {
 
     public static void main(String[] args) {
         int m = 4;

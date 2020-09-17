@@ -17,7 +17,7 @@ package com.open.learncode.算法.test.A4_跟数相关的算法;
  * 【将数字num转化为字符串str(num)，占用O(logn)的额外空间】
  * 注意：这里的log以10为底
  */
-public class TestMethod44 {
+public class JZ44_数字序列中某一位的数字 {
 
     public static void main(String[] args) {
         System.out.println(method(10));

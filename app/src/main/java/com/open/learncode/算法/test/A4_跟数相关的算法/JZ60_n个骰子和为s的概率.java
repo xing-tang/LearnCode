@@ -11,7 +11,7 @@ package com.open.learncode.算法.test.A4_跟数相关的算法;
  * 方法一：时间复杂度：O(6^n)【指数级别的复杂度，会很容易导致超时】，空间复杂度：O(n)
  * 方法二：时间复杂度：O(n*6*n*6)即O(n^2)，空间复杂度：O(n^2)
  */
-public class TestMethod60 {
+public class JZ60_n个骰子和为s的概率 {
 
     public static void main(String[] args) {
         int n = 2;

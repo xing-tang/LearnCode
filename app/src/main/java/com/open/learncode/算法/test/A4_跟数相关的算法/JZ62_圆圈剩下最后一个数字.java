@@ -1,4 +1,4 @@
-package com.open.learncode.算法.test.A8_链表相关算法;
+package com.open.learncode.算法.test.A4_跟数相关的算法;
 
 import com.open.learncode.算法.base.PrintUtils;
 
