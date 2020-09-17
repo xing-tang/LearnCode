@@ -28,7 +28,7 @@ public class JZ64_求1加到n的和 {
      * @return 返回1到n的和
      */
     public static int method(int n) {
-        //当 n = 1 时 n > 1 不成立 ，此时 “短路” ，终止后续递归
+        //当 n = 1 时 n > 1 不成立 ，此时 “短路” ，终止后续递归，"<=-9"条件不重要随便写
         boolean x = n > 1 && method(n - 1)<=-9 ;
         sum += n;
         return sum;

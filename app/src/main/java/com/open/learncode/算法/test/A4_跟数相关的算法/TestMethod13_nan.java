@@ -19,15 +19,7 @@ public class TestMethod13_nan {
     public static void main(String[] args) {
         int m = 4;
         int n = 3;
-        int threshold[][] = new int[m][n];
-        int k = 0;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-
-                threshold[i][j] = k++;
-            }
-        }
-        System.out.println(movingCount(0, m, n));
+        System.out.println(movingCount(18, m, n));
     }
 
     /**
@@ -39,14 +31,9 @@ public class TestMethod13_nan {
      * @return
      */
     private static int movingCount(int threshold, int rows, int columns) {
-
-        if (threshold < 0 || rows <= 0 || columns <= 0)
-            return 0;
-
+        if (threshold < 0 || rows <= 0 || columns <= 0) return 0;
         boolean visited[][] = new boolean[rows][columns];
-
         int count = movingCountCore(threshold, rows, columns, 0, 0, visited);
-
         return count;
     }
 
@@ -62,20 +49,15 @@ public class TestMethod13_nan {
      * @return
      */
     private static int movingCountCore(int threshold, int rows, int columns, int row, int column, boolean[][] visited) {
-
         int count = 0;
         if (check(threshold, rows, columns, row, column, visited)) {
-
             visited[row][column] = true;
             count = 1 + movingCountCore(threshold, rows, columns, row - 1, column, visited)
                     + movingCountCore(threshold, rows, columns, row + 1, column, visited)
                     + movingCountCore(threshold, rows, columns, row, column - 1, visited)
                     + movingCountCore(threshold, rows, columns, row, column + 1, visited);
-
         }
         return count;
-
-
     }
 
     /**
@@ -90,14 +72,12 @@ public class TestMethod13_nan {
      * @return
      */
     private static boolean check(int threshold, int rows, int columns, int row, int column, boolean[][] visited) {
-
         if (row >= 0 && row < rows && column >= 0 && column < columns
                 && getDigitSum(row) + getDigitSum(column) <= threshold && !visited[row][column]) {
             System.out.println("check:" + "行号：" + row + "\t列号：" + column);
             return true;
         }
         return false;
-
     }
 
     /**
@@ -105,7 +85,6 @@ public class TestMethod13_nan {
      * @return 返回数字num的位数之和
      */
     private static int getDigitSum(int number) {
-
         int sum = 0;
         while (number > 0) {
             sum += number % 10;//余数

@@ -28,8 +28,7 @@ public class JZ65_不用加减乘除做加法 {
      * @return 输出两数之和
      */
     public static int method(int a, int b) {
-        // 当进位b=0时跳出，此时，和为a
-        while (b != 0) {
+        while (b != 0) { // 当进位b=0时跳出，此时，和为a
             int c = (a & b) << 1;  // c = 进位
             //^：按位异或，不同为1, 相同为0.
             a ^= b; // a = 非进位和

@@ -33,7 +33,6 @@ public class OT_大数相加 {
     public static String method(String num1, String num2) {
         if (num1 == null) return num2;
         if (num2 == null) return num1;
-
         StringBuilder strb = new StringBuilder();
         int i = num1.length() - 1;
         int j = num2.length() - 1;
@@ -48,7 +47,6 @@ public class OT_大数相加 {
             j--;
         }
         if (k > 0) strb.append(k);
-
         return strb.reverse().toString();
     }
 }

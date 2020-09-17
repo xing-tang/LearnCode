@@ -1,5 +1,7 @@
 package com.open.learncode.算法.test.A5_跟数组相关的算法;
 
+import com.open.learncode.算法.base.PrintUtils;
+
 /**
  * 题目：
  * 一个整型数组 nums 里除两个数字之外，其他数字都出现了两次。
@@ -16,8 +18,9 @@ package com.open.learncode.算法.test.A5_跟数组相关的算法;
 public class TestMethod56_1 {
 
     public static void main(String[] args) {
-        int[] nums = {2, 4, 3, 6, 3, 2, 5, 5};
-        method(nums);
+//        int[] nums = {2, 4, 3, 6, 3, 2, 5, 5};
+        int[] nums = {4,2,4,14};
+        PrintUtils.getInstance().printIntArray(method(nums));
     }
 
     /**

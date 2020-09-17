@@ -1,7 +1,9 @@
 package com.open.learncode
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,7 +35,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 import learncode.open.com.learncode.R
 import java.util.concurrent.TimeUnit
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.open.learncode.android.intentService.IntentServiceActivity
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.ThreadPoolExecutor
 
 
 class MainActivity : AppCompatActivity() {

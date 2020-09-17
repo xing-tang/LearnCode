@@ -1,12 +1,14 @@
 package com.open.learncode.算法.排序算法;
 
+import com.open.learncode.算法.base.PrintUtils;
+
 public class BFPRT {
 
     public static void main(String[] args) {
         int[] arr = {4, 5, 1, 6, 2, 7, 3, 8};
         int k = 4;
         int[] temp2 = getLeastNumbers(arr, k);
-        System.out.println();
+        PrintUtils.getInstance().printIntArray(temp2);
     }
 
     public static int[] getLeastNumbers(int[] arr, int k) {

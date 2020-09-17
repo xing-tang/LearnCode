@@ -1,6 +1,8 @@
 package com.open.learncode.算法.base;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -86,6 +88,29 @@ public class PrintUtils {
     }
 
     /**
+     * 打印ArrayList
+     *
+     * @param lists 待输入的数组
+     */
+    public void printIntArrayArrayList(ArrayList<ArrayList<Integer>> lists, String... str) {
+        if (lists == null || lists.size() <= 0) return;
+
+        for (int i = 0; i < lists.size(); i++) {
+            for (int j = 0; j < lists.get(i).size(); j++) {
+                if (j == 0) {
+                    System.out.print("{" + lists.get(i).get(j) + ",");
+                } else if (j == lists.get(i).size() - 1) {
+                    System.out.print(lists.get(i).get(j) + "}");
+                } else {
+                    System.out.print(lists.get(i).get(j) + ",");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+
+    /**
      * 打印某个节点的值
      *
      * @param head 待输入的头结点
@@ -143,7 +168,7 @@ public class PrintUtils {
                     queue.offer(temp.left);
                 if (temp.right != null)
                     queue.offer(temp.right);
-                System.out.print(temp.value + " ");
+                System.out.print(temp.val + " ");
             }
         }
         System.out.println();
@@ -162,7 +187,7 @@ public class PrintUtils {
         TreeNode temp;
         while (!stack.empty()) {
             temp = stack.pop();
-            System.out.print(temp.value + " ");
+            System.out.print(temp.val + " ");
             if (temp.right != null) stack.push(temp.right);
             if (temp.left != null) stack.push(temp.left);
         }
@@ -186,7 +211,7 @@ public class PrintUtils {
                 cur = cur.left;
             }
             node = stack.pop();
-            System.out.print(node.value + " ");
+            System.out.print(node.val + " ");
             if (node.right != null) {
                 cur = node.right;
             }
@@ -213,7 +238,7 @@ public class PrintUtils {
             } else if (peek.right != null && peek.right != cur) {
                 stack.push(peek.right);
             } else {
-                System.out.print(stack.pop().value + " ");
+                System.out.print(stack.pop().val + " ");
                 cur = peek;
             }
         }
