@@ -19,6 +19,8 @@ import com.open.learncode.算法.base.PrintUtils;
 public class OT_二叉树的宽度 {
 
     public static void main(String[] args) {
+        Object object = new Object();
+        object.toString();
         ListNode<Integer> node5 = new ListNode<Integer>(5);
         ListNode<Integer> node4 = new ListNode<Integer>(4, node5);
         ListNode<Integer> node3 = new ListNode<Integer>(3, node4);

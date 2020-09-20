@@ -16,8 +16,8 @@ public class TM9_按照字符串字符出现的次数重排序 {
 
 
 
-    //找零算法
-    //字符串分割反转算法
+    // 找零算法
+    // 字符串分割反转算法
     // 算法是全排列
     // 用数组实现双头栈
     // 一个数组有1个数字出现了一次,其他数字出现了三次,
@@ -61,12 +61,12 @@ public class TM9_按照字符串字符出现的次数重排序 {
     // Android为什么要让主线程绘制UI呢?
     // Android自定义view需要哪些步骤?要绘制一个正方形的view要怎么办?
     // Android的viewgroup的onlayout函数做了什么?(忘记了)
-    //负载均衡讲下理解
-    //http请求一定会到服务器上去吗？(http 304／ 有代理的情况不会)
-    //voliate作用于 boolean,Boolean的区别?
-    //voliate int a++? 会被立刻看到吗?
-    //sync关键字和lock的区别?
-    //activity的onNewIntent何时被调用?
+    // 负载均衡讲下理解
+    // http请求一定会到服务器上去吗？(http 304／ 有代理的情况不会)
+    // voliate作用于 boolean,Boolean的区别?
+    // voliate int a++? 会被立刻看到吗?
+    // sync关键字和lock的区别?
+    // activity的onNewIntent何时被调用?
     // sharedPreference原理?commit和apply的原理?apply会导致ANR吗？（面试官说apply也会）
     // sharedPreference 可以跨进程吗?(不知道)
     // 重写和重载的区别。

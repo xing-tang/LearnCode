@@ -28,8 +28,8 @@ public class JZ33_数组是否是某二叉搜索树的后续遍历序列 {
     public static void main(String[] args) {
         int[] arr1 = {5, 7, 6, 9, 11, 10, 8};
         int[] arr2 = {7, 4, 6, 5};
-        System.out.println(method_1(arr1, 0, arr1.length - 1));
-        System.out.println(method_2(arr2));
+//        System.out.println(method_1(arr1, 0, arr1.length - 1));
+        System.out.println(method_2(arr1));
     }
 
     /**

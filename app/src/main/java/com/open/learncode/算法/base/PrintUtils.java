@@ -155,7 +155,7 @@ public class PrintUtils {
      *
      * @param root 待输入的根节点
      */
-    private static void printCenterTreeNode(TreeNode root, String... str) {
+    public static void printCenterTreeNode(TreeNode root, String... str) {
         if (root == null) return;
 
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
