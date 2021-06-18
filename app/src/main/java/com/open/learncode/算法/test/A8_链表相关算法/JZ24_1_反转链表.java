@@ -27,7 +27,7 @@ public class JZ24_1_反转链表 {
         ListNode<Integer> node1 = new ListNode<Integer>(1, node2);
         // 测试用例
         PrintUtils.getInstance().printListNode(node1);
-        //PrintUtils.getInstance().printListNode(method_1(node1), "三指针反转后的链表为");
+//        PrintUtils.getInstance().printListNode(method_1(node1), "三指针反转后的链表为");
         PrintUtils.getInstance().printListNode(method_2(node1), "递归反转后的链表为");
     }
 
@@ -52,6 +52,12 @@ public class JZ24_1_反转链表 {
         return pre;
     }
 
+    /**
+     * 递归方法
+     *
+     * @param head 链表头结点
+     * @return 返回反转后的链表头结点
+     */
     public static ListNode<Integer> method_2(ListNode<Integer> head) {
         // 鲁棒性
         if (head == null || head.next == null) return head;
