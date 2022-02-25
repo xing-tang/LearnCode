@@ -9,8 +9,8 @@ class MainAdapter(data: ArrayList<MainData>?) :
     BaseQuickAdapter<MainData, BaseViewHolder>(R.layout.item_main, data), LoadMoreModule {
 
     override fun convert(helper: BaseViewHolder, item: MainData) {
-        var tem = item.let {
-            helper.setText(R.id.item_home_bt_text, item.activityName ?: "")
+        item.let {
+            helper.setText(R.id.item_home_bt_text, item.className ?: "")
         }
         addChildClickViewIds(R.id.item_home_bt_text)
     }

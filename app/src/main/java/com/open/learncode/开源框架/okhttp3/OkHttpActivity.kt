@@ -10,6 +10,7 @@ import okhttp3.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
+import kotlin.jvm.Throws
 
 
 class OkHttpActivity : AppCompatActivity() {
@@ -48,7 +49,7 @@ class OkHttpActivity : AppCompatActivity() {
             try {
                 // 同步调用，返回Response，会抛出IO异常
                 val response = call.execute()
-                val data = response.body()?.string()
+                val data = response.body?.string()
                 Log.d(TAG, "同步请求成功=》$data");
                 Log.d(TAG, "同步请求成功=》当前线程：id=${Thread.currentThread().id}，name=${Thread.currentThread().name}")
                 // 注意子线程中不能操作更新UI
@@ -83,7 +84,7 @@ class OkHttpActivity : AppCompatActivity() {
         call.enqueue(object : Callback {
             // 请求成功执行的方法
             override fun onResponse(call: Call, response: Response) {
-                val data = response.body()?.string()
+                val data = response.body?.string()
                 Log.d(TAG, "异步请求成功=》$data");
                 Log.d(TAG, "异步请求成功=》当前线程：id=${Thread.currentThread().id}，name=${Thread.currentThread().name}")
                 // 注意子线程中不能操作更新UI
@@ -133,7 +134,7 @@ class OkHttpActivity : AppCompatActivity() {
         call.enqueue(object : Callback {
             @Throws(IOException::class)
             override fun onResponse(call: Call, response: Response) {
-                Log.d("TAG", "onResponse: " + response.body()!!.string())
+                Log.d("TAG", "onResponse: " + response.body!!.string())
                 Log.d("TAG", "异步请求成功=》当前线程：" + Thread.currentThread().name)
                 tv_text.text = "请求成功"
             }

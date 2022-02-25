@@ -1,1 +1,6 @@
+include ':retrofit-converters'
+include ':retrofit-adapters'
+include ':retrofit'
+include ':okhttp-logging-interceptor'
+include ':okhttp'
 include ':app'

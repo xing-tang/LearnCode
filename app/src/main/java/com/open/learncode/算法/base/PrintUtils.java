@@ -2,13 +2,10 @@ package com.open.learncode.算法.base;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
 public class PrintUtils {
-
-    private static PrintUtils printUtils;
 
     public PrintUtils() {
     }
@@ -18,7 +15,7 @@ public class PrintUtils {
     }
 
     private static class Holder {
-        private static PrintUtils INSTANCE = new PrintUtils();
+        private static final PrintUtils INSTANCE = new PrintUtils();
     }
 
     /**
@@ -63,11 +60,11 @@ public class PrintUtils {
     }
 
     /**
-     * 打印数组
+     * 打印一维数组
      *
-     * @param arr 待输入的数组
+     * @param arr 待输入的一维数组
      */
-    public void printIntArray(int[] arr, String... str) {
+    public void printArray(int[] arr, String... str) {
         if (arr == null || arr.length <= 0) return;
 
         if (str.length <= 0) {
@@ -77,12 +74,49 @@ public class PrintUtils {
         }
 
         for (int i = 0; i < arr.length; i++) {
-            if (i == 0) {
+            if (arr.length == 1) {
+                System.out.println("{" + arr[i] + "}");
+            } else if (i == 0) {
                 System.out.print("{" + arr[i] + ",");
             } else if (i == arr.length - 1) {
                 System.out.println(arr[i] + "}");
             } else {
                 System.out.print(arr[i] + ",");
+            }
+        }
+    }
+
+    /**
+     * 打印二维数组
+     *
+     * @param arr 待输入的二维数组
+     */
+    public void printArray(int[][] arr, String... str) {
+        if (arr == null || arr.length <= 0 || arr[0].length <= 0) return;
+
+        if (str.length <= 0) {
+            System.out.print("打印数组：");
+        } else {
+            System.out.print(str[0] + "：");
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            if (i == 0) {
+                System.out.print("{{");
+            } else {
+                System.out.print("{");
+            }
+            for (int j = 0; j < arr[i].length; j++) {
+                if (j == arr[i].length - 1) {
+                    System.out.print(arr[i][j]);
+                } else {
+                    System.out.print(arr[i][j] + ",");
+                }
+            }
+            if (i == arr.length - 1) {
+                System.out.println("}}");
+            } else {
+                System.out.print("},");
             }
         }
     }

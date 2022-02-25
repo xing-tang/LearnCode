@@ -37,13 +37,13 @@ kapt {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // Test Dependencies
-    testImplementation deps["junit"]
-    androidTestImplementation deps["test_runner"]
-    androidTestImplementation deps["test_espresso_core"]
+    testImplementation deps["testJunit"]
+    androidTestImplementation deps["testJunitExt"]
+    androidTestImplementation deps["testEspressoCore"]
     // Kotlin
     api deps["kotlin"]
-    api deps["kotlinx_coroutines"]
-    api deps["kotlinx_coroutines_android"]
+    api deps["kotlinxCoroutines"]
+    api deps["kotlinxCoroutinesAndroid"]
     // Material
     api deps["material"]
     // Appcompat
@@ -60,31 +60,38 @@ dependencies {
     api deps["annotation"]
     // Multidex 65536
     api deps["multidex"]
-    // Router
-    api deps["router"]
-    kapt deps["router_compiler"]
     // Lifecycle
-    api deps["lifecycle_extensions"]
+    api deps["lifecycleExtensions"]
+    // <!------------------------------第三方引用------------------------------------------->
+    // Okhttp
+    // api deps["okhttp3"]
+    // api deps["okhttp3LoggingInterceptor"]
+    api project(path: ':okhttp')
+    api project(path: ':okhttp-logging-interceptor')
+    // Retrofit
+    // api deps["retrofit2"]
+    // api deps["retrofit2ConverterGson"]
+    // api deps["retrofit2AdapterRxjava2"]
+    api project(path: ':retrofit')
+    api project(path: ':retrofit-converters')
+    api project(path: ':retrofit-adapters')
     // RxKotlin and RxAndroid
     api deps["rxkotlin"]
     api deps["rxandroid"]
     api deps["rxjava"]
-    // Okhttp And Retrofit
-    api deps["okhttp3_okhttp"]
-    api deps["okhttp3_logging_interceptor"]
-    api deps["retrofit2_retrofit"]
-    api deps["retrofit2_converter_gson"]
-    api deps["retrofit2_adapter_rxjava2"]
     // Glide
     api deps["glide"]
-    kapt deps["glide_compiler"]
-    // EventBus
-    api deps["eventbus"]
+    kapt deps["glideCompiler"]
     // Banner
     api deps["banner"]
     // BaseRecyclerViewAdapterHelper
-    api deps["base_recyclerview_adapter_helper"]
+    api deps["baseRecyclerviewAdapterHelper"]
+    // EventBus
+    api deps["eventbus"]
     // Dagger2
-    api deps["dagger"]
-    kapt deps["dagger_compiler"]
+    api deps["dagger2"]
+    kapt deps["dagger2Compiler"]
+    // Router
+    api deps["router"]
+    kapt deps["routerCompiler"]
 }
