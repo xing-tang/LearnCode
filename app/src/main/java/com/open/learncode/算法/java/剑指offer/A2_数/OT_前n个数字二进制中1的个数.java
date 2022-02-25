@@ -29,7 +29,7 @@ import com.open.learncode.算法.base.PrintUtils;
  * 时间复杂度：O(1)。
  * 空间复杂度：O(n)。
  */
-public class JZ03_前n个数字二进制中1的个数 {
+public class OT_前n个数字二进制中1的个数 {
 
     public static void main(String[] args) {
         // 测试用例

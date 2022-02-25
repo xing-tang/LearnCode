@@ -1,4 +1,4 @@
-package com.open.learncode.算法.java.剑指offer.A2_数;
+package com.open.learncode.算法.java.剑指offer.A3_数组;
 
 
 import com.open.learncode.算法.base.PrintUtils;
