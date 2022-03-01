@@ -16,10 +16,10 @@ import java.util.Stack;
  * <p>
  * 解题思路：
  * 利用递归、迭代(栈)、Morris方法来打印前中后序遍历
- * 层序遍历：1 2 3 4 5 6 7
- * 前序遍历: 1 2 4 5 3 6 7
- * 中序遍历: 4 2 5 1 6 3 7
- * 后序遍历: 4 5 2 6 7 3 1
+ * 层序遍历：{1, 2, 3, 4, 5, 6, 7}
+ * 前序遍历: {1, 2, 4, 5, 3, 6, 7}
+ * 中序遍历: {4, 2, 5, 1, 6, 3, 7}
+ * 后序遍历: {4, 5, 2, 6, 7, 3, 1}
  * <p>
  * 复杂度分析：
  * 递归方法：时间复杂度：O(n)，空间复杂度：O(n)
@@ -28,6 +28,12 @@ import java.util.Stack;
 public class JZ07_1_二叉树前中后层序遍历 {
 
     public static void main(String[] args) {
+        // 测试用例
+        int[] preOrder = {1, 2, 3, 4, 5, 6, 7};
+        int[] inOrder = {1, 2, 3, 4, 5, 6, 7};
+        TreeNode treeNode = TreeNode.createTreeNode(preOrder, inOrder);
+
+
         TreeNode<Integer> node1 = new TreeNode<Integer>(1);
         TreeNode<Integer> node2 = new TreeNode<Integer>(2);
         TreeNode<Integer> node3 = new TreeNode<Integer>(3);

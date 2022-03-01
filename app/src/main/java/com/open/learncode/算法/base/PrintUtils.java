@@ -124,23 +124,58 @@ public class PrintUtils {
     /**
      * 打印ArrayList
      *
+     * @param list ArrayList<Object>
+     * @param str  String...
+     */
+    public void printArrayList(ArrayList<Integer> list, String... str) {
+        if (list == null || list.size() <= 0) return;
+
+        if (str.length <= 0) {
+            System.out.print("打印数组：");
+        } else {
+            System.out.print(str[0] + "：");
+        }
+        for (int i = 0; i < list.size(); i++) {
+            if (i == 0) {
+                if (list.size() == 1) {
+                    System.out.println("{" + list.get(i) + "}");
+                } else {
+                    System.out.print("{" + list.get(i) + ",");
+                }
+            } else if (i == list.size() - 1) {
+                System.out.println(list.get(i) + "}");
+            } else {
+                System.out.print(list.get(i) + ",");
+            }
+        }
+    }
+
+    /**
+     * 打印ArrayList
+     *
      * @param lists 待输入的数组
      */
     public void printIntArrayArrayList(ArrayList<ArrayList<Integer>> lists, String... str) {
         if (lists == null || lists.size() <= 0) return;
 
+        System.out.print("{");
         for (int i = 0; i < lists.size(); i++) {
             for (int j = 0; j < lists.get(i).size(); j++) {
                 if (j == 0) {
-                    System.out.print("{" + lists.get(i).get(j) + ",");
+                    if (lists.get(i).size() == 1) {
+                        System.out.print("{" + lists.get(i).get(j) + "}");
+                    } else {
+                        System.out.print("{" + lists.get(i).get(j) + ",");
+                    }
                 } else if (j == lists.get(i).size() - 1) {
                     System.out.print(lists.get(i).get(j) + "}");
                 } else {
                     System.out.print(lists.get(i).get(j) + ",");
                 }
             }
-            System.out.println();
+            if (i != lists.size() - 1) System.out.print(",");
         }
+        System.out.println("}");
     }
 
 

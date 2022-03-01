@@ -12,7 +12,7 @@ package com.open.learncode.算法.java.剑指offer.A3_数组;
  * 时间复杂度：O(logn) 空间复杂度：O(1)
  */
 
-public class JZ53_1_在排序数组中查找数字 {
+public class JZ53_1_数字在排序数组中出现的次数 {
 
     public static void main(String[] args) {
         int[] nums = {1, 1, 3, 3, 3, 3, 4, 5};

@@ -1,10 +1,12 @@
 package com.open.learncode.算法.java.剑指offer.A2_数;
 
 
+import com.open.learncode.算法.base.PrintUtils;
+
 /**
  * 题目：
  * 数值的整数次方：实现函数double Power(double base,int exponent)，求base的exponent次方。
- * 不得使用库函数，同时不需要考虑大数问题
+ * 不得使用库函数，同时不需要考虑大数问题。
  * <p>
  * 解题思路：
  * 直接乘法，递归
@@ -18,9 +20,9 @@ public class JZ16_数值的整数次方 {
 
     public static void main(String[] args) {
         // 测试用例：底数 指数分别设为正数 负数 零
-        System.out.println(method_3(2, 3));
-        System.out.println(method_3(0, 2));
-        System.out.println(method_3(-2, 2));
+        PrintUtils.getInstance().print(solution(2, 3));
+        PrintUtils.getInstance().print(solution(0, 2));
+        PrintUtils.getInstance().print(solution(-2, 2));
     }
 
     /**
@@ -30,7 +32,7 @@ public class JZ16_数值的整数次方 {
      * @param exponent 指数
      * @return 返回数值的整数次方
      */
-    private static double method_3(double base, int exponent) {
+    private static double solution(double base, int exponent) {
         if (exponent == 0) return 1;
         if (base == 0) return 0;
         if (exponent == 1) return base;

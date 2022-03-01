@@ -45,8 +45,8 @@ public class JZ52_两链表第一个公共节点 {
         nodeB2.next = nodeB3;
         PrintUtils.getInstance().print(solution(nodeB1, nodeB2).value, "输出");
 
-        ListNode nodeC1 = ListNode.createListNode(new int[]{2, 6, 4});
-        ListNode nodeC2 = ListNode.createListNode(new int[]{1, 5});
+        ListNode nodeC1 = ListNode.createListNode(new int[]{1, 3, 3, 4});
+        ListNode nodeC2 = ListNode.createListNode(new int[]{5, 6, 7});
         PrintUtils.getInstance().print(solution(nodeC1, nodeC2) == null ? "null" : "非null", "输出");
     }
 

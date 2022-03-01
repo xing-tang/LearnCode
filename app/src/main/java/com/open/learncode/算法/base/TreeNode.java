@@ -1,5 +1,7 @@
 package com.open.learncode.算法.base;
 
+import java.util.Stack;
+
 /**
  * 自定义二叉树
  *
@@ -26,7 +28,7 @@ public class TreeNode<E> {
     /**
      * 有三个参数的构造函数
      *
-     * @param val 接受一个泛型值
+     * @param val   接受一个泛型值
      * @param left  接受指向左孩子的泛型值
      * @param right 接受指向右孩子的泛型值
      */
@@ -45,6 +47,41 @@ public class TreeNode<E> {
     public void setLeftAndRight(TreeNode<E> left, TreeNode<E> right) {
         this.left = left;
         this.right = right;
+    }
+
+    /**
+     * 迭代方法，前中序重建二叉树
+     *
+     * @param preOrder 先序遍历序列
+     * @param inOrder  中序遍历序列
+     * @return 返回重建二叉树的根节点
+     */
+    public static TreeNode createTreeNode(int[] preOrder, int[] inOrder) {
+        if (preOrder == null || inOrder == null || preOrder.length <= 0 || inOrder.length <= 0) {
+            return null;
+        }
+
+        TreeNode<Integer> root = new TreeNode(preOrder[0]);
+        int length = preOrder.length;
+        Stack<TreeNode> stack = new Stack();
+        stack.push(root);
+        int inorderIndex = 0;
+        for (int i = 1; i < length; i++) {
+            int preOrderVal = preOrder[i];
+            TreeNode node = stack.peek();
+            if ((int) node.val != inOrder[inorderIndex]) {
+                node.left = new TreeNode(preOrderVal);
+                stack.push(node.left);
+            } else {
+                while (!stack.isEmpty() && (int) stack.peek().val == inOrder[inorderIndex]) {
+                    node = stack.pop();
+                    inorderIndex++;
+                }
+                node.right = new TreeNode(preOrderVal);
+                stack.push(node.right);
+            }
+        }
+        return root;
     }
 }
 
