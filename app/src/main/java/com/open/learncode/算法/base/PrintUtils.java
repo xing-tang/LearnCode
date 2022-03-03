@@ -64,6 +64,33 @@ public class PrintUtils {
      *
      * @param arr 待输入的一维数组
      */
+    public void printArray(char[] arr, String... str) {
+        if (arr == null || arr.length <= 0) return;
+
+        if (str.length <= 0) {
+            System.out.print("打印数组：");
+        } else {
+            System.out.print(str[0] + "：");
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr.length == 1) {
+                System.out.println("{'" + arr[i] + "'}");
+            } else if (i == 0) {
+                System.out.print("{'" + arr[i] + "', ");
+            } else if (i == arr.length - 1) {
+                System.out.println("'" + arr[i] + "'}");
+            } else {
+                System.out.print("'" + arr[i] + "', ");
+            }
+        }
+    }
+
+    /**
+     * 打印一维数组
+     *
+     * @param arr 待输入的一维数组
+     */
     public void printArray(int[] arr, String... str) {
         if (arr == null || arr.length <= 0) return;
 
