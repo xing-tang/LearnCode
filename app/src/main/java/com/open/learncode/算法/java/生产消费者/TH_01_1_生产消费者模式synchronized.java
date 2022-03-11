@@ -13,7 +13,7 @@ public class TH_01_1_生产消费者模式synchronized {
 
     private static int count = 0;
     private static final int MAX_COUNT = 5;
-    private static final Object lock = new Object();
+    private static final Object object = new Object();
 
     public static void main(String[] args) {
         for (int i = 0; i < 3; i++) {
@@ -27,14 +27,14 @@ public class TH_01_1_生产消费者模式synchronized {
         public void run() {
             while (true) {
                 try {
-                    synchronized (lock) {
+                    synchronized (object) {
                         while (count == MAX_COUNT) {
                             System.out.println("数据已满");
-                            lock.wait();
+                            object.wait();
                         }
                         count++;
                         System.out.println("生产者产生了一个数据，当前总数：" + count);
-                        lock.notifyAll();
+                        object.notifyAll();
                     }
                     Thread.sleep(new Random().nextInt(1000));
                 } catch (InterruptedException e) {
@@ -49,14 +49,14 @@ public class TH_01_1_生产消费者模式synchronized {
         public void run() {
             while (true) {
                 try {
-                    synchronized (lock) {
+                    synchronized (object) {
                         while (count < 1) {
                             System.out.println("数据为空");
-                            lock.wait();
+                            object.wait();
                         }
                         count--;
                         System.out.println("消费者消费了一个数据，当前总数：" + count);
-                        lock.notifyAll();
+                        object.notifyAll();
                     }
                     Thread.sleep(new Random().nextInt(1000));
                 } catch (InterruptedException e) {

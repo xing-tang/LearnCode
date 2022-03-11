@@ -10,39 +10,42 @@ import com.open.learncode.算法.base.PrintUtils;
  * 快速排序
  * <p>
  * 复杂度分析：
- * 时间复杂度：最好O(nlogn)，最差O(n^2)，空间复杂度：O(nlogn)
+ * 时间复杂度：最好O(nlogn)，最差O(n^2)。
+ * 空间复杂度：O(logn)。
  */
 public class ST04_快速排序 {
 
     public static void main(String[] args) {
-//        int[] arr = {};
-//        int[] arr = null;
+        // 测试用例
+        // int[] arr = {};
+        // int[] arr = null;
         int[] arr = {4, 5, 1, 6, 2, 7, 3, 8};
-        method(arr, 0, arr.length - 1);
+        solution(arr, 0, arr.length - 1);
         PrintUtils.getInstance().printArray(arr);
     }
 
-    private static void method(int[] arr, int left, int right) {
-        if (arr == null || arr.length <= 0 || left > right) return;
-        int i = left;
-        int j = right;
-        int base = arr[left];
-        while (i < j) {
-            while (arr[j] >= base && i < j) {
-                j--;
+    private static void solution(int[] nums, int left, int right) {
+        if (nums == null || nums.length <= 0 || left > right) return;
+
+        int start = left;
+        int end = right;
+        int base = nums[left];
+        while (start < end) {
+            while (nums[end] >= base && start < end) {
+                end--;
             }
-            while (arr[i] <= base && i < j) {
-                i++;
+            while (nums[start] <= base && start < end) {
+                start++;
             }
-            if (i < j) {
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
+            if (start < end) {
+                int temp = nums[start];
+                nums[start] = nums[end];
+                nums[end] = temp;
             }
         }
-        arr[left] = arr[i];
-        arr[i] = base;
-        method(arr, left, j - 1);
-        method(arr, j + 1, right);
+        nums[left] = nums[start];
+        nums[start] = base;
+        solution(nums, left, end - 1);
+        solution(nums, end + 1, right);
     }
 }

@@ -4,35 +4,36 @@ import com.open.learncode.算法.base.PrintUtils;
 
 /**
  * 题目：
- * 冒泡排序
+ * 选择排序
  * <p>
  * 解题思路:
- * 依次比较两个相邻的元素，如果顺序（如从小到大、从大到小、首字母从A到Z），不对就把他们两两交换过来
+ * 将指定索引位置的元素与数组其它元素分别对比，从而找出最小或最大元素，然后两两交换位置。
  * <p>
  * 复杂度分析:
- * 时间复杂度：O(n^2)，空间复杂度：都为O(1)
+ * 时间复杂度：O(n^2)。
+ * 空间复杂度：都为O(1)。
  */
-public class ST01_冒泡排序 {
+public class ST01_选择排序 {
 
     public static void main(String[] args) {
+        // 测试用例
         int[] arr = {6, 3, 5, 7, 0};
-        PrintUtils.getInstance().printArray(arr);
-        bubbleSort(arr);
+        solution(arr);
         PrintUtils.getInstance().printArray(arr);
     }
 
     /**
-     * 冒泡排序
+     * 选择排序
      *
      * @param arr 待输入的数组
      * @return 返回排序后的数组
      */
-    private static int[] bubbleSort(int[] arr) {
-        if (arr == null || arr.length <= 0) return arr;
-        for (int i = arr.length - 1; i >= 0; i--) {
-            for (int j = 0; j < i; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    swap(arr, j, j + 1);
+    private static int[] solution(int[] arr) {
+        if (arr == null || arr.length < 2) return arr;
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[i]) {
+                    swap(arr, i, j);
                 }
             }
         }

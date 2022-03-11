@@ -10,14 +10,15 @@ import com.open.learncode.算法.base.PrintUtils;
  * 插入排序
  * <p>
  * 复杂度分析：
- * 时间复杂度：O(n^2)，空间复杂度：O(1)
+ * 时间复杂度：O(n^2)。
+ * 空间复杂度：O(1)。
  */
 public class ST03_插入排序 {
 
     public static void main(String[] args) {
+        // 测试用例
         int[] arr = {6, 3, 5, 7, 0};
-        PrintUtils.getInstance().printArray(arr);
-        insertSort(arr);
+        solution(arr);
         PrintUtils.getInstance().printArray(arr);
     }
 
@@ -26,7 +27,7 @@ public class ST03_插入排序 {
      *
      * @param arr 待输入的数组
      */
-    private static int[] insertSort(int[] arr) {
+    private static int[] solution(int[] arr) {
         if (arr == null || arr.length == 0) return arr;
         // 假设第一个数位置时正确的；要往后移，必须要假设第一个。
         for (int i = 1; i < arr.length; i++) {
