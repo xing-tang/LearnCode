@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.arouter.java">
+
+    <!-- 读写存储的权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application>
+        <activity android:name=".TestModuleActivity" />
+        <activity android:name=".TestModule2Activity" />
+        <activity android:name=".TestWebview" />
+        <activity android:name=".testactivity.Test1Activity" />
+        <activity android:name=".testactivity.Test2Activity" />
+        <activity android:name=".testactivity.Test3Activity" />
+        <activity android:name=".testactivity.Test4Activity" />
+        <activity android:name=".testactivity.TestDynamicActivity" />
+    </application>
+
+</manifest>

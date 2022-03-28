@@ -1,0 +1,139 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+dependencies {
+    // ================================ Android 系统库依赖 ==================================
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // Test Dependencies
+    testImplementation rootProject.ext.dependencies["test-junit"]
+    androidTestImplementation rootProject.ext.dependencies["test-junit-ext"]
+    androidTestImplementation rootProject.ext.dependencies["test-espresso-core"]
+    // Kotlin
+    api rootProject.ext.dependencies["kotlin"]
+    api rootProject.ext.dependencies["kotlinx-coroutines"]
+    api rootProject.ext.dependencies["kotlinx-coroutines-android"]
+    // Material
+    api rootProject.ext.dependencies["material"]
+    // AndroidX Core
+    api rootProject.ext.dependencies["androidx-core-ktx"]
+    // AndroidX Appcompat
+    api rootProject.ext.dependencies["androidx-appcompat"]
+    // AndroidX Annotation
+    api rootProject.ext.dependencies["androidx-annotation"]
+    // AndroidX Multidex 65536=>64K
+    api rootProject.ext.dependencies["androidx-multidex"]
+    // AndroidX Activity Ktx
+    api rootProject.ext.dependencies["androidx-activity-ktx"]
+    // AndroidX Fragment Ktx
+    api rootProject.ext.dependencies["androidx-fragment-ktx"]
+    // AndroidX ConstraintLayout
+    api rootProject.ext.dependencies["androidx-constraint-layout"]
+    // AndroidX SwiperefreshLayout
+    api rootProject.ext.dependencies["androidx-swiperefresh-layout"]
+    // AndroidX Recyclerview
+    api rootProject.ext.dependencies["androidx-recyclerview"]
+    // AndroidX CardView
+    api rootProject.ext.dependencies["androidx-cardview"]
+    // [AndroidX Paging3 分页加载]()
+    api rootProject.ext.dependencies["androidx-paging3"]
+    // AndroidX Lifecycle
+    api rootProject.ext.dependencies["androidx-lifecycle-extensions"]
+    // AndroidX LiveData
+    api rootProject.ext.dependencies["androidx-livedata-ktx"]
+    // AndroidX ViewModel
+    api rootProject.ext.dependencies["androidx-viewmodel-ktx"]
+    // AndroidX Navigation
+    api rootProject.ext.dependencies["androidx-navigation-fragment-ktx"]
+    api rootProject.ext.dependencies["androidx-navigation-ui-ktx"]
+    // ================================ Android 第三方库依赖 ================================
+    // Okhttp3
+    // api deps["okhttp3-okhttp"]
+    // api deps["okhttp3-logging-interceptor"]
+    api project(path: ':layer-source:okhttp3:okhttp')
+    api project(path: ':layer-source:okhttp3:okhttp-logging-interceptor')
+    // Retrofit2
+    // api rootProject.ext.dependencies["retrofit2-retrofit"]
+    // api rootProject.ext.dependencies["retrofit2-converter-gson"]
+    // api rootProject.ext.dependencies["retrofit2-converter-scalars"]
+    // api rootProject.ext.dependencies["retrofit2-adapter-rxjava2"]
+    api project(path: ':layer-source:retrofit2:retrofit')
+    api project(path: ':layer-source:retrofit2:retrofit-converters')
+    api project(path: ':layer-source:retrofit2:retrofit-adapters')
+    // RxKotlin and RxAndroid
+    api rootProject.ext.dependencies["rxkotlin"]
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["rxjava"]
+    // Glide
+    api rootProject.ext.dependencies["glide"]
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+    api rootProject.ext.dependencies["glide-loader-okhttp3"]
+    // GSON
+    api rootProject.ext.dependencies["gson"]
+    // FAST JSON
+    api rootProject.ext.dependencies["fast-json"]
+    // EventBus
+    api rootProject.ext.dependencies["eventbus"]
+    // ARouter
+    api rootProject.ext.dependencies["arouter"]
+    // MMKV
+    api rootProject.ext.dependencies["mmkv"]
+    // [Room 数据库](https://developer.android.google.cn/jetpack/androidx/releases/room?hl=zh_cn)
+    api rootProject.ext.dependencies["room-runtime"]
+    kapt rootProject.ext.dependencies["room-compiler"]
+    // Dagger2
+    api rootProject.ext.dependencies["dagger2"]
+    annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
+    // api rootProject.ext.dependencies["dagger2-android"]
+    // api rootProject.ext.dependencies["dagger2-android-support"]
+    // kapt rootProject.ext.dependencies["dagger2-android-processor"]
+    // [nineoldandroids 动画]()
+    api rootProject.ext.dependencies["nineoldandroids"]
+    // BaseRecyclerViewAdapterHelper
+    api rootProject.ext.dependencies["base-recyclerview-adapter-helper"]
+    // Banner
+    api rootProject.ext.dependencies["banner"]
+    // [ImmersionBar 沉浸式状态栏](https://github.com/gyf-dev/ImmersionBar)
+    api rootProject.ext.dependencies["immersionbar"]
+    api rootProject.ext.dependencies["immersionbar-components"]
+    api rootProject.ext.dependencies["immersionbar-ktx"]
+    // 图片放大缩小
+    // api rootProject.ext.dependencies["photo-view"]
+    // 图片选择器
+    api rootProject.ext.dependencies["picture-selector"]
+}
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+        // 65536
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    // Java 指定1.8版本
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    // 开启 ViewBingding 支持
+    buildFeatures {
+        viewBinding = true
+    }
+}

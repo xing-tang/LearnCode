@@ -1,0 +1,19 @@
+@startuml
+title ARouter 参数获取流程时序图
+开始-> ARouter :   ARouter#inject(xxx)
+activate ARouter
+ARouter -> _ARouter : _ARouter#inject(xxx)
+deactivate ARouter
+activate _ARouter
+_ARouter -> AutowiredService : AutowiredService#autowire(xxx)
+deactivate _ARouter
+activate AutowiredService
+AutowiredService --> AutowiredService : AutowiredService#doInject()
+AutowiredService --> AutowiredService : AutowiredService#getSyringe()
+AutowiredService -> "KotlinTestActivity$$ARouter$$Autowired" : KotlinTestActivity$$ARouter$$Autowired#inject(xxx)
+activate "KotlinTestActivity$$ARouter$$Autowired"
+deactivate AutowiredService
+"KotlinTestActivity$$ARouter$$Autowired" -> 结束
+deactivate "KotlinTestActivity$$ARouter$$Autowired"
+@enduml
+

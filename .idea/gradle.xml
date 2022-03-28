@@ -13,11 +13,30 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/okhttp" />
-            <option value="$PROJECT_DIR$/okhttp-logging-interceptor" />
-            <option value="$PROJECT_DIR$/retrofit" />
-            <option value="$PROJECT_DIR$/retrofit-adapters" />
-            <option value="$PROJECT_DIR$/retrofit-converters" />
+            <option value="$PROJECT_DIR$/app/arouter-sample" />
+            <option value="$PROJECT_DIR$/app/learncode-app" />
+            <option value="$PROJECT_DIR$/layer-business" />
+            <option value="$PROJECT_DIR$/layer-business/arouter" />
+            <option value="$PROJECT_DIR$/layer-business/arouter/arouter-java" />
+            <option value="$PROJECT_DIR$/layer-business/arouter/arouter-java-export" />
+            <option value="$PROJECT_DIR$/layer-business/arouter/arouter-kotlin" />
+            <option value="$PROJECT_DIR$/layer-libraries" />
+            <option value="$PROJECT_DIR$/layer-libraries/open-common" />
+            <option value="$PROJECT_DIR$/layer-libraries/open-libraries" />
+            <option value="$PROJECT_DIR$/layer-libraries/open-library" />
+            <option value="$PROJECT_DIR$/layer-source" />
+            <option value="$PROJECT_DIR$/layer-source/arouter" />
+            <option value="$PROJECT_DIR$/layer-source/arouter/arouter-annotation" />
+            <option value="$PROJECT_DIR$/layer-source/arouter/arouter-api" />
+            <option value="$PROJECT_DIR$/layer-source/arouter/arouter-compiler" />
+            <option value="$PROJECT_DIR$/layer-source/arouter/arouter-gradle-plugin" />
+            <option value="$PROJECT_DIR$/layer-source/okhttp3" />
+            <option value="$PROJECT_DIR$/layer-source/okhttp3/okhttp" />
+            <option value="$PROJECT_DIR$/layer-source/okhttp3/okhttp-logging-interceptor" />
+            <option value="$PROJECT_DIR$/layer-source/retrofit2" />
+            <option value="$PROJECT_DIR$/layer-source/retrofit2/retrofit" />
+            <option value="$PROJECT_DIR$/layer-source/retrofit2/retrofit-adapters" />
+            <option value="$PROJECT_DIR$/layer-source/retrofit2/retrofit-converters" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

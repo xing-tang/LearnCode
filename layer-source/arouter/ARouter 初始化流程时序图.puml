@@ -1,0 +1,48 @@
+@startuml
+title ARouter 初始化流程时序图
+开始 -> ARouter: 1. ARouter#init(xxx)
+activate ARouter
+ARouter -> _ARouter : _ARouter#init(xxx)
+activate _ARouter
+_ARouter -> LogisticsCenter : 2. _ARouter#init(xxx)
+deactivate _ARouter
+activate LogisticsCenter
+note right
+    初始化中心
+    ====
+    1. 扫描使用 dex 文件 com.alibaba.android.arouter.routers 目录；
+    2. 加载所有模块下管理路由组 Root 文件；
+    3. 加载所有模块下管理服务的 providers 文件；
+    4. 加载所有模块下管理拦截器的 interceotors 文件。
+end note
+LogisticsCenter --> LogisticsCenter : 3. LogisticsCenter#loadRouterMap()
+note right
+    通过插件注入的实现方式（registerByPlugin = true）：
+    ====
+    1. register(String)；
+    2. registerRouteRoot(IRouteRoot)；
+    3. registerInterceptor(IInterceptorGroup)；
+    4. registerProvider(IProviderGroup)。
+end note
+LogisticsCenter --> Warehouse : 4. registerByPlugin = true\n通过插件的注入的实现方式将所有信息\n分别加载到 Warehouse 仓库的集合中来
+activate Warehouse
+LogisticsCenter -> Warehouse : 4. registerByPlugin = false\n通过扫描 apk 中 dex 文件的实现方式将所有信息\n分别加载到 Warehouse 仓库的集合中来
+note right
+    通过扫描 apk 中 dex 文件的实现方式：
+    ====
+    1. 通过指定包名 com.alibaba.android.arouter.routes，
+       扫描 dex 文件包下面包含的所有的 ClassName；
+    2. 将所有的 Class 文件进行循环并进行分组，然后通过反射的
+       方式构造 Root、Interceptors、Providers 文件的实例化
+       对象，并将其添加到 Warehouse 仓库中对应的集合里。
+end note
+deactivate LogisticsCenter
+deactivate Warehouse
+ARouter -> _ARouter: 5. _ARouter#afterInit()
+activate _ARouter
+_ARouter --> _ARouter: _ARouter#afterInit() : \n获取 InterceptorService 实例
+return 返回 void
+ARouter -> 结束
+deactivate ARouter
+@enduml
+

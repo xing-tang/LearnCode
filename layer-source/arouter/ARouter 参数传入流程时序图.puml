@@ -1,0 +1,19 @@
+@startuml
+title ARouter 参数传入流程时序图
+开始 -> Postcard :  ARouter#build(xxx)#navigation(xxx)\nbuild(xxx) 之后即创建了 Postcard 对象
+activate Postcard
+Postcard -> ARouter : Postcard#navigation(xxx)
+activate ARouter
+ARouter -> _ARouter : _ARouter#navigation(xxx)
+deactivate ARouter
+activate _ARouter
+_ARouter -> LogisticsCenter : LogisticsCenter#completion()
+deactivate _ARouter
+activate LogisticsCenter
+LogisticsCenter --> LogisticsCenter : LogisticsCenter#setValue()
+LogisticsCenter -> Postcard : Postcard#withXxx(xxx)
+Postcard -> 结束
+deactivate LogisticsCenter
+deactivate Postcard
+@enduml
+

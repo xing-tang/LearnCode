@@ -1,0 +1,25 @@
+@startuml
+title ARouter 路由跳转流程时序图
+开始 -> ARouter: 1. ARouter#build(xxx)
+activate ARouter
+ARouter -> _ARouter : _ARouter#build(xxx)
+deactivate ARouter
+activate _ARouter
+_ARouter --> _ARouter : 2. 获取 PathReplaceService 服务\n对外提供修改路由 path 和 uri
+_ARouter -> Postcard : 3. 根据 path 或者 uri\n构建一个 Postcard 对象并返回
+deactivate _ARouter
+activate Postcard
+Postcard -> ARouter : 4. ARouter#navigation(xxx)
+deactivate Postcard
+activate ARouter
+ARouter -> _ARouter : _ARouter#navigation(xxx)
+deactivate ARouter
+activate _ARouter
+_ARouter --> _ARouter : 5. 获取 PretreatmentService 路由预处理服务\n对外提供修改路由能力
+_ARouter --> LogisticsCenter :  6. LogisticsCenter#completion(xxx)
+_ARouter <--> DegradeService :  7. DegradeService#onLost(xxx)\n获取 DegradeService 全局降级服务\n对外提供修改路由能力，出错策略自定义的机会
+_ARouter <--> InterceptorService : 8. InterceptorService#doInterceptions(xxx)\n执行拦截器，提供最后的干预机会
+_ARouter -> 结束 : 9. _ARouter#_navigation()\n根据填充后的 Postcard#routeType\n分门别类的启动页面或创建对应实例并返回
+deactivate _ARouter
+@enduml
+

@@ -1,6 +1,31 @@
-include ':retrofit-converters'
-include ':retrofit-adapters'
-include ':retrofit'
-include ':okhttp-logging-interceptor'
-include ':okhttp'
-include ':app'
+// app
+include ':app:learncode-app'
+include ':app:arouter-sample'
+rootProject.name = "LearnCode-master"
+
+// layer-business 业务层
+
+// layer-libraries 第三方库
+include ':layer-libraries:open-libraries'
+include ':layer-libraries:open-library'
+include ':layer-libraries:open-common'
+
+// layer-source 源码
+// ================ Okhttp3 =======================
+include ':layer-source:okhttp3:okhttp-logging-interceptor'
+include ':layer-source:okhttp3:okhttp'
+// ================ Retrofit2 =====================
+include ':layer-source:retrofit2:retrofit-converters'
+include ':layer-source:retrofit2:retrofit-adapters'
+include ':layer-source:retrofit2:retrofit'
+// ================ ARouter Statrt ================
+// 业务层
+include ':layer-business:arouter:arouter-java'
+include ':layer-business:arouter:arouter-java-export'
+include ':layer-business:arouter:arouter-kotlin'
+// 源码
+include ':layer-source:arouter:arouter-annotation'
+include ':layer-source:arouter:arouter-api'
+include ':layer-source:arouter:arouter-compiler'
+include ':layer-source:arouter:arouter-gradle-plugin'
+// ================ ARouter End ===================
