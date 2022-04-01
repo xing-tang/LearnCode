@@ -1,0 +1,19 @@
+// IntelliJ API Decompiler stub source generated from a class file
+// Implementation of methods is not available
+
+package androidx.lifecycle
+
+public suspend fun <T> androidx.lifecycle.Lifecycle.whenCreated(block: suspend kotlinx.coroutines.CoroutineScope.() -> T): T { /* compiled code */ }
+
+public suspend fun <T> androidx.lifecycle.LifecycleOwner.whenCreated(block: suspend kotlinx.coroutines.CoroutineScope.() -> T): T { /* compiled code */ }
+
+public suspend fun <T> androidx.lifecycle.Lifecycle.whenResumed(block: suspend kotlinx.coroutines.CoroutineScope.() -> T): T { /* compiled code */ }
+
+public suspend fun <T> androidx.lifecycle.LifecycleOwner.whenResumed(block: suspend kotlinx.coroutines.CoroutineScope.() -> T): T { /* compiled code */ }
+
+public suspend fun <T> androidx.lifecycle.Lifecycle.whenStarted(block: suspend kotlinx.coroutines.CoroutineScope.() -> T): T { /* compiled code */ }
+
+public suspend fun <T> androidx.lifecycle.LifecycleOwner.whenStarted(block: suspend kotlinx.coroutines.CoroutineScope.() -> T): T { /* compiled code */ }
+
+public suspend fun <T> androidx.lifecycle.Lifecycle.whenStateAtLeast(minState: androidx.lifecycle.Lifecycle.State, block: suspend kotlinx.coroutines.CoroutineScope.() -> T): T { /* compiled code */ }
+

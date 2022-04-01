@@ -3,15 +3,25 @@ plugins {
     id 'kotlin-android'
 }
 
+dependencies {
+    api rootProject.ext.dependencies["androidx-core-ktx"]
+    api rootProject.ext.dependencies["kotlin"]
+    api rootProject.ext.dependencies["kotlinx-coroutines-core"]
+    api rootProject.ext.dependencies["kotlinx-coroutines-android"]
+    api project(path: ':layer-source:okhttp3:okhttp')
+    // AnimalSniffer
+    api 'org.codehaus.mojo:animal-sniffer-annotations:1.18'
+    // FindBugsAnnotations
+    api 'com.google.code.findbugs:jsr305:3.0.2'
+}
+
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
-
     defaultConfig {
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -25,14 +35,4 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-}
-
-dependencies {
-    api rootProject.ext.dependencies["androidx-core-ktx"]
-    api rootProject.ext.dependencies["kotlin"]
-    api rootProject.ext.dependencies["kotlinx-coroutines"]
-    api rootProject.ext.dependencies["kotlinx-coroutines-android"]
-    api project(path: ':layer-source:okhttp3:okhttp')
-    api rootProject.ext.dependencies["animal-sniffer-annotations"]
-    api rootProject.ext.dependencies["find-bugs-annotations"]
 }

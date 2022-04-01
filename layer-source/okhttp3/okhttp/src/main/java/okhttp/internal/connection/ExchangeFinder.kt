@@ -71,6 +71,7 @@ class ExchangeFinder(
     chain: RealInterceptorChain
   ): ExchangeCodec {
     try {
+      // 查找合格可用的连接，返回一个 RealConnection 对象
       val resultConnection = findHealthyConnection(
           connectTimeout = chain.connectTimeoutMillis,
           readTimeout = chain.readTimeoutMillis,
@@ -79,6 +80,8 @@ class ExchangeFinder(
           connectionRetryEnabled = client.retryOnConnectionFailure,
           doExtensiveHealthChecks = chain.request.method != "GET"
       )
+      // 根据连接，创建并返回一个请求响应编码器：Http1ExchangeCodec 或者 Http2ExchangeCodec
+      // ，分别对应 Http1 协议与 Http2 协议
       return resultConnection.newCodec(client, chain)
     } catch (e: RouteException) {
       trackFailure(e.lastConnectException)
@@ -103,6 +106,7 @@ class ExchangeFinder(
     doExtensiveHealthChecks: Boolean
   ): RealConnection {
     while (true) {
+      // 重点：查找连接
       val candidate = findConnection(
           connectTimeout = connectTimeout,
           readTimeout = readTimeout,
@@ -110,13 +114,11 @@ class ExchangeFinder(
           pingIntervalMillis = pingIntervalMillis,
           connectionRetryEnabled = connectionRetryEnabled
       )
-
-      // Confirm that the connection is good.
+      // 检查该连接是否合格可用，合格则直接返回该连接
       if (candidate.isHealthy(doExtensiveHealthChecks)) {
         return candidate
       }
-
-      // If it isn't, take it out of the pool.
+      // 如果该连接不合格，标记为不可用，从连接池中移除
       candidate.noNewExchanges()
 
       // Make sure we have some routes left to try. One example where we may exhaust all the routes
@@ -149,7 +151,7 @@ class ExchangeFinder(
   ): RealConnection {
     if (call.isCanceled()) throw IOException("Canceled")
 
-    // Attempt to reuse the connection from the call.
+    // 第一次，尝试重连 call 中的 connection，不需要去重新获取连接
     val callConnection = call.connection // This may be mutated by releaseConnectionNoEvents()!
     if (callConnection != null) {
       var toClose: Socket? = null
@@ -159,31 +161,30 @@ class ExchangeFinder(
         }
       }
 
-      // If the call's connection wasn't released, reuse it. We don't call connectionAcquired() here
-      // because we already acquired it.
+      // 如果 call 中的 connection 还没有释放，就重用它
       if (call.connection != null) {
         check(toClose == null)
         return callConnection
       }
 
-      // The call's connection was released.
+      // 如果 call 中的 connection 已经被释放，关闭 Socket
       toClose?.closeQuietly()
       eventListener.connectionReleased(call, callConnection)
     }
 
-    // We need a new connection. Give it fresh stats.
+    // 需要一个新的连接，所以重置一些状态
     refusedStreamCount = 0
     connectionShutdownCount = 0
     otherFailureCount = 0
 
-    // Attempt to get a connection from the pool.
+    // 第二次，尝试从连接池中获取一个连接，不带路由，不带多路复用
     if (connectionPool.callAcquirePooledConnection(address, call, null, false)) {
       val result = call.connection!!
       eventListener.connectionAcquired(call, result)
       return result
     }
 
-    // Nothing in the pool. Figure out what route we'll try next.
+    // 连接池中是空的，准备下次尝试连接的路由
     val routes: List<Route>?
     val route: Route
     if (nextRouteToTry != null) {
@@ -208,8 +209,7 @@ class ExchangeFinder(
 
       if (call.isCanceled()) throw IOException("Canceled")
 
-      // Now that we have a set of IP addresses, make another attempt at getting a connection from
-      // the pool. We have a better chance of matching thanks to connection coalescing.
+      // 第三次，再次尝试从连接池中获取一个连接，带路由，不带多路复用
       if (connectionPool.callAcquirePooledConnection(address, call, routes, false)) {
         val result = call.connection!!
         eventListener.connectionAcquired(call, result)
@@ -219,7 +219,7 @@ class ExchangeFinder(
       route = localRouteSelection.next()
     }
 
-    // Connect. Tell the call about the connecting call so async cancels work.
+    // 第四次，手动创建一个新连接
     val newConnection = RealConnection(connectionPool, route)
     call.connectionToCancel = newConnection
     try {
@@ -237,8 +237,8 @@ class ExchangeFinder(
     }
     call.client.routeDatabase.connected(newConnection.route())
 
-    // If we raced another call connecting to this host, coalesce the connections. This makes for 3
-    // different lookups in the connection pool!
+    // 第五次，再次尝试从连接池中获取一个连接，带路由，带多路复用
+    // 这一步主要是为了校验一下，比如已经有了一条连接了，就可以直接复用，而不用使用手动创建的新连接
     if (connectionPool.callAcquirePooledConnection(address, call, routes, true)) {
       val result = call.connection!!
       nextRouteToTry = route
@@ -248,6 +248,7 @@ class ExchangeFinder(
     }
 
     synchronized(newConnection) {
+      // 将手动创建的新连接放入连接池
       connectionPool.put(newConnection)
       call.acquireConnectionNoEvents(newConnection)
     }

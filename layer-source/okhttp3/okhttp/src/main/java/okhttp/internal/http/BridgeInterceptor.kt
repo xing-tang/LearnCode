@@ -35,9 +35,10 @@ class BridgeInterceptor(private val cookieJar: CookieJar) : Interceptor {
 
   @Throws(IOException::class)
   override fun intercept(chain: Interceptor.Chain): Response {
+    // 获取原始请求数据
     val userRequest = chain.request()
     val requestBuilder = userRequest.newBuilder()
-
+    // 重新构建请求头，请求体信息
     val body = userRequest.body
     if (body != null) {
       val contentType = body.contentType()
@@ -71,19 +72,20 @@ class BridgeInterceptor(private val cookieJar: CookieJar) : Interceptor {
       requestBuilder.header("Accept-Encoding", "gzip")
     }
 
+    // 添加 cookie
     val cookies = cookieJar.loadForRequest(userRequest.url)
     if (cookies.isNotEmpty()) {
       requestBuilder.header("Cookie", cookieHeader(cookies))
     }
-
+    // 添加 user-agent
     if (userRequest.header("User-Agent") == null) {
       requestBuilder.header("User-Agent", userAgent)
     }
-
+    // 重新构建一个 Request，然后执行下一个拦截器来处理该请求
     val networkResponse = chain.proceed(requestBuilder.build())
 
     cookieJar.receiveHeaders(userRequest.url, networkResponse.headers)
-
+    // 创建一个新的 responseBuilder，目的是将原始请求数据构建到 response 中
     val responseBuilder = networkResponse.newBuilder()
         .request(userRequest)
 
@@ -97,8 +99,10 @@ class BridgeInterceptor(private val cookieJar: CookieJar) : Interceptor {
             .removeAll("Content-Encoding")
             .removeAll("Content-Length")
             .build()
+        // 修改 response header 信息，移除 Content-Encoding、Content-Length 信息
         responseBuilder.headers(strippedHeaders)
         val contentType = networkResponse.header("Content-Type")
+        // 修改 response body 信息
         responseBuilder.body(RealResponseBody(contentType, -1L, gzipSource.buffer()))
       }
     }

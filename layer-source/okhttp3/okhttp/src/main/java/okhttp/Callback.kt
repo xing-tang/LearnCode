@@ -23,6 +23,7 @@ interface Callback {
    * timeout. Because networks can fail during an exchange, it is possible that the remote server
    * accepted the request before the failure.
    */
+  /** 请求失败的回调方法 */
   fun onFailure(call: Call, e: IOException)
 
   /**
@@ -35,6 +36,7 @@ interface Callback {
    * necessarily indicate application-layer success: `response` may still indicate an unhappy HTTP
    * response code like 404 or 500.
    */
+  /** 请求成功的回调方法 */
   @Throws(IOException::class)
   fun onResponse(call: Call, response: Response)
 }

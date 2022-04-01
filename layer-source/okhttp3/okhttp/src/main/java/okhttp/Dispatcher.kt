@@ -43,6 +43,7 @@ class Dispatcher constructor() {
    * If more than [maxRequests] requests are in flight when this is invoked, those requests will
    * remain in flight.
    */
+  // 并发执行的最大请求数
   @get:Synchronized var maxRequests = 64
     set(maxRequests) {
       require(maxRequests >= 1) { "max < 1: $maxRequests" }
@@ -62,6 +63,7 @@ class Dispatcher constructor() {
    *
    * WebSocket connections to hosts **do not** count against this limit.
    */
+  // 每个主机并发执行的最大请求数
   @get:Synchronized var maxRequestsPerHost = 5
     set(maxRequestsPerHost) {
       require(maxRequestsPerHost >= 1) { "max < 1: $maxRequestsPerHost" }
@@ -86,8 +88,30 @@ class Dispatcher constructor() {
   @get:Synchronized
   var idleCallback: Runnable? = null
 
+  /** 正在运行的同步请求队列 */
+  private val runningSyncCalls = ArrayDeque<RealCall>()
+
+  /** 正在运行的异步请求队列 */
+  private val runningAsyncCalls = ArrayDeque<AsyncCall>()
+
+  /** 准备执行的异步请求队列 */
+  private val readyAsyncCalls = ArrayDeque<AsyncCall>()
+
+  /** 线程池 */
   private var executorServiceOrNull: ExecutorService? = null
 
+  /**
+   * 参数1：线程池中核心线程的最大数量；参数2：线程池中允许的最大线程数；
+   * 参数3：空闲线程的存活时间；参数4：空闲线程存活的时间单位，与 keepAliveTime 配合使用；
+   * 参数5：阻塞队列；参数6：指定创建线程的工厂；
+   * </p>
+   * 该线程池的核心线程数为 0，线程池最有能容纳 Integer.MAX_VALUE 个线程，且线程的空闲存活时间
+   * 为 60s（可以理解为 okhttp 随时可以创建新的线程来满足需要，可以保证网络的I/O任务有线程来处理
+   *，不被阻塞），使用的等待队列即 SynchronousQueue。
+   * </p>
+   * SynchornousQueue：内部没有任何缓存的阻塞队列。这里表示接到新任务，直接交给线程处理，如果其
+   * 他的线程都在工作，那就创建一个新的线程来处理这个任务。
+   */
   @get:Synchronized
   @get:JvmName("executorService") val executorService: ExecutorService
     get() {
@@ -98,30 +122,25 @@ class Dispatcher constructor() {
       return executorServiceOrNull!!
     }
 
-  /** Ready async calls in the order they'll be run. */
-  private val readyAsyncCalls = ArrayDeque<AsyncCall>()
-
-  /** Running asynchronous calls. Includes canceled calls that haven't finished yet. */
-  private val runningAsyncCalls = ArrayDeque<AsyncCall>()
-
-  /** Running synchronous calls. Includes canceled calls that haven't finished yet. */
-  private val runningSyncCalls = ArrayDeque<RealCall>()
-
   constructor(executorService: ExecutorService) : this() {
     this.executorServiceOrNull = executorService
   }
 
   internal fun enqueue(call: AsyncCall) {
+    // 加锁，保证线程安全
     synchronized(this) {
+      // 将该请求调用加入到"准备执行的异步请求队列"中
       readyAsyncCalls.add(call)
 
       // Mutate the AsyncCall so that it shares the AtomicInteger of an existing running call to
       // the same host.
       if (!call.call.forWebSocket) {
+        // 通过域名来查找有没有相同域名的请求，有则复用
         val existingCall = findExistingCallWithHost(call.host)
         if (existingCall != null) call.reuseCallsPerHostFrom(existingCall)
       }
     }
+    // 执行请求
     promoteAndExecute()
   }
 
@@ -162,23 +181,28 @@ class Dispatcher constructor() {
     this.assertThreadDoesntHoldLock()
 
     val executableCalls = mutableListOf<AsyncCall>()
+    // 判断是否有请求正在执行
     val isRunning: Boolean
+    // 加锁，保证线程安全
     synchronized(this) {
+      // 遍历"准备执行的异步请求队列"
       val i = readyAsyncCalls.iterator()
       while (i.hasNext()) {
         val asyncCall = i.next()
-
+        // "正在运行的异步请求队列"的数量大于最大并发请求数 64，则完全中断循环
         if (runningAsyncCalls.size >= this.maxRequests) break // Max capacity.
+        // 同域名最大请求数 5，同一个域名最多允许 5 条线程同时执行请求，超过则终止本次循环，进入下次 while 循环
         if (asyncCall.callsPerHost.get() >= this.maxRequestsPerHost) continue // Host max capacity.
-
+        // 从"准备执行的异步请求队列"中移除，并加入到 executableCalls 及 runningAsyncCalls 队列中
         i.remove()
         asyncCall.callsPerHost.incrementAndGet()
         executableCalls.add(asyncCall)
         runningAsyncCalls.add(asyncCall)
       }
+      // 通过运行队列中的请求数量来判断是否有请求正在执行
       isRunning = runningCallsCount() > 0
     }
-
+    // 遍历可执行队列，调用线程池来执行 AsyncCall
     for (i in 0 until executableCalls.size) {
       val asyncCall = executableCalls[i]
       asyncCall.executeOn(executorService)

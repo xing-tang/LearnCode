@@ -19,11 +19,11 @@ import java.io.IOException
 import okio.Timeout
 
 /**
- * A call is a request that has been prepared for execution. A call can be canceled. As this object
- * represents a single request/response pair (stream), it cannot be executed twice.
+ * 调用是已准备好执行的请求，可以取消请求（已经完成的请求不能被取消）。
+ * 由于该对象表示单个请求响应对（流），因此不能执行两次。
  */
 interface Call : Cloneable {
-  /** Returns the original request that initiated this call. */
+  /** 返回发起此调用的原始请求 */
   fun request(): Request
 
   /**
@@ -51,6 +51,12 @@ interface Call : Cloneable {
    *     remote server accepted the request before the failure.
    * @throws IllegalStateException when the call has already been executed.
    */
+  /**
+   * 同步请求，立即执行
+   * 抛出两种异常：
+   * （1）请求失败抛出 IOException；
+   * （2）如果在执行过一回的前提下再次执行抛出 IllegalStateException。
+   */
   @Throws(IOException::class)
   fun execute(): Response
 
@@ -65,17 +71,23 @@ interface Call : Cloneable {
    *
    * @throws IllegalStateException when the call has already been executed.
    */
+  /**
+   * 异步请求，会将请求任务加入到对应的队列中再等待执行
+   * 如果在执行过一回的前提下再次执行抛出 IllegalStateException。
+   */
   fun enqueue(responseCallback: Callback)
 
-  /** Cancels the request, if possible. Requests that are already complete cannot be canceled. */
+  /** 取消请求，已经完成的请求不能被取消 */
   fun cancel()
 
   /**
    * Returns true if this call has been either [executed][execute] or [enqueued][enqueue]. It is an
    * error to execute a call more than once.
    */
+  /** 是否已被执行  */
   fun isExecuted(): Boolean
 
+    /** 是否被取消   */
   fun isCanceled(): Boolean
 
   /**
@@ -85,6 +97,7 @@ interface Call : Cloneable {
    *
    * Configure the client's default timeout with [OkHttpClient.Builder.callTimeout].
    */
+  /** 请求超时时间配置 */
   fun timeout(): Timeout
 
   /**
@@ -93,6 +106,7 @@ interface Call : Cloneable {
    */
   public override fun clone(): Call
 
+  /** 利用工厂模式来让 OkHttpClient 来创建 Call 对象 */
   fun interface Factory {
     fun newCall(request: Request): Call
   }

@@ -3,15 +3,19 @@ plugins {
     id 'kotlin-android'
 }
 
+dependencies {
+    api project(path: ':layer-source:okhttp3:okhttp')
+    // FindBugsAnnotations
+    compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+}
+
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
-
     defaultConfig {
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -25,9 +29,4 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-}
-
-dependencies {
-    api project(path: ':layer-source:okhttp3:okhttp')
-    compileOnly rootProject.ext.dependencies["find-bugs-annotations"]
 }

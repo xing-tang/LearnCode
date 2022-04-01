@@ -13,7 +13,7 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencies["test-espresso-core"]
     // Kotlin
     api rootProject.ext.dependencies["kotlin"]
-    api rootProject.ext.dependencies["kotlinx-coroutines"]
+    api rootProject.ext.dependencies["kotlinx-coroutines-core"]
     api rootProject.ext.dependencies["kotlinx-coroutines-android"]
     // Material
     api rootProject.ext.dependencies["material"]
@@ -49,30 +49,25 @@ dependencies {
     api rootProject.ext.dependencies["androidx-navigation-fragment-ktx"]
     api rootProject.ext.dependencies["androidx-navigation-ui-ktx"]
     // ================================ Android 第三方库依赖 ================================
-    // Okhttp3
-    // api deps["okhttp3-okhttp"]
-    // api deps["okhttp3-logging-interceptor"]
-    api project(path: ':layer-source:okhttp3:okhttp')
-    api project(path: ':layer-source:okhttp3:okhttp-logging-interceptor')
+    // OkHttp3
+    api rootProject.ext.dependencies["okhttp3-okhttp"]
+    api rootProject.ext.dependencies["okhttp3-logging-interceptor"]
     // Retrofit2
-    // api rootProject.ext.dependencies["retrofit2-retrofit"]
-    // api rootProject.ext.dependencies["retrofit2-converter-gson"]
-    // api rootProject.ext.dependencies["retrofit2-converter-scalars"]
-    // api rootProject.ext.dependencies["retrofit2-adapter-rxjava2"]
-    api project(path: ':layer-source:retrofit2:retrofit')
-    api project(path: ':layer-source:retrofit2:retrofit-converters')
-    api project(path: ':layer-source:retrofit2:retrofit-adapters')
-    // RxKotlin and RxAndroid
-    api rootProject.ext.dependencies["rxkotlin"]
-    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["retrofit2-retrofit"]
+    api rootProject.ext.dependencies["retrofit2-converter-scalars"]
+    api rootProject.ext.dependencies["retrofit2-converter-gson"]
+    api rootProject.ext.dependencies["retrofit2-adapter-rxjava2"]
+    // RxJava RxKotlin RxAndroid
     api rootProject.ext.dependencies["rxjava"]
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["rxkotlin"]
     // Glide
     api rootProject.ext.dependencies["glide"]
     annotationProcessor rootProject.ext.dependencies["glide-compiler"]
     api rootProject.ext.dependencies["glide-loader-okhttp3"]
-    // GSON
+    // Gson
     api rootProject.ext.dependencies["gson"]
-    // FAST JSON
+    // Fast Json
     api rootProject.ext.dependencies["fast-json"]
     // EventBus
     api rootProject.ext.dependencies["eventbus"]

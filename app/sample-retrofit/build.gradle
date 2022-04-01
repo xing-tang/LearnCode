@@ -1,0 +1,68 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+kapt {
+    arguments {
+        // 根据模块名来命名路由根节点
+        arg("AROUTER_MODULE_NAME", project.getName())
+        // 生成 Json 文件
+        arg("AROUTER_GENERATE_DOC", "enable")
+    }
+}
+
+dependencies {
+    implementation project(path: ':layer-libraries:open-common')
+    // ARouter
+    kapt rootProject.ext.dependencies["arouter-compiler"]
+    // Okhttp3
+    api rootProject.ext.dependencies["okhttp3-okhttp"]
+    api rootProject.ext.dependencies["okhttp3-logging-interceptor"]
+    // Gson
+    api rootProject.ext.dependencies["gson"]
+    // Retrofit2
+    api rootProject.ext.dependencies["retrofit2-retrofit"]
+    api rootProject.ext.dependencies["retrofit2-converter-scalars"]
+    api rootProject.ext.dependencies["retrofit2-converter-gson"]
+    api rootProject.ext.dependencies["retrofit2-adapter-rxjava2"]
+    // RxJava RxKotlin RxAndroid
+    api rootProject.ext.dependencies["rxjava"]
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["rxkotlin"]
+    // Kotlin 协程
+    api rootProject.ext.dependencies["kotlinx-coroutines-core"]
+    api rootProject.ext.dependencies["kotlinx-coroutines-android"]
+}
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    defaultConfig {
+        applicationId "com.open.retrofit"
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        // 65536
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+}

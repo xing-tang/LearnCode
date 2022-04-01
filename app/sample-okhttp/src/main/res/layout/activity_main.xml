@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn_execute_get"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:onClick="onClick"
+        android:text="同步 GET 请求"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toStartOf="@+id/btn_enqueue_get"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_enqueue_get"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:onClick="onClick"
+        android:text="异步 GET 请求"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_execute_get"
+        app:layout_constraintTop_toTopOf="@+id/btn_execute_get" />
+
+    <Button
+        android:id="@+id/btn_enqueue_post_string"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:onClick="onClick"
+        android:text="异步 POST 提交字符串"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toStartOf="@+id/btn_enqueue_post_stream"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_enqueue_get" />
+
+    <Button
+        android:id="@+id/btn_enqueue_post_stream"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:onClick="onClick"
+        android:text="异步 POST 提交流"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_enqueue_post_string"
+        app:layout_constraintTop_toTopOf="@+id/btn_enqueue_post_string" />
+
+    <Button
+        android:id="@+id/btn_equeue_post_file"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:onClick="onClick"
+        android:text="异步 POST 提交文件"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toStartOf="@+id/btn_equeue_post_from"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_enqueue_post_stream" />
+
+    <Button
+        android:id="@+id/btn_equeue_post_from"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:onClick="onClick"
+        android:text="异步 POST 提交表单"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_equeue_post_file"
+        app:layout_constraintTop_toTopOf="@+id/btn_equeue_post_file" />
+
+    <Button
+        android:id="@+id/btn_equeue_post_multipart"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:onClick="onClick"
+        android:text="异步 POST 提交分块请求"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_equeue_post_file" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_equeue_post_multipart">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_okhttp_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:gravity="center|top"
+                android:padding="10dp"
+                android:text="返回网络请求成功或失败的数据"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

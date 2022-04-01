@@ -1,0 +1,54 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+kapt {
+    arguments {
+        // 根据模块名来命名路由根节点
+        arg("AROUTER_MODULE_NAME", project.getName())
+        // 生成 Json 文件
+        arg("AROUTER_GENERATE_DOC", "enable")
+    }
+}
+
+dependencies {
+    implementation project(path: ':layer-libraries:open-common')
+    // ARouter
+    kapt rootProject.ext.dependencies["arouter-compiler"]
+    // OkHttp3
+    api rootProject.ext.dependencies["okhttp3-okhttp"]
+    api rootProject.ext.dependencies["okhttp3-logging-interceptor"]
+}
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    defaultConfig {
+        applicationId "com.open.okhttp"
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        // 65536
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+}

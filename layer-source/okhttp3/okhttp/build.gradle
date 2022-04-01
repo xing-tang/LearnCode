@@ -3,15 +3,32 @@ plugins {
     id 'kotlin-android'
 }
 
+dependencies {
+    api rootProject.ext.dependencies["androidx-core-ktx"]
+    api rootProject.ext.dependencies["kotlin"]
+    // Okio
+    api 'com.squareup.okio:okio:2.8.0'
+    // BouncyCastle
+    compileOnly 'org.bouncycastle:bcprov-jdk15on:1.65'
+    // BouncyCastleTls
+    compileOnly 'org.bouncycastle:bctls-jdk15on:1.65'
+    // Conscrypt
+    compileOnly 'org.conscrypt:conscrypt-openjdk-uber:2.5.1'
+    // Openjsse
+    compileOnly 'org.openjsse:openjsse:1.1.0'
+    // AnimalSniffer
+    compileOnly 'org.codehaus.mojo:animal-sniffer-annotations:1.18'
+    // FindBugsAnnotations
+    compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+}
+
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
-
     defaultConfig {
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -25,16 +42,4 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-}
-
-dependencies {
-    api rootProject.ext.dependencies["androidx-core-ktx"]
-    api rootProject.ext.dependencies["kotlin"]
-    api rootProject.ext.dependencies["okio"]
-    compileOnly rootProject.ext.dependencies["bouncycastle"]
-    compileOnly rootProject.ext.dependencies["bouncycastletls"]
-    compileOnly rootProject.ext.dependencies["conscrypt"]
-    compileOnly rootProject.ext.dependencies["openjsse"]
-    compileOnly rootProject.ext.dependencies["animal-sniffer-annotations"]
-    compileOnly rootProject.ext.dependencies["find-bugs-annotations"]
 }

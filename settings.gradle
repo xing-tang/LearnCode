@@ -1,6 +1,9 @@
 // app
-include ':app:learncode-app'
-include ':app:arouter-sample'
+include ':app:app-learncode'
+include ':app:sample-okhttp'
+include ':app:sample-retrofit'
+include ':app:sample-lifecycle'
+include ':app:sample-arouter'
 rootProject.name = "LearnCode-master"
 
 // layer-business 业务层
@@ -18,6 +21,12 @@ include ':layer-source:okhttp3:okhttp'
 include ':layer-source:retrofit2:retrofit-converters'
 include ':layer-source:retrofit2:retrofit-adapters'
 include ':layer-source:retrofit2:retrofit'
+// ================ Lifecycle =====================
+include ':layer-source:lifecycle:lifecycle-runtime-2.4.1'
+include ':layer-source:lifecycle:lifecycle-runtime-ktx-2.4.1'
+include ':layer-source:lifecycle:lifecycle-common-2.4.1'
+include ':layer-source:lifecycle:lifecycle-process-2.4.1'
+include ':layer-source:lifecycle:lifecycle-runtime-service-2.4.1'
 // ================ ARouter Statrt ================
 // 业务层
 include ':layer-business:arouter:arouter-java'

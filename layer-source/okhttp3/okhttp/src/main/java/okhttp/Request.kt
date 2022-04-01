@@ -134,10 +134,10 @@ class Request internal constructor(
   }
 
   open class Builder {
-    internal var url: HttpUrl? = null
-    internal var method: String
-    internal var headers: Headers.Builder
-    internal var body: RequestBody? = null
+    internal var url: HttpUrl? = null// 请求的 url
+    internal var method: String// 请求方法，如：GET、POST..
+    internal var headers: Headers.Builder// 请求头
+    internal var body: RequestBody? = null// 请求体
 
     /** A mutable map of tags, or an immutable empty map if we don't have any. */
     internal var tags: MutableMap<Class<*>, Any> = mutableMapOf()

@@ -101,10 +101,12 @@ class RealInterceptorChain(
       }
     }
 
-    // Call the next interceptor in the chain.
+    // 调用链中的下一个拦截器
+    // index+1, 复制创建新的责任链，也就意味着调用责任链中的下一个处理者，也就是下一个拦截器
     val next = copy(index = index + 1, request = request)
+    // 取出当前拦截器
     val interceptor = interceptors[index]
-
+    // 执行当前拦截器的拦截方法
     @Suppress("USELESS_ELVIS")
     val response = interceptor.intercept(next) ?: throw NullPointerException(
         "interceptor $interceptor returned null")

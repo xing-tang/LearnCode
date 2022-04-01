@@ -57,6 +57,8 @@ import java.util.concurrent.TimeUnit
  * ```
  */
 fun interface Interceptor {
+
+  /** 拦截方法 */
   @Throws(IOException::class)
   fun intercept(chain: Chain): Response
 
@@ -76,8 +78,11 @@ fun interface Interceptor {
   }
 
   interface Chain {
+
+    /** 原始请求数据 */
     fun request(): Request
 
+    /** 核心方法，处理请求，获取 response */
     @Throws(IOException::class)
     fun proceed(request: Request): Response
 

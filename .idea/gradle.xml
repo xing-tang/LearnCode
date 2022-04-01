@@ -13,8 +13,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/app/arouter-sample" />
-            <option value="$PROJECT_DIR$/app/learncode-app" />
+            <option value="$PROJECT_DIR$/app/app-learncode" />
+            <option value="$PROJECT_DIR$/app/sample-arouter" />
+            <option value="$PROJECT_DIR$/app/sample-lifecycle" />
+            <option value="$PROJECT_DIR$/app/sample-okhttp" />
+            <option value="$PROJECT_DIR$/app/sample-retrofit" />
             <option value="$PROJECT_DIR$/layer-business" />
             <option value="$PROJECT_DIR$/layer-business/arouter" />
             <option value="$PROJECT_DIR$/layer-business/arouter/arouter-java" />
@@ -30,6 +33,12 @@
             <option value="$PROJECT_DIR$/layer-source/arouter/arouter-api" />
             <option value="$PROJECT_DIR$/layer-source/arouter/arouter-compiler" />
             <option value="$PROJECT_DIR$/layer-source/arouter/arouter-gradle-plugin" />
+            <option value="$PROJECT_DIR$/layer-source/lifecycle" />
+            <option value="$PROJECT_DIR$/layer-source/lifecycle/lifecycle-common-2.4.1" />
+            <option value="$PROJECT_DIR$/layer-source/lifecycle/lifecycle-process-2.4.1" />
+            <option value="$PROJECT_DIR$/layer-source/lifecycle/lifecycle-runtime-2.4.1" />
+            <option value="$PROJECT_DIR$/layer-source/lifecycle/lifecycle-runtime-ktx-2.4.1" />
+            <option value="$PROJECT_DIR$/layer-source/lifecycle/lifecycle-runtime-service-2.4.1" />
             <option value="$PROJECT_DIR$/layer-source/okhttp3" />
             <option value="$PROJECT_DIR$/layer-source/okhttp3/okhttp" />
             <option value="$PROJECT_DIR$/layer-source/okhttp3/okhttp-logging-interceptor" />

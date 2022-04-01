@@ -1,0 +1,25 @@
+// IntelliJ API Decompiler stub source generated from a class file
+// Implementation of methods is not available
+
+package androidx.lifecycle
+
+@kotlin.PublishedApi internal suspend fun <R> androidx.lifecycle.Lifecycle.suspendWithStateAtLeastUnchecked(state: androidx.lifecycle.Lifecycle.State, dispatchNeeded: kotlin.Boolean, lifecycleDispatcher: kotlinx.coroutines.CoroutineDispatcher, block: () -> R): R { /* compiled code */ }
+
+public suspend inline fun <R> androidx.lifecycle.Lifecycle.withCreated(crossinline block: () -> R): R { /* compiled code */ }
+
+public suspend inline fun <R> androidx.lifecycle.LifecycleOwner.withCreated(crossinline block: () -> R): R { /* compiled code */ }
+
+public suspend inline fun <R> androidx.lifecycle.Lifecycle.withResumed(crossinline block: () -> R): R { /* compiled code */ }
+
+public suspend inline fun <R> androidx.lifecycle.LifecycleOwner.withResumed(crossinline block: () -> R): R { /* compiled code */ }
+
+public suspend inline fun <R> androidx.lifecycle.Lifecycle.withStarted(crossinline block: () -> R): R { /* compiled code */ }
+
+public suspend inline fun <R> androidx.lifecycle.LifecycleOwner.withStarted(crossinline block: () -> R): R { /* compiled code */ }
+
+public suspend inline fun <R> androidx.lifecycle.Lifecycle.withStateAtLeast(state: androidx.lifecycle.Lifecycle.State, crossinline block: () -> R): R { /* compiled code */ }
+
+public suspend inline fun <R> androidx.lifecycle.LifecycleOwner.withStateAtLeast(state: androidx.lifecycle.Lifecycle.State, crossinline block: () -> R): R { /* compiled code */ }
+
+@kotlin.PublishedApi internal suspend inline fun <R> androidx.lifecycle.Lifecycle.withStateAtLeastUnchecked(state: androidx.lifecycle.Lifecycle.State, crossinline block: () -> R): R { /* compiled code */ }
+

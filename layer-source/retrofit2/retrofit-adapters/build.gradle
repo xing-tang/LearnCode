@@ -3,6 +3,19 @@ plugins {
     id 'kotlin-android'
 }
 
+dependencies {
+    api rootProject.ext.dependencies["androidx-core-ktx"]
+    api rootProject.ext.dependencies["kotlin"]
+    api project(path: ':layer-source:retrofit2:retrofit')
+    // TODO: rxjava3源码编译不过，目前暂时这样使用
+    // api project(path: ':rxjava3')
+    api "io.reactivex.rxjava3:rxjava:3.0.0"
+    // ReactiveStreams
+    api 'org.reactivestreams:reactive-streams:1.0.3'
+    // FindBugsAnnotations
+    compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+}
+
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
@@ -11,7 +24,6 @@ android {
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -28,16 +40,4 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-}
-
-
-dependencies {
-    api rootProject.ext.dependencies["androidx-core-ktx"]
-    api rootProject.ext.dependencies["kotlin"]
-    api project(path: ':layer-source:retrofit2:retrofit')
-    // TODO: rxjava3源码编译不过，目前暂时这样使用
-    // api project(path: ':rxjava3')
-    api "io.reactivex.rxjava3:rxjava:3.0.0"
-    api rootProject.ext.dependencies["reactive-streams"]
-    compileOnly rootProject.ext.dependencies["find-bugs-annotations"]
 }

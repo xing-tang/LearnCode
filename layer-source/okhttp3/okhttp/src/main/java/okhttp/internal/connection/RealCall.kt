@@ -144,23 +144,32 @@ class RealCall(
 
   override fun isCanceled() = canceled
 
+  /** 同步请求 */
   override fun execute(): Response {
+    // CAS 判断是否已经被执行了, 确保只能执行一次，如果已经执行过，则抛出异常
     check(executed.compareAndSet(false, true)) { "Already Executed" }
-
+    // 请求超时开始计时
     timeout.enter()
+    // 开启请求监听
     callStart()
     try {
+      // 调用调度器中的 executed() 方法，调度器只是将 call 加入到了"正在运行的同步请求队列"中
       client.dispatcher.executed(this)
+      // 调用 getResponseWithInterceptorChain() 方法拿到 response
       return getResponseWithInterceptorChain()
     } finally {
+      // 执行完毕，调度器将该 call 从 runningSyncCalls 队列中移除
       client.dispatcher.finished(this)
     }
   }
 
+  /** 异步请求 */
   override fun enqueue(responseCallback: Callback) {
+    // CAS 判断是否已经被执行了, 确保只能执行一次，如果已经执行过，则抛出异常
     check(executed.compareAndSet(false, true)) { "Already Executed" }
-
+    // 开启请求监听
     callStart()
+    // 新建一个 AsyncCall 对象，通过调度器 enqueue() 方法加入到"准备执行的异步请求队列"中
     client.dispatcher.enqueue(AsyncCall(responseCallback))
   }
 
@@ -173,18 +182,27 @@ class RealCall(
 
   @Throws(IOException::class)
   internal fun getResponseWithInterceptorChain(): Response {
-    // Build a full stack of interceptors.
+    // 拦截器列表
     val interceptors = mutableListOf<Interceptor>()
+    // 自定义拦截器，可以多个
+    // 对应 OkHttpClient.Builder#addInterceptor() 方法进行逐一添加
     interceptors += client.interceptors
+    // 重定向拦截器
     interceptors += RetryAndFollowUpInterceptor(client)
+    // 桥接拦截器
     interceptors += BridgeInterceptor(client.cookieJar)
+    // 缓存拦截器
     interceptors += CacheInterceptor(client.cache)
+    // 连接拦截器
     interceptors += ConnectInterceptor
+    // 非 WebSocket 网络拦截器，也可以多个
+    // 对应 OkHttpClient.Builder#addNetWorkInterceptor() 方法进行逐一添加
     if (!forWebSocket) {
       interceptors += client.networkInterceptors
     }
+    // 请求服务拦截器
     interceptors += CallServerInterceptor(forWebSocket)
-
+    // 构建拦截器责任链
     val chain = RealInterceptorChain(
         call = this,
         interceptors = interceptors,
@@ -195,10 +213,12 @@ class RealCall(
         readTimeoutMillis = client.readTimeoutMillis,
         writeTimeoutMillis = client.writeTimeoutMillis
     )
-
+    // 如果 call 请求完成，那就意味着交互完成了，没有更多的东西来交换了
     var calledNoMoreExchanges = false
     try {
+      // 执行拦截器责任链来获取 response
       val response = chain.proceed(originalRequest)
+      // 如果被取消，关闭响应，抛出异常
       if (isCanceled()) {
         response.closeQuietly()
         throw IOException("Canceled")
@@ -250,9 +270,11 @@ class RealCall(
       check(!responseBodyOpen)
       check(!requestBodyOpen)
     }
-
+    // 这里的 exchangeFinder 就是在 RetryAndFollowUpInterceptor 中创建的
     val exchangeFinder = this.exchangeFinder!!
+    // 返回一个 ExchangeCodec（是个编码器，为 request 编码以及为 response 解码）
     val codec = exchangeFinder.find(client, chain)
+    // 根据 exchangeFinder 与 codec 新构建一个 Exchange 对象，并返回
     val result = Exchange(this, eventListener, exchangeFinder, codec)
     this.interceptorScopedExchange = result
     this.exchange = result
@@ -468,8 +490,10 @@ class RealCall(
   internal fun redactedUrl(): String = originalRequest.url.redact()
 
   internal inner class AsyncCall(
+    // 用户传入的响应回调方法
     private val responseCallback: Callback
   ) : Runnable {
+    // 同一个域名的请求次数，volatile + AtomicInteger 保证在多线程下及时可见性与原子性
     @Volatile var callsPerHost = AtomicInteger(0)
       private set
 
@@ -495,15 +519,18 @@ class RealCall(
 
       var success = false
       try {
+        // 调用线程池执行
         executorService.execute(this)
         success = true
       } catch (e: RejectedExecutionException) {
         val ioException = InterruptedIOException("executor rejected")
         ioException.initCause(e)
         noMoreExchanges(ioException)
+        // 请求失败，调用 Callback.onFailure() 方法
         responseCallback.onFailure(this@RealCall, ioException)
       } finally {
         if (!success) {
+          // 请求失败，调用调度器 finish() 方法
           client.dispatcher.finished(this) // This call is no longer running!
         }
       }
@@ -514,14 +541,17 @@ class RealCall(
         var signalledCallback = false
         timeout.enter()
         try {
+          // 请求成功，获取到服务器返回的 response 数据
           val response = getResponseWithInterceptorChain()
           signalledCallback = true
+          // 调用 Callback.onResponse() 方法，将 response 数据传递出去
           responseCallback.onResponse(this@RealCall, response)
         } catch (e: IOException) {
           if (signalledCallback) {
-            // Do not signal the callback twice!
+            // 不要两次发出回调信号
             Platform.get().log("Callback failure for ${toLoggableString()}", Platform.INFO, e)
           } else {
+            // 请求失败，调用 Callback.onFailure() 方法
             responseCallback.onFailure(this@RealCall, e)
           }
         } catch (t: Throwable) {
@@ -529,10 +559,12 @@ class RealCall(
           if (!signalledCallback) {
             val canceledException = IOException("canceled due to $t")
             canceledException.addSuppressed(t)
+            // 请求失败，调用 Callback.onFailure() 方法
             responseCallback.onFailure(this@RealCall, canceledException)
           }
           throw t
         } finally {
+          // 请求结束，调用调度器 finish() 方法
           client.dispatcher.finished(this)
         }
       }

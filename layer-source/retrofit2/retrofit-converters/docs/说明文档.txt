@@ -1,5 +1,0 @@
-#### 说明文档
-- retrofit-converters
-- 地址：https://github.com/square/retrofit/tree/master
-- retrofit版本：implementation "com.squareup.retrofit2:retrofit:2.9.0"
-- 源码解析更新时间：2021年5月21日

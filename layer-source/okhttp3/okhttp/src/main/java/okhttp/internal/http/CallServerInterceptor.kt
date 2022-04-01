@@ -32,24 +32,28 @@ class CallServerInterceptor(private val forWebSocket: Boolean) : Interceptor {
     val request = realChain.request
     val requestBody = request.body
     val sentRequestMillis = System.currentTimeMillis()
-
+    // 写入请求头
     exchange.writeRequestHeaders(request)
 
     var invokeStartEvent = true
     var responseBuilder: Response.Builder? = null
+    // 如果不是 GET 请求，并且请求体不为空
     if (HttpMethod.permitsRequestBody(request.method) && requestBody != null) {
-      // If there's a "Expect: 100-continue" header on the request, wait for a "HTTP/1.1 100
-      // Continue" response before transmitting the request body. If we don't get that, return
-      // what we did get (such as a 4xx response) without ever transmitting the request body.
+      // 当请求头为"Expect: 100-continue"时，在发送请求体之前需要等待服务器返回"HTTP/1.1 100 Continue" 的
+      // response，如果没有等到该 response，就不发送请求体。
+      // POST请求，先发送请求头，在获取到 100 继续状态后继续发送请求体
       if ("100-continue".equals(request.header("Expect"), ignoreCase = true)) {
+        // 刷新请求，即发送请求头
         exchange.flushRequest()
+        // 解析响应头
         responseBuilder = exchange.readResponseHeaders(expectContinue = true)
         exchange.responseHeadersStart()
         invokeStartEvent = false
       }
+      // 写入请求体
       if (responseBuilder == null) {
         if (requestBody.isDuplex()) {
-          // Prepare a duplex body so that the application can send a request body later.
+          // 如果请求体是双公体，就先发送请求头，稍后在发送请求体
           exchange.flushRequest()
           val bufferedRequestBody = exchange.createRequestBody(request, true).buffer()
           requestBody.writeTo(bufferedRequestBody)
@@ -73,9 +77,11 @@ class CallServerInterceptor(private val forWebSocket: Boolean) : Interceptor {
     }
 
     if (requestBody == null || !requestBody.isDuplex()) {
+      // 请求结束，发送请求体
       exchange.finishRequest()
     }
     if (responseBuilder == null) {
+      // 读取响应头
       responseBuilder = exchange.readResponseHeaders(expectContinue = false)!!
       if (invokeStartEvent) {
         exchange.responseHeadersStart()

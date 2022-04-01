@@ -1,0 +1,7 @@
+// IntelliJ API Decompiler stub source generated from a class file
+// Implementation of methods is not available
+
+package androidx.lifecycle
+
+public fun <T> kotlinx.coroutines.flow.Flow<T>.flowWithLifecycle(lifecycle: androidx.lifecycle.Lifecycle, minActiveState: androidx.lifecycle.Lifecycle.State /* = compiled code */): kotlinx.coroutines.flow.Flow<T> { /* compiled code */ }
+

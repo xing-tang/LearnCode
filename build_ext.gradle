@@ -20,14 +20,14 @@ ext {
             "test-espresso-core"              : "androidx.test.espresso:espresso-core:3.3.0",
             // Kotlin
             "kotlin"                          : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.61",
-            "kotlinx-coroutines"              : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7",
+            "kotlinx-coroutines-core"         : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7",
             "kotlinx-coroutines-android"      : "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7",
             // Material
             "material"                        : "com.google.android.material:material:1.4.0",
             // AndroidX Core
-            "androidx-core-ktx"               : "androidx.core:core-ktx:1.5.0",
+            "androidx-core-ktx"               : "androidx.core:core-ktx:1.7.0",
             // AndroidX Appcompat
-            "androidx-appcompat"              : "androidx.appcompat:appcompat:1.3.1",
+            "androidx-appcompat"              : "androidx.appcompat:appcompat:1.4.1",
             // AndroidX Annotation
             "androidx-annotation"             : "androidx.annotation:annotation:1.3.0",
             // AndroidX Multidex 65536=>64K
@@ -55,45 +55,28 @@ ext {
             // Androidx Navigation
             "androidx-navigation-fragment-ktx": "androidx.navigation:navigation-fragment-ktx:2.3.5",
             "androidx-navigation-ui-ktx"      : "androidx.navigation:navigation-ui-ktx:2.3.5",
-
-            // AnimalSniffer
-            "animal-sniffer-annotations"      : "org.codehaus.mojo:animal-sniffer-annotations:1.18",
-            // FindBugsAnnotations
-            "find-bugs-annotations"           : "com.google.code.findbugs:jsr305:3.0.2",
-            // ReactiveStreams
-            "reactive-streams"                : 'org.reactivestreams:reactive-streams:1.0.3',
-            // Okio
-            "okio"                            : "com.squareup.okio:okio:2.8.0",
-            // BouncyCastle
-            "bouncycastle"                    : "org.bouncycastle:bcprov-jdk15on:1.65",
-            // BouncyCastlePkix
-            "bouncycastlepkix"                : "org.bouncycastle:bcpkix-jdk15on:1.65",
-            // BouncyCastleTls
-            "bouncycastletls"                 : "org.bouncycastle:bctls-jdk15on:1.65",
-            // Conscrypt
-            "conscrypt"                       : "org.conscrypt:conscrypt-openjdk-uber:2.5.1",
-            // Openjsse
-            "openjsse"                        : "org.openjsse:openjsse:1.1.0",
+            // Androidx Startup Runtime
+            "androidx-startup-runtime"        : "androidx.startup:startup-runtime:1.1.1",
             // ================================ Android 第三方库依赖 ================================
-            // Okhttp3
-            "okhttp3-okhttp"                  : "com.squareup.okhttp3:okhttp:4.9.0",
-            "okhttp3-logging-interceptor"     : "com.squareup.okhttp3:logging-interceptor:4.9.0",
+            // OkHttp3
+            "okhttp3-okhttp"                  : "com.squareup.okhttp3:okhttp:4.9.1",
+            "okhttp3-logging-interceptor"     : "com.squareup.okhttp3:logging-interceptor:4.9.1",
             // Retrofit2
             "retrofit2-retrofit"              : "com.squareup.retrofit2:retrofit:2.9.0",
-            "retrofit2-converter-gson"        : "com.squareup.retrofit2:converter-gson:2.9.0",
             "retrofit2-converter-scalars"     : "com.squareup.retrofit2:converter-scalars:2.9.0",
+            "retrofit2-converter-gson"        : "com.squareup.retrofit2:converter-gson:2.9.0",
             "retrofit2-adapter-rxjava2"       : "com.squareup.retrofit2:adapter-rxjava2:2.7.2",
-            // RxKotlin and RxAndroid
+            // RxJava RxAndroid RxKotlin
             "rxjava"                          : "io.reactivex.rxjava2:rxjava:2.1.6",
-            "rxkotlin"                        : "io.reactivex.rxjava2:rxkotlin:2.2.0",
             "rxandroid"                       : "io.reactivex.rxjava2:rxandroid:2.0.1",
+            "rxkotlin"                        : "io.reactivex.rxjava2:rxkotlin:2.2.0",
             // Glide
             "glide"                           : "com.github.bumptech.glide:glide:4.11.0",
             "glide-compiler"                  : "com.github.bumptech.glide:compiler:4.11.0",
             "glide-loader-okhttp3"            : "com.github.bumptech.glide:okhttp3-integration:4.11.0",
-            // GSON
+            // Gson
             "gson"                            : "com.google.code.gson:gson:2.8.6",
-            // FAST JSON
+            // Fast Json
             "fast-json"                       : "com.alibaba:fastjson:1.2.69",
             // EventBus
             "eventbus"                        : "org.greenrobot:eventbus:3.2.0",
