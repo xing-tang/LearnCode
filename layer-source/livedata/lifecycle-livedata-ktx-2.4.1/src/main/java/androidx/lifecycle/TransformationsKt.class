@@ -1,0 +1,11 @@
+// IntelliJ API Decompiler stub source generated from a class file
+// Implementation of methods is not available
+
+package androidx.lifecycle
+
+public inline fun <X> androidx.lifecycle.LiveData<X>.distinctUntilChanged(): androidx.lifecycle.LiveData<X> { /* compiled code */ }
+
+public inline fun <X, Y> androidx.lifecycle.LiveData<X>.map(crossinline transform: (X) -> Y): androidx.lifecycle.LiveData<Y> { /* compiled code */ }
+
+public inline fun <X, Y> androidx.lifecycle.LiveData<X>.switchMap(crossinline transform: (X) -> androidx.lifecycle.LiveData<Y>): androidx.lifecycle.LiveData<Y> { /* compiled code */ }
+

@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/app/app-learncode" />
             <option value="$PROJECT_DIR$/app/sample-arouter" />
             <option value="$PROJECT_DIR$/app/sample-lifecycle" />
+            <option value="$PROJECT_DIR$/app/sample-livedata" />
             <option value="$PROJECT_DIR$/app/sample-okhttp" />
             <option value="$PROJECT_DIR$/app/sample-retrofit" />
             <option value="$PROJECT_DIR$/layer-business" />
@@ -39,6 +40,11 @@
             <option value="$PROJECT_DIR$/layer-source/lifecycle/lifecycle-runtime-2.4.1" />
             <option value="$PROJECT_DIR$/layer-source/lifecycle/lifecycle-runtime-ktx-2.4.1" />
             <option value="$PROJECT_DIR$/layer-source/lifecycle/lifecycle-runtime-service-2.4.1" />
+            <option value="$PROJECT_DIR$/layer-source/livedata" />
+            <option value="$PROJECT_DIR$/layer-source/livedata/lifecycle-livedata-2.4.1" />
+            <option value="$PROJECT_DIR$/layer-source/livedata/lifecycle-livedata-core-2.4.1" />
+            <option value="$PROJECT_DIR$/layer-source/livedata/lifecycle-livedata-core-ktx-2.4.1" />
+            <option value="$PROJECT_DIR$/layer-source/livedata/lifecycle-livedata-ktx-2.4.1" />
             <option value="$PROJECT_DIR$/layer-source/okhttp3" />
             <option value="$PROJECT_DIR$/layer-source/okhttp3/okhttp" />
             <option value="$PROJECT_DIR$/layer-source/okhttp3/okhttp-logging-interceptor" />

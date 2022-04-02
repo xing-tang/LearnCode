@@ -1,0 +1,11 @@
+// IntelliJ API Decompiler stub source generated from a class file
+// Implementation of methods is not available
+
+package androidx.lifecycle
+
+public fun <T> androidx.lifecycle.LiveData<T>.asFlow(): kotlinx.coroutines.flow.Flow<T> { /* compiled code */ }
+
+@androidx.annotation.RequiresApi public fun <T> kotlinx.coroutines.flow.Flow<T>.asLiveData(context: kotlin.coroutines.CoroutineContext /* = compiled code */, timeout: java.time.Duration): androidx.lifecycle.LiveData<T> { /* compiled code */ }
+
+@kotlin.jvm.JvmOverloads public fun <T> kotlinx.coroutines.flow.Flow<T>.asLiveData(context: kotlin.coroutines.CoroutineContext /* = compiled code */, timeoutInMs: kotlin.Long /* = compiled code */): androidx.lifecycle.LiveData<T> { /* compiled code */ }
+

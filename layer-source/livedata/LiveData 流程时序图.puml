@@ -1,0 +1,24 @@
+@startuml
+title LiveData 流程时序图
+开始or结束 -> LiveData : 1. MutableLiveData#observe(xxx)\nMutableLiveData 继承于 LiveData\n并暴露给外部使用
+activate LiveData
+LiveData --> LifecycleBoundObserver : 2. LifecycleBoundObserver wrapper = \nnew LifecycleBoundObserver(lifecycleOwner, observer)
+LiveData -> Lifecycle : 3. Lifecycle#addObserver(wrapper)
+deactivate LiveData
+activate Lifecycle
+Lifecycle --> Lifecycle : 4. LifecycleRegistry#handleLifecycleEvent(Event event)\n初次注册，宿主每次生命周期的变化都会回调\nonStateChanged(xxx) 方法
+Lifecycle -> LifecycleBoundObserver : 5. LifecycleBoundObserver#onStateChanged(xxx)
+deactivate Lifecycle
+activate LifecycleBoundObserver
+LifecycleBoundObserver --> LifecycleBoundObserver : LiveData#removeObserver(xxx)\nLifecycleOwner 变成 DESTROYED 状态，则移除观察者
+LifecycleBoundObserver --> LifecycleBoundObserver : ObserverWrapper#activeStateChanged(xxx) \n如果宿主的状态为 started，resumed，\n则分发最新数据到每个观察者
+LifecycleBoundObserver -> LiveData : 6. LiveData#dispatchingValue(xxx)\n（1）如果 observer 为空，则分发数据给 LiveData 中存储的所有观察者；\n（2）如果不为空，则分发数据给该 observer。
+activate LiveData
+开始or结束 --> LiveData : postValue(xxx)：更新事件\n（1）通过 ArchTaskExecutor 通过线程池分发到主线程去处理；\n（2）最终还是调用 setValue(xxx)。
+开始or结束 --> LiveData : setValue()：更新事件\n其方法内部调用了 LiveData#dispatchingValue(null) 方法
+deactivate LifecycleBoundObserver
+LiveData --> LiveData : 7. LiveData#considerNotify()\n（1）如果观察者所在的宿主不活跃，不分发；\n（2）observer.version >= LiveData.version 则不分发；\n（3）observer.onStateChanged(xxx) 分发数据。
+LiveData -> 开始or结束 : 8. onChanged(T t)\n该回调方法来处理对应分发的数据
+deactivate LiveData
+@enduml
+

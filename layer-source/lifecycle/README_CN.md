@@ -1,6 +1,7 @@
 #### 说明文档
 - Lifecycle
-- 地址：https://github.com/square/retrofit/tree/master
+- [官方网站](https://developer.android.com/jetpack/androidx/releases/lifecycle?hl=zh-cn)
+- [官方文档](https://developer.android.com/topic/libraries/architecture/lifecycle?hl=zh-cn)
 - // 只有 Lifecycles（不带 ViewModel 或 LiveData）
 - implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
 - // 注释处理器

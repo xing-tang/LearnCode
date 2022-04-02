@@ -1,0 +1,15 @@
+// IntelliJ API Decompiler stub source generated from a class file
+// Implementation of methods is not available
+
+package androidx.lifecycle
+
+internal const val DEFAULT_TIMEOUT: kotlin.Long /* compiled code */
+
+@androidx.annotation.RequiresApi public fun <T> liveData(context: kotlin.coroutines.CoroutineContext /* = compiled code */, timeout: java.time.Duration, @kotlin.BuilderInference block: suspend androidx.lifecycle.LiveDataScope<T>.() -> kotlin.Unit): androidx.lifecycle.LiveData<T> { /* compiled code */ }
+
+public fun <T> liveData(context: kotlin.coroutines.CoroutineContext /* = compiled code */, timeoutInMs: kotlin.Long /* = compiled code */, @kotlin.BuilderInference block: suspend androidx.lifecycle.LiveDataScope<T>.() -> kotlin.Unit): androidx.lifecycle.LiveData<T> { /* compiled code */ }
+
+internal suspend fun <T> androidx.lifecycle.MediatorLiveData<T>.addDisposableSource(source: androidx.lifecycle.LiveData<T>): androidx.lifecycle.EmittedSource { /* compiled code */ }
+
+internal typealias Block<T> = suspend androidx.lifecycle.LiveDataScope<T>.() -> kotlin.Unit
+

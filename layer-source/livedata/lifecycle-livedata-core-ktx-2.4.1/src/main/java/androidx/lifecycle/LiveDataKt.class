@@ -1,0 +1,7 @@
+// IntelliJ API Decompiler stub source generated from a class file
+// Implementation of methods is not available
+
+package androidx.lifecycle
+
+@kotlin.Deprecated @androidx.annotation.MainThread public inline fun <T> androidx.lifecycle.LiveData<T>.observe(owner: androidx.lifecycle.LifecycleOwner, crossinline onChanged: (T) -> kotlin.Unit): androidx.lifecycle.Observer<T> { /* compiled code */ }
+
