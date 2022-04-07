@@ -4,6 +4,7 @@ include ':app:sample-okhttp'
 include ':app:sample-retrofit'
 include ':app:sample-lifecycle'
 include ':app:sample-livedata'
+include ':app:sample-viewmodel'
 include ':app:sample-arouter'
 rootProject.name = "LearnCode-master"
 
@@ -33,6 +34,11 @@ include ':layer-source:livedata:lifecycle-livedata-2.4.1'
 include ':layer-source:livedata:lifecycle-livedata-core-2.4.1'
 include ':layer-source:livedata:lifecycle-livedata-core-ktx-2.4.1'
 include ':layer-source:livedata:lifecycle-livedata-ktx-2.4.1'
+// ================ ViewModel =====================
+include ':layer-source:viewmodel:lifecycle-viewmodel-2.4.1'
+include ':layer-source:viewmodel:lifecycle-viewmodel-compose-2.4.1'
+include ':layer-source:viewmodel:lifecycle-viewmodel-ktx-2.4.1'
+include ':layer-source:viewmodel:lifecycle-viewmodel-savedstate-2.4.1'
 // ================ ARouter Statrt ================
 // 业务层
 include ':layer-business:arouter:arouter-java'

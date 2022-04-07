@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/app/sample-livedata" />
             <option value="$PROJECT_DIR$/app/sample-okhttp" />
             <option value="$PROJECT_DIR$/app/sample-retrofit" />
+            <option value="$PROJECT_DIR$/app/sample-viewmodel" />
             <option value="$PROJECT_DIR$/layer-business" />
             <option value="$PROJECT_DIR$/layer-business/arouter" />
             <option value="$PROJECT_DIR$/layer-business/arouter/arouter-java" />
@@ -52,6 +53,11 @@
             <option value="$PROJECT_DIR$/layer-source/retrofit2/retrofit" />
             <option value="$PROJECT_DIR$/layer-source/retrofit2/retrofit-adapters" />
             <option value="$PROJECT_DIR$/layer-source/retrofit2/retrofit-converters" />
+            <option value="$PROJECT_DIR$/layer-source/viewmodel" />
+            <option value="$PROJECT_DIR$/layer-source/viewmodel/lifecycle-viewmodel-2.4.1" />
+            <option value="$PROJECT_DIR$/layer-source/viewmodel/lifecycle-viewmodel-compose-2.4.1" />
+            <option value="$PROJECT_DIR$/layer-source/viewmodel/lifecycle-viewmodel-ktx-2.4.1" />
+            <option value="$PROJECT_DIR$/layer-source/viewmodel/lifecycle-viewmodel-savedstate-2.4.1" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

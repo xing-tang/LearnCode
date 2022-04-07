@@ -1,0 +1,11 @@
+// IntelliJ API Decompiler stub source generated from a class file
+// Implementation of methods is not available
+
+package androidx.lifecycle.viewmodel.compose
+
+@androidx.compose.runtime.Composable public inline fun <reified VM : androidx.lifecycle.ViewModel> viewModel(viewModelStoreOwner: androidx.lifecycle.ViewModelStoreOwner /* = compiled code */, key: kotlin.String? /* = compiled code */, factory: androidx.lifecycle.ViewModelProvider.Factory? /* = compiled code */): VM { /* compiled code */ }
+
+@androidx.compose.runtime.Composable public fun <VM : androidx.lifecycle.ViewModel> viewModel(modelClass: java.lang.Class<VM>, viewModelStoreOwner: androidx.lifecycle.ViewModelStoreOwner /* = compiled code */, key: kotlin.String? /* = compiled code */, factory: androidx.lifecycle.ViewModelProvider.Factory? /* = compiled code */): VM { /* compiled code */ }
+
+private fun <VM : androidx.lifecycle.ViewModel> androidx.lifecycle.ViewModelStoreOwner.get(javaClass: java.lang.Class<VM>, key: kotlin.String? /* = compiled code */, factory: androidx.lifecycle.ViewModelProvider.Factory? /* = compiled code */): VM { /* compiled code */ }
+

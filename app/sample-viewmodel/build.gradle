@@ -1,0 +1,70 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id("kotlin-parcelize")
+}
+
+dependencies {
+    implementation(project(path: ':layer-libraries:open-common')) {
+        exclude group: 'com.alibaba', module: 'arouter-api'
+        exclude group: 'com.alibaba', module: 'arouter-compiler'
+    }
+    // ViewModel
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
+    // 用于 Compose 的 ViewModel 实用程序
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1'
+    // ViewModel 的已保存状态模块
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.4.1'
+
+    // 仅仅 Lifecycles（没有 ViewModel 或 LiveData）
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
+    // 注释处理器
+    kapt 'androidx.lifecycle:lifecycle-compiler:2.4.1'
+    // 如果使用 Java8，请使用此注释处理器，而不是 lifecycle-compiler 注释处理器
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.4.1'
+    // 可选：在 Service 中实现 LifecycleOwner 的助手
+    implementation 'androidx.lifecycle:lifecycle-service:2.4.1'
+    // 可选：ProcessLifecycleOwner 为整个应用程序流程提供生命周期
+    implementation 'androidx.lifecycle:lifecycle-process:2.4.1'
+
+    // LiveData
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
+    // 可选：对 LiveData 的 ReactiveStreams 支持
+    implementation 'androidx.lifecycle:lifecycle-reactivestreams-ktx:2.4.1'
+    // 可选 - LiveData 的测试助手
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+
+    implementation 'ws.vinta:pangu:1.1.0'
+}
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    defaultConfig {
+        applicationId "com.open.viewmodel"
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        // 65536
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+}
