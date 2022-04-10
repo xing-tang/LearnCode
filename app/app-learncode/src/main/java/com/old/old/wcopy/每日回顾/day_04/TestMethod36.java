@@ -1,5 +1,7 @@
 package com.old.old.wcopy.每日回顾.day_04;
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.Stack;
 
 /**
@@ -82,22 +84,5 @@ public class TestMethod36 {
 //        curr.right = head;
 //        head.left = curr;
         return head;
-    }
-
-    public static class TreeNode<E> {
-
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
     }
 }

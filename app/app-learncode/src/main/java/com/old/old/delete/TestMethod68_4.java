@@ -1,5 +1,7 @@
 package com.old.old.delete;
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.ArrayList;
 
 /**
@@ -52,8 +54,8 @@ public class TestMethod68_4 {
         System.out.println(method(nodeA, nodeA, nodeA));
         // 正常测试
         System.out.println("正常测试如下：");
-        System.out.println(method(nodeA, nodeB, nodeF).value);
-        System.out.println(method(nodeA, nodeG, nodeH).value);
+        System.out.println(method(nodeA, nodeB, nodeF).val);
+        System.out.println(method(nodeA, nodeG, nodeH).val);
 
 
     }
@@ -100,7 +102,7 @@ public class TestMethod68_4 {
 
         tmpList.add(pRoot);
 
-        ArrayList<TreeNode> childs = pRoot.children;
+        ArrayList<TreeNode> childs = pRoot.childrenList;
 
         if (childs != null && childs.size() > 0) {
             for (TreeNode node : childs) {
@@ -134,23 +136,4 @@ public class TestMethod68_4 {
         }
         return tmpNode;
     }
-
-    public static class TreeNode<E> {
-
-        public E value;
-        public ArrayList<TreeNode<E>> children;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, ArrayList<TreeNode<E>> children) {
-            this.value = value;
-            this.children = children;
-        }
-
-    }
-
 }

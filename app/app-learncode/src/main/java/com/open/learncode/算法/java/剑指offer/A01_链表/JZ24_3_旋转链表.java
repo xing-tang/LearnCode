@@ -49,13 +49,15 @@ public class JZ24_3_旋转链表 {
     }
 
     private static ListNode<Integer> method(ListNode<Integer> head, int k) {
+        // 时间复杂度：O(n)
+        // 空间复杂度：O(1)
         if (head == null || head.next == null || k <= 0) return head;
 
-        int length = 1;
+        int length = 0;
         ListNode<Integer> curr = head;
         while (curr.next != null) {
-            length++;
             curr = curr.next;
+            length++;
         }
         int tempK = length % k;
         if (tempK == 0) return head;
@@ -65,7 +67,6 @@ public class JZ24_3_旋转链表 {
         }
         ListNode<Integer> newHead = head.next;
         head.next = null;
-
         return newHead;
     }
 }

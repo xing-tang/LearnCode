@@ -4,7 +4,7 @@ import com.open.learncode.算法.base.PrintUtils;
 import com.open.learncode.算法.base.TreeNode;
 
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Queue;
 
 /**
  * 题目：
@@ -22,11 +22,13 @@ import java.util.List;
  * 递归、层序遍历
  * <p>
  * 复杂度分析：
- * 时间复杂度 O(n)，空间复杂度：O(n)【最差情况下（当树平衡时）】
+ * 时间复杂度 O(n)。
+ * 空间复杂度：O(n)，最差情况下（当树平衡时）。
  */
 public class JZ55_1_二叉树的最大深度 {
 
     public static void main(String[] args) {
+        // 测试用例
         TreeNode<Integer> node7 = new TreeNode<Integer>(7);
         TreeNode<Integer> node6 = new TreeNode<Integer>(6);
         TreeNode<Integer> node5 = new TreeNode<Integer>(5, node7, null);
@@ -35,7 +37,7 @@ public class JZ55_1_二叉树的最大深度 {
         TreeNode<Integer> node2 = new TreeNode<Integer>(2, node4, node5);
         TreeNode<Integer> node1 = new TreeNode<Integer>(1, node2, node3);
 
-        PrintUtils.getInstance().print(method(node1));
+        PrintUtils.getInstance().print(solution(node1));
     }
 
     /**
@@ -44,20 +46,20 @@ public class JZ55_1_二叉树的最大深度 {
      * @param root 根节点
      * @return 返回树的深度
      */
-    public static int method(final TreeNode<Integer> root) {
+    public static int solution(final TreeNode<Integer> root) {
         if (root == null) return 0;
-        List<TreeNode<Integer>> queue = new LinkedList<TreeNode<Integer>>();
-        queue.add(root);
-        int res = 0;
+        Queue<TreeNode<Integer>> queue = new LinkedList();
+        queue.offer(root);
+        int count = 0;
         while (!queue.isEmpty()) {
-            List<TreeNode<Integer>> tempQueue = new LinkedList<TreeNode<Integer>>();
-            for (TreeNode node : queue) {
-                if (node.left != null) tempQueue.add(node.left);
-                if (node.right != null) tempQueue.add(node.right);
+            int length = queue.size();
+            for (int i = 0; i < length; i++) {
+                TreeNode<Integer> temp = queue.poll();
+                if (temp.left != null) queue.offer(temp.left);
+                if (temp.right != null) queue.offer(temp.right);
             }
-            queue = tempQueue;
-            res++;
+            count++;
         }
-        return res;
+        return count;
     }
 }

@@ -1,6 +1,8 @@
 package com.old.old.wcopy.每日回顾.day_03;
 
 
+import com.open.learncode.算法.base.TreeNode;
+
 /**
  * 题目：
  * 树的子结构：输入两棵二叉树A B，判断B是不是A的子结构。
@@ -23,22 +25,6 @@ package com.old.old.wcopy.每日回顾.day_03;
  * 时间复杂度：O(n)，空间复杂度：O(n)
  */
 public class TestMethod26 {
-
-    public static class TreeNode<E> {
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     public static void main(String[] args) {
         // 二叉树A

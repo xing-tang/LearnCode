@@ -25,15 +25,14 @@ public class JZ06_从尾到头打印链表 {
     public static void main(String[] args) {
         // 测试用例
         ListNode head = ListNode.createListNode(new int[]{1, 2, 3, 4, 5});
-        PrintUtils.getInstance().printListNode(solution(head), "输出");
+        PrintUtils.getInstance().printListNode(solution(head));
     }
 
-    private static ListNode<Integer> solution(ListNode<Integer> head) {
+    private static ListNode solution(ListNode head) {
+        // 时间复杂度：O(n)
+        // 空间复杂度：O(1)
         if (head == null || head.next == null) return head;
-
-        ListNode<Integer> curr = head;
-        ListNode<Integer> pre = null;
-        ListNode<Integer> next = null;
+        ListNode pre = null, curr = head, next = null;
         while (curr != null) {
             next = curr.next;
             curr.next = pre;

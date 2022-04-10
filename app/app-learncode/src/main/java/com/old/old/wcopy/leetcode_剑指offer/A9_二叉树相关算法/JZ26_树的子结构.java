@@ -1,6 +1,8 @@
 package com.old.old.wcopy.leetcode_剑指offer.A9_二叉树相关算法;
 
 
+import com.open.learncode.算法.base.TreeNode;
+
 /**
  * 题目：
  * 树的子结构：输入两棵二叉树A B，判断B是不是A的子结构。
@@ -24,35 +26,19 @@ package com.old.old.wcopy.leetcode_剑指offer.A9_二叉树相关算法;
  */
 public class JZ26_树的子结构 {
 
-    public static class TreeNode<E> {
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
     public static void main(String[] args) {
         // 二叉树A
-        TreeNode<Integer> nodeA4 = new TreeNode<Integer>(4);
-        TreeNode<Integer> nodeA7_2 = new TreeNode<Integer>(7);
-        TreeNode<Integer> nodeA2 = new TreeNode<Integer>(2, nodeA4, nodeA7_2);
-        TreeNode<Integer> nodeA9 = new TreeNode<Integer>(9);
-        TreeNode<Integer> nodeA8 = new TreeNode<Integer>(8, nodeA9, nodeA2);
-        TreeNode<Integer> nodeA7_1 = new TreeNode<Integer>(7);
-        TreeNode<Integer> rootA8 = new TreeNode<Integer>(8, nodeA8, nodeA7_1);
+        TreeNode<Integer> nodeA4 = new TreeNode(4);
+        TreeNode<Integer> nodeA7_2 = new TreeNode(7);
+        TreeNode<Integer> nodeA2 = new TreeNode(2, nodeA4, nodeA7_2);
+        TreeNode<Integer> nodeA9 = new TreeNode(9);
+        TreeNode<Integer> nodeA8 = new TreeNode(8, nodeA9, nodeA2);
+        TreeNode<Integer> nodeA7_1 = new TreeNode(7);
+        TreeNode<Integer> rootA8 = new TreeNode(8, nodeA8, nodeA7_1);
         // 二叉树B
-        TreeNode<Integer> nodeB9 = new TreeNode<Integer>(9);
-        TreeNode<Integer> nodeB2 = new TreeNode<Integer>(2);
-        TreeNode<Integer> rootB8 = new TreeNode<Integer>(8, nodeB9, nodeB2);
+        TreeNode<Integer> nodeB9 = new TreeNode(9);
+        TreeNode<Integer> nodeB2 = new TreeNode(2);
+        TreeNode<Integer> rootB8 = new TreeNode(8, nodeB9, nodeB2);
 
         System.out.println("二叉树B是不是二叉树A的子结构：" + method(rootA8, rootB8));
     }
@@ -77,7 +63,7 @@ public class JZ26_树的子结构 {
      */
     public static boolean methodChild(TreeNode<Integer> A, TreeNode<Integer> B) {
         if (B == null) return true;
-        if (A == null || A.value != B.value) return false;
+        if (A == null || A.val != B.val) return false;
         return methodChild(A.left, B.left) && methodChild(A.right, B.right);
     }
 

@@ -1,6 +1,8 @@
 package com.old.old.wcopy.剑指offer.J_二叉树相关算法;
 
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.ArrayDeque;
 import java.util.Queue;
 
@@ -23,23 +25,6 @@ import java.util.Queue;
  * 方法二：时间复杂度：O(n)，空间复杂度：O(n)
  */
 public class TestMethod37_1 {
-
-    public static class TreeNode<E> {
-
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     public static void main(String[] args) {
         TreeNode<Integer> node4 = new TreeNode<Integer>(4);
@@ -68,7 +53,7 @@ public class TestMethod37_1 {
             builder.append("null,");
         } else {// 每个结点间使用逗号分隔开
             // 前序遍历：根左右
-            builder.append(root.value + ",");
+            builder.append(root.val + ",");
             builder.append(serialize(root.left));
             builder.append(serialize(root.right));
         }
@@ -92,10 +77,10 @@ public class TestMethod37_1 {
         int start = index;
         while (str.charAt(index) != ',') index++;
         // String.subString(start,end)截取字符串[start,end)
-        String strValue = str.substring(start, index);
+        String strval = str.substring(start, index);
         // 如果不为空节点
-        if (!strValue.equals("null")) {
-            node = new TreeNode<Integer>(Integer.parseInt(strValue));
+        if (!strval.equals("null")) {
+            node = new TreeNode<Integer>(Integer.parseInt(strval));
             index++; // 这条语句位置别放错了
             node.left = deserialize(str);
             node.right = deserialize(str);
@@ -116,7 +101,7 @@ public class TestMethod37_1 {
         queue.add(root);
         while (!queue.isEmpty()) {
             TreeNode<Integer> temp = queue.remove();
-            System.out.print(temp.value + " ");
+            System.out.print(temp.val + " ");
             if (temp.left != null)
                 queue.add(temp.left);
             if (temp.right != null)

@@ -40,7 +40,7 @@ public class JZ18_3_删除链表重复节点 {
 
         ListNode<Integer> curr = head;
         while (curr != null) {
-            while (curr.next != null && curr.value == curr.next.value) {
+            while (curr.next != null && curr.val == curr.next.val) {
                 curr.next = curr.next.next;
             }
             curr = curr.next;

@@ -1,5 +1,7 @@
 package com.old.old.wcopy.剑指offer.J_二叉树相关算法;
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -25,22 +27,7 @@ import java.util.Stack;
  * Morris方法：时间复杂度：O(n)，空间复杂度：O(1)
  */
 public class TestMethod7_1 {
-
-    public static class TreeNode<E> {
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public void setLeftAndRight(TreeNode<E> left, TreeNode<E> right) {
-            this.left = left;
-            this.right = right;
-        }
-    }
-
+    
     public static void main(String[] args) {
         TreeNode<Integer> node1 = new TreeNode<Integer>(1);
         TreeNode<Integer> node2 = new TreeNode<Integer>(2);
@@ -103,7 +90,7 @@ public class TestMethod7_1 {
         queue.offer(root);
         while (!queue.isEmpty()) {
             TreeNode temp = queue.poll();
-            System.out.print(temp.value + " ");
+            System.out.print(temp.val + " ");
             if (temp.left != null)
                 queue.offer(temp.left);
             if (temp.right != null)
@@ -131,9 +118,9 @@ public class TestMethod7_1 {
                 if (temp.right != null)
                     queue.offer(temp.right);
                 // 打印每一层的第一个节点
-                if (i == 0) System.out.print(temp.value + " ");
+                if (i == 0) System.out.print(temp.val + " ");
                 // 打印每一层的最后一个节点
-                // if (i == length - 1) System.out.println("每一层的最后一个节点为：" + temp.value);
+                // if (i == length - 1) System.out.println("每一层的最后一个节点为：" + temp.val);
             }
         }
     }
@@ -146,7 +133,7 @@ public class TestMethod7_1 {
     public static void printPreorder_1(TreeNode head) {
         if (head == null) return;
 
-        System.out.print(head.value + " ");
+        System.out.print(head.val + " ");
         printPreorder_1(head.left);
         printPreorder_1(head.right);
     }
@@ -164,7 +151,7 @@ public class TestMethod7_1 {
         TreeNode temp;
         while (!stack.empty()) {
             temp = stack.pop();//不断改变temp的内容，不改变它指向的地址空间
-            System.out.print(temp.value + " ");
+            System.out.print(temp.val + " ");
             //因为栈是"后进先出"的，故先添加右节点，再添加左节点
             if (temp.right != null) stack.push(temp.right);
             if (temp.left != null) stack.push(temp.left);
@@ -186,7 +173,7 @@ public class TestMethod7_1 {
                 // 这个时候如果最右侧这个节点的右指针没有指向根结点，创建连接然后往下一个左子树的根结点进行连接操作。
                 if (cur2.right == null) {
                     cur2.right = cur1;
-                    System.out.print(cur1.value + " ");
+                    System.out.print(cur1.val + " ");
                     cur1 = cur1.left;
                     continue;
                 } else {
@@ -195,7 +182,7 @@ public class TestMethod7_1 {
                     cur2.right = null;
                 }
             } else {
-                System.out.print(cur1.value + " ");
+                System.out.print(cur1.val + " ");
             }
             cur1 = cur1.right;// 一直往右边走，参考图
         }
@@ -210,7 +197,7 @@ public class TestMethod7_1 {
         if (head == null) return;
 
         printInorder_1(head.left);
-        System.out.print(head.value + " ");
+        System.out.print(head.val + " ");
         printInorder_1(head.right);
     }
 
@@ -232,7 +219,7 @@ public class TestMethod7_1 {
                 cur = cur.left;
             }
             node = stack.pop();
-            System.out.print(node.value + " ");
+            System.out.print(node.val + " ");
             if (node.right != null) {
                 cur = node.right;
             }
@@ -264,7 +251,7 @@ public class TestMethod7_1 {
                     cur2.right = null;
                 }
             }
-            System.out.print(cur1.value + " ");
+            System.out.print(cur1.val + " ");
             cur1 = cur1.right;
         }
     }
@@ -279,7 +266,7 @@ public class TestMethod7_1 {
 
         printPostorder_1(head.left);
         printPostorder_1(head.right);
-        System.out.print(head.value + " ");
+        System.out.print(head.val + " ");
     }
 
     /**
@@ -307,7 +294,7 @@ public class TestMethod7_1 {
             }
             //否则，输出
             else {
-                System.out.print(stack.pop().value + " ");
+                System.out.print(stack.pop().val + " ");
                 cur = peek;
             }
         }
@@ -353,7 +340,7 @@ public class TestMethod7_1 {
         TreeNode reverseList = postMorrisReverseList(head);
         TreeNode cur = reverseList;
         while (cur != null) {
-            System.out.print(cur.value + " ");
+            System.out.print(cur.val + " ");
             cur = cur.right;
         }
         postMorrisReverseList(reverseList);

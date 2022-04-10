@@ -55,11 +55,13 @@ public class JZ18_2_删除链表节点 {
     }
 
     private static ListNode<Integer> solution(ListNode<Integer> head, int value) {
+        // 时间复杂度：O(n)
+        // 空间复杂度：O(1)
         if (head == null) return head;
-        if (head.value == value) return head.next;
+        if (head.val == value) return head.next;
 
         ListNode<Integer> pre = head, curr = head.next;
-        while (curr != null && curr.value != value) {
+        while (curr != null && curr.val != value) {
             pre = curr;
             curr = curr.next;
         }

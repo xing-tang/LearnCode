@@ -1,5 +1,7 @@
 package com.old.old.wcopy.每日回顾.day_01;
 
+import com.open.learncode.算法.base.TreeNode;
+
 /**
  * 题目：
  * 重建二叉树：输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。
@@ -23,16 +25,7 @@ package com.old.old.wcopy.每日回顾.day_01;
  * 时间复杂度：O(n)，[【解析】](https://github.com/xing-tang/LearnCode/blob/master/app/src/main/java/com/open/learncode/%E5%89%91%E6%8C%87offer/TestMethod4.java)空间复杂度：O(n)
  */
 public class TestMethod7_2 {
-    public static class TreeNode<E> {
-        E value;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(E value) {
-            this.value = value;
-        }
-    }
-
+    
     public static void main(String[] args) {
         int preorder[] = {1, 2, 4, 5, 3, 6, 7};
         int inordr[] = {4, 2, 5, 1, 6, 3, 7};
@@ -72,7 +65,7 @@ public class TestMethod7_2 {
         TreeNode<Integer> root = new TreeNode<Integer>(preOrder[preLeft]);
         int index;
         for (index = inLeft; index <= inRight; index++) {
-            if (root.value == inOrder[index]) break;
+            if (root.val == inOrder[index]) break;
         }
         int leftLength = index - inLeft;
 
@@ -102,7 +95,7 @@ public class TestMethod7_2 {
         TreeNode<Integer> root = new TreeNode<Integer>(postOrder[postRight]);
         int index;
         for (index = inLeft; index <= inRight; index++) {
-            if (root.value == inOrder[index]) break;
+            if (root.val == inOrder[index]) break;
         }
         int leftLenght = index - inLeft;
         root.left = method_2_1(inOrder, postOrder, inLeft, inLeft + leftLenght - 1, postLeft, postLeft + leftLenght - 1);
@@ -148,7 +141,7 @@ public class TestMethod7_2 {
      */
     private static void printPreOrder(TreeNode<Integer> root) {
         if (root != null) {
-            System.out.print(root.value + " ");
+            System.out.print(root.val + " ");
             printPreOrder(root.left);
             printPreOrder(root.right);
         }

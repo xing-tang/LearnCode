@@ -37,40 +37,35 @@ public class JZ18_1_删除链表节点 {
             if (i == 0) {
                 // 删除头结点
                 PrintUtils.getInstance().printListNode(node4);
-                PrintUtils.getInstance().printListNode(solution(node4, node4), "打印删除后的链表");
+                PrintUtils.getInstance().printListNode(solution(node4, node4), "打印删除节点4后的链表");
             } else if (i == 1) {
                 // 删除中间节点
                 PrintUtils.getInstance().printListNode(node4);
-                PrintUtils.getInstance().printListNode(solution(node4, node5), "打印删除后的链表");
+                PrintUtils.getInstance().printListNode(solution(node4, node5), "打印删除节点5后的链表");
             } else if (i == 2) {
                 // 删除尾节点
                 PrintUtils.getInstance().printListNode(node4);
-                PrintUtils.getInstance().printListNode(solution(node4, node9), "打印删除后的链表");
+                PrintUtils.getInstance().printListNode(solution(node4, node9), "打印删除节点9后的链表");
             } else if (i == 3) {
                 // 删除节点，有且仅有一个节点
                 PrintUtils.getInstance().printListNode(node9);
-                PrintUtils.getInstance().printListNode(solution(node9, node9), "打印删除后的链表");
+                PrintUtils.getInstance().printListNode(solution(node9, node9), "打印删除节点9后的链表");
             }
         }
     }
 
     private static ListNode<Integer> solution(ListNode<Integer> head, ListNode<Integer> delete) {
-        if (head == null || delete == null) return null;
+        // 时间复杂度：O(n)
+        // 空间复杂度：O(1)
+        if (head == null) return head;
+        if (head.val.equals(delete.val)) return head.next;
 
-        // 待删除节点为头结点
-        if (head == delete) {
-            head = head.next;
-        } else if (delete.next != null) {// 待删除的节点为中间节点
-            ListNode<Integer> next = delete.next;
-            delete.next = next.next;
-            delete.value = next.value;
-        } else {// 待删除的节点为尾节点
-            ListNode<Integer> curr = head;
-            while (curr.next != delete) {
-                curr = curr.next;
-            }
-            curr.next = null;
+        ListNode<Integer> pre = head, curr = head.next;
+        while (curr != null && !curr.val.equals(delete.val)) {
+            pre = curr;
+            curr = curr.next;
         }
+        if (curr != null) pre.next = curr.next;
         return head;
     }
 }

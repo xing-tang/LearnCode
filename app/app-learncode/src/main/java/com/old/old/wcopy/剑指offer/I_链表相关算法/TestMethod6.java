@@ -64,7 +64,7 @@ public class TestMethod6 {
             if (head.next != null) {
                 method_2(head.next);
             }
-            System.out.print(head.value + " ");
+            System.out.print(head.val + " ");
         }
     }
 
@@ -80,7 +80,7 @@ public class TestMethod6 {
             head = head.next;
         }
         while (!stack.empty()) {
-            System.out.print(stack.pop().value + " ");
+            System.out.print(stack.pop().val + " ");
         }
     }
 }

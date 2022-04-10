@@ -1,5 +1,7 @@
 package com.old.old.wcopy.剑指offer.J_二叉树相关算法;
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.Stack;
 
 /**
@@ -23,23 +25,6 @@ import java.util.Stack;
  * 方法二：时间复杂度：O(n)，空间复杂度：O(n)
  */
 public class TestMethod36 {
-
-    public static class TreeNode<E> {
-
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     public static void main(String[] args) {
         TreeNode<Integer> node4 = new TreeNode<Integer>(4);

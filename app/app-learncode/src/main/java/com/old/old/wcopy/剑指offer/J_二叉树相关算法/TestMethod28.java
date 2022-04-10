@@ -1,6 +1,8 @@
 package com.old.old.wcopy.剑指offer.J_二叉树相关算法;
 
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -23,21 +25,6 @@ import java.util.Stack;
  * 方法三：时间复杂度：O(n)，空间复杂度：O(n)
  */
 public class TestMethod28 {
-
-    public static class TreeNode<E> {
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public void setLeftAndRight(TreeNode<E> left, TreeNode<E> right) {
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     public static void main(String[] args) {
         TreeNode<Integer> node1 = new TreeNode<>(8);
@@ -67,7 +54,7 @@ public class TestMethod28 {
     private static boolean method_1(TreeNode<Integer> root1, TreeNode<Integer> root2) {
         if (root1 == null && root2 == null)
             return true;
-        if (root1 == null || root2 == null || root1.value != root2.value)
+        if (root1 == null || root2 == null || root1.val != root2.val)
             return false;
         // 判断A的左边和B的右边是否相等，判断A的右边和B的左边是否相等，都相等就是对称的
         return method_1(root1.left, root2.right) && method_1(root1.right, root2.left);
@@ -76,7 +63,7 @@ public class TestMethod28 {
     /**
      * DFS：
      * 使用堆栈来实现树的深度优先遍历，将左右节点成对的压入堆栈，
-     * 出栈的时候也要成对出栈，若value不相同或是有单独的空树，返回false；
+     * 出栈的时候也要成对出栈，若val不相同或是有单独的空树，返回false；
      * 否则，继续成对的压入左右节点。
      *
      * @param root 二叉树的根节点
@@ -93,7 +80,7 @@ public class TestMethod28 {
             TreeNode<Integer> left = stack.pop();
             if (right == null && left == null)
                 continue;
-            if (right == null || left == null || left.value != right.value)
+            if (right == null || left == null || left.val != right.val)
                 return false;
             stack.push(left.left);
             stack.push(right.right);
@@ -122,7 +109,7 @@ public class TestMethod28 {
             TreeNode<Integer> right = queue.remove();
             if (left == null && right == null)
                 continue;
-            if (left == null || right == null || left.value != right.value)
+            if (left == null || right == null || left.val != right.val)
                 return false;
             queue.add(left.left);
             queue.add(right.right);

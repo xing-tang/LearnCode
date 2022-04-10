@@ -44,7 +44,7 @@ public class JZ25_合并两排序链表 {
         ListNode<Integer> pre = new ListNode(-1);
         ListNode<Integer> cur = pre;
         while (listNode1 != null && listNode2 != null) {
-            if (listNode2.value >= listNode1.value) {
+            if (listNode2.val >= listNode1.val) {
                 cur.next = listNode1;
                 listNode1 = listNode1.next;
             } else {

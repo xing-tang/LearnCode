@@ -1,28 +1,68 @@
 package com.open.learncode.算法.java.剑指offer.A07_排序;
 
+import com.open.learncode.算法.base.PrintUtils;
+
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
  * 题目：
- * 输入n个整数，找出其中最小的k个数。
- * 例如：输入{8,5,6,7,9,3,1,4}这8个数字，则最小的4个数字是{1,3,4,5}。
+ * 输入 n 个整数，找出其中最小的 k 个数。
+ * 例如：输入{8, 5, 6, 7, 9, 3, 1, 4}这8个数字，则最小的4个数字是{1, 3, 4, 5}。
  * <p>
  * 解题思路：
- * 堆、快排变形、BFPRT
+ * 快排变形。
  * <p>
  * 复杂度分析：
- * 方法一：时间复杂度：O(nlogk)，空间复杂度：O(k)
- * 方法二：时间复杂度：平均时间复杂度O(n)【最好O(n)，最差O(n^2)】，空间复杂度：O(1)
+ * 方法一复杂度分析：
+ * 时间复杂度：平均O(n)，最好O(n)，最坏O(n^2)。
+ * 空间复杂度：O(logn)。
+ * 方法二复杂度分析：
+ * 时间复杂度：O(nlogk)。
+ * 空间复杂度：O(k)。
  */
 public class JZ40_找出数组中最小的k个数 {
 
     public static void main(String[] args) {
-        int[] arr = {8, 5, 6, 7, 9, 3, 1, 4};
+        // 测试用例
+        int[] nums = {8, 5, 6, 7, 9, 3, 1, 4};
         int k = 4;
-        //int[] temp1 = method_1(arr, k);
-        int[] temp2 = method_2(arr, k);
-        print(temp2);
+        PrintUtils.getInstance().printArray(solution1(nums, k));
+    }
+
+    private static int[] solution1(int[] nums, int k) {
+        if (k <= 0 || nums == null) return new int[0];
+        if (nums.length < k) return nums;
+        solution1(nums, 0, nums.length - 1, k);
+        int[] arr = new int[k];
+        for (int i = 0; i < k; i++) {
+            arr[i] = nums[i];
+        }
+        return arr;
+    }
+
+    private static void solution1(int[] nums, int left, int right, int k) {
+        if (nums == null || nums.length <= 1 || left > right) return;
+
+        int start = left, end = right, base = nums[left];
+        while (start < end) {
+            while (start < end && nums[end] >= base) end--;
+            while (start < end && nums[start] <= base) start++;
+            if (start < end) {
+                int temp = nums[start];
+                nums[start] = nums[end];
+                nums[end] = temp;
+            }
+        }
+        nums[left] = nums[start];
+        nums[start] = base;
+        if (start == k) {
+            return;
+        } else if (start > k) {
+            solution1(nums, left, end - 1, k);
+        } else {
+            solution1(nums, end + 1, right, k);
+        }
     }
 
     /**
@@ -32,7 +72,7 @@ public class JZ40_找出数组中最小的k个数 {
      * @param k   最小的k个数
      * @return 返回前最小的k个数对应的数组
      */
-    public static int[] method_1(int[] arr, int k) {
+    public static int[] solution2(int[] arr, int k) {
         if (k == 0) return new int[0];
 
         // 使用一个最大堆（大顶堆）
@@ -58,87 +98,5 @@ public class JZ40_找出数组中最小的k个数 {
             res[j++] = e;
         }
         return res;
-    }
-
-    /**
-     * 快排变形
-     *
-     * @param arr 传入的数组
-     * @param k   最小的k个数
-     * @return 返回前最小的k个数对应的数组
-     */
-    public static int[] method_2(int[] arr, int k) {
-        if (k == 0) {
-            return new int[0];
-        } else if (arr.length <= k) {
-            return arr;
-        }
-        // 原地不断划分数组
-        // Arrays.sort(arr);
-        method_2(arr, 0, arr.length - 1, k);
-        // 数组的前 k 个数此时就是最小的 k 个数，将其存入结果
-        int[] res = new int[k];
-        for (int i = 0; i < k; i++) {
-            res[i] = arr[i];
-        }
-        return res;
-    }
-
-    public static void method_2(int[] arr, int left, int right, int k) {
-        if (left > right) return;
-        // 左边哨兵的索引
-        int i = left;
-        // 右边哨兵的索引
-        int j = right;
-        // temp就是基准位,以最左边为基准位
-        int base = arr[left];
-        while (i < j) {
-            // 先看右边，依次往左递减
-            while (base <= arr[j] && i < j) {
-                j--;
-            }
-            while (base >= arr[i] && i < j) {
-                i++;
-            }
-            if (i < j) {
-                // 左右哨兵 交换数据（互相持有对方的数据）
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-            }
-        }
-        //最后将基准为与i和j相等位置的数字交换
-        arr[left] = arr[i];
-        arr[i] = base;
-        if (k == j) {
-            // 正好找到最小的 k(m) 个数
-            return;
-        } else if (k < j) {
-            // 最小的 k 个数一定在前 m 个数中，递归划分
-            //递归调用左半数组
-            method_2(arr, left, j - 1, k);
-        } else {
-            // 在右侧数组中寻找最小的 k-m 个数
-            //递归调用右半数组
-            method_2(arr, j + 1, right, k);
-        }
-    }
-
-    /**
-     * 打印一位数组
-     *
-     * @param arr 待输入的数组
-     */
-    private static void print(int[] arr) {
-        if (arr == null || arr.length <= 0) return;
-        for (int i = 0; i < arr.length; i++) {
-            if (i == 0) {
-                System.out.print("[" + i + ",");
-            } else if (i == arr.length - 1) {
-                System.out.println(i + "]");
-            } else {
-                System.out.print(i + ",");
-            }
-        }
     }
 }

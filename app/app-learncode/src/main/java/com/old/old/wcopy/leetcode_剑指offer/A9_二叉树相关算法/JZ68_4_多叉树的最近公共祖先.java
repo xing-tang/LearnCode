@@ -1,5 +1,7 @@
 package com.old.old.wcopy.leetcode_剑指offer.A9_二叉树相关算法;
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.ArrayList;
 
 /**
@@ -21,22 +23,6 @@ import java.util.ArrayList;
  * 时间复杂度：O(n)，空间复杂度：O(n)
  */
 public class JZ68_4_多叉树的最近公共祖先 {
-
-    public static class TreeNode<E> {
-        public E value;
-        public ArrayList<TreeNode<E>> children;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, ArrayList<TreeNode<E>> children) {
-            this.value = value;
-            this.children = children;
-        }
-    }
 
     public static void main(String[] args) {
         TreeNode<String> nodeF = new TreeNode<String>("F");
@@ -66,8 +52,8 @@ public class JZ68_4_多叉树的最近公共祖先 {
         System.out.println(method(nodeA, nodeA, nodeA));
         // 正常测试
         System.out.println("正常测试如下：");
-        System.out.println(method(nodeA, nodeB, nodeF).value);
-        System.out.println(method(nodeA, nodeG, nodeH).value);
+        System.out.println(method(nodeA, nodeB, nodeF).val);
+        System.out.println(method(nodeA, nodeG, nodeH).val);
     }
 
     /**
@@ -109,7 +95,7 @@ public class JZ68_4_多叉树的最近公共祖先 {
         if (pRoot == pNode || pRoot == null) return;
 
         tmpList.add(pRoot);
-        ArrayList<TreeNode<String>> childs = pRoot.children;
+        ArrayList<TreeNode<String>> childs = pRoot.childrenList;
         if (childs != null && childs.size() > 0) {
             for (TreeNode<String> node : childs) {
                 if (node == pNode) {

@@ -36,9 +36,11 @@ public class JZ22_1_链表倒数第K个节点 {
     }
 
     private static ListNode<Integer> solution(ListNode<Integer> head, int k) {
-        if (head == null || k <= 0) return null;
+        // 时间复杂度：O(n)
+        // 空间复杂度：O(1)
+        if (head == null || k <= 0) return head;
 
-        ListNode curr = head;
+        ListNode<Integer> curr = head;
         while (k > 0) {
             if (curr == null) return null;
             curr = curr.next;

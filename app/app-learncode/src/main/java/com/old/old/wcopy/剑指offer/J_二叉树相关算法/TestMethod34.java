@@ -1,5 +1,7 @@
 package com.old.old.wcopy.剑指offer.J_二叉树相关算法;
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.Stack;
 
 /**
@@ -23,23 +25,6 @@ import java.util.Stack;
  * 时间复杂度：O(n)，空间复杂度：O(n)
  */
 public class TestMethod34 {
-
-    public static class TreeNode<E> {
-
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     public static void main(String[] args) {
         TreeNode<Integer> node7 = new TreeNode<Integer>(7);
@@ -75,9 +60,9 @@ public class TestMethod34 {
      * @param path   路径
      */
     private static void method(TreeNode<Integer> root, int target, Stack<Integer> path) {
-        target -= root.value;
+        target -= root.val;
         // 将当前节点加入路径中
-        path.push(root.value);
+        path.push(root.val);
         // 如果当前节点是叶子节点(即没有左右子节点)，并且当前累加值等于期望值，则输出路径信息
         if (root.left == null && root.right == null && target == 0) {
             for (Integer val : path) {

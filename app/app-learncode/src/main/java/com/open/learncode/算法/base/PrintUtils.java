@@ -219,7 +219,7 @@ public class PrintUtils {
         } else {
             System.out.print(str[0] + "：");
         }
-        System.out.println(head.value);
+        System.out.println(head.val);
     }
 
     /**
@@ -238,10 +238,10 @@ public class PrintUtils {
 
         while (head != null) {
             if (head.next == null) {
-                System.out.println(head.value);
+                System.out.println(head.val);
                 break;
             }
-            System.out.print(head.value + "->");
+            System.out.print(head.val + "->");
             head = head.next;
         }
     }
@@ -254,6 +254,11 @@ public class PrintUtils {
     public static void printCenterTreeNode(TreeNode root, String... str) {
         if (root == null) return;
 
+        if (str.length <= 0) {
+            System.out.print("打印二叉树层序遍历：");
+        } else {
+            System.out.print(str[0] + "：");
+        }
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
         queue.offer(root);
         while (!queue.isEmpty()) {
@@ -278,6 +283,11 @@ public class PrintUtils {
     public static void printPreorderTreeNode(TreeNode root, String... str) {
         if (root == null) return;
 
+        if (str.length <= 0) {
+            System.out.print("打印二叉树前序遍历：");
+        } else {
+            System.out.print(str[0] + "：");
+        }
         Stack<TreeNode> stack = new Stack<TreeNode>();
         stack.push(root);
         TreeNode temp;
@@ -298,6 +308,11 @@ public class PrintUtils {
     public static void printInorderTreeNode(TreeNode root, String... str) {
         if (root == null) return;
 
+        if (str.length <= 0) {
+            System.out.print("打印二叉树中序遍历：");
+        } else {
+            System.out.print(str[0] + "：");
+        }
         TreeNode cur = root;
         TreeNode node;
         Stack<TreeNode> stack = new Stack<TreeNode>();
@@ -323,6 +338,11 @@ public class PrintUtils {
     public static void printPostorderTreeNode(TreeNode root, String... str) {
         if (root == null) return;
 
+        if (str.length <= 0) {
+            System.out.print("打印二叉树后序遍历：");
+        } else {
+            System.out.print(str[0] + "：");
+        }
         TreeNode cur = root;
         TreeNode peek;
         Stack<TreeNode> stack = new Stack<TreeNode>();

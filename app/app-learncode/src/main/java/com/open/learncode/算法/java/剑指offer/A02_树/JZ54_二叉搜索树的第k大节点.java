@@ -1,5 +1,10 @@
 package com.open.learncode.算法.java.剑指offer.A02_树;
 
+import com.open.learncode.算法.base.PrintUtils;
+import com.open.learncode.算法.base.TreeNode;
+
+import java.util.Stack;
+
 /**
  * 题目：
  * 给定一颗二叉搜索树，请找出其中第K大的节点。例如，在如下的二叉搜索树中，
@@ -18,53 +23,38 @@ package com.open.learncode.算法.java.剑指offer.A02_树;
 public class JZ54_二叉搜索树的第k大节点 {
 
     public static void main(String[] args) {
-        TreeNode<Integer> node2 = new TreeNode<Integer>(2);
-        TreeNode<Integer> node4 = new TreeNode<Integer>(4);
-        TreeNode<Integer> node6 = new TreeNode<Integer>(6);
-        TreeNode<Integer> node8 = new TreeNode<Integer>(8);
-        TreeNode<Integer> node7 = new TreeNode<Integer>(7, node6, node8);
-        TreeNode<Integer> node3 = new TreeNode<Integer>(3, node2, node4);
-        TreeNode<Integer> node5 = new TreeNode<Integer>(5, node3, node7);
-        TreeNode<Integer> temp = methodT(node5, 3);
-        System.out.println(temp.value);
+        // 测试用例
+        TreeNode<Integer> node2 = new TreeNode(2);
+        TreeNode<Integer> node4 = new TreeNode(4);
+        TreeNode<Integer> node6 = new TreeNode(6);
+        TreeNode<Integer> node8 = new TreeNode(8);
+        TreeNode<Integer> node7 = new TreeNode(7, node6, node8);
+        TreeNode<Integer> node3 = new TreeNode(3, node2, node4);
+        TreeNode<Integer> node5 = new TreeNode(5, node3, node7);
+
+        PrintUtils.getInstance().print(solution(node5, 3));
     }
 
-    public static TreeNode<Integer> methodT(TreeNode<Integer> root, int k) {
-        if (root == null || k == 0) return null;
-        return method(root, k);
-    }
+    private static int solution(TreeNode<Integer> root, int k) {
+        // 时间复杂度：O(n)
+        // 空间复杂度：O(n)
+        if (root == null || k == 0) return -1;
 
-    public static TreeNode<Integer> method(TreeNode<Integer> root, int k) {
-        TreeNode<Integer> target = null;
-        if (root.right != null) {
-            target = method(root.right, k);
-        }
-        if (target == null) {
-            if (k == 0) target = root;
+        Stack<TreeNode> stack = new Stack();
+        TreeNode<Integer> curr = root;
+        TreeNode<Integer> temp = null;
+        while (!stack.isEmpty() || curr != null) {
+            while (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            }
+            temp = stack.pop();
             k--;
+            if (k == 0) return temp.val;
+            if (temp.right != null) {
+                curr = temp.right;
+            }
         }
-        System.out.print(root.value + " ");
-        if (target == null && root.left != null) {
-            target = method(root.left, k);
-        }
-        return target;
+        return -1;
     }
-
-    public static class TreeNode<E> {
-
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
 }

@@ -1,5 +1,7 @@
 package com.open.learncode.算法.java.剑指offer.A02_树;
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.Stack;
 
 /**
@@ -28,23 +30,7 @@ import java.util.Stack;
  * 节点root即为最近公共祖先，则向上返回root
  */
 public class JZ68_2_二叉树的最近公共祖先 {
-
-    public static class TreeNode<E> {
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
+    
     public static void main(String[] args) {
         TreeNode<Integer> node7 = new TreeNode<Integer>(7);
         TreeNode<Integer> node4 = new TreeNode<Integer>(4);
@@ -65,8 +51,8 @@ public class JZ68_2_二叉树的最近公共祖先 {
         System.out.println(rob_1(node3, node3, node3));
         // 正常测试
         System.out.println("正常测试如下：");
-        System.out.println(rob_1(node3, node7, node4).value);
-        System.out.println(rob_1(node3, node6, node8).value);
+        System.out.println(rob_1(node3, node7, node4).val);
+        System.out.println(rob_1(node3, node6, node8).val);
 
         // 鲁棒性测试
         System.out.println("方法二：");
@@ -77,8 +63,8 @@ public class JZ68_2_二叉树的最近公共祖先 {
         System.out.println(rob_2(node3, node3, node3));
         // 正常测试
         System.out.println("正常测试如下：");
-        System.out.println(rob_2(node3, node7, node4).value);
-        System.out.println(rob_2(node3, node6, node8).value);
+        System.out.println(rob_2(node3, node7, node4).val);
+        System.out.println(rob_2(node3, node6, node8).val);
     }
 
     /**

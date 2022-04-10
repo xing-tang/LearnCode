@@ -53,7 +53,7 @@ public class TestMethod35 {
         // 创建复制节点，并且链接好next值
         ListNode<String> tempNode = head;
         while (tempNode != null) {
-            ListNode<String> newNode = new ListNode<String>(tempNode.value);
+            ListNode<String> newNode = new ListNode<String>(tempNode.val);
             newNode.next = tempNode.next;
             tempNode.next = newNode;
             tempNode = newNode.next;

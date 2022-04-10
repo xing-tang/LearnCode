@@ -1,5 +1,7 @@
 package com.open.learncode.算法.java.剑指offer.A02_树;
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -27,22 +29,6 @@ import java.util.Queue;
  * 时间复杂度：O(n)，空间复杂度：O(n)
  */
 public class JZ37_2_序列化和反序列化二叉树 {
-
-    public static class TreeNode<E> {
-
-        public E value;//节点值
-        public TreeNode<E> left;//指向左节点的指针
-        public TreeNode<E> right;//指向右节点的指针
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public void setLeftAndRight(TreeNode<E> left, TreeNode<E> right) {
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     public static void main(String[] args) {
         TreeNode<Integer> node1 = new TreeNode<Integer>(1);
@@ -78,7 +64,7 @@ public class JZ37_2_序列化和反序列化二叉树 {
         while (!queue.isEmpty()) {
             TreeNode<Integer> node = queue.poll();
             if (node != null) {
-                builder.append(node.value + ",");
+                builder.append(node.val + ",");
                 queue.add(node.left);
                 queue.add(node.right);
             } else
@@ -133,7 +119,7 @@ public class JZ37_2_序列化和反序列化二叉树 {
         queue.add(root);
         while (!queue.isEmpty()) {
             TreeNode<Integer> temp = queue.remove();
-            System.out.print(temp.value + " ");
+            System.out.print(temp.val + " ");
             if (temp.left != null)
                 queue.add(temp.left);
             if (temp.right != null)

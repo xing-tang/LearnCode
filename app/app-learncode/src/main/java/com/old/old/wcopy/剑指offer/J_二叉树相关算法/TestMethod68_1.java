@@ -1,5 +1,7 @@
 package com.old.old.wcopy.剑指offer.J_二叉树相关算法;
 
+import com.open.learncode.算法.base.TreeNode;
+
 /**
  * 题目：
  * 二叉搜索树的最近公共祖先：给定一个二叉搜索树, 找到该树中两个指定节点p和q的最近公共祖先。
@@ -24,26 +26,7 @@ package com.old.old.wcopy.剑指offer.J_二叉树相关算法;
  */
 public class TestMethod68_1 {
 
-    public static class TreeNode<E> {
-
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-
-            this.left = left;
-            this.right = right;
-        }
-    }
-
     public static void main(String[] args) {
-
         TreeNode<Integer> node3 = new TreeNode<Integer>(3);
         TreeNode<Integer> node5 = new TreeNode<Integer>(5);
         TreeNode<Integer> node4 = new TreeNode<Integer>(4, node3, node5);
@@ -67,10 +50,10 @@ public class TestMethod68_1 {
         System.out.println(method_2(node6, node6, node6));
         // 正常测试
         System.out.println("正常测试如下：");
-        System.out.println(method_1(node6, node3, node5).value);
-        System.out.println(method_1(node6, node0, node9).value);
-        System.out.println(method_2(node6, node3, node5).value);
-        System.out.println(method_2(node6, node0, node9).value);
+        System.out.println(method_1(node6, node3, node5).val);
+        System.out.println(method_1(node6, node0, node9).val);
+        System.out.println(method_2(node6, node3, node5).val);
+        System.out.println(method_2(node6, node0, node9).val);
     }
 
     /**
@@ -85,9 +68,9 @@ public class TestMethod68_1 {
         // 鲁棒性
         if (root == null || p == null || q == null || root == p || root == q) return null;
 
-        if (root.value < p.value && root.value < q.value)
+        if (root.val < p.val && root.val < q.val)
             return method_1(root.right, p, q);
-        if (root.value > p.value && root.value > q.value)
+        if (root.val > p.val && root.val > q.val)
             return method_1(root.left, p, q);
         return root;
     }
@@ -105,9 +88,9 @@ public class TestMethod68_1 {
         if (root == null || p == null || q == null || root == p || root == q) return null;
 
         while (root != null) {
-            if (root.value < p.value && root.value < q.value) // p,q 都在 root 的右子树中
+            if (root.val < p.val && root.val < q.val) // p,q 都在 root 的右子树中
                 root = root.right; // 遍历至右子节点
-            else if (root.value > p.value && root.value > q.value) // p,q 都在 root 的左子树中
+            else if (root.val > p.val && root.val > q.val) // p,q 都在 root 的左子树中
                 root = root.left; // 遍历至左子节点
             else
                 break;

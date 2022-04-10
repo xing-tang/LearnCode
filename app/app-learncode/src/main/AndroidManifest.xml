@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
+        <activity android:name="com.open.learncode.android.view的事件分发.ViewTouchActivity"></activity>
         <activity
             android:name="com.open.learncode.MainActivity"
             android:launchMode="singleInstance"
@@ -58,4 +58,5 @@
 
         <service android:name="com.open.learncode.android.intentService.DownloadIntentService" />
     </application>
+
 </manifest>

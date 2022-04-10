@@ -30,15 +30,16 @@ public class JZ18_4_删除链表重复节点 {
     }
 
     private static ListNode<Integer> solution(ListNode<Integer> head) {
+        // 时间复杂度：O(n)
+        // 空间复杂度：O(1)
         if (head == null || head.next == null) return head;
 
-        ListNode pHead = new ListNode(-1);
+        ListNode<Integer> pHead = new ListNode(-1);
         pHead.next = head;
-        ListNode pre = pHead;
-        ListNode curr = pHead.next;
+        ListNode<Integer> pre = pHead, curr = pHead.next;
         while (curr != null) {
-            if (curr.next != null && curr.value == curr.next.value) {
-                while (curr.next != null && curr.value == curr.next.value) {
+            if (curr.next != null && curr.val == curr.next.val) {
+                while (curr.next != null && curr.val == curr.next.val) {
                     curr.next = curr.next.next;
                 }
                 curr = curr.next;

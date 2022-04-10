@@ -1,5 +1,7 @@
 package com.old.old.delete;
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.Stack;
 
 /**
@@ -24,23 +26,7 @@ import java.util.Stack;
  * 时间复杂度：O(n)，空间复杂度：O(n)
  */
 public class TestMethod32_3 {
-
-    public static class TreeNode<E> {
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
+    
     public static void main(String[] args) {
         TreeNode<Integer> node5 = new TreeNode<Integer>(5);
         TreeNode<Integer> node7 = new TreeNode<Integer>(7);
@@ -67,7 +53,7 @@ public class TestMethod32_3 {
             if (flag) {// 奇数层
                 while (!stack1.isEmpty()) {
                     TreeNode<Integer> temp = stack1.pop();
-                    System.out.print(temp.value + " ");
+                    System.out.print(temp.val + " ");
                     //要倒序打印，必须正序压入
                     if (temp.left != null) stack2.add(temp.left);
                     if (temp.right != null) stack2.add(temp.right);
@@ -75,7 +61,7 @@ public class TestMethod32_3 {
             } else {// 偶数层
                 while (!stack2.isEmpty()) {
                     TreeNode<Integer> temp = stack2.pop();
-                    System.out.print(temp.value + " ");
+                    System.out.print(temp.val + " ");
                     //要正序打印，必须倒序压入
                     if (temp.right != null) stack1.add(temp.right);
                     if (temp.left != null) stack1.add(temp.left);

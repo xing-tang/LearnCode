@@ -54,7 +54,7 @@ public class JZ18_1_删除链表节点 {
         } else if (delete.next != null) {// 待删除的节点为中间节点
             ListNode<Integer> next = delete.next;
             delete.next = next.next;
-            delete.value = next.value;
+            delete.val = next.val;
         } else {// 待删除的节点为尾节点
             ListNode<Integer> curr = head;
             while (curr.next != delete) {

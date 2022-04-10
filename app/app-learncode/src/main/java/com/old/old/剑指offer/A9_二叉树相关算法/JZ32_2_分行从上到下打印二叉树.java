@@ -1,5 +1,7 @@
 package com.old.old.剑指offer.A9_二叉树相关算法;
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -25,31 +27,14 @@ import java.util.Queue;
  */
 public class JZ32_2_分行从上到下打印二叉树 {
 
-    public static class TreeNode<E> {
-
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
     public static void main(String[] args) {
-        TreeNode<Integer> node5 = new TreeNode<Integer>(5);
-        TreeNode<Integer> node7 = new TreeNode<Integer>(7);
-        TreeNode<Integer> node9 = new TreeNode<Integer>(9);
-        TreeNode<Integer> node11 = new TreeNode<Integer>(11);
-        TreeNode<Integer> node6 = new TreeNode<Integer>(6, node5, node7);
-        TreeNode<Integer> node10 = new TreeNode<Integer>(10, node9, node11);
-        TreeNode<Integer> node8 = new TreeNode<Integer>(8, node6, node10);
+        TreeNode<Integer> node5 = new TreeNode(5);
+        TreeNode<Integer> node7 = new TreeNode(7);
+        TreeNode<Integer> node9 = new TreeNode(9);
+        TreeNode<Integer> node11 = new TreeNode(11);
+        TreeNode<Integer> node6 = new TreeNode(6, node5, node7);
+        TreeNode<Integer> node10 = new TreeNode(10, node9, node11);
+        TreeNode<Integer> node8 = new TreeNode(8, node6, node10);
 
         System.out.println("分行打印二叉树：");
         method(node8);
@@ -69,7 +54,7 @@ public class JZ32_2_分行从上到下打印二叉树 {
             int length = queue.size();
             for (int i = 0; i < length; i++) {
                 TreeNode<Integer> temp = queue.poll();
-                System.out.print(temp.value + " ");
+                System.out.print(temp.val + " ");
                 if (temp.left != null) queue.offer(temp.left);
                 if (temp.right != null) queue.offer(temp.right);
             }

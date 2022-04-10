@@ -1,5 +1,7 @@
 package com.old.old.delete;
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -27,29 +29,8 @@ import java.util.Queue;
  * 时间复杂度：O(n)，空间复杂度：O(n)
  */
 public class TestMethod37_2 {
-
-    /**
-     * 二叉树节点
-     */
-    public static class TreeNode<E> {
-
-        public E value;//节点值
-        public TreeNode left;//指向左节点的指针
-        public TreeNode right;//指向右节点的指针
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public void setLeftAndRight(TreeNode left, TreeNode right) {
-            this.left = left;
-            this.right = right;
-        }
-
-    }
-
+    
     public static void main(String[] args) {
-
         TreeNode<Integer> node1 = new TreeNode<Integer>(1);
         TreeNode<Integer> node2 = new TreeNode<Integer>(2);
         TreeNode<Integer> node3 = new TreeNode<Integer>(3);
@@ -89,7 +70,7 @@ public class TestMethod37_2 {
         while (!queue.isEmpty()) {
             TreeNode node = queue.poll();
             if (node != null) {
-                builder.append(node.value + ",");
+                builder.append(node.val + ",");
                 queue.add(node.left);
                 queue.add(node.right);
             } else
@@ -157,7 +138,7 @@ public class TestMethod37_2 {
         queue.add(root);
         while (!queue.isEmpty()) {
             TreeNode temp = queue.remove();
-            System.out.print(temp.value + " ");
+            System.out.print(temp.val + " ");
             if (temp.left != null)
                 queue.add(temp.left);
             if (temp.right != null)

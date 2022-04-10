@@ -1,5 +1,7 @@
 package com.old.old.wcopy.剑指offer.J_二叉树相关算法;
 
+import com.open.learncode.算法.base.TreeNode;
+
 /**
  * 题目：
  * 带父亲指针的二叉树的最近公共祖先：
@@ -22,27 +24,6 @@ package com.old.old.wcopy.剑指offer.J_二叉树相关算法;
  */
 public class TestMethod68_3 {
 
-    public static class TreeNode<E> {
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-        public TreeNode<E> parent;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-
-        public void setParent(TreeNode<E> parent) {
-            this.parent = parent;
-        }
-    }
-
     public static void main(String[] args) {
         TreeNode<Integer> node7 = new TreeNode<Integer>(7);
         TreeNode<Integer> node4 = new TreeNode<Integer>(4);
@@ -54,14 +35,14 @@ public class TestMethod68_3 {
         TreeNode<Integer> node1 = new TreeNode<Integer>(1, node0, node8);
         TreeNode<Integer> node3 = new TreeNode<Integer>(3, node5, node1);
         // 设置父节点
-        node7.setParent(node2);
-        node4.setParent(node2);
-        node2.setParent(node5);
-        node6.setParent(node5);
-        node5.setParent(node3);
-        node0.setParent(node1);
-        node8.setParent(node1);
-        node1.setParent(node3);
+        node7.setNext(node2);
+        node4.setNext(node2);
+        node2.setNext(node5);
+        node6.setNext(node5);
+        node5.setNext(node3);
+        node0.setNext(node1);
+        node8.setNext(node1);
+        node1.setNext(node3);
 
         // 鲁棒性测试
         System.out.println("鲁棒性测试如下：");
@@ -70,9 +51,9 @@ public class TestMethod68_3 {
         System.out.println(method(node3, node3));
         // 正常测试
         System.out.println("正常测试如下：");
-        System.out.println(method(node7, node4).value);
-        System.out.println(method(node6, node8).value);
-        System.out.println(method(node7, node3).value);
+        System.out.println(method(node7, node4).val);
+        System.out.println(method(node6, node8).val);
+        System.out.println(method(node7, node3).val);
 //        System.out.println(method(node2, node3).value);
     }
 
@@ -93,8 +74,8 @@ public class TestMethod68_3 {
         int count = 0;
         //不断回溯父亲节点：当tempA==tempB时，跳出循环，此时它们回溯到了最近的公共祖先节点
         while (tempA != tempB) {
-            tempA = tempA.parent;
-            tempB = tempB.parent;
+            tempA = tempA.next;
+            tempB = tempB.next;
 
             //当tempA回溯到null时，代表nodeA在nodeB的上层
             if (tempA == null) {

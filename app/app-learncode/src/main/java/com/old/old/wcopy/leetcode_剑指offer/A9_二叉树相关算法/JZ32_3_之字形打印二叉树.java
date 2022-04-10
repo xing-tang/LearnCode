@@ -1,5 +1,7 @@
 package com.old.old.wcopy.leetcode_剑指offer.A9_二叉树相关算法;
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.Stack;
 
 /**
@@ -25,30 +27,14 @@ import java.util.Stack;
  */
 public class JZ32_3_之字形打印二叉树 {
 
-    public static class TreeNode<E> {
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
     public static void main(String[] args) {
-        TreeNode<Integer> node5 = new TreeNode<Integer>(5);
-        TreeNode<Integer> node7 = new TreeNode<Integer>(7);
-        TreeNode<Integer> node9 = new TreeNode<Integer>(9);
-        TreeNode<Integer> node11 = new TreeNode<Integer>(11);
-        TreeNode<Integer> node6 = new TreeNode<Integer>(6, node5, node7);
-        TreeNode<Integer> node10 = new TreeNode<Integer>(10, node9, node11);
-        TreeNode<Integer> node8 = new TreeNode<Integer>(8, node6, node10);
+        TreeNode<Integer> node5 = new TreeNode(5);
+        TreeNode<Integer> node7 = new TreeNode(7);
+        TreeNode<Integer> node9 = new TreeNode(9);
+        TreeNode<Integer> node11 = new TreeNode(11);
+        TreeNode<Integer> node6 = new TreeNode(6, node5, node7);
+        TreeNode<Integer> node10 = new TreeNode(10, node9, node11);
+        TreeNode<Integer> node8 = new TreeNode(8, node6, node10);
 
         System.out.println("之字形打印二叉树：");
         method(node8);
@@ -71,7 +57,7 @@ public class JZ32_3_之字形打印二叉树 {
             if (flag) {// 奇数层
                 while (!stack1.isEmpty()) {
                     TreeNode<Integer> temp = stack1.pop();
-                    System.out.print(temp.value + " ");
+                    System.out.print(temp.val + " ");
                     // 要倒序打印，必须正序压入
                     if (temp.left != null) stack2.add(temp.left);
                     if (temp.right != null) stack2.add(temp.right);
@@ -79,7 +65,7 @@ public class JZ32_3_之字形打印二叉树 {
             } else {// 偶数层
                 while (!stack2.isEmpty()) {
                     TreeNode<Integer> temp = stack2.pop();
-                    System.out.print(temp.value + " ");
+                    System.out.print(temp.val + " ");
                     // 要正序打印，必须倒序压入
                     if (temp.right != null) stack1.add(temp.right);
                     if (temp.left != null) stack1.add(temp.left);

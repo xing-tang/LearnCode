@@ -44,7 +44,7 @@ public class OT_排序链表 {
         ListNode<Integer> h = new ListNode<Integer>(0);
         ListNode<Integer> res = h;
         while (left != null && right != null) {
-            if (left.value < right.value) {
+            if (left.val < right.val) {
                 h.next = left;
                 left = left.next;
             } else {

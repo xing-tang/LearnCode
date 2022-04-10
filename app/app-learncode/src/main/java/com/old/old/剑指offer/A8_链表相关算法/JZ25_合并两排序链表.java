@@ -52,7 +52,7 @@ public class JZ25_合并两排序链表 {
         ListNode<Integer> pre = new ListNode<Integer>(-1);
         ListNode<Integer> curr = pre;
         while (head1 != null && head2 != null) {
-            if (head2.value >= head1.value) {
+            if (head2.val >= head1.val) {
                 curr.next = head1;
                 head1 = head1.next;
             } else {

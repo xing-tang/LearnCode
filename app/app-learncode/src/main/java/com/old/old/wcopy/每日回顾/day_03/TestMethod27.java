@@ -1,5 +1,7 @@
 package com.old.old.wcopy.每日回顾.day_03;
 
+import com.open.learncode.算法.base.TreeNode;
+
 /**
  * 题目：
  * 请完成一个函数，输入一个二叉树，该函数输出它的镜像。
@@ -23,22 +25,6 @@ package com.old.old.wcopy.每日回顾.day_03;
  * 方法二：时间复杂度：O(n)，空间复杂度：O(n)
  */
 public class TestMethod27 {
-
-    public static class TreeNode<E> {
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     public static void main(String[] args) {
         TreeNode<Integer> node1 = new TreeNode<Integer>(1);
@@ -89,7 +75,7 @@ public class TestMethod27 {
      */
     public static void printPreorder(TreeNode head) {
         if (head == null) return;
-        System.out.print(head.value + " ");
+        System.out.print(head.val + " ");
         printPreorder(head.left);
         printPreorder(head.right);
     }

@@ -22,8 +22,12 @@ import java.util.Stack;
  * 后序遍历: {4, 5, 2, 6, 7, 3, 1}
  * <p>
  * 复杂度分析：
- * 递归方法：时间复杂度：O(n)，空间复杂度：O(n)
- * 迭代方法：时间复杂度：O(n)，空间复杂度：O(n)
+ * 递归方法：
+ * 时间复杂度：O(n)。
+ * 空间复杂度：O(n)。
+ * 迭代方法：
+ * 时间复杂度：O(n)。
+ * 空间复杂度：O(n)。
  */
 public class JZ07_1_二叉树前中后层序遍历 {
 
@@ -32,7 +36,6 @@ public class JZ07_1_二叉树前中后层序遍历 {
         int[] preOrder = {1, 2, 3, 4, 5, 6, 7};
         int[] inOrder = {1, 2, 3, 4, 5, 6, 7};
         TreeNode treeNode = TreeNode.createTreeNode(preOrder, inOrder);
-
 
         TreeNode<Integer> node1 = new TreeNode<Integer>(1);
         TreeNode<Integer> node2 = new TreeNode<Integer>(2);
@@ -82,7 +85,7 @@ public class JZ07_1_二叉树前中后层序遍历 {
     private static void centerPrint_1(TreeNode<Integer> root) {
         if (root == null) return;
 
-        Queue<TreeNode<Integer>> queue = new LinkedList<TreeNode<Integer>>();
+        Queue<TreeNode<Integer>> queue = new LinkedList();
         queue.offer(root);
         while (!queue.isEmpty()) {
             TreeNode<Integer> temp = queue.poll();
@@ -110,7 +113,7 @@ public class JZ07_1_二叉树前中后层序遍历 {
                 if (temp.left != null) queue.offer(temp.left);
                 if (temp.right != null) queue.offer(temp.right);
                 if (i == 0) System.out.print(temp.val + " ");
-                // if (i == length - 1) System.out.print(temp.value + " ");
+                // if (i == length - 1) System.out.print(temp.val + " ");
             }
         }
     }
@@ -136,7 +139,7 @@ public class JZ07_1_二叉树前中后层序遍历 {
     public static void preOrderPrint_2(TreeNode<Integer> root) {
         if (root == null) return;
 
-        Stack<TreeNode<Integer>> stack = new Stack<TreeNode<Integer>>();
+        Stack<TreeNode<Integer>> stack = new Stack();
         stack.push(root);
         TreeNode<Integer> temp = null;
         while (!stack.isEmpty()) {
@@ -168,7 +171,7 @@ public class JZ07_1_二叉树前中后层序遍历 {
     public static void inOrderPrint_2(TreeNode<Integer> root) {
         if (root == null) return;
 
-        Stack<TreeNode<Integer>> stack = new Stack<TreeNode<Integer>>();
+        Stack<TreeNode<Integer>> stack = new Stack();
         TreeNode<Integer> curr = root;
         TreeNode<Integer> temp = null;
         while (!stack.isEmpty() || curr != null) {
@@ -206,7 +209,7 @@ public class JZ07_1_二叉树前中后层序遍历 {
     public static void postOrderPrint_2(TreeNode<Integer> root) {
         if (root == null) return;
 
-        Stack<TreeNode<Integer>> stack = new Stack<TreeNode<Integer>>();
+        Stack<TreeNode<Integer>> stack = new Stack();
         stack.push(root);
         TreeNode<Integer> curr = root;
         TreeNode<Integer> peek = null;
@@ -220,7 +223,6 @@ public class JZ07_1_二叉树前中后层序遍历 {
                 System.out.print(stack.pop().val + " ");
                 curr = peek;
             }
-
         }
     }
 }

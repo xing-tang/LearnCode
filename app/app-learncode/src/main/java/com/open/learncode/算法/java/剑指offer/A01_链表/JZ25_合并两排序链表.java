@@ -33,13 +33,15 @@ public class JZ25_合并两排序链表 {
     }
 
     private static ListNode<Integer> solution(ListNode<Integer> head1, ListNode<Integer> head2) {
+        // 时间复杂度：O(n)
+        // 空间复杂度：O(1)
         if (head1 == null) return head2;
         if (head2 == null) return head1;
 
-        ListNode<Integer> pre = new ListNode<Integer>(-1);
-        ListNode<Integer> curr = pre;
+        ListNode<Integer> pHead = new ListNode(-1);
+        ListNode<Integer> curr = pHead;
         while (head1 != null && head2 != null) {
-            if (head2.value >= head1.value) {
+            if (head2.val > head1.val) {
                 curr.next = head1;
                 head1 = head1.next;
             } else {
@@ -49,6 +51,6 @@ public class JZ25_合并两排序链表 {
             curr = curr.next;
         }
         curr.next = head1 == null ? head2 : head1;
-        return pre.next;
+        return pHead.next;
     }
 }

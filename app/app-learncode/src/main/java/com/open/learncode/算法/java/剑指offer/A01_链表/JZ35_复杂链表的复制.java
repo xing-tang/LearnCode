@@ -59,7 +59,7 @@ public class JZ35_复杂链表的复制 {
         ListNode<String> tempNode = head;
         ListNode<String> newNode = null;
         while (tempNode != null) {
-            newNode = new ListNode<String>(tempNode.value);
+            newNode = new ListNode<String>(tempNode.val);
             newNode.next = tempNode.next;
             tempNode.next = newNode;
             tempNode = newNode.next;

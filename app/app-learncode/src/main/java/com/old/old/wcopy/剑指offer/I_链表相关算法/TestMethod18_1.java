@@ -51,7 +51,7 @@ public class TestMethod18_1 {
         // 待删除节点不是尾节点，为中间节点
         if (delete.next != null) {
             ListNode<Integer> next = delete.next;
-            delete.value = next.value;
+            delete.val = next.val;
             delete.next = next.next;
         } else if (head == delete) { // 待删除节点只有一个节点，此节点为头节点
             head = null;

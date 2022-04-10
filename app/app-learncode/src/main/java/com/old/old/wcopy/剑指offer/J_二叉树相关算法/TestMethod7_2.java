@@ -1,5 +1,7 @@
 package com.old.old.wcopy.剑指offer.J_二叉树相关算法;
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.Stack;
 
 /**
@@ -24,15 +26,6 @@ import java.util.Stack;
  * 时间复杂度：O(n)，空间复杂度：O(n)
  */
 public class TestMethod7_2 {
-    public static class TreeNode<E> {
-        E value;
-        TreeNode<E> left;
-        TreeNode<E> right;
-
-        TreeNode(E value) {
-            this.value = value;
-        }
-    }
 
     public static void main(String[] args) {
         int[] preorder = {1, 2, 4, 7, 3, 5, 6, 8};
@@ -78,7 +71,7 @@ public class TestMethod7_2 {
         TreeNode<Integer> root = new TreeNode<Integer>(preOrder[preLeft]);
         int index;
         for (index = inLeft; index <= inRight; index++) {
-            if (root.value == inOrder[index]) break;
+            if (root.val == inOrder[index]) break;
         }
         int leftLength = index - inLeft;
         root.left = method_1_1(preOrder, inOrder, preLeft + 1, preLeft + leftLength, inLeft, inLeft + leftLength - 1);
@@ -107,11 +100,11 @@ public class TestMethod7_2 {
         for (int i = 1; i < length; i++) {
             int preorderVal = preorder[i];
             TreeNode<Integer> node = stack.peek();
-            if ((int) node.value != inorder[inorderIndex]) {
+            if ((int) node.val != inorder[inorderIndex]) {
                 node.left = new TreeNode<Integer>(preorderVal);
                 stack.push(node.left);
             } else {
-                while (!stack.isEmpty() && (int) stack.peek().value == inorder[inorderIndex]) {
+                while (!stack.isEmpty() && (int) stack.peek().val == inorder[inorderIndex]) {
                     node = stack.pop();
                     inorderIndex++;
                 }
@@ -145,7 +138,7 @@ public class TestMethod7_2 {
         TreeNode<Integer> root = new TreeNode<Integer>(postOrder[postRight]);
         int index;
         for (index = inLeft; index <= inRight; index++) {
-            if (root.value == inOrder[index]) break;
+            if (root.val == inOrder[index]) break;
         }
         int leftLength = index - inLeft;
         root.left = method_2_1(inOrder, postOrder, inLeft, inLeft + leftLength - 1, postLeft, postLeft + leftLength - 1);
@@ -192,7 +185,7 @@ public class TestMethod7_2 {
      */
     private static void printPreOrder(TreeNode<Integer> root) {
         if (root != null) {
-            System.out.print(root.value + " ");
+            System.out.print(root.val + " ");
             printPreOrder(root.left);
             printPreOrder(root.right);
         }

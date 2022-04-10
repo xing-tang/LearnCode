@@ -41,7 +41,7 @@ public class JZ35_复杂链表的复制 {
         ListNode currNode = head;
         ListNode newNode = null;
         while (currNode != null) {
-            newNode = new ListNode(currNode.value);
+            newNode = new ListNode(currNode.val);
             newNode.next = currNode.next;
             currNode.next = newNode;
             currNode = newNode.next;

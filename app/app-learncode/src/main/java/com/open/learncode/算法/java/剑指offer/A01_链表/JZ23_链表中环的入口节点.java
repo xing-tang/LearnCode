@@ -42,12 +42,12 @@ public class JZ23_链表中环的入口节点 {
     }
 
     private static ListNode<Integer> solution(ListNode<Integer> head) {
-        if (head == null) return null;
+        // 时间复杂度：O(n)
+        // 空间复杂度：O(1)
+        if (head == null || head.next == null) return null;
 
-        ListNode<Integer> fast = head;
-        ListNode<Integer> slow = head;
-        while (true) {
-            if (fast == null || fast.next == null) return null;
+        ListNode<Integer> fast = head, slow = head;
+        while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
             if (fast == slow) break;

@@ -8,7 +8,7 @@ package com.open.learncode.算法.base;
 public class ListNode<E> {
 
     // 当前节点的值
-    public E value = null;
+    public E val = null;
     // 指向的下一个节点，默认为指向null
     public ListNode<E> next = null;
     // 指向的一个随机节点，默认为指向null
@@ -72,20 +72,20 @@ public class ListNode<E> {
     /**
      * 有一个参数的构造函数
      *
-     * @param value 接受一个泛型值
+     * @param val 接受一个泛型值
      */
-    public ListNode(E value) {
-        this.value = value;
+    public ListNode(E val) {
+        this.val = val;
     }
 
     /**
      * 有两个参数的构造函数
      *
-     * @param value 接受一个泛型值
+     * @param val 接受一个泛型值
      * @param next  接受指向下一个节点的泛型值
      */
-    public ListNode(E value, ListNode<E> next) {
-        this.value = value;
+    public ListNode(E val, ListNode<E> next) {
+        this.val = val;
         this.next = next;
     }
 

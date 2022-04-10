@@ -1,5 +1,6 @@
 package com.open.learncode.算法.base;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
@@ -15,6 +16,10 @@ public class TreeNode<E> {
     public TreeNode<E> left;
     // 指向右孩子，默认为指向null
     public TreeNode<E> right;
+    // 指向下一个节点，默认为指向null
+    public TreeNode<E> next;
+    //  指向孩子节点集合，默认为指向null
+    public ArrayList<TreeNode<E>> childrenList;
 
     /**
      * 有一个参数的构造函数
@@ -39,6 +44,17 @@ public class TreeNode<E> {
     }
 
     /**
+     * 有两个参数的构造函数
+     *
+     * @param val          接受一个泛型值
+     * @param childrenList 接受指向孩子节点集合
+     */
+    public TreeNode(E val, ArrayList<TreeNode<E>> childrenList) {
+        this.val = val;
+        this.childrenList = childrenList;
+    }
+
+    /**
      * 设置左孩子和右孩子
      *
      * @param left  接受指向左孩子的泛型值
@@ -47,6 +63,28 @@ public class TreeNode<E> {
     public void setLeftAndRight(TreeNode<E> left, TreeNode<E> right) {
         this.left = left;
         this.right = right;
+    }
+
+    /**
+     * 设置下一个节点
+     *
+     * @param next 接受指向下一个节点的泛型值
+     */
+    public void setNext(TreeNode<E> next) {
+        this.next = next;
+    }
+
+    /**
+     * 设置左孩子和右孩子和下一个节点
+     *
+     * @param left  接受指向左孩子的泛型值
+     * @param right 接受指向右孩子的泛型值
+     * @param next  接受指向下一个节点的泛型值
+     */
+    public void setLeftAndRightAndNext(TreeNode<E> left, TreeNode<E> right, TreeNode<E> next) {
+        this.left = left;
+        this.right = right;
+        this.next = next;
     }
 
     /**

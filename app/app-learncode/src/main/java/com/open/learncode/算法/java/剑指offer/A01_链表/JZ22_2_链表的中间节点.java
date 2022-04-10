@@ -34,11 +34,12 @@ public class JZ22_2_链表的中间节点 {
         PrintUtils.getInstance().printNode(method(headNode2), "链表的中间节点为");
     }
 
-    private static ListNode<Integer> method(ListNode<Integer> headNode) {
-        if (headNode == null || headNode.next == null) return headNode;
+    private static ListNode<Integer> method(ListNode<Integer> head) {
+        // 时间复杂度：O(n)
+        // 空间复杂度：O(1)
+        if (head == null || head.next == null) return head;
 
-        ListNode<Integer> fast = headNode;
-        ListNode<Integer> slow = headNode;
+        ListNode<Integer> fast = head, slow = head;
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;

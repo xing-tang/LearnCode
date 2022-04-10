@@ -1,5 +1,7 @@
 package com.open.learncode.算法.java.剑指offer.A02_树;
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.Stack;
 
 /**
@@ -26,55 +28,23 @@ import java.util.Stack;
  */
 public class JZ27_二叉树的镜像 {
 
-    public static class TreeNode<E> {
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
     public static void main(String[] args) {
-        TreeNode<Integer> node1 = new TreeNode<Integer>(1);
-        TreeNode<Integer> node3 = new TreeNode<Integer>(3);
-        TreeNode<Integer> node6 = new TreeNode<Integer>(6);
-        TreeNode<Integer> node9 = new TreeNode<Integer>(9);
-        TreeNode<Integer> node2 = new TreeNode<Integer>(2, node1, node3);
-        TreeNode<Integer> node7 = new TreeNode<Integer>(7, node6, node9);
-        TreeNode<Integer> node4 = new TreeNode<Integer>(4, node2, node7);
+        TreeNode<Integer> node1 = new TreeNode(1);
+        TreeNode<Integer> node3 = new TreeNode(3);
+        TreeNode<Integer> node6 = new TreeNode(6);
+        TreeNode<Integer> node9 = new TreeNode(9);
+        TreeNode<Integer> node2 = new TreeNode(2, node1, node3);
+        TreeNode<Integer> node7 = new TreeNode(7, node6, node9);
+        TreeNode<Integer> node4 = new TreeNode(4, node2, node7);
 
         System.out.println("二叉树=>前序遍历：");
         printPreorder(node4);
         System.out.println();
         System.out.println("二叉树镜像=>前序遍历：");
-        printPreorder(method_1(node4));
+        printPreorder(solution1(node4));
         System.out.println();
         System.out.println("二叉树镜像=>前序遍历：");
-        printPreorder(method_2(node4));
-
-    }
-
-    /**
-     * 递归：
-     *
-     * @param root 二叉树根节点
-     * @return 返回镜像二叉树的根节点
-     */
-    public static TreeNode<Integer> method_1(TreeNode<Integer> root) {
-        if (root == null) return null;
-        //交换root节点的左右子树
-        TreeNode<Integer> temp = root.left;
-        root.left = method_1(root.right);
-        root.right = method_1(temp);
-        return root;
+        printPreorder(solution2(node4));
     }
 
     /**
@@ -83,22 +53,39 @@ public class JZ27_二叉树的镜像 {
      * @param root 二叉树根节点
      * @return 返回镜像二叉树的根节点
      */
-    public static TreeNode<Integer> method_2(final TreeNode<Integer> root) {
+    public static TreeNode<Integer> solution1(final TreeNode<Integer> root) {
+        //
         if (root == null) return null;
 
-        Stack<TreeNode<Integer>> stack = new Stack<TreeNode<Integer>>();
+        Stack<TreeNode<Integer>> stack = new Stack();
         stack.push(root);
         while (!stack.isEmpty()) {
-            TreeNode<Integer> node = stack.pop();
-            if (node.left != null) stack.add(node.left);
-            if (node.right != null) stack.add(node.right);
+            TreeNode<Integer> temp = stack.pop();
+            if (temp.left != null) stack.push(temp.left);
+            if (temp.right != null) stack.push(temp.right);
             // 交换node节点的左右子树
-            TreeNode<Integer> tmp = node.left;
-            node.left = node.right;
-            node.right = tmp;
+            TreeNode<Integer> tempLeft = temp.left;
+            temp.left = temp.right;
+            temp.right = tempLeft;
         }
         return root;
     }
+
+    /**
+     * 递归：
+     *
+     * @param root 二叉树根节点
+     * @return 返回镜像二叉树的根节点
+     */
+    public static TreeNode<Integer> solution2(TreeNode<Integer> root) {
+        if (root == null) return null;
+        // 交换root节点的左右子树
+        TreeNode<Integer> temp = root.left;
+        root.left = solution2(root.right);
+        root.right = solution2(temp);
+        return root;
+    }
+
 
     /**
      * 递归打印前序遍历
@@ -107,7 +94,7 @@ public class JZ27_二叉树的镜像 {
      */
     public static void printPreorder(TreeNode<Integer> head) {
         if (head == null) return;
-        System.out.print(head.value + " ");
+        System.out.print(head.val + " ");
         printPreorder(head.left);
         printPreorder(head.right);
     }

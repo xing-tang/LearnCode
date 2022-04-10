@@ -1,5 +1,7 @@
 package com.old.old.delete;
 
+import com.open.learncode.算法.base.TreeNode;
+
 /**
  * 题目：
  * 给定一颗二叉搜索树，请找出其中第K大的节点。例如，在如下的二叉搜索树中，
@@ -26,7 +28,7 @@ public class TestMethod54 {
         TreeNode<Integer> node3 = new TreeNode<Integer>(3, node2, node4);
         TreeNode<Integer> node5 = new TreeNode<Integer>(5, node3, node7);
         TreeNode<Integer> temp = methodT(node5, 3);
-        System.out.println(temp.value);
+        System.out.println(temp.val);
     }
 
     public static TreeNode<Integer> methodT(TreeNode<Integer> root, int k) {
@@ -43,28 +45,10 @@ public class TestMethod54 {
             if (k == 0) target = root;
             k--;
         }
-        System.out.print(root.value + " ");
+        System.out.print(root.val + " ");
         if (target == null && root.left != null) {
             target = method(root.left, k);
         }
         return target;
     }
-
-    public static class TreeNode<E> {
-
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
 }

@@ -54,7 +54,7 @@ public class TestMethod25 {
         ListNode<Integer> pre = new ListNode<Integer>(-1);
         ListNode<Integer> curr = pre;
         while (head1 != null && head2 != null) {
-            if (head1.value <= head2.value) {
+            if (head1.val <= head2.val) {
                 curr.next = head1;
                 head1 = head1.next;
             } else {
@@ -78,7 +78,7 @@ public class TestMethod25 {
             return head2;
         } else if (head2 == null) {
             return head1;
-        } else if (head1.value < head2.value) {
+        } else if (head1.val < head2.val) {
             head1.next = method_2(head1.next, head2);
             return head1;
         } else {

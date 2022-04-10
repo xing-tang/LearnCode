@@ -1,5 +1,7 @@
 package com.old.old.delete;
 
+import com.open.learncode.算法.base.TreeNode;
+
 /**
  * 题目：
  * 输入一棵二叉树的根节点，判断该树是不是平衡二叉树。
@@ -54,23 +56,4 @@ public class TestMethod55_2 {
         if (right == -1) return -1;
         return Math.abs(left - right) <= 1 ? Math.max(left, right) + 1 : -1;
     }
-
-
-    public static class TreeNode<E> {
-
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
 }

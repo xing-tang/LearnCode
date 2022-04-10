@@ -20,11 +20,13 @@ import com.open.learncode.算法.base.TreeNode;
  * 递归
  * <p>
  * 复杂度分析：
- * 时间复杂度 O(n)，空间复杂度 O(n)
+ * 时间复杂度 O(n)。
+ * 空间复杂度 O(n)。
  */
 public class JZ55_2_是不是平衡二叉树 {
 
     public static void main(String[] args) {
+        // 测试用例
         TreeNode<Integer> node7 = new TreeNode<Integer>(7);
         TreeNode<Integer> node6 = new TreeNode<Integer>(6);
         TreeNode<Integer> node5 = new TreeNode<Integer>(5, node7, null);
@@ -33,7 +35,7 @@ public class JZ55_2_是不是平衡二叉树 {
         TreeNode<Integer> node2 = new TreeNode<Integer>(2, node4, node5);
         TreeNode<Integer> node1 = new TreeNode<Integer>(1, node2, node3);
 
-        PrintUtils.getInstance().print(method(node1));
+        PrintUtils.getInstance().print(solution(node1));
     }
 
     /**
@@ -42,7 +44,7 @@ public class JZ55_2_是不是平衡二叉树 {
      * @param root 根节点
      * @return 返回是否是平衡二叉树，是返回true，否返回false
      */
-    public static boolean method(TreeNode root) {
+    public static boolean solution(TreeNode root) {
         return dfs(root) != -1;
     }
 

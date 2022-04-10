@@ -50,8 +50,8 @@ public class TestMethod18_2 {
         while (cur != null) {
             // 遇到重复节点
             ListNode temp = cur.next;
-            if (temp != null && cur.value == temp.value) {
-                while (temp != null && cur.value == temp.value) {
+            if (temp != null && cur.val == temp.val) {
+                while (temp != null && cur.val == temp.val) {
                     cur = cur.next;
                     temp = temp.next;
                 }

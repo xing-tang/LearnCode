@@ -1,5 +1,7 @@
 package com.old.old.wcopy.剑指offer.J_二叉树相关算法;
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -20,23 +22,7 @@ import java.util.Queue;
  * 时间复杂度：O(n)，空间复杂度：O(n)
  */
 public class TestMethod32_4 {
-
-    public static class TreeNode<E> {
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
+    
     public static void main(String[] args) {
         TreeNode<Integer> node5 = new TreeNode<Integer>(5);
         TreeNode<Integer> node7 = new TreeNode<Integer>(7);
@@ -47,9 +33,9 @@ public class TestMethod32_4 {
         TreeNode<Integer> node8 = new TreeNode<Integer>(8, node6, node10);
 
         System.out.println("二叉树第2层的第一个节点为：");
-        System.out.println(method_first(node8, 2).value);
+        System.out.println(method_first(node8, 2).val);
         System.out.println("二叉树第3层的最后一个节点为：");
-        System.out.println(method_last(node8, 3).value);
+        System.out.println(method_last(node8, 3).val);
     }
 
     /**

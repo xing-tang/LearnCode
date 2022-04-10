@@ -38,9 +38,7 @@ public class JZ24_1_反转链表 {
     private static ListNode<Integer> solution1(ListNode<Integer> head) {
         if (head == null || head.next == null) return head;
 
-        ListNode<Integer> curr = head;
-        ListNode<Integer> pre = null;
-        ListNode<Integer> next = null;
+        ListNode<Integer> pre = null, curr = head, next = null;
         while (curr != null) {
             next = curr.next;
             curr.next = pre;

@@ -36,14 +36,14 @@ public class JZ52_两链表第一个公共节点 {
         ListNode nodeA3 = ListNode.createListNode(new String[]{"c1", "c2", "c3"});
         nodeA1.next = nodeA3;
         nodeA2.next = nodeA3;
-        PrintUtils.getInstance().print(solution(nodeA1, nodeA2).value, "输出");
+        PrintUtils.getInstance().print(solution(nodeA1, nodeA2).val, "输出");
 
         ListNode nodeB1 = ListNode.createListNode(new int[]{4, 1});
         ListNode nodeB2 = ListNode.createListNode(new int[]{5, 0, 1});
         ListNode nodeB3 = ListNode.createListNode(new int[]{8, 4, 5});
         nodeB1.next = nodeB3;
         nodeB2.next = nodeB3;
-        PrintUtils.getInstance().print(solution(nodeB1, nodeB2).value, "输出");
+        PrintUtils.getInstance().print(solution(nodeB1, nodeB2).val, "输出");
 
         ListNode nodeC1 = ListNode.createListNode(new int[]{1, 3, 3, 4});
         ListNode nodeC2 = ListNode.createListNode(new int[]{5, 6, 7});
@@ -51,13 +51,14 @@ public class JZ52_两链表第一个公共节点 {
     }
 
     private static ListNode solution(ListNode nodeA, ListNode nodeB) {
+        // 空间复杂度：O(n)
+        // 时间复杂度：O(1)
         if (nodeA == null || nodeB == null) return null;
 
-        ListNode tempA = nodeA;
-        ListNode tempB = nodeB;
+        ListNode tempA = nodeA, tempB = nodeB;
         while (tempA != tempB) {
-            tempA = tempA == null ? nodeB : tempA.next;
-            tempB = tempB == null ? nodeA : tempB.next;
+            tempA = tempA != null ? tempA.next : nodeB;
+            tempB = tempB != null ? tempB.next : nodeA;
         }
         return tempA;
     }

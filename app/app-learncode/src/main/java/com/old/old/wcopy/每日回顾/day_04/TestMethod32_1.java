@@ -1,5 +1,7 @@
 package com.old.old.wcopy.每日回顾.day_04;
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -23,24 +25,7 @@ import java.util.Queue;
  * 时间复杂度：O(1)，空间复杂度：O(1)
  */
 public class TestMethod32_1 {
-
-    public static class TreeNode<E> {
-
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
+    
     public static void main(String[] args) {
         TreeNode<Integer> node5 = new TreeNode<Integer>(5);
         TreeNode<Integer> node7 = new TreeNode<Integer>(7);
@@ -66,7 +51,7 @@ public class TestMethod32_1 {
         queue.add(root);
         while (!queue.isEmpty()) {
             TreeNode temp = queue.remove();
-            System.out.print(temp.value + " ");
+            System.out.print(temp.val + " ");
             if (temp.left != null) queue.add(temp.left);
             if (temp.right != null) queue.add(temp.right);
         }

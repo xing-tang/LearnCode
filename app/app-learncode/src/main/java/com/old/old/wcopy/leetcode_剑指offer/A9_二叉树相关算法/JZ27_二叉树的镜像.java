@@ -1,5 +1,7 @@
 package com.old.old.wcopy.leetcode_剑指offer.A9_二叉树相关算法;
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.Stack;
 
 /**
@@ -26,30 +28,14 @@ import java.util.Stack;
  */
 public class JZ27_二叉树的镜像 {
 
-    public static class TreeNode<E> {
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
     public static void main(String[] args) {
-        TreeNode<Integer> node1 = new TreeNode<Integer>(1);
-        TreeNode<Integer> node3 = new TreeNode<Integer>(3);
-        TreeNode<Integer> node6 = new TreeNode<Integer>(6);
-        TreeNode<Integer> node9 = new TreeNode<Integer>(9);
-        TreeNode<Integer> node2 = new TreeNode<Integer>(2, node1, node3);
-        TreeNode<Integer> node7 = new TreeNode<Integer>(7, node6, node9);
-        TreeNode<Integer> node4 = new TreeNode<Integer>(4, node2, node7);
+        TreeNode<Integer> node1 = new TreeNode(1);
+        TreeNode<Integer> node3 = new TreeNode(3);
+        TreeNode<Integer> node6 = new TreeNode(6);
+        TreeNode<Integer> node9 = new TreeNode(9);
+        TreeNode<Integer> node2 = new TreeNode(2, node1, node3);
+        TreeNode<Integer> node7 = new TreeNode(7, node6, node9);
+        TreeNode<Integer> node4 = new TreeNode(4, node2, node7);
 
         System.out.println("二叉树=>前序遍历：");
         printPreorder(node4);
@@ -107,7 +93,7 @@ public class JZ27_二叉树的镜像 {
      */
     public static void printPreorder(TreeNode<Integer> head) {
         if (head == null) return;
-        System.out.print(head.value + " ");
+        System.out.print(head.val + " ");
         printPreorder(head.left);
         printPreorder(head.right);
     }

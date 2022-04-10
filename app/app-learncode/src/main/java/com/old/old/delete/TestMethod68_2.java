@@ -1,5 +1,7 @@
 package com.old.old.delete;
 
+import com.open.learncode.算法.base.TreeNode;
+
 import java.util.Stack;
 
 /**
@@ -28,26 +30,8 @@ import java.util.Stack;
  * 节点root即为最近公共祖先，则向上返回root
  */
 public class TestMethod68_2 {
-
-    public static class TreeNode<E> {
-
-        public E value;
-        public TreeNode<E> left;
-        public TreeNode<E> right;
-
-        public TreeNode(E value) {
-            this.value = value;
-        }
-
-        public TreeNode(E value, TreeNode<E> left, TreeNode<E> right) {
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
+    
     public static void main(String[] args) {
-
         TreeNode<Integer> node7 = new TreeNode<Integer>(7);
         TreeNode<Integer> node4 = new TreeNode<Integer>(4);
         TreeNode<Integer> node2 = new TreeNode<Integer>(2, node7, node4);
@@ -58,7 +42,6 @@ public class TestMethod68_2 {
         TreeNode<Integer> node1 = new TreeNode<Integer>(1, node0, node8);
         TreeNode<Integer> node3 = new TreeNode<Integer>(3, node5, node1);
 
-
         // 鲁棒性测试
         System.out.println("方法一：");
         System.out.println("鲁棒性测试如下：");
@@ -68,8 +51,8 @@ public class TestMethod68_2 {
         System.out.println(rob_1(node3, node3, node3));
         // 正常测试
         System.out.println("正常测试如下：");
-        System.out.println(rob_1(node3, node7, node4).value);
-        System.out.println(rob_1(node3, node6, node8).value);
+        System.out.println(rob_1(node3, node7, node4).val);
+        System.out.println(rob_1(node3, node6, node8).val);
 
 
         // 鲁棒性测试
@@ -81,8 +64,8 @@ public class TestMethod68_2 {
         System.out.println(rob_2(node3, node3, node3));
         // 正常测试
         System.out.println("正常测试如下：");
-        System.out.println(rob_2(node3, node7, node4).value);
-        System.out.println(rob_2(node3, node6, node8).value);
+        System.out.println(rob_2(node3, node7, node4).val);
+        System.out.println(rob_2(node3, node6, node8).val);
 
 
     }

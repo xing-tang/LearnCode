@@ -25,26 +25,20 @@ public class ST04_快速排序 {
     }
 
     private static void solution(int[] nums, int left, int right) {
-        if (nums == null || nums.length <= 0 || left > right) return;
+        if (nums == null || nums.length <= 1 || left > right) return;
 
-        int start = left;
-        int end = right;
-        int base = nums[left];
+        int start = left, end = right, base = nums[left];
         while (start < end) {
-            while (nums[end] >= base && start < end) {
-                end--;
-            }
-            while (nums[start] <= base && start < end) {
-                start++;
-            }
+            while (start < end && nums[end] >= base) end--;
+            while (start < end && nums[start] <= base) start++;
             if (start < end) {
                 int temp = nums[start];
                 nums[start] = nums[end];
                 nums[end] = temp;
             }
         }
-        nums[left] = nums[start];
-        nums[start] = base;
+        nums[left] = nums[end];
+        nums[end] = base;
         solution(nums, left, end - 1);
         solution(nums, end + 1, right);
     }
