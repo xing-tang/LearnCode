@@ -21,15 +21,15 @@ import com.open.learncode.算法.base.PrintUtils;
 public class OT_排序链表 {
 
     public static void main(String[] args) {
-        ListNode<Integer> listNode3 = new ListNode<>(3);
-        ListNode<Integer> listNode1 = new ListNode<>(1, listNode3);
-        ListNode<Integer> listNode2 = new ListNode<>(2, listNode1);
-        ListNode<Integer> listNode4 = new ListNode<>(4, listNode2);
+        ListNode<Integer> listNode3 = new ListNode(3);
+        ListNode<Integer> listNode1 = new ListNode(1, listNode3);
+        ListNode<Integer> listNode2 = new ListNode(2, listNode1);
+        ListNode<Integer> listNode4 = new ListNode(4, listNode2);
 
-        PrintUtils.getInstance().printListNode(method(listNode4));
+        PrintUtils.getInstance().printListNode(solution(listNode4));
     }
 
-    private static ListNode<Integer> method(ListNode<Integer> head) {
+    private static ListNode<Integer> solution(ListNode<Integer> head) {
         if (head == null || head.next == null) return head;
 
         ListNode<Integer> fast = head.next, slow = head;
@@ -39,9 +39,9 @@ public class OT_排序链表 {
         }
         ListNode<Integer> tmp = slow.next;
         slow.next = null;
-        ListNode<Integer> left = method(head);
-        ListNode<Integer> right = method(tmp);
-        ListNode<Integer> h = new ListNode<Integer>(0);
+        ListNode<Integer> left = solution(head);
+        ListNode<Integer> right = solution(tmp);
+        ListNode<Integer> h = new ListNode(0);
         ListNode<Integer> res = h;
         while (left != null && right != null) {
             if (left.val < right.val) {

@@ -31,10 +31,10 @@ public class JZ24_2_反转链表m至n节点 {
         ListNode<Integer> headNode = ListNode.createListNode(new int[]{1, 2, 3, 4, 5, 6});
         int m = 2, n = 5;
         PrintUtils.getInstance().printListNode(headNode);
-        PrintUtils.getInstance().printListNode(solution(headNode, m, n), "反转" + m + "~" + n + "后的链表为");
+        PrintUtils.getInstance().printListNode(solution1(headNode, m, n), "反转" + m + "~" + n + "后的链表为");
     }
 
-    private static ListNode<Integer> solution(ListNode<Integer> head, int m, int n) {
+    private static ListNode<Integer> solution1(ListNode<Integer> head, int m, int n) {
         // 时间复杂度：0(n)
         // 空间复杂度：O(1)
         if (head == null || head.next == null) return head;

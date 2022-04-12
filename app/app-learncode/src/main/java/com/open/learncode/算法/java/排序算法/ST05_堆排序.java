@@ -31,14 +31,17 @@ import com.open.learncode.算法.base.PrintUtils;
 public class ST05_堆排序 {
     public static void main(String[] args) {
         // 测试用例
-        int[] nums = {4, 7, 2, 1, 3, 5, 8, 9, 6};
-        // int[] nums = {3, 6, 8, 5, 7};
-        // heapSort(nums);
-        solution(nums);
-        PrintUtils.getInstance().printArray(nums);
+        int[] nums1 = {4, 7, 2, 1, 3, 5, 8, 9, 6};
+        int[] nums2 = {4, 7, 2, 1, 3, 5, 8, 9, 6};
+        solutionMax(nums1);
+        PrintUtils.getInstance().printArray(nums1);
+        solutionMin(nums2);
+        PrintUtils.getInstance().printArray(nums2);
     }
 
-    private static void solution(int[] nums) {
+    private static void solutionMax(int[] nums) {
+        if (nums == null || nums.length == 0) return;
+
         // 1. 从最后一个非叶节点开始构建大顶堆
         for (int i = nums.length / 2 - 1; i >= 0; i--) {
             maxHeap(nums, i, nums.length);
@@ -50,41 +53,46 @@ public class ST05_堆排序 {
         }
     }
 
-    /**
-     * 调整大顶堆（仅是调整过程，建立在大顶堆已构建的基础上）
-     *
-     * @param nums   数组
-     * @param i      下标
-     * @param length 边界
-     */
+    // 大根堆
     public static void maxHeap(int[] nums, int i, int length) {
         // 先取出当前元素i
         int temp = nums[i];
         // 从i结点的左子结点开始，也就是2i+1处开始
-        for (int k = i * 2 + 1; k < length; k = k * 2 + 1) {
+        for (int k = 2 * i + 1; k < length; k = k * 2 + 1) {
             // 如果左子结点小于右子结点，k指向右子结点
-            if (k + 1 < length && nums[k] < nums[k + 1]) {
-                k++;
-            }
+            if (k + 1 < length && nums[k] < nums[k + 1]) k++;
             // 如果子节点大于父节点，将子节点值赋给父节点（不用进行交换）
-            if (nums[k] > temp) {
-                nums[i] = nums[k];
-                i = k;
-            } else {
-                break;
-            }
+            if (temp >= nums[k]) break;
+            nums[i] = nums[k];
+            nums[k] = temp;
+            i = k;
         }
-        // 将temp值放到最终的位置
-        nums[i] = temp;
     }
 
-    /**
-     * 交换元素
-     *
-     * @param arr 数组
-     * @param i   下标
-     * @param j   下标
-     */
+    public static void solutionMin(int[] nums) {
+        if (nums == null || nums.length == 0) return;
+
+        for (int i = nums.length / 2; i >= 0; i--) {
+            minHeap(nums, i, nums.length - 1);
+        }
+        for (int i = nums.length - 1; i >= 0; i--) {
+            swap(nums, 0, i);
+            minHeap(nums, 0, i - 1);
+        }
+    }
+
+    // 小跟堆
+    public static void minHeap(int[] nums, int i, int length) {
+        int temp = nums[i];
+        for (int k = 2 * i + 1; k <= length; k = k * 2) {
+            if (k < length && nums[k] > nums[k + 1]) k++;
+            if (temp <= nums[k]) break;
+            nums[i] = nums[k];
+            nums[k] = temp;
+            i = k;
+        }
+    }
+
     private static void swap(int[] nums, int i, int j) {
         int temp = nums[i];
         nums[i] = nums[j];

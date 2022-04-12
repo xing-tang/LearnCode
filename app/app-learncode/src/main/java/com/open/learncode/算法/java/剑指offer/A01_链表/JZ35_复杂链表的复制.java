@@ -36,11 +36,11 @@ public class JZ35_复杂链表的复制 {
 
     public static void main(String[] args) {
         // 测试用例
-        ListNode<String> nodeA = new ListNode<String>("A");
-        ListNode<String> nodeB = new ListNode<String>("B");
-        ListNode<String> nodeC = new ListNode<String>("C");
-        ListNode<String> nodeD = new ListNode<String>("D");
-        ListNode<String> nodeE = new ListNode<String>("E");
+        ListNode<String> nodeA = new ListNode("A");
+        ListNode<String> nodeB = new ListNode("B");
+        ListNode<String> nodeC = new ListNode("C");
+        ListNode<String> nodeD = new ListNode("D");
+        ListNode<String> nodeE = new ListNode("E");
         nodeA.setNextAndRandom(nodeB, nodeC);
         nodeB.setNextAndRandom(nodeC, nodeE);
         nodeC.setNextAndRandom(nodeD, null);
@@ -59,7 +59,7 @@ public class JZ35_复杂链表的复制 {
         ListNode<String> tempNode = head;
         ListNode<String> newNode = null;
         while (tempNode != null) {
-            newNode = new ListNode<String>(tempNode.val);
+            newNode = new ListNode(tempNode.val);
             newNode.next = tempNode.next;
             tempNode.next = newNode;
             tempNode = newNode.next;

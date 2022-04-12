@@ -17,26 +17,27 @@ import com.open.learncode.算法.base.PrintUtils;
  * 利用加法运算规则，并且考虑进位操作
  * <p>
  * 复杂度分析：
- * 时间复杂度：O（n），空间复杂度：O（n）
+ * 时间复杂度：O（n）。
+ * 空间复杂度：O（n）。
  */
 public class OT_链表表示的两数相加 {
 
     public static void main(String[] args) {
-        ListNode<Integer> listNode3 = new ListNode<>(3);
-        ListNode<Integer> listNode4 = new ListNode<>(4, listNode3);
-        ListNode<Integer> listNode2 = new ListNode<>(2, listNode4);
-        ListNode<Integer> listNode7 = new ListNode<>(7);
-        ListNode<Integer> listNode9 = new ListNode<>(9, listNode7);
-        ListNode<Integer> listNode8 = new ListNode<>(8, listNode9);
+        ListNode<Integer> listNode3 = new ListNode(3);
+        ListNode<Integer> listNode4 = new ListNode(4, listNode3);
+        ListNode<Integer> listNode2 = new ListNode(2, listNode4);
+        ListNode<Integer> listNode7 = new ListNode(7);
+        ListNode<Integer> listNode9 = new ListNode(9, listNode7);
+        ListNode<Integer> listNode8 = new ListNode(8, listNode9);
 
-        PrintUtils.getInstance().printListNode(method(listNode2, listNode8));
+        PrintUtils.getInstance().printListNode(solution(listNode2, listNode8));
     }
 
-    private static ListNode<Integer> method(ListNode<Integer> l1, ListNode<Integer> l2) {
+    private static ListNode<Integer> solution(ListNode<Integer> l1, ListNode<Integer> l2) {
         if (l1 == null) return l1;
         if (l2 == null) return l2;
 
-        ListNode<Integer> pre = new ListNode<Integer>(0);
+        ListNode<Integer> pre = new ListNode(0);
         ListNode<Integer> cur = pre;
         int carry = 0;
         while (l1 != null || l2 != null) {
@@ -46,7 +47,7 @@ public class OT_链表表示的两数相加 {
 
             carry = sum / 10;
             sum = sum % 10;
-            cur.next = new ListNode<Integer>(sum);
+            cur.next = new ListNode(sum);
 
             cur = cur.next;
             if (l1 != null)
@@ -55,7 +56,7 @@ public class OT_链表表示的两数相加 {
                 l2 = l2.next;
         }
         if (carry == 1) {
-            cur.next = new ListNode<Integer>(carry);
+            cur.next = new ListNode(carry);
         }
         return pre.next;
     }

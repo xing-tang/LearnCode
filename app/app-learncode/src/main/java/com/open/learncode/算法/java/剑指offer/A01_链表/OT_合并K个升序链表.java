@@ -16,7 +16,8 @@ package com.open.learncode.算法.java.剑指offer.A01_链表;
  *
  * <p>
  * 复杂度分析：
- * 时间复杂度：O（nlogn），空间复杂度：O（1）
+ * 时间复杂度：O（nlogn）。
+ * 空间复杂度：O（1）。
  */
 public class OT_合并K个升序链表 {
 }

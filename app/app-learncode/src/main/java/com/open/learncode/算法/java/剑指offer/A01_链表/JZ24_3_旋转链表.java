@@ -45,10 +45,10 @@ public class JZ24_3_旋转链表 {
         ListNode<Integer> headNode = ListNode.createListNode(new int[]{1, 2, 3, 4, 5});
         int k = 7;
         PrintUtils.getInstance().printListNode(headNode);
-        PrintUtils.getInstance().printListNode(method(headNode, k), "右移" + k + "位数，旋转后的链表为");
+        PrintUtils.getInstance().printListNode(solution(headNode, k), "右移" + k + "位数，旋转后的链表为");
     }
 
-    private static ListNode<Integer> method(ListNode<Integer> head, int k) {
+    private static ListNode<Integer> solution(ListNode<Integer> head, int k) {
         // 时间复杂度：O(n)
         // 空间复杂度：O(1)
         if (head == null || head.next == null || k <= 0) return head;

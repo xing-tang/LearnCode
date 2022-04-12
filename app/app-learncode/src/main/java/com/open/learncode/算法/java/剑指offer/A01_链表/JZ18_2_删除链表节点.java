@@ -6,7 +6,7 @@ import com.open.learncode.算法.base.PrintUtils;
 
 /**
  * 题目：
- * 在O(1)时间内删除链表节点：给定单向链表的头指针和一个节点指针，定义一个函数在O(1)时间内删除该节点。
+ * 在O(1)时间内删除链表节点：给定单向链表的头指针和一个节点值，定义一个函数在O(1)时间内删除该节点。
  * <p>
  * 注意：
  * 题目保证链表中节点的值互不相同。
@@ -30,10 +30,10 @@ public class JZ18_2_删除链表节点 {
     public static void main(String[] args) {
         // 测试用例
         for (int i = 0; i < 4; i++) {
-            ListNode<Integer> node9 = new ListNode<Integer>(9);
-            ListNode<Integer> node1 = new ListNode<Integer>(1, node9);
-            ListNode<Integer> node5 = new ListNode<Integer>(5, node1);
-            ListNode<Integer> node4 = new ListNode<Integer>(4, node5);
+            ListNode<Integer> node9 = new ListNode(9);
+            ListNode<Integer> node1 = new ListNode(1, node9);
+            ListNode<Integer> node5 = new ListNode(5, node1);
+            ListNode<Integer> node4 = new ListNode(4, node5);
             if (i == 0) {
                 // 删除头结点
                 PrintUtils.getInstance().printListNode(node4);

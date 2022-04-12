@@ -3,6 +3,8 @@ package com.open.learncode.算法.java.剑指offer.A02_树;
 import com.open.learncode.算法.base.PrintUtils;
 import com.open.learncode.算法.base.TreeNode;
 
+import java.util.Stack;
+
 /**
  * 题目：
  * 重建二叉树：输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。
@@ -29,13 +31,13 @@ public class JZ07_2_重建二叉树 {
 
     public static void main(String[] args) {
         // 测试用例
-        int[] preorder = {1, 2, 4, 7, 3, 5, 6, 8};
-        int[] inordr = {4, 7, 2, 1, 5, 3, 8, 6};
+        int[] preOrder = {1, 2, 4, 7, 3, 5, 6, 8};
+        int[] inOrdr = {4, 7, 2, 1, 5, 3, 8, 6};
         int[] postOrder = {7, 4, 2, 5, 8, 6, 3, 1};
 
-        PrintUtils.getInstance().printPreorderTreeNode(solution1(preorder, inordr), "根据前中序递归重建二叉树=>打印前序遍历");
-        PrintUtils.getInstance().printPreorderTreeNode(solution2(preorder, inordr), "根据中后序递归重建二叉树=>打印前序遍历");
-        PrintUtils.getInstance().printPreorderTreeNode(solution3(preorder, inordr), "根据前后序递归重建二叉树=>打印前序遍历");
+        PrintUtils.getInstance().printPreorderTreeNode(solution1_2(preOrder, inOrdr), "根据前中序递归重建二叉树=>打印前序遍历");
+        PrintUtils.getInstance().printPreorderTreeNode(solution2(inOrdr, postOrder), "根据中后序递归重建二叉树=>打印前序遍历");
+        PrintUtils.getInstance().printPreorderTreeNode(solution3(preOrder, postOrder), "根据前后序递归重建二叉树=>打印前序遍历");
     }
 
     /**
@@ -66,6 +68,41 @@ public class JZ07_2_重建二叉树 {
         int leftLength = index - inLeft;
         root.left = solution1(preOrder, inOrder, preLeft + 1, preLeft + leftLength, inLeft, inLeft + leftLength - 1);
         root.right = solution1(preOrder, inOrder, preLeft + leftLength + 1, preRight, inLeft + leftLength + 1, inRight);
+        return root;
+    }
+
+    /**
+     * 迭代方法，前中序重建二叉树
+     *
+     * @param preOrder 先序遍历序列
+     * @param inOrder  中序遍历序列
+     * @return 返回重建二叉树的根节点
+     */
+    public static TreeNode solution1_2(int[] preOrder, int[] inOrder) {
+        if (preOrder == null || inOrder == null || preOrder.length <= 0 || inOrder.length <= 0) {
+            return null;
+        }
+
+        TreeNode<Integer> root = new TreeNode(preOrder[0]);
+        int length = preOrder.length;
+        Stack<TreeNode> stack = new Stack();
+        stack.push(root);
+        int inorderIndex = 0;
+        for (int i = 1; i < length; i++) {
+            int preOrderVal = preOrder[i];
+            TreeNode node = stack.peek();
+            if ((int) node.val != inOrder[inorderIndex]) {
+                node.left = new TreeNode(preOrderVal);
+                stack.push(node.left);
+            } else {
+                while (!stack.isEmpty() && (int) stack.peek().val == inOrder[inorderIndex]) {
+                    node = stack.pop();
+                    inorderIndex++;
+                }
+                node.right = new TreeNode(preOrderVal);
+                stack.push(node.right);
+            }
+        }
         return root;
     }
 

@@ -14,7 +14,8 @@ import com.open.learncode.算法.base.PrintUtils;
  * 三指针
  * <p>
  * 复杂度分析：
- * 时间复杂度：O(n)，空间复杂度：O(1)
+ * 时间复杂度：O(n)。
+ * 空间复杂度：O(1)。
  */
 public class OT_k个一组翻转链表 {
 
@@ -26,10 +27,10 @@ public class OT_k个一组翻转链表 {
         ListNode<Integer> node1 = new ListNode<Integer>(1, node2);
         // 测试用例
         PrintUtils.getInstance().printListNode(node1);
-        PrintUtils.getInstance().printListNode(method(node1, 2), "三指针反转后的链表为");
+        PrintUtils.getInstance().printListNode(solution(node1, 2), "三指针反转后的链表为");
     }
 
-    public static ListNode method(ListNode head, int k) {
+    private static ListNode solution(ListNode head, int k) {
         ListNode hair = new ListNode(0);
         hair.next = head;
         ListNode pre = hair;
@@ -57,7 +58,7 @@ public class OT_k个一组翻转链表 {
         return hair.next;
     }
 
-    public static ListNode[] myReverse(ListNode head, ListNode tail) {
+    private static ListNode[] myReverse(ListNode head, ListNode tail) {
         ListNode prev = tail.next;
         ListNode p = head;
         while (prev != tail) {

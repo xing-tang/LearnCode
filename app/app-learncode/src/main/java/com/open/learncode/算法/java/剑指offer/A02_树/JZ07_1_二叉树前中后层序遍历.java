@@ -33,17 +33,13 @@ public class JZ07_1_二叉树前中后层序遍历 {
 
     public static void main(String[] args) {
         // 测试用例
-        int[] preOrder = {1, 2, 3, 4, 5, 6, 7};
-        int[] inOrder = {1, 2, 3, 4, 5, 6, 7};
-        TreeNode treeNode = TreeNode.createTreeNode(preOrder, inOrder);
-
-        TreeNode<Integer> node1 = new TreeNode<Integer>(1);
-        TreeNode<Integer> node2 = new TreeNode<Integer>(2);
-        TreeNode<Integer> node3 = new TreeNode<Integer>(3);
-        TreeNode<Integer> node4 = new TreeNode<Integer>(4);
-        TreeNode<Integer> node5 = new TreeNode<Integer>(5);
-        TreeNode<Integer> node6 = new TreeNode<Integer>(6);
-        TreeNode<Integer> node7 = new TreeNode<Integer>(7);
+        TreeNode<Integer> node1 = new TreeNode(1);
+        TreeNode<Integer> node2 = new TreeNode(2);
+        TreeNode<Integer> node3 = new TreeNode(3);
+        TreeNode<Integer> node4 = new TreeNode(4);
+        TreeNode<Integer> node5 = new TreeNode(5);
+        TreeNode<Integer> node6 = new TreeNode(6);
+        TreeNode<Integer> node7 = new TreeNode(7);
         node1.setLeftAndRight(node2, node3);
         node2.setLeftAndRight(node4, node5);
         node3.setLeftAndRight(node6, node7);
