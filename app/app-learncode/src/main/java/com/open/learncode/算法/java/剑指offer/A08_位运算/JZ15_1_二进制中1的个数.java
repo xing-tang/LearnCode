@@ -39,8 +39,8 @@ public class JZ15_1_二进制中1的个数 {
     private static int solution(int num) {
         int count = 0;
         while (num != 0) {
-            count++;
             num = (num - 1) & num;
+            count++;
         }
         return count;
     }

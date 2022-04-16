@@ -1,4 +1,4 @@
-package com.open.learncode.算法.java.剑指offer.A10_其它算法;
+package com.open.learncode.算法.java.剑指offer.A07_排序;
 
 import com.open.learncode.算法.base.PrintUtils;
 
@@ -28,7 +28,7 @@ public class JZ45_把数组排列成最小的数 {
         PrintUtils.getInstance().print(solution(nums));
     }
 
-    
+
 
     private static String solution(int[] nums) {
         if (nums == null || nums.length <= 0) return "";
