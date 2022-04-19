@@ -1,8 +1,9 @@
-package com.open.learncode.算法.java.剑指offer.A02_树;
+package com.open.learncode.算法.java.剑指offer.A11_补充;
 
 import com.open.learncode.算法.base.TreeNode;
 
 import java.util.Stack;
+
 
 /**
  * 题目：
@@ -29,8 +30,8 @@ import java.util.Stack;
  * 考虑通过递归对二叉树进行后序遍历，当遇到节点p或q时返回。从底至顶回溯，当节点p q在节点root的异侧时，
  * 节点root即为最近公共祖先，则向上返回root
  */
-public class JZ68_2_二叉树的最近公共祖先 {
-    
+public class OT13_二叉树查找最近的一个父节点 {
+
     public static void main(String[] args) {
         TreeNode<Integer> node7 = new TreeNode(7);
         TreeNode<Integer> node4 = new TreeNode(4);
@@ -76,10 +77,11 @@ public class JZ68_2_二叉树的最近公共祖先 {
      * @return 返回最近公共祖先
      */
     public static TreeNode<Integer> rob_1(TreeNode<Integer> root, TreeNode<Integer> p, TreeNode<Integer> q) {
-        // 鲁棒性
+        // 时间复杂度：O(n)
+        // 空间复杂度：O(n)
         if (root == null || p == null || q == null || root == p || root == q) return null;
 
-        return method_1(root, p, q);
+        return solution1(root, p, q);
     }
 
     /**
@@ -90,14 +92,14 @@ public class JZ68_2_二叉树的最近公共祖先 {
      * @param q    待输入的节点q
      * @return 返回最近公共祖先
      */
-    public static TreeNode<Integer> method_1(TreeNode<Integer> root, TreeNode<Integer> p, TreeNode<Integer> q) {
+    public static TreeNode<Integer> solution1(TreeNode<Integer> root, TreeNode<Integer> p, TreeNode<Integer> q) {
         // 递归出口
         if (root == null || root == p || root == q) return root;
 
         //去该节点的左子树上找
-        TreeNode<Integer> left = method_1(root.left, p, q);
+        TreeNode<Integer> left = solution1(root.left, p, q);
         //去该节点的右子树上找
-        TreeNode<Integer> right = method_1(root.right, p, q);
+        TreeNode<Integer> right = solution1(root.right, p, q);
         if (left == null) {
             //左子树上没有，说明在右子树上
             return right;
@@ -118,13 +120,14 @@ public class JZ68_2_二叉树的最近公共祖先 {
      * @return 返回最近公共祖先
      */
     public static TreeNode<Integer> rob_2(TreeNode<Integer> root, TreeNode<Integer> p, TreeNode<Integer> q) {
-        // 鲁棒性
+        // 时间复杂度：O(n)
+        // 空间复杂度：O(n)
         if (root == null || p == null || q == null || root == p || root == q) return null;
 
-        Stack<TreeNode<Integer>> stack1 = new Stack<TreeNode<Integer>>();
-        Stack<TreeNode<Integer>> stack2 = new Stack<TreeNode<Integer>>();
-        method_2(root, p, stack1);
-        method_2(root, q, stack2);
+        Stack<TreeNode<Integer>> stack1 = new Stack();
+        Stack<TreeNode<Integer>> stack2 = new Stack();
+        solution2(root, p, stack1);
+        solution2(root, q, stack2);
         while (!stack1.empty() && !stack2.empty() && stack1.peek() != stack2.peek()) {
             stack1.pop();
             stack2.pop();
@@ -142,7 +145,7 @@ public class JZ68_2_二叉树的最近公共祖先 {
      * @param end   该路径结束的节点
      * @param stack 用来保存路径的栈
      */
-    public static void method_2(TreeNode<Integer> root, TreeNode<Integer> end, Stack<TreeNode<Integer>> stack) {
+    public static void solution2(TreeNode<Integer> root, TreeNode<Integer> end, Stack<TreeNode<Integer>> stack) {
         TreeNode<Integer> cur = root;
         TreeNode<Integer> peek;
         stack.push(root);

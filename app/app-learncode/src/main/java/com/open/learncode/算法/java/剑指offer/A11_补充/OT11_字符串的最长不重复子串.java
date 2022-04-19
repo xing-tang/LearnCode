@@ -1,4 +1,4 @@
-package com.open.learncode.算法.java.剑指offer.A05_动态规划;
+package com.open.learncode.算法.java.剑指offer.A11_补充;
 
 import com.open.learncode.算法.base.PrintUtils;
 
@@ -20,7 +20,7 @@ import java.util.Map;
  * 时间复杂度：O(n)。
  * 空间复杂度：O(1)。
  */
-public class JZ48_最长不含重复字符的子字符串 {
+public class OT11_字符串的最长不重复子串 {
 
     public static void main(String[] args) {
         String str = "arabcacfr";

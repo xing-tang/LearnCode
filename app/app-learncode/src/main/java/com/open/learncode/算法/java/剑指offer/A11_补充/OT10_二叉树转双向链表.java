@@ -1,4 +1,5 @@
-package com.open.learncode.算法.java.剑指offer.A02_树;
+package com.open.learncode.算法.java.剑指offer.A11_补充;
+
 
 import com.open.learncode.算法.base.TreeNode;
 
@@ -6,7 +7,7 @@ import java.util.Stack;
 
 /**
  * 题目：
- * 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。
+ * 二叉树转双向链表：输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。
  * 要求不能创建任何新的节点，只能调整树中节点指针的指向。
  * 例如二叉搜索树如下：
  * * *****10
@@ -24,7 +25,7 @@ import java.util.Stack;
  * 方法一：时间复杂度：O(n)，空间复杂度：O(n)
  * 方法二：时间复杂度：O(n)，空间复杂度：O(n)
  */
-public class JZ36_二叉搜索树转换为双向链表 {
+public class OT10_二叉树转双向链表 {
 
     public static void main(String[] args) {
         // 测试用例
@@ -35,8 +36,7 @@ public class JZ36_二叉搜索树转换为双向链表 {
         TreeNode<Integer> node6 = new TreeNode(6, node4, node8);
         TreeNode<Integer> node14 = new TreeNode(14, node12, node16);
         TreeNode<Integer> node10 = new TreeNode(10, node6, node14);
-        TreeNode node = method_1(node10);
-        // TreeNode node = method_2(node10);
+        TreeNode node = solution1(node10);
         System.out.println();
     }
 
@@ -45,39 +45,12 @@ public class JZ36_二叉搜索树转换为双向链表 {
     // 递归到最深层，返回双向链表的头
     public static TreeNode<Integer> curr = null;
 
-    /**
-     * 将该二叉搜索树转换成一个排序的双向链表
-     *
-     * @param root 根节点
-     * @return 返回转换后的双向链表头结点
-     */
-    private static TreeNode<Integer> method_1(TreeNode<Integer> root) {
-        // 遍历到最深处节点为空进行返回
-        if (root == null) return null;
-        // 左递归
-        method_1(root.left);
-        // 中序遍历在中间进行处理：利用pre将彼此互相指向
-        root.left = pre;
-        if (pre != null) pre.right = root;
-        // pre移位
-        pre = root;
-        //递归到最深处才将头赋值，也就是双向链表的头
-        if (curr == null) curr = root;
-        //右递归
-        method_1(root.right);
-        return curr;
-    }
-
-    /**
-     * 将该二叉搜索树转换成一个排序的双向链表
-     *
-     * @param root 根节点
-     * @return 返回转换后的双向链表头结点
-     */
-    public static TreeNode<Integer> method_2(TreeNode<Integer> root) {
+    public static TreeNode<Integer> solution1(TreeNode<Integer> root) {
+        // 时间复杂度：O(n)
+        // 空间复杂度：O(n)
         if (root == null) return null;
 
-        Stack<TreeNode<Integer>> stack = new Stack<TreeNode<Integer>>();
+        Stack<TreeNode<Integer>> stack = new Stack();
         TreeNode<Integer> curr = root;
         TreeNode<Integer> pre = null, head = null;
         while (!stack.isEmpty() || curr != null) {
@@ -95,8 +68,27 @@ public class JZ36_二叉搜索树转换为双向链表 {
             pre = curr;
             curr = curr.right;
         }
-//        curr.right = head;
-//        head.left = curr;
+        // curr.right = head;
+        // head.left = curr;
         return head;
+    }
+
+    private static TreeNode<Integer> solution2(TreeNode<Integer> root) {
+        // 时间复杂度：O(n)
+        // 空间复杂度：O(n)
+        // 遍历到最深处节点为空进行返回
+        if (root == null) return null;
+        // 左递归
+        solution2(root.left);
+        // 中序遍历在中间进行处理：利用pre将彼此互相指向
+        root.left = pre;
+        if (pre != null) pre.right = root;
+        // pre移位
+        pre = root;
+        //递归到最深处才将头赋值，也就是双向链表的头
+        if (curr == null) curr = root;
+        //右递归
+        solution2(root.right);
+        return curr;
     }
 }
