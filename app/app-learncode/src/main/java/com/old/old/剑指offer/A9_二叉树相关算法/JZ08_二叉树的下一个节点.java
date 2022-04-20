@@ -78,7 +78,6 @@ public class JZ08_二叉树的下一个节点 {
             curr = parent;
             parent = curr.next;
         }
-        if (parent == null) return null;
         // 情况1：p是parent的左孩子
         return parent;
     }
