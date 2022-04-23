@@ -36,7 +36,7 @@ public class JZ57_2_和为s的连续正数序列 {
     }
 
     private static int[][] solution(int target) {
-        if (target < 2) return new int[0][0];
+        if (target <= 2) return new int[0][0];
 
         List<int[]> res = new ArrayList<>();
         int start = 1, end = 2, sum = start + end;
