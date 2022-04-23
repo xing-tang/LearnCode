@@ -38,18 +38,22 @@ public class JZ18_1_删除链表节点 {
                 // 删除头结点
                 PrintUtils.getInstance().printListNode(node4);
                 PrintUtils.getInstance().printListNode(solution(node4, node4), "打印删除节点4后的链表");
+                PrintUtils.getInstance().printListNode(solution2(node4, node4), "打印删除节点4后的链表");
             } else if (i == 1) {
                 // 删除中间节点
                 PrintUtils.getInstance().printListNode(node4);
                 PrintUtils.getInstance().printListNode(solution(node4, node5), "打印删除节点5后的链表");
+                PrintUtils.getInstance().printListNode(solution2(node4, node5), "打印删除节点5后的链表");
             } else if (i == 2) {
                 // 删除尾节点
                 PrintUtils.getInstance().printListNode(node4);
                 PrintUtils.getInstance().printListNode(solution(node4, node9), "打印删除节点9后的链表");
+                PrintUtils.getInstance().printListNode(solution2(node4, node9), "打印删除节点9后的链表");
             } else if (i == 3) {
                 // 删除节点，有且仅有一个节点
                 PrintUtils.getInstance().printListNode(node9);
                 PrintUtils.getInstance().printListNode(solution(node9, node9), "打印删除节点9后的链表");
+                PrintUtils.getInstance().printListNode(solution2(node9, node9), "打印删除节点9后的链表");
             }
         }
     }
@@ -66,6 +70,23 @@ public class JZ18_1_删除链表节点 {
             curr = curr.next;
         }
         if (curr != null) pre.next = curr.next;
+        return head;
+    }
+
+    private static ListNode<Integer> solution2(ListNode<Integer> head, ListNode<Integer> delete) {
+        // 时间复杂度：O(n)
+        // 空间复杂度：O(1)
+        if (head == null) return head;
+        if (head == delete) return head.next;
+        ListNode<Integer> cur = head.next;
+        while (cur != null) {
+            if (cur == delete) {
+                delete.val = cur.next != null ? cur.next.val : null;
+                delete.next = cur.next != null ? cur.next.next: null;
+                break;
+            }
+            cur = cur.next;
+        }
         return head;
     }
 }
