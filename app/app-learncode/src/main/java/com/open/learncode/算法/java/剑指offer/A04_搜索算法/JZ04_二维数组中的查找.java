@@ -32,7 +32,7 @@ public class JZ04_二维数组中的查找 {
         // 测试用例
         int[][] nums = {{1, 2, 8, 9}, {2, 3, 9, 12}, {4, 7, 10, 13}};
         PrintUtils.getInstance().print(solution1(nums, 13), "输出");
-        PrintUtils.getInstance().print(solution2(nums, 0), "输出");
+        PrintUtils.getInstance().print(solution1(nums, 0), "输出");
     }
 
     private static boolean solution1(int[][] nums, int target) {
@@ -46,24 +46,6 @@ public class JZ04_二维数组中的查找 {
                 x++;
             } else if (target < nums[x][y]) {
                 y--;
-            } else {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static boolean solution2(int[][] nums, int target) {
-        if (nums == null || nums.length <= 0) return false;
-        if (nums[0] == null || nums[0].length <= 0) return false;
-
-        int x = nums.length - 1;
-        int y = 0;
-        while (x >= 0 && y < nums[x].length) {
-            if (target > nums[x][y]) {
-                y++;
-            } else if (target < nums[x][y]) {
-                x--;
             } else {
                 return true;
             }
