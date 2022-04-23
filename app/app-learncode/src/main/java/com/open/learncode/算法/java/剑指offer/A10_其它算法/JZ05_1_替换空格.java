@@ -14,8 +14,10 @@ package com.open.learncode.算法.java.剑指offer.A10_其它算法;
 public class JZ05_1_替换空格 {
 
     public static void main(String[] args) {
+        String s = "we are happy.";
         StringBuffer str = new StringBuffer("we are happy.");
-        System.out.print(method(str));
+        System.out.println(method(str));
+        System.out.println(method2(s));
     }
 
     /**
@@ -47,6 +49,20 @@ public class JZ05_1_替换空格 {
             }
         }
         return str.toString();
+    }
+
+    public static String method2(String str) {
+        if (str == null || str.length() <= 0) return str;
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < str.length(); i++){
+            char c = str.charAt(i);
+            if (c == ' '){
+                builder.append("%20");
+            } else {
+                builder.append(c);
+            }
+        }
+        return builder.toString();
     }
 }
 
