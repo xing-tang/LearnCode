@@ -33,13 +33,11 @@ public class OT_大数相加 {
         int index2 = str2.length() - 1;
         int k = 0;
         while (index1 >= 0 || index2 >= 0) {
-            int num1 = index1 >= 0 ? str1.charAt(index1) - '0' : 0;
-            int num2 = index2 >= 0 ? str2.charAt(index2) - '0' : 0;
+            int num1 = index1 >= 0 ? str1.charAt(index1--) - '0' : 0;
+            int num2 = index2 >= 0 ? str2.charAt(index2--) - '0' : 0;
             int temp = num1 + num2 + k;
             k = temp / 10;
             strb.append(temp % 10);
-            index1--;
-            index2--;
         }
         if (k > 0) strb.append(k);
         return strb.reverse().toString();
