@@ -19,14 +19,16 @@ public class JZ05_2_合并两个排序数组 {
     public static void main(String[] args) {
         int[] A1 = new int[7];
         for (int i = 0; i < 4; i++)
-            A1[i] = i + 1;
+            A1[i] = i + 1; // [1, 2, 3, 4, 0, 0, 0]
         int A1Size = 4;
-        int[] A2 = {2, 4, 6};
-        PrintUtils.getInstance().printArray(method(A1, A1Size, A2));
+        int[] A2 = {0, 7, 8};
+//        PrintUtils.getInstance().printArray(method(A1, A1Size, A2));
+        PrintUtils.getInstance().printArray(method2(A1, A1Size, A2, A2.length));
     }
 
     /**
      * 从后往前替代+双指针
+     * 时间复杂度 O(m+n)
      *
      * @param A1     输入的数组A1
      * @param A1Size A1数组的真实长度
@@ -43,7 +45,39 @@ public class JZ05_2_合并两个排序数组 {
         while (a1Index >= 0 && a2Index >= 0) {
             A1[len--] = A1[a1Index] > A2[a2Index] ? A1[a1Index--] : A2[a2Index--];
         }
+        while (a1Index >= 0) {
+            A1[len--] = A1[a1Index];
+            if (a1Index == 0) break;
+            a1Index--;
+        }
+        while (a2Index >= 0) {
+            A1[len--] = A2[a2Index];
+            if (a2Index == 0) break;
+            a2Index--;
+        }
         return A1;
+    }
+
+    /**
+     * 时间复杂度 O(m+n)
+     */
+    public static int[] method2(int[] nums1, int m, int[] nums2, int n) {
+        int p1 = m - 1, p2 = n - 1;
+        int tail = m + n - 1;
+        int cur;
+        while (p1 >= 0 || p2 >= 0) {
+            if (p1 == -1) {
+                cur = nums2[p2--];
+            } else if (p2 == -1) {
+                cur = nums1[p1--];
+            } else if (nums1[p1] > nums2[p2]) {
+                cur = nums1[p1--];
+            } else {
+                cur = nums2[p2--];
+            }
+            nums1[tail--] = cur;
+        }
+        return nums1;
     }
 }
 
