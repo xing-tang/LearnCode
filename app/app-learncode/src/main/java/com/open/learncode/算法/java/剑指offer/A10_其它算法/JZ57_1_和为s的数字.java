@@ -28,17 +28,13 @@ public class JZ57_1_和为s的数字 {
     private static int[] solution(int[] nums, int target) {
         if (nums == null || nums.length < 2) return nums;
 
-        int left = 0;
-        int right = nums.length - 1;
-        while (left < right) {
-            int sum = nums[left] + nums[right];
-            if (sum > target) {
-                right--;
-            } else if (sum < target) {
-                left++;
-            } else {
-                return new int[]{nums[left], nums[right]};
-            }
+        int i = 0;
+        int j = nums.length - 1;
+        while (i < j) {
+            int sum = nums[i] + nums[j];
+            if (sum > target) j--;
+            else if (sum < target) i++;
+            else return new int[]{nums[i], nums[j]};
         }
         return new int[0];
     }
