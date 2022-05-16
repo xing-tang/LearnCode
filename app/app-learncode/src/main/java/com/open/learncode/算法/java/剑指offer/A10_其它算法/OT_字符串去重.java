@@ -9,7 +9,7 @@ import java.util.LinkedHashSet;
  * 字符串，去重（去掉后面重复的），保持原本输入顺序？第二问是：如果时间复杂度不是O(n)，想做到O(n)，怎么做？
  * <p>
  * 解题思路：
- * 分析10进制如何进位的然后模仿
+ *
  * <p>
  * 复杂度分析：
  * 时间复杂度：O(n)，空间复杂度：O(n)
@@ -35,8 +35,8 @@ public class OT_字符串去重 {
         StringBuilder strb = new StringBuilder();
         LinkedHashSet<Character> hashSet = new LinkedHashSet<>();
         for (int i = 0; i < str.length(); i++) {
-            boolean isAddSuccess = hashSet.add(str.charAt(i));
-            if (isAddSuccess) strb.append(str.charAt(i));
+            char ch = str.charAt(i);
+            if (hashSet.add(ch)) strb.append(ch);
         }
         return strb.toString();
     }
