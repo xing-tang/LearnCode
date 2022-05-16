@@ -32,8 +32,8 @@ public class OT_数组中的第K个最大元素 {
         // 快速排序
         int[] nums1 = {3, 2, 1, 5, 6, 4};
         int k1 = 2;
-        solution1(nums1, 0, nums1.length - 1);
-        PrintUtils.getInstance().print(nums1[nums1.length - k1]);
+        solution1(nums1, 0, nums1.length - 1, nums1.length - k1);
+        PrintUtils.getInstance().printArray(nums1);
         // 堆排序
         int[] nums2 = {3, 2, 3, 1, 2, 5, 4, 5, 6};
         int k2 = 4;
@@ -41,19 +41,15 @@ public class OT_数组中的第K个最大元素 {
         PrintUtils.getInstance().print(nums2[nums2.length - k2]);
     }
 
-    private static void solution1(int[] nums, int left, int right) {
+    private static void solution1(int[] nums, int left, int right, int k) {
         if (nums == null || nums.length <= 0 || left > right) return;
 
         int start = left;
         int end = right;
         int base = nums[left];
         while (start < end) {
-            while (nums[end] >= base && start < end) {
-                end--;
-            }
-            while (nums[start] <= base && start < end) {
-                start++;
-            }
+            while (start < end && nums[end] >= base) end--;
+            while (start < end && nums[start] <= base) start++;
             if (start < end) {
                 int temp = nums[start];
                 nums[start] = nums[end];
@@ -62,8 +58,12 @@ public class OT_数组中的第K个最大元素 {
         }
         nums[left] = nums[start];
         nums[start] = base;
-        solution1(nums, left, end - 1);
-        solution1(nums, end + 1, right);
+        if (start < k) {
+            solution1(nums, start + 1, right, k);
+        }
+        else if (start > k) {
+            solution1(nums, left, start - 1, k);
+        }
     }
 
     private static void solution2(int[] nums) {
