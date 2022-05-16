@@ -26,6 +26,7 @@ import java.util.List;
  * 复杂度分析：
  * 时间复杂度：O(num)【num指传入的数字】。
  * 空间复杂度：O(1)。
+ * 力扣：https://leetcode.cn/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/solution/mian-shi-ti-57-ii-he-wei-sde-lian-xu-zheng-shu-x-2/
  */
 public class JZ57_2_和为s的连续正数序列 {
 
@@ -39,9 +40,35 @@ public class JZ57_2_和为s的连续正数序列 {
         if (target <= 2) return new int[0][0];
 
         List<int[]> res = new ArrayList<>();
+        int start = 1, end = 2;
+        while (start < end) {
+            // 求和公式：Sn = n(a1+an)/2
+            int sum = (end - start + 1) * (start + end) / 2;
+            if (sum == target) {
+                int[] temp = new int[end - start + 1];
+                for (int i = 0; i < temp.length; i++) {
+                    temp[i] = i + start;
+                }
+                res.add(temp);
+            }
+            if (sum >= target) {
+                start++;
+            } else {
+                end++;
+            }
+        }
+        return res.toArray(new int[0][]);
+    }
+
+    /**
+     * 解法同上
+     * sum 的计算从求和公式变成了自行维护
+     */
+    private static int[][] solution2(int target) {
+        if (target <= 2) return new int[0][0];
+
+        List<int[]> res = new ArrayList<>();
         int start = 1, end = 2, sum = start + end;
-        int middle = (target + 1) / 2;
-        // while (start < middle) {
         while (start < end) {
             if (sum == target) {
                 int[] temp = new int[end - start + 1];
