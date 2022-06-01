@@ -4,7 +4,7 @@ import com.open.learncode.算法.base.PrintUtils;
 import com.open.learncode.算法.base.TreeNode;
 
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Queue;
 
 /**
  * 题目：
@@ -46,16 +46,16 @@ public class JZ55_1_二叉树的最大深度 {
      */
     public static int method(final TreeNode<Integer> root) {
         if (root == null) return 0;
-        List<TreeNode<Integer>> queue = new LinkedList<TreeNode<Integer>>();
-        queue.add(root);
+        Queue<TreeNode<Integer>> queue = new LinkedList<>();
+        queue.offer(root);
         int res = 0;
         while (!queue.isEmpty()) {
-            List<TreeNode<Integer>> tempQueue = new LinkedList<TreeNode<Integer>>();
-            for (TreeNode node : queue) {
-                if (node.left != null) tempQueue.add(node.left);
-                if (node.right != null) tempQueue.add(node.right);
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode<Integer> node = queue.poll();
+                if (node.left != null) queue.offer(node.left);
+                if (node.right != null) queue.offer(node.right);
             }
-            queue = tempQueue;
             res++;
         }
         return res;
