@@ -33,9 +33,12 @@ public class OT_Ip地址转换 {
         PrintUtils.getInstance().print(solution("0.0.1.0"));
         PrintUtils.getInstance().print(solution("0.1.0.0"));
         PrintUtils.getInstance().print(solution("192.168.3.1"));
+        PrintUtils.getInstance().print(solution2("3232236289"));
     }
 
+    // Ip 地址转长整数
     private static long solution(String str) {
+        // 注意是"\\."
         String[] strArray = str.split("\\.");
         long res = 0;
         if (strArray.length == 4) {
@@ -45,5 +48,18 @@ public class OT_Ip地址转换 {
             }
         }
         return res;
+    }
+
+    // 长整数转 IP 地址
+    private static String solution2(String str) {
+        long ipv4 = Long.parseLong(str);
+        StringBuilder result = new StringBuilder();
+        while (ipv4 > 0) {
+            // 插入到最前面的位置
+            result.insert(0, ipv4 % 256 + ".");
+            ipv4 >>= 8;
+        }
+        // 最后一个位置是 .
+        return result.substring(0, result.length() - 1);
     }
 }
