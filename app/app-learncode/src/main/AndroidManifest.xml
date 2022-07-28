@@ -14,7 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.open.learncode.android.view的事件分发.ViewTouchActivity"></activity>
         <activity
             android:name="com.open.learncode.MainActivity"
             android:launchMode="singleInstance"
@@ -55,7 +54,7 @@
         <activity android:name="com.open.learncode.android.三级缓存.ImageCacheActivity" />
         <activity android:name="com.open.learncode.android.获取View的宽高.GetViewActivity" />
         <activity android:name="com.open.learncode.android.intentService.IntentServiceActivity" />
-
+        <activity android:name="com.open.learncode.android.view的事件分发.ViewTouchActivity"/>
         <service android:name="com.open.learncode.android.intentService.DownloadIntentService" />
     </application>
 
