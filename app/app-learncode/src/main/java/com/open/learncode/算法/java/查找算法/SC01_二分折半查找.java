@@ -9,8 +9,10 @@ import com.open.learncode.算法.base.PrintUtils;
  * 解题思路:
  * 折半/二分查找，效率高
  * <p>
+ * 力扣：https://leetcode.cn/problems/binary-search/solutions/980494/er-fen-cha-zhao-by-leetcode-solution-f0xw/
+ * <p>
  * 复杂度分析:
- * 时间复杂度：O(log N)，空间复杂度：都为O(1)
+ * 时间复杂度：O(log N)，空间复杂度：为O(1)
  */
 public class SC01_二分折半查找 {
 
@@ -29,18 +31,19 @@ public class SC01_二分折半查找 {
      */
     private static int method(int[] nums, int target) {
         if (nums == null || nums.length <= 0) return -1;
-        int start = 0;
-        int end = nums.length - 1;
-        while (start <= end) {
-            // (start + end) / 2可能会溢出，因为两个很大的int相加的话超出 Integer.MAX_VALUE 了
-            // int mid = (start + end) / 2;
-            // int mid = (start + end) >> 1;
-            int mid = ((end - start) >> 1) + start;
-            if (nums[mid] == target) return mid;
+        int left = 0, right = nums.length - 1;
+        while (left <= right) {
+            // (left + right) / 2可能会溢出，因为两个很大的int相加的话超出 Integer.MAX_VALUE 了
+            // int mid = (left + right) / 2;
+            // int mid = (left + right) >> 1;
+            int mid = ((right - left) >> 1) + left;
+            if (nums[mid] == target) {
+                return mid;
+            }
             if (target < nums[mid]) {
-                end = mid - 1;
+                right = mid - 1;
             } else {
-                start = mid + 1;
+                left = mid + 1;
             }
         }
         return -1;
