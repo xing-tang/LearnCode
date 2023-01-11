@@ -16,6 +16,8 @@ import com.open.learncode.算法.base.PrintUtils;
  * 解题思路：
  * 反转链表（改变链表）。
  * <p>
+ * 力扣：https://leetcode.cn/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/
+ * <p>
  * 复杂度分析：
  * 时间复杂度：O(n)。
  * 空间复杂度：O(1)。
@@ -28,9 +30,12 @@ public class JZ06_从尾到头打印链表 {
         PrintUtils.getInstance().printListNode(solution(head));
     }
 
+    /**
+     * 反转链表思路
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(1)
+     */
     private static ListNode solution(ListNode head) {
-        // 时间复杂度：O(n)
-        // 空间复杂度：O(1)
         if (head == null || head.next == null) return head;
         ListNode pre = null, curr = head, next = null;
         while (curr != null) {
