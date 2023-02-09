@@ -31,8 +31,8 @@ public class JZ64_求1加到n的和 {
     }
 
     private static int solution(int n) {
-        // 当 n = 1 时 n > 1 不成立 ，此时 “短路” ，终止后续递归，">1"条件不重要随便写
-        boolean x = n > 1 && (n += solution(n - 1)) > 1;
+        // 当 n = 1 时 n > 1 不成立 ，此时 “短路” ，终止后续递归，&& 后的">1"条件不重要随便写
+        boolean x = (n > 1) && (n += solution(n - 1)) > 1;
         return n;
     }
 }
