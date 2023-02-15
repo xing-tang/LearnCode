@@ -37,6 +37,7 @@ public class ST04_快速排序 {
                 nums[end] = temp;
             }
         }
+        // start == end 跳出循环
         nums[left] = nums[end];
         nums[end] = base;
         solution(nums, left, end - 1);
