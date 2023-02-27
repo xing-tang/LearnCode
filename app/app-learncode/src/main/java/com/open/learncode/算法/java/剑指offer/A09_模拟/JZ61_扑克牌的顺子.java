@@ -24,7 +24,7 @@ import java.util.Set;
 public class JZ61_扑克牌的顺子 {
 
     public static void main(String[] args) {
-        int[] nums = {9, 11, 12, 13, 1};
+        int[] nums = {9, 11, 12, 8, 1};
         int[] nums2 = {10, 11, 12, 13, 1};
         int[] nums3 = {10, 11, 12, 9, 13};
         System.out.println("是否是顺子：" + method_1(nums));
@@ -41,23 +41,26 @@ public class JZ61_扑克牌的顺子 {
         int[] arr = new int[14];
         int min = 14, max = 0;
         boolean isSpecial = false;
+        int joker = 0;
         for (int num : nums) {
-            // 遇到大小王，直接返回
-            if (num == -1) return false;
-            // 对 1(A) 特殊处理
-            if (num == 1) {
-                isSpecial = true;
-            } else {
-                min = Math.min(min, num);
-            }
-            max = Math.max(max, num);
             // 有重复的
             if (arr[num] != 0) {
                 return false;
             }
+            // 遇到大小王，直接返回
+            if (num == 0) {
+                joker++;
+                continue;
+            }
+            // 对 1(A) 特殊处理
+            if (num == 1) {
+                isSpecial = true;
+            }
+            max = Math.max(max, num);
+            min = Math.min(min, num);
             arr[num] = num;
         }
-        return (!isSpecial && max - min == 4) || (isSpecial && max - min == 3);
+        return (!isSpecial && max - min <= (5 - joker)) || (isSpecial && max - min == (4 - joker));
     }
 
     /**
