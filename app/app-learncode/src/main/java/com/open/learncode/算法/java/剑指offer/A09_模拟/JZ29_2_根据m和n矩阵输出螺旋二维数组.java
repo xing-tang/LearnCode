@@ -33,11 +33,11 @@ public class JZ29_2_根据m和n矩阵输出螺旋二维数组 {
 
     private static int[][] solution(int m, int n) {
         if (m <= 0 || n <= 0) return null;
-        int[][] arr = new int[n][m];
+        int[][] arr = new int[m][n];
         int left = 0;
-        int right = m - 1;
+        int right = n - 1;
         int top = 0;
-        int bottom = n - 1;
+        int bottom = m - 1;
         int index = 1;
         int maxLength = m * n;
         while (index <= maxLength) {
