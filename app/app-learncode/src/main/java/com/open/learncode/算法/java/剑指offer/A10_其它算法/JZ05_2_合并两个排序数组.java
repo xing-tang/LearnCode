@@ -23,8 +23,8 @@ public class JZ05_2_合并两个排序数组 {
             A1[i] = i + 1; // [1, 2, 3, 4, 0, 0, 0]
         int A1Size = 4;
         int[] A2 = {0, 7, 8};
-//        PrintUtils.getInstance().printArray(method(A1, A1Size, A2));
-        PrintUtils.getInstance().printArray(method2(A1, A1Size, A2, A2.length));
+        PrintUtils.getInstance().printArray(method(A1, A1Size, A2, A2.length));
+//        PrintUtils.getInstance().printArray(method2(A1, A1Size, A2, A2.length));
     }
 
     /**
@@ -40,12 +40,10 @@ public class JZ05_2_合并两个排序数组 {
         }
         while (i >= 0) {
             nums1[index--] = nums1[i];
-            if (i == 0) break;
             i--;
         }
         while (j >= 0) {
             nums1[index--] = nums2[j];
-            if (j == 0) break;
             j--;
         }
         return nums1;

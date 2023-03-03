@@ -24,6 +24,7 @@ import com.open.learncode.算法.base.PrintUtils;
  * 堆排序复杂度分析：
  * 时间复杂度：O(nlogn)。
  * 空间复杂度：O(1)。
+ * https://leetcode.cn/problems/kth-largest-element-in-an-array/solution/shu-zu-zhong-de-di-kge-zui-da-yuan-su-by-leetcode-/
  */
 public class OT_数组中的第K个最大元素 {
 
@@ -34,11 +35,13 @@ public class OT_数组中的第K个最大元素 {
         int k1 = 2;
         solution1(nums1, 0, nums1.length - 1, nums1.length - k1);
         PrintUtils.getInstance().printArray(nums1);
+        PrintUtils.getInstance().print(nums1[nums1.length - k1]);
         // 堆排序
         int[] nums2 = {3, 2, 3, 1, 2, 5, 4, 5, 6};
         int k2 = 4;
-        solution2(nums2);
-        PrintUtils.getInstance().print(nums2[nums2.length - k2]);
+        solution2(nums2, k2);
+        PrintUtils.getInstance().printArray(nums2);
+        PrintUtils.getInstance().print(nums2[0]);
     }
 
     private static void solution1(int[] nums, int left, int right, int k) {
@@ -60,41 +63,56 @@ public class OT_数组中的第K个最大元素 {
         nums[start] = base;
         if (start < k) {
             solution1(nums, start + 1, right, k);
-        }
-        else if (start > k) {
+        } else if (start > k) {
             solution1(nums, left, start - 1, k);
         }
     }
 
-    private static void solution2(int[] nums) {
-        for (int i = nums.length / 2 - 1; i >= 0; i--) {
-            maxHeap(nums, i, nums.length);
-        }
-        for (int j = nums.length - 1; j >= 0; j--) {
-            swap(nums, 0, j);
-            maxHeap(nums, 0, j);
+    private static void solution2(int[] nums, int k) {
+        int heapSize = nums.length;
+        buildMaxHeap(nums, heapSize);
+        for (int i = nums.length - 1; i >= nums.length - k + 1; --i) {
+            swap(nums, 0, i);
+            --heapSize;
+            maxHeapify(nums, 0, heapSize);
         }
     }
 
-    private static void maxHeap(int[] nums, int i, int length) {
-        int temp = nums[i];
-        for (int k = i * 2 + 1; k < length; k = k * 2 + 1) {
-            if (k + 1 < length && nums[k] < nums[k + 1]) {
-                k++;
-            }
-            if (nums[k] > temp) {
-                nums[i] = nums[k];
-                i = k;
-            } else {
-                break;
-            }
+    /**
+     * 构造最大堆
+     */
+    private static void buildMaxHeap(int[] a, int heapSize) {
+        // 从第一个非叶子节点为根节点的子树开始
+        for (int i = heapSize / 2; i >= 0; --i) {
+            maxHeapify(a, i, heapSize);
         }
-        nums[i] = temp;
     }
 
-    private static void swap(int[] nums, int i, int j) {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
+    /**
+     * 调整最大堆
+2     */
+    private static void maxHeapify(int[] a, int i, int heapSize) {
+        // l：节点 i 的左孩子，r：节点 i 的右孩子
+        int l = i * 2 + 1, r = i * 2 + 2, largest = i;
+        // 两个 if 判断 父亲节点、左孩子、右孩子 之间的最大值
+        if (l < heapSize && a[l] > a[largest]) {
+            largest = l;
+        }
+        if (r < heapSize && a[r] > a[largest]) {
+            largest = r;
+        }
+        // 如果节点 i 对应的不是最大值
+        if (largest != i) {
+            // 交换值
+            swap(a, i, largest);
+            // 调整以 largest 的值为根节点的子树的堆
+            maxHeapify(a, largest, heapSize);
+        }
+    }
+
+    private static void swap(int[] a, int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
     }
 }
