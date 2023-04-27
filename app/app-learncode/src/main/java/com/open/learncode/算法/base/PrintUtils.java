@@ -212,7 +212,10 @@ public class PrintUtils {
      * @param head 待输入的头结点
      */
     public void printNode(ListNode head, String... str) {
-        if (head == null) return;
+        if (head == null) {
+            System.out.print("打印节点值为空!");
+            return;
+        }
 
         if (str.length <= 0) {
             System.out.print("打印节点值为：");

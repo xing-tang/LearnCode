@@ -26,7 +26,8 @@ public class OT_排序链表 {
         ListNode<Integer> listNode2 = new ListNode(2, listNode1);
         ListNode<Integer> listNode4 = new ListNode(4, listNode2);
 
-        PrintUtils.getInstance().printListNode(solution(listNode4));
+        PrintUtils.getInstance().printListNode(sortList(listNode4));
+//        PrintUtils.getInstance().printListNode(solution(listNode4));
     }
 
     private static ListNode<Integer> solution(ListNode<Integer> head) {
@@ -55,6 +56,39 @@ public class OT_排序链表 {
         }
         h.next = left != null ? left : right;
         return res.next;
+    }
+
+    public static ListNode<Integer> sortList(ListNode<Integer> head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode newHead = new ListNode(-1);
+        newHead.next = head;
+        ListNode fast = newHead, slow = newHead;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        fast = slow.next;
+        slow.next = null;
+        return mergeList(sortList(head), sortList(fast));
+    }
+
+    public static ListNode mergeList(ListNode<Integer> head1, ListNode<Integer> head2) {
+        ListNode newHead = new ListNode(-1);
+        ListNode cur = newHead;
+        while (head1 != null && head2 != null) {
+            if (head1.val < head2.val) {
+                cur.next = head1;
+                head1 = head1.next;
+            } else {
+                cur.next = head2;
+                head2 = head2.next;
+            }
+            cur = cur.next;
+        }
+        cur.next = (head1 != null) ? head1 : head2;
+        return newHead.next;
     }
 
 }

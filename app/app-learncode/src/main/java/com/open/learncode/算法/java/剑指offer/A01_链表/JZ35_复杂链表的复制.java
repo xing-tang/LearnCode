@@ -56,19 +56,18 @@ public class JZ35_复杂链表的复制 {
         if (head == null) return null;
 
         // 创建复制节点，并且链接好next值
-        ListNode<String> tempNode = head;
-        ListNode<String> newNode = null;
-        while (tempNode != null) {
-            newNode = new ListNode(tempNode.val);
-            newNode.next = tempNode.next;
-            tempNode.next = newNode;
-            tempNode = newNode.next;
+        ListNode<String> cur = head;
+        while (cur != null) {
+            ListNode<String> newNode = new ListNode(cur.val);
+            newNode.next = cur.next;
+            cur.next = newNode;
+            cur = newNode.next;
         }
         // 链接好random值
-        tempNode = head;
-        while (tempNode != null) {
-            tempNode.next.random = (tempNode.random != null) ? tempNode.random.next : null;
-            tempNode = tempNode.next.next;
+        cur = head;
+        while (cur != null) {
+            cur.next.random = (cur.random != null) ? cur.random.next : null;
+            cur = cur.next.next;
         }
         // 分离原节点和复制节点，并且链接好对应的next值
         ListNode oldListNode = head;

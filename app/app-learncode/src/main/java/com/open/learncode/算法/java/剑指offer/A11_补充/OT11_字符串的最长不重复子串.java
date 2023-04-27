@@ -64,6 +64,7 @@ public class OT11_字符串的最长不重复子串 {
         // 时间复杂度：O(n)
         // 空间复杂度：O(1)
         Map<Character, Integer> map = new HashMap();
+        // i 记录字符重复的下标；count 记录当前的最长不重复子串的长度
         int i = -1, count = 0;
         for (int j = 0; j < s.length(); j++) {
             if (map.containsKey(s.charAt(j)))

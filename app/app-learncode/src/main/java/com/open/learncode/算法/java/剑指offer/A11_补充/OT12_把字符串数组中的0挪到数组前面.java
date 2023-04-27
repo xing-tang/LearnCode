@@ -23,7 +23,7 @@ public class OT12_把字符串数组中的0挪到数组前面 {
         // 空间复杂度：O(1)
         int j = -1;
         for (int i = strArr.length - 1; i >= 0; i--) {
-            if (strArr[i].equals("0")) {
+            if ("0".equals(strArr[i])) {
                 if (j == -1) j = i;
             } else {
                 if (j != -1) {
