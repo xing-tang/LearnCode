@@ -72,6 +72,7 @@ public class JZ35_复杂链表的复制 {
         // 分离原节点和复制节点，并且链接好对应的next值
         ListNode oldListNode = head;
         ListNode newListNode = head.next;
+        // 保存新链表的头结点，用于返回
         ListNode headNew = newListNode;
         while (oldListNode != null) {
             oldListNode.next = oldListNode.next.next;
