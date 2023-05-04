@@ -33,32 +33,36 @@ public class OT_链表表示的两数相加 {
         PrintUtils.getInstance().printListNode(solution(listNode2, listNode8));
     }
 
-    private static ListNode<Integer> solution(ListNode<Integer> l1, ListNode<Integer> l2) {
-        if (l1 == null) return l1;
-        if (l2 == null) return l2;
+    private static ListNode<Integer> solution(ListNode<Integer> head1, ListNode<Integer> head2) {
+        if (head1 == null) return head1;
+        if (head2 == null) return head2;
 
-        ListNode<Integer> pre = new ListNode(0);
-        ListNode<Integer> cur = pre;
+        ListNode<Integer> newHead = new ListNode(-1);
+        ListNode<Integer> cur = newHead;
         int carry = 0;
-        while (l1 != null || l2 != null) {
-            int x = l1 == null ? 0 : l1.val;
-            int y = l2 == null ? 0 : l2.val;
+        // 为什么是 || 而非 &&：都可以
+        // ||：while 结束可以直接得到链表尾结点，链接进位 carry
+        // &&: 需要找到未遍历结束的链表，然后遍历到尾结点，链接进位 carry
+        while (head1 != null || head2 != null) {
+            int x = head1 == null ? 0 : head1.val;
+            int y = head2 == null ? 0 : head2.val;
             int sum = x + y + carry;
-
+            // 获取十位数
             carry = sum / 10;
+            // 获取个位数
             sum = sum % 10;
-            cur.next = new ListNode(sum);
 
+            cur.next = new ListNode(sum);
             cur = cur.next;
-            if (l1 != null)
-                l1 = l1.next;
-            if (l2 != null)
-                l2 = l2.next;
+            if (head1 != null)
+                head1 = head1.next;
+            if (head2 != null)
+                head2 = head2.next;
         }
         if (carry == 1) {
             cur.next = new ListNode(carry);
         }
-        return pre.next;
+        return newHead.next;
     }
 }
 
