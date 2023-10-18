@@ -12,6 +12,7 @@ import com.open.learncode.算法.base.PrintUtils;
  * 复杂度分析:
  * 时间复杂度：O(n^2)。
  * 空间复杂度：都为O(1)。
+ * https://www.jianshu.com/p/648d87dc4cfc
  */
 public class ST02_冒泡排序 {
 
@@ -29,7 +30,7 @@ public class ST02_冒泡排序 {
      * @return 返回排序后的数组
      */
     private static int[] solution(int[] arr) {
-        if (arr == null || arr.length <= 0) return arr;
+        if (arr == null || arr.length <= 1) return arr;
         for (int i = arr.length - 1; i >= 0; i--) {
             for (int j = 0; j < i; j++) {
                 if (arr[j] > arr[j + 1]) {

@@ -12,6 +12,7 @@ import com.open.learncode.算法.base.PrintUtils;
  * 复杂度分析：
  * 时间复杂度：O(n^2)。
  * 空间复杂度：O(1)。
+ * https://www.jianshu.com/p/d2cf77f78b3e
  */
 public class ST03_插入排序 {
 
@@ -28,7 +29,7 @@ public class ST03_插入排序 {
      * @param arr 待输入的数组
      */
     private static int[] solution(int[] arr) {
-        if (arr == null || arr.length == 0) return arr;
+        if (arr == null || arr.length <= 1) return arr;
         // 假设第一个数位置时正确的；要往后移，必须要假设第一个。
         for (int i = 1; i < arr.length; i++) {
             int j = i;

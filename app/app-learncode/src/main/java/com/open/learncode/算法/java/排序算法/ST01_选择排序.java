@@ -12,6 +12,7 @@ import com.open.learncode.算法.base.PrintUtils;
  * 复杂度分析:
  * 时间复杂度：O(n^2)。
  * 空间复杂度：都为O(1)。
+ * https://www.jianshu.com/p/5223afa8796c
  */
 public class ST01_选择排序 {
 
