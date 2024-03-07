@@ -23,6 +23,9 @@ public class ST01_冒泡排序 {
 
     /**
      * 冒泡排序
+     * 第一轮 [0, end] 相邻的元素两两排序，得到最大的放在 end 位置
+     * 第二轮 [0, end-1] 排序，得到次大的放在 end-1 位置
+     * ...
      *
      * @param arr 待输入的数组
      * @return 返回排序后的数组
@@ -33,6 +36,21 @@ public class ST01_冒泡排序 {
             for (int j = 0; j < i; j++) {
                 if (arr[j] > arr[j + 1]) {
                     swap(arr, j, j + 1);
+                }
+            }
+        }
+        return arr;
+    }
+
+    /**
+     * 同上，不过就是两层循环中的条件发生了变化
+     */
+    private static int[] bubbleSort2(int[] arr) {
+        if (arr == null || arr.length <= 0) return arr;
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 1; j < arr.length - i; j++) {
+                if (arr[j] < arr[j - 1]) {
+                    swap(arr, j, j - 1);
                 }
             }
         }
