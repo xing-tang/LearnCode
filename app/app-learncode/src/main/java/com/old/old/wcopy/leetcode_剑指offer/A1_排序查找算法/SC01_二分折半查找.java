@@ -36,12 +36,12 @@ public class SC01_二分折半查找 {
             // int mid = (start + end) / 2;
             // int mid = (start + end) >> 1;
             int mid = ((end - start) >> 1) + start;
-            if (nums[mid] == target) return mid;
-            if (target < nums[mid]) {
-                end = mid - 1;
-            } else {
+            if (nums[mid] < target)
                 start = mid + 1;
-            }
+            else if (nums[mid] > target)
+                end = mid - 1;
+            else
+                return mid;
         }
         return -1;
     }
