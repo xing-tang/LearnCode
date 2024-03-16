@@ -29,7 +29,7 @@ public class JZ25_合并两排序链表 {
         ListNode<Integer> node1 = new ListNode<Integer>(1, node3);
         // 链表2
         ListNode<Integer> node8 = new ListNode<Integer>(8);
-        ListNode<Integer> node6 = new ListNode<Integer>(6, node8);
+        ListNode<Integer> node6 = new ListNode<Integer>(6);
         ListNode<Integer> node4 = new ListNode<Integer>(4, node6);
         ListNode<Integer> node2 = new ListNode<Integer>(2, node4);
         // 测试用例
@@ -61,6 +61,8 @@ public class JZ25_合并两排序链表 {
             }
             curr = curr.next;
         }
+        if (head1 != null) curr.next = head1;
+        if (head2 != null) curr.next = head2;
         return pre.next;
     }
 }
