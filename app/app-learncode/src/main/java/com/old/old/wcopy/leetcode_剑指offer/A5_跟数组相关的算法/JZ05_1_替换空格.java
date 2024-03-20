@@ -6,47 +6,39 @@ package com.old.old.wcopy.leetcode_剑指offer.A5_跟数组相关的算法;
  * 例如：输入"We are happy."，则输出"We%20are%20happy."
  * <p>
  * 解题思路：
- * 替换空格，让%20替换空格
+ * 直接遍历字符串，遇到空格就替换成 %20
  * <p>
  * 复杂度分析：
- * 时间复杂度：O(n)，空间复杂度：O(1)
+ * 时间复杂度：O(n)，空间复杂度：O(n)
  */
 public class JZ05_1_替换空格 {
 
     public static void main(String[] args) {
-        StringBuffer str = new StringBuffer("we are happy.");
-        System.out.print(method(str));
+        String str = "we are happy.";
+        String str1 = "";
+        String str2 = " ";
+        System.out.println(method(str));
+        System.out.println(method(str1));
+        System.out.println(method(str2));
     }
 
     /**
-     * 从后往前替换空格
-     *
-     * @param str 输入的字符串
-     * @return 输出的字符串
+     * 遍历替换
+     * @param str
+     * @return
      */
-    public static String method(StringBuffer str) {
-        if (str == null || str.length() <= 0) return str.toString();
-
-        int spaceLength = 0;
+    public static String method(String str) {
+        if (str == null || str.length() <= 0) return str;
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == ' ') spaceLength++;
-        }
-
-        int oldIndex = str.length() - 1;
-        int newLength = str.length() + spaceLength * 2;
-        int newIndex = newLength - 1;
-        str.setLength(newLength);
-
-        for (; oldIndex >= 0; oldIndex--) {
-            if (str.charAt(oldIndex) == ' ') {
-                str.setCharAt(newIndex--, '0');
-                str.setCharAt(newIndex--, '2');
-                str.setCharAt(newIndex--, '%');
+            char c = str.charAt(i);
+            if (c == ' ') {
+                sb.append("%20");
             } else {
-                str.setCharAt(newIndex--, str.charAt(oldIndex));
+                sb.append(c);
             }
         }
-        return str.toString();
+        return sb.toString();
     }
 }
 
