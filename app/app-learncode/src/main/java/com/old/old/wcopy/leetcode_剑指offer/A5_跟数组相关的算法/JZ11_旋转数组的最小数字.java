@@ -28,7 +28,7 @@ public class JZ11_旋转数组的最小数字 {
 
     public static int method(int[] nums) {
         // 鲁棒性
-        if (nums == null || nums.length == 0) return -1;
+        if (nums == null || nums.length <= 0) return -1;
 
         int left = 0, right = nums.length - 1;
 //        // 针对的是把数组最开始的0个元素搬到数组的末尾这种特殊情况，此时数组不变，最小元素就是数组的第一个元素
@@ -41,10 +41,9 @@ public class JZ11_旋转数组的最小数字 {
             // left右移只有两种：
             // 1、nums[mid]=nums[right] left=left+1]; left右移一个，此时，若满足条件，一定是B中第一个元素
             // 2、nums[mid]>nums[right] left=mid+1; mid还处于A中，left=mid+1满足条件，一定是B中第一个元素
-            if (nums[left] < nums[right])
-                return nums[left];
+            if (nums[left] < nums[right]) return nums[left];
             // 二分查找，不断缩小left right指针的范围
-            int mid = (left + right) >> 1;
+            int mid = ((right - left) >> 1) + left;
             // 若mid指向的值大于right指向的值，意昧着：mid仍然处于A中
             if (nums[mid] > nums[right])
                 left = mid + 1;
